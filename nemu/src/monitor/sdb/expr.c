@@ -21,10 +21,17 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+TK_NOTYPE = 256,
+TK_EQ,
 
-  /* TODO: Add more token types */
-
+/* TODO: Add more token types */
+TK_PLUS, // 加号
+TK_MINUS, // 减号
+TK_MULTIPLY, // 乘号
+TK_DIVIDE, // 除号
+TK_LPAREN, // 左括号
+TK_RPAREN, // 右括号
+TK_VALUE  //整数
 };
 
 static struct rule {
@@ -37,8 +44,14 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
-  {"\\+", '+'},         // plus
+  {"\\+",TK_PLUS},         // plus
   {"==", TK_EQ},        // equal
+  {"-",TK_MINUS},            //minus
+  {"\\*",TK_MULTIPLY},          // mul
+  {"/",TK_DIVIDE},            //divide
+  {"(",TK_LPAREN},
+  {")",TK_RPAREN},
+  {"[0-9]+",TK_VALUE}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -68,6 +81,7 @@ typedef struct token {
 } Token;
 
 static Token tokens[32] __attribute__((used)) = {};
+
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
@@ -93,7 +107,21 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-
+         
+         
+        if (substr_len <= 32) {   
+                    tokens[nr_token].type=rules[i].token_type;
+				strncpy(tokens[nr_token].str,substr_start,substr_len);
+				nr_token++;
+			
+                } else {  
+                    printf("Error: token array is full.\n");  
+                    return false; 
+                }  
+         //当tokens长度小于32位才开始录入，如果是非数字字符类型，就只录入类型，否则再录入数值
+         
+         
+         
         switch (rules[i].token_type) {
           default: TODO();
         }
@@ -111,14 +139,122 @@ static bool make_token(char *e) {
   return true;
 }
 
+//括号匹配
+static bool check_parenthese(int p, int q) {
+	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
+		static int pd = 0, l = 0, r = 0;
+		for (int i = p; i <= q; i++) {
+			if (tokens[i].type == TK_LPAREN) {
+				pd++;
+				l = i;
+			} else if (tokens[i].type == TK_RPAREN) {
+				pd--;
+				r = i;
+			}
+			if (pd < 0 || (i == NR_REGEX - 1 && pd != 0)) {
+				return false ;
+			}
+			if (pd == 0 && l > p && r < q) {
+				if (!check_parenthese(l, r)) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	return false;
+}
 
+
+//找到主运算符
+
+static Token find_op(int p,int q){
+			int op=0x3f3f3f3f;
+			int ntk=512;
+			int pd=0;
+			for (int i=p;i<q;i++){
+				if (tokens[i].type!=TK_VALUE){
+					
+					if (tokens[i].type==TK_LPAREN){
+						pd++;
+						}else if(tokens[i].type==TK_RPAREN){
+							pd--;
+							}
+					if (pd!=0){
+						continue;
+						}
+					//括号内的不可能是主运算符，直接跳过
+					
+					
+					if (tokens[i].type/2 < ntk/2){
+						ntk=tokens[i].type;
+						op=i;
+						}else if(tokens[i].type/2 == ntk/2&&op<i){
+						op=i;	
+							}
+					//token_type不同时，选择数值更小的token
+					//+-，*/相同用于是要除以2
+					//token_type相同时，越晚结合优先级越低
+					}
+					//只有非数字字符是主运算符
+				}
+				Token result;
+				result.type=ntk;
+				char temp[32];
+				sprintf(temp,"%d",op);
+				strcpy(result.str,temp);
+		return  result;
+	}
+
+//递归计算表达式
+static int eval(int p,int q) {
+  if (p > q) {
+    /* Bad expression */
+    return -1;
+  }
+  else if (p == q) {
+    /* Single token.
+     * For now this token should be a number.
+     * Return the value of the number.
+     */
+     return atoi(tokens[p].str);
+  }
+  else if (check_parenthese(p, q) == true) {
+    /* The expression is surrounded by a matched pair of parentheses.
+     * If that is the case, just throw away the parentheses.
+     */
+    return eval(p + 1, q - 1);
+  }
+  else {
+  Token result=find_op(p,q);
+    int op = atoi(result.str);
+    int op_type = result.type;
+    int val1 = eval(p, op - 1);
+    int val2 = eval(op + 1, q);
+
+    switch (op_type) {
+      case TK_PLUS: return val1 + val2;
+      case TK_MINUS: return val1 - val2;
+      case TK_MULTIPLY: return val1 * val2;
+      case TK_DIVIDE: return val1 / val2;
+      default: assert(0);
+    }
+  }
+}
+	
+	
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
 
+
   /* TODO: Insert codes to evaluate the expression. */
+   int p=0,q=nr_token;
+   int num=eval(p,q);
+  printf("%d",num);
+  
   TODO();
 
   return 0;
