@@ -31,7 +31,16 @@ static char *code_format =
 "  return 0; "
 "}";
 //随机数生成器
-
+//随机生成符号
+static void gen_rand_op(){
+	switch(choose(4)){
+	case 0: gen('+');break;
+	case 1: gen('-');break;
+	case 2: gen('*');break;
+	case 3: gen('/');break;
+	
+		}
+	}
 //将括号内的东西存入缓冲区
 static void gen(char sympol){
 	strcat(buf,symbol);
@@ -39,7 +48,10 @@ static void gen(char sympol){
 
 //生成随机数字，并将随机数字存入缓冲区
 static void gen_num(){
-	gen(choose(10));
+	 int num = choose(10);  
+    // 确保不生成0  
+    if (num == 0) num = 1; 
+    gen(num + '0'); 
 	}	
 
 static void gen_rand_expr() {
