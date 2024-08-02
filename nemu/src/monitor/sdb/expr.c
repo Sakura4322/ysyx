@@ -49,8 +49,8 @@ static struct rule {
   {"-",TK_MINUS},            //minus
   {"\\*",TK_MULTIPLY},          // mul
   {"/",TK_DIVIDE},            //divide
-  {"(",TK_LPAREN},
-  {")",TK_RPAREN},
+  {"\\(",TK_LPAREN},
+  {"\\)",TK_RPAREN},
   {"[0-9]+",TK_VALUE}
 };
 
@@ -109,7 +109,7 @@ static bool make_token(char *e) {
          */
          
          
-        if (substr_len <= 32) {   
+        if (substr_len <= 32) 										{ 																																		  
                     tokens[nr_token].type=rules[i].token_type;
 				strncpy(tokens[nr_token].str,substr_start,substr_len);
 				nr_token++;
