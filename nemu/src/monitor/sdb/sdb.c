@@ -79,15 +79,29 @@ return 0;
 }
 
 
-static int cmd_x(char *args){//扫描内存
-	char *arg=strtok(NULL, " ");
-	char *addr_char=strtok(NULL , " ");
-	int addr=atoi(addr_char);
-	for (int i=0;i<atoi(arg);i++){
-	printf("0x%x : %d\n",addr,paddr_read(addr,4));
-	addr+=4;
-		}
-return 0;
+static int cmd_x(char *args) { // 扫描内存  
+    char *arg = strtok(NULL, " ");  
+    char *addr_char = strtok(NULL, " ");  
+
+    if (arg == NULL || addr_char == NULL) {  
+        printf("Usage: x <count> <address>\n");  
+        return -1;  
+    }  
+
+    int count = atoi(arg);  
+    int addr = atoi(addr_char);  
+
+    // 检查地址对齐  
+    if (addr % 4 != 0) {  
+        printf("Address 0x%x not aligned to 4 bytes!\n", addr);  
+        return -1; // 或者处理不对齐  
+    }  
+
+    for (int i = 0; i < count; i++) {  
+        printf("0x%x : %d\n", addr, paddr_read(addr, 4));  
+        addr += 4;  
+    }  
+    return 0;  
 }
 /*
 static int cmd_p(char *arg){//表达式求值
