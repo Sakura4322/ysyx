@@ -83,6 +83,7 @@ static int cmd_x(char *args) { // 扫描内存
     char *arg = strtok(NULL, " ");  
     char *addr_char = strtok(NULL, " ");  
 
+printf("%s\n",addr_char);
     if (arg == NULL || addr_char == NULL) {  
         printf("Usage: x <count> <address>\n");  
         return -1;  
