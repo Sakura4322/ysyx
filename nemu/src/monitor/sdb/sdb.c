@@ -79,29 +79,35 @@ return 0;
 }
 
 
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+
 static int cmd_x(char *args) { // 扫描内存  
     char *arg = strtok(NULL, " ");  
     char *addr_char = strtok(NULL, " ");  
 
-printf("%s\n",addr_char);
+    printf("%s\n", addr_char); // Print the address argument  
+    
     if (arg == NULL || addr_char == NULL) {  
         printf("Usage: x <count> <address>\n");  
         return -1;  
     }  
 
     int count = atoi(arg);  
-    int addr = atoi(addr_char);  
+    long long addr = strtol(addr_char, NULL, 16);  
 
     // 检查地址对齐  
     if (addr % 4 != 0) {  
-        printf("Address 0x%x not aligned to 4 bytes!\n", addr);  
+        printf("Address 0x%llx not aligned to 4 bytes!\n", addr);  
         return -1; // 或者处理不对齐  
     }  
 
     for (int i = 0; i < count; i++) {  
-        printf("0x%x : %d\n", addr, paddr_read(addr, 4));  
+        printf("0x%llx : %d\n", addr, paddr_read(addr, 4));  
         addr += 4;  
     }  
+
     return 0;  
 }
 /*
