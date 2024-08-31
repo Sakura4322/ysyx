@@ -269,7 +269,7 @@ return -1;
       case TK_MINUS: return val1 - val2;
       case TK_MULTIPLY: return val1 * val2;
       case TK_DIVIDE: return val1 / val2;
-      default: printf("1%d1",op_type);
+      default: printf("damn%ddamn",op_type);
       		//assert(0);
     }
   }
