@@ -24,6 +24,15 @@ char buf[70000];
 
 
 int main(int argc, char *argv[]) {
+
+
+  /* Initialize the monitor. */
+#ifdef CONFIG_TARGET_AM
+  am_init_monitor();
+#else
+  init_monitor(argc, argv);
+#endif
+
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
 
 while (fgets(buf,sizeof(buf),stdin) != NULL){
@@ -44,15 +53,6 @@ while (fgets(buf,sizeof(buf),stdin) != NULL){
 	
 	fclose(fp);
 	
-	
-
-  /* Initialize the monitor. */
-#ifdef CONFIG_TARGET_AM
-  am_init_monitor();
-#else
-  init_monitor(argc, argv);
-#endif
-
   /* Start engine. */
   engine_start();
   
