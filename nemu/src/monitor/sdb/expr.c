@@ -96,7 +96,7 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
 int len;
 len = strlen(e);
-e[len]='\0';
+e[len-1]='\0';
   int position = 0;
   int i;
   regmatch_t pmatch;
