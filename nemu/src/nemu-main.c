@@ -20,7 +20,7 @@ void am_init_monitor();
 void engine_start();
 word_t expr(char *e, bool *success);
 int is_exit_status_bad();
-char buf[70000];
+//char buf[70000];
 //char epr[70000];
 
 
@@ -33,33 +33,11 @@ int main(int argc, char *argv[]) {
 #else
   init_monitor(argc, argv);
 #endif
-
-FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
-assert (fp != NULL);
-while (fgets(buf,sizeof(buf),fp) != NULL){
-		char *result = strtok(buf," ");
-		char *epr = strtok(NULL," ");
-		/*
-		strcpy(epr,eprx);
-		int len=strlen(eprx);
-		epr [len-1]='\0';
-		*/
-		int num=atoi(result);
-		bool success_prt = true;
-		bool *success= &success_prt;
-		 int test_num = expr(epr,success);
-		printf("%d\n%s\n%d\n",test_num,epr,test_num);
-		assert(num==test_num);
-/*
-if (num==test_num)printf("yes\n");
-else printf("No\n");
-*/
-		buf[0]='\0';
-		//epr[0]='\0';
-	}
-	
-	fclose(fp);
-	
+	bool success_prt = true;
+	bool *success= &success_prt;
+	char epr[]={(((1+5*2)*((7))))};
+	 expr(epr,success);
+  
   /* Start engine. */
   engine_start();
   
