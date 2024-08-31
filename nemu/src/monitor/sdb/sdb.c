@@ -75,13 +75,11 @@ char *arg=strtok(NULL," ");
 if (strcmp(arg,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
+if (strcmp(arg,"w")==0){
+	
+	}
 return 0;
 }
-
-
-#include <stdio.h>  
-#include <stdlib.h>  
-#include <string.h>  
 
 static int cmd_x(char *args) { // 扫描内存  
     char *arg = strtok(NULL, " ");  

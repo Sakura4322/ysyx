@@ -31,7 +31,12 @@ TK_MULTIPLY, // 乘号
 TK_DIVIDE, // 除号
 TK_LPAREN, // 左括号
 TK_RPAREN, // 右括号
-TK_VALUE  //整数
+TK_VALUE,  //整数
+TK_AND,
+TK_SMALLER,
+TK_BIGGER,
+TK_UNEQUAL,
+DEREF		//指针解引用
 };
 
 static struct rule {
@@ -51,7 +56,11 @@ static struct rule {
   {"/",TK_DIVIDE},            //divide
   {"\\(",TK_LPAREN},
   {"\\)",TK_RPAREN},
-  {"[0-9]+",TK_VALUE}
+  {"[0-9]+",TK_VALUE},
+  {"\\&&",TK_AND},
+  {"\\<=",TK_SMALLER},
+  {"\\>=",TK_BIGGER},
+  {"\\!=",TK_UNEQUAL}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -80,7 +89,7 @@ typedef struct token {
   char str[32];
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
+static Token tokens[65536] __attribute__((used)) = {};
 
 static int nr_token __attribute__((used))  = 0;
 
@@ -231,7 +240,10 @@ static int eval(int p,int q) {
     int op_type = result.type;
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
-
+if (val2==0&&op_type==TK_DIVIDE){
+printf("DIVISION BY ZERO");
+return -1;	
+	}
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
       case TK_MINUS: return val1 - val2;
@@ -240,6 +252,7 @@ static int eval(int p,int q) {
       default: assert(0);
     }
   }
+  return 0;
 }
 	
 	
@@ -255,7 +268,14 @@ word_t expr(char *e, bool *success) {
    int num=eval(p,q);
   printf("%d",num);
   
+  /*
+  for (i = 0; i < nr_token; i ++) {
+  if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == certain type) ) {
+    tokens[i].type = DEREF;
+  } 
+}
+  */
   TODO();
 
-  return 0;
+  return num;
 }
