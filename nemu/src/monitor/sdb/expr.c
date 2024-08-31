@@ -130,11 +130,11 @@ static bool make_token(char *e) {
          //当tokens长度小于32位才开始录入，如果是非数字字符类型，就只录入类型，否则再录入数值
          
          
-         
+      /*   
         switch (rules[i].token_type) {
           default: TODO();
         }
-
+*/
         break;
       }
     }
