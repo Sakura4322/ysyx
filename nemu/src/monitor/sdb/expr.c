@@ -36,7 +36,8 @@ TK_AND,
 TK_SMALLER,
 TK_BIGGER,
 TK_UNEQUAL,
-DEREF		//指针解引用
+DEREF,		//指针解引用
+TK_LIBREAK
 };
 
 static struct rule {
@@ -60,7 +61,8 @@ static struct rule {
   {"\\&&",TK_AND},
   {"\\<=",TK_SMALLER},
   {"\\>=",TK_BIGGER},
-  {"\\!=",TK_UNEQUAL}
+  {"\\!=",TK_UNEQUAL},
+  {"\n",TK_LIBREAK}
 };
 
 #define NR_REGEX ARRLEN(rules)
