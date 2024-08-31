@@ -94,9 +94,6 @@ static Token tokens[65536] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
-int len;
-len = strlen(e);
-e[len-1]='\0';
   int position = 0;
   int i;
   regmatch_t pmatch;
@@ -104,7 +101,7 @@ e[len-1]='\0';
   nr_token = 0;
 
   while (e[position] != '\0') {   
-    
+    if (e[position]=='\n')return true;
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
