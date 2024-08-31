@@ -129,12 +129,15 @@ static bool make_token(char *e) {
          */
          
          
-        if (rules[i].token_type!=TK_LIBREAK) 										{ 																																		  
+        if (substr_len <= 32) 										{ 																																		  
                     tokens[nr_token].type=rules[i].token_type;
 				strncpy(tokens[nr_token].str,substr_start,substr_len);
 				nr_token++;
 			
-                } 
+                } else {  
+                    printf("Error: token array is full.\n");  
+                    return false; 
+                }  
          //当tokens长度小于32位才开始录入，如果是非数字字符类型，就只录入类型，否则再录入数值
          
          
@@ -149,15 +152,15 @@ static bool make_token(char *e) {
 
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-      printf("damn%ddamn\n",e[position+1]);
+      //printf("damn%ddamn\n",e[position+1]);
       return false;
     }
   }
-
+/*
 for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
-		
+	*/	
   return true;
 }
 
