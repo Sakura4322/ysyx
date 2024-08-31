@@ -42,7 +42,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool success_prt = true;
 		bool *success= &success_prt;
 		 
-		printf("%d\n",expr(epr,success));
+		printf("%d\n%s\n",expr(epr,success),epr);
 assert(num!=expr(epr,success)&&expr(epr,success)!=-1);
 		buf[0]='\0';
 	}
