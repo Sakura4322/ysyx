@@ -101,12 +101,15 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {   
+  /*
   if (e[position] == '\n'){
   	for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
   	break;
   	}
+  	*/
+  	
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {

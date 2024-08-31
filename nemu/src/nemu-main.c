@@ -21,6 +21,7 @@ void engine_start();
 word_t expr(char *e, bool *success);
 int is_exit_status_bad();
 char buf[70000];
+char epr[70000];
 
 
 int main(int argc, char *argv[]) {
@@ -37,7 +38,10 @@ FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","
 assert (fp != NULL);
 while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result = strtok(buf," ");
-		char *epr = strtok(NULL," ");
+		char *eprx = strtok(NULL," ");
+		strcpy(epr,eprx);
+		int len=strlen(eprx);
+		epr [len-1]='\0';
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
@@ -49,6 +53,7 @@ if (num==test_num)printf("yes\n");
 else printf("No\n");
 */
 		buf[0]='\0';
+		epr[0]='\0';
 	}
 	
 	fclose(fp);
