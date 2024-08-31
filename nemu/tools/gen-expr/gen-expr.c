@@ -65,7 +65,8 @@ static void gen_num(int depth) {
 }  
 
 static void gen_rand_expr(int depth) {  
-if(depth>=65536) return ;
+if(depth>=65536){ 	
+	return ;}
     switch (choose(3)) {  
         case 0: gen_num(depth); break;  
         case 1: gen('(',depth+1); gen_rand_expr(depth); gen(')',depth+1); break;  
@@ -74,7 +75,8 @@ if(depth>=65536) return ;
             gen_rand_op(depth);   
             gen_rand_expr(depth);   
             break;  
-    }  
+    }
+      
 }  
 
 
@@ -90,6 +92,7 @@ int main(int argc, char *argv[]) {
   for (i = 0; i < loop; i ++) {
   buf[0] = '\0';//初始化
     gen_rand_expr(0);
+    gen('\n',0);
     /*
 if (eval(0,strlen(buf)-1)==-1){
 continue;
