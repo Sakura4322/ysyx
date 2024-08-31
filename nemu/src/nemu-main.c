@@ -41,6 +41,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt; 
+		printf("%d\n\n\n",expr(epr,success));
 assert(num!=expr(epr,success)&&expr(epr,success)!=-1);
 		buf[0]='\0';
 	}
