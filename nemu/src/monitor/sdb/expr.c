@@ -129,7 +129,7 @@ static bool make_token(char *e) {
          */
          
          
-        if (substr_len <= 32) 										{ 																																		  
+        if (rules[i].token_type!=TK_LIBREAK) 										{ 																																		  
                     tokens[nr_token].type=rules[i].token_type;
 				strncpy(tokens[nr_token].str,substr_start,substr_len);
 				nr_token++;
@@ -269,8 +269,7 @@ return -1;
       case TK_MINUS: return val1 - val2;
       case TK_MULTIPLY: return val1 * val2;
       case TK_DIVIDE: return val1 / val2;
-      default: printf("damn%ddamn",op_type);
-      		//assert(0);
+      default:assert(0);
     }
   }
   return 0;
