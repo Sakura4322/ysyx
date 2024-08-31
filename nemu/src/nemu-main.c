@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 	bool success_prt = true;
 	bool *success= &success_prt;
 	char epr[]={(((1+5*2)*((7))))};
+	printf("%s\n",epr);
 	 expr(epr,success);
   
   /* Start engine. */
