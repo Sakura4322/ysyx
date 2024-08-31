@@ -273,7 +273,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
    int p=0,q=nr_token;
    int num=eval(p,q);
-  printf("%d",num);
+   printf("%d",num);
   
   /*
   for (i = 0; i < nr_token; i ++) {
@@ -284,5 +284,5 @@ word_t expr(char *e, bool *success) {
   */
   TODO();
 
-  return num;
+  return 0;
 }
