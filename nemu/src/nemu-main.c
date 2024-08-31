@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
 assert (fp != NULL);
-while (fgets(buf,sizeof(buf),stdin) != NULL){
+while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result = strtok(buf," ");
 		char *epr = strtok(NULL," ");
 		int num=atoi(result);
@@ -45,7 +45,7 @@ while (fgets(buf,sizeof(buf),stdin) != NULL){
 			}else if(expr(epr,sucess)==-1){
 				continue;
 				}else {
-					printf("Np!\n");
+					printf("No!\n");
 					}
 					
 		buf[0]='\0';
