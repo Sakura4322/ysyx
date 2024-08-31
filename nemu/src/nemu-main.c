@@ -39,10 +39,11 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result = strtok(buf," ");
 		char *epr = strtok(NULL," ");
 		int num=atoi(result);
-		bool *sucess =false;
-		if (num==expr(epr,sucess)){
+		bool success_prt = true;
+		bool *success= &success_prt;  
+		if (num==expr(epr,success)){
 			printf("Yes!\n");
-			}else if(expr(epr,sucess)==-1){
+			}else if(expr(epr,success)==-1){
 				continue;
 				}else {
 					printf("No!\n");
