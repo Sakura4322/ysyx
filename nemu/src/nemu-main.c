@@ -31,9 +31,7 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);
 #endif
 
-  /* Start engine. */
-  engine_start();
-  
+
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
 
 while (fgets(buf,sizeof(buf),stdin) != NULL){
@@ -53,5 +51,13 @@ while (fgets(buf,sizeof(buf),stdin) != NULL){
 	}
 	
 	fclose(fp);
+	
+	
+  /* Start engine. */
+  engine_start();
+  
+
+	
+	
   return is_exit_status_bad();
 }
