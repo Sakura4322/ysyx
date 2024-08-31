@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 #endif
 
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
-
+assert (fp != NULL);
 while (fgets(buf,sizeof(buf),stdin) != NULL){
 		char *result = strtok(buf," ");
 		char *epr = strtok(NULL," ");
