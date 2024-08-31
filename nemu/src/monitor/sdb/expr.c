@@ -151,23 +151,26 @@ static bool make_token(char *e) {
 //括号匹配
 static bool check_parenthese(int p, int q) {
 	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
-		static int pd = 0, l = 0, r = 0;
+		static int pd = 0;
+		// l = 0, r = 0;
 		for (int i = p; i <= q; i++) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
-				l = i;
+				//l = i;
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
-				r = i;
+				//r = i;
 			}
-			if (pd < 0 || (i == NR_REGEX - 1 && pd != 0)) {
+			if (pd < 0 || (i == q && pd != 0)) {
 				return false ;
 			}
+			/*
 			if (pd == 0 && l > p && r < q) {
 				if (!check_parenthese(l, r)) {
 					return false;
 				}
 			}
+			*/
 		}
 		return true;
 	}

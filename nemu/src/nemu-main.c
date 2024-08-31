@@ -40,8 +40,9 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *epr = strtok(NULL," ");
 		int num=atoi(result);
 		bool success_prt = true;
-		bool *success= &success_prt; 
-		printf("%d\n%s\n\n",expr(epr,success),epr);
+		bool *success= &success_prt;
+		 
+		printf("%d\n",expr(epr,success));
 assert(num!=expr(epr,success)&&expr(epr,success)!=-1);
 		buf[0]='\0';
 	}
