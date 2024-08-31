@@ -100,7 +100,7 @@ static bool make_token(char *e) {
 
   nr_token = 0;
 
-  while (e[position]+1 != '\0') {   
+  while (e[position+1] != '\0') {   
     
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
