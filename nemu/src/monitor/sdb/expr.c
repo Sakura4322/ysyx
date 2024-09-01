@@ -152,7 +152,6 @@ static bool make_token(char *e) {
 
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
-      //printf("damn%ddamn\n",e[position+1]);
       return false;
     }
   }
@@ -168,16 +167,16 @@ for (int j=0;j<position;j++){
 static bool check_parenthese(int p, int q) {
 	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
 		static int pd = 0;
-		// l = 0, r = 0;
+		
 		for (int i = p; i <= q; i++) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
-				//l = i;
-				printf("%d %d %d\n",i,q,pd);
+				
+				//printf("%d %d %d\n",i,q,pd);测试点，测试括号匹配
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
-				//r = i;
-				printf("%d %d %d\n",i,q,pd);
+				
+				//printf("%d %d %d\n",i,q,pd);
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
 			
@@ -268,7 +267,7 @@ printf("DIVISION BY ZERO");
 exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
 	}
-	printf("%d %d %d\n",val1,op_type,val2);
+	//printf("%d %d %d\n",val1,op_type,val2); 测试点，计算的元素和符号
 	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
