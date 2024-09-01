@@ -63,6 +63,12 @@ static void gen_num(int depth) {
     if (num == 0) num = 1;   
     gen(num + '0',depth+1);   
 }  
+static void gen_space(int depth){
+	switch (choose(2)){
+		case 0 : gen (" ",depth+1);
+		default : gen (" ",depth+1);gen_space(depth);
+		}	
+	}
 
 static void gen_rand_expr(int depth) {  
 if(depth>=5000){ 	
