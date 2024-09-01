@@ -49,7 +49,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool *success= &success_prt;
 		
 		 int test_num = expr(epr,success);
-		 printf("%s\n",epr);
+		 printf("%s\n ans_num\n = %d ",epr,num);
 		assert(num==test_num);
 /*
 if (num==test_num)printf("yes\n");
