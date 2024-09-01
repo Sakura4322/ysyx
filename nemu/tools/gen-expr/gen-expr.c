@@ -65,7 +65,7 @@ static void gen_num(int depth) {
 }  
 
 static void gen_rand_expr(int depth) {  
-if(depth>=65536){ 	
+if(depth>=20){ 	
 	return ;}
     switch (choose(3)) {  
         case 0: gen_num(depth); break;  
