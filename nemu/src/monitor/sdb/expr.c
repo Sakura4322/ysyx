@@ -179,7 +179,7 @@ static bool check_parenthese(int p, int q) {
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
 			printf("%d",pd);
-				assert(0);
+				assert(pd<0);
 				return false ;
 			}
 			/*
