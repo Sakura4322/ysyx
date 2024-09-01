@@ -272,7 +272,7 @@ printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
 	}
-	//printf("%d %d %d\n",val1,op_type,val2); 测试点，计算的元素和符号
+	printf("%d %d %d\n",val1,op_type,val2);// 测试点，计算的元素和符号
 	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
