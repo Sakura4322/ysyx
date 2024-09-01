@@ -134,8 +134,8 @@ static bool make_token(char *e) {
                     if (rules[i].token_type==TK_NOTYPE)continue;
                     
                      tokens[nr_token].type=rules[i].token_type;				
-                     strncpy(tokens[nr_token].str,substr_start,substr_len-1);
-                     printf("%s\n",tokens[nr_token].str);
+                     strncpy(tokens[nr_token].str,substr_start,substr_len);
+                    // printf("%s\n",tokens[nr_token].str);//测试输入表达式是否正确
 				nr_token++;
 			
                 } else {  
