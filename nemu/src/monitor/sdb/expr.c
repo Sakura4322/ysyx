@@ -130,13 +130,10 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
          
-         
-       
-        
         if (substr_len <= 32){         
                     if (rules[i].token_type==TK_NOTYPE)continue;
                      tokens[nr_token].type=rules[i].token_type;				
-                     strncpy(tokens[nr_token].str,substr_start,substr_len);
+                     strncpy(tokens[nr_token].str,substr_start,substr_len-1);
 				nr_token++;
 			
                 } else {  
