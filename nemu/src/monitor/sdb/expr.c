@@ -137,7 +137,7 @@ static bool make_token(char *e) {
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
                      tokens[nr_token].str[substr_len]='\0';
                      
-                     printf("nr_token= %d tokens = %s\n",nr_token,tokens[nr_token].str);
+                     //printf("nr_token= %d tokens = %s\n",nr_token,tokens[nr_token].str);
                      //测试输入表达式是否正确
 				nr_token++;
 			
@@ -179,11 +179,11 @@ static bool check_parenthese(int p, int q) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
 				
-				//printf("%d %d %d\n",i,q,pd);测试点，测试括号匹配
+				printf("%d %d %d\n",i,q,pd);//测试点，测试括号匹配
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
 				
-				//printf("%d %d %d\n",i,q,pd);
+				printf("%d %d %d\n",i,q,pd);
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
 			
