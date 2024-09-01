@@ -103,16 +103,16 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {   
- 
+ /*
   if (e[position] == '\n'){
   	for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
-		//测试点，测试输入的表达式是否正确
+		测试点，测试输入的表达式是否正确
 		
   	break;
   	}
- 
+  */
   	
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
@@ -135,6 +135,7 @@ static bool make_token(char *e) {
                     
                      tokens[nr_token].type=rules[i].token_type;				
                      strncpy(tokens[nr_token].str,substr_start,substr_len-1);
+                     printf("%s\n",tokens[nr_token].str);
 				nr_token++;
 			
                 } else {  
