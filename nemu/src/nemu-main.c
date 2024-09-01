@@ -34,6 +34,11 @@ FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","
 assert (fp != NULL);
 int yes=0,no=0;
 while (fgets(buf,sizeof(buf),fp) != NULL){
+#ifdef CONFIG_TARGET_AM
+  am_init_monitor();
+#else
+  init_monitor(argc, argv);
+#endif
 		char *epr = strchr(buf, ' ');
 		char *result=buf ;
 		
@@ -50,12 +55,6 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool success_prt = true;
 		bool *success= &success_prt;
 		printf("epr= %s \n",epr);
-		#ifdef CONFIG_TARGET_AM
-  am_init_monitor();
-#else
-  init_monitor(argc, argv);
-#endif
-
 		 int test_num = (int)expr(epr,success);
 		 printf("ans_num = %u \n",num);
 		if (num == test_num)yes++;
