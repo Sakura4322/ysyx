@@ -39,12 +39,13 @@ assert (fp != NULL);
 int yes=0,no=0;
 while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result = strtok(buf," ");
-		char *epr = strtok(NULL," ");
+		char *epr = strchr(buf, ' '); // 找到第一个空格
 		/*
 		strcpy(epr,eprx);
 		int len=strlen(eprx);
 		epr [len-1]='\0';
 		*/
+		epr++;
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
