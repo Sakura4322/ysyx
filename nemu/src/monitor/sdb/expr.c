@@ -91,7 +91,7 @@ typedef struct token {
   char str[32];
 } Token;
 
-static Token tokens[65536] ;//__attribute__((used)) = {};
+static Token tokens[65536] __attribute__((used)) = {};
 
 static int nr_token __attribute__((used))  = 0;
 
@@ -135,6 +135,8 @@ static bool make_token(char *e) {
                     
                      tokens[nr_token].type=rules[i].token_type;				
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
+                     //tokens[nr_token].str[substr_start+substr_len]='\0';
+                     
                      printf("nr_token= %d tokens = %s\n",nr_token,tokens[nr_token].str);
                      //测试输入表达式是否正确
 				nr_token++;
