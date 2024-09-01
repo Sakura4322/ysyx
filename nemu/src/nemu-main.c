@@ -47,8 +47,8 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
+		printf("%s\n",epr);
 		 int test_num = expr(epr,success);
-		printf("%d\n%s\n%d\n",test_num,epr,test_num);
 		assert(num==test_num);
 /*
 if (num==test_num)printf("yes\n");
