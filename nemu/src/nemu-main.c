@@ -36,6 +36,7 @@ int main(int argc, char *argv[]) {
 
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
 assert (fp != NULL);
+int yes=0,no=0;
 while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result = strtok(buf," ");
 		char *epr = strtok(NULL," ");
@@ -49,8 +50,9 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool *success= &success_prt;
 		
 		 int test_num = expr(epr,success);
-		 printf("%s\n ans_num = %d \n",epr,num);
-		assert(num==test_num);
+		 printf("%s\nans_num = %d \n",epr,num);
+		if (num == test_num)yes++;
+		else no++;
 /*
 if (num==test_num)printf("yes\n");
 else printf("No\n");
@@ -58,7 +60,7 @@ else printf("No\n");
 		buf[0]='\0';
 		//epr[0]='\0';
 	}
-	
+	printf ("yes=%d\nno=%d\n",yes ,no);
 	fclose(fp);
 	
   /* Start engine. */
