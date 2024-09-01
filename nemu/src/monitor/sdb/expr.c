@@ -167,15 +167,16 @@ for (int j=0;j<position;j++){
 //括号匹配
 static bool check_parenthese(int p, int q) {
 	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
-		static int pd = 0,l = 0, r = 0;
+		static int pd = 0;
+		// l = 0, r = 0;
 		for (int i = p; i <= q; i++) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
-				l = i;
+				//l = i;
 				printf("%d %d %d\n",i,q,pd);
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
-				r = i;
+				//r = i;
 				printf("%d %d %d\n",i,q,pd);
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
@@ -184,10 +185,8 @@ static bool check_parenthese(int p, int q) {
 				return false ;
 			}
 			
-			if (pd == 0 && l > p && r < q) {
-				if (!check_parenthese(l, r)) {
-					return false;
-				}
+			if (pd == 0 && i!=q) {
+				return false;
 			}
 			
 		}
