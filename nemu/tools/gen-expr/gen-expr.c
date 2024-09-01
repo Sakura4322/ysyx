@@ -105,7 +105,7 @@ continue;
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc -Werror /tmp/.code.c -o /tmp/.expr");
+    int ret = system("gcc -Wall /tmp/.code.c -o /tmp/.expr");
     if (ret != 0) continue;
 
     fp = popen("/tmp/.expr", "r");
