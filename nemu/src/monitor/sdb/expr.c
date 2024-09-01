@@ -259,7 +259,7 @@ static int eval(int p,int q) {
      */
     return eval(p + 1, q - 1);
   }
-  else {
+  else if (check_parenthese(p, q) != true){
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
