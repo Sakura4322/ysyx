@@ -48,9 +48,9 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
-		
+		printf("%s\n",epr);
 		 int test_num = expr(epr,success);
-		 printf("%s\nans_num = %u \n",epr,num);
+		 printf("ans_num = %u \n",num);
 		if (num == test_num)yes++;
 		else no++;
 /*
