@@ -28,17 +28,16 @@ int main(int argc, char *argv[]) {
 
 
   /* Initialize the monitor. */
-
-
-FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
-assert (fp != NULL);
-int yes=0,no=0;
-while (fgets(buf,sizeof(buf),fp) != NULL){
 #ifdef CONFIG_TARGET_AM
   am_init_monitor();
 #else
   init_monitor(argc, argv);
 #endif
+
+FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
+assert (fp != NULL);
+int yes=0,no=0;
+while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *epr = strchr(buf, ' ');
 		char *result=buf ;
 		
