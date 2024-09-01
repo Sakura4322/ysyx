@@ -25,13 +25,13 @@ TK_NOTYPE = 256,
 TK_EQ,
 
 /* TODO: Add more token types */
-TK_PLUS, // 加号
-TK_MINUS, // 减号
-TK_MULTIPLY, // 乘号
-TK_DIVIDE, // 除号
-TK_LPAREN, // 左括号
-TK_RPAREN, // 右括号
-TK_VALUE,  //整数
+TK_PLUS, // 258加号
+TK_MINUS, // 259减号
+TK_MULTIPLY, // 260乘号
+TK_DIVIDE, // 261除号
+TK_LPAREN, // 262左括号
+TK_RPAREN, // 263右括号
+TK_VALUE,  //264整数
 TK_AND,
 TK_SMALLER,
 TK_BIGGER,
