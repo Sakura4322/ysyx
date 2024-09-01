@@ -65,7 +65,7 @@ static void gen_num(int depth) {
 }  
 
 static void gen_rand_expr(int depth) {  
-if(depth>=20){ 	
+if(depth>=5000){ 	
 	return ;}
     switch (choose(3)) {  
         case 0: gen_num(depth); break;  
@@ -105,7 +105,7 @@ continue;
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc -Wall /tmp/.code.c -o /tmp/.expr");
+    int ret = system("gcc -Werror /tmp/.code.c -o /tmp/.expr");
     if (ret != 0) continue;
 
     fp = popen("/tmp/.expr", "r");
@@ -114,8 +114,9 @@ continue;
     int result;
     ret = fscanf(fp, "%d", &result);
     pclose(fp);
-            printf("%u %s\n", result, buf);
-        
+            	printf("%u %s", result, buf);
+            	
+     
   }
   return 0;
 }
