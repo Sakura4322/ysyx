@@ -58,6 +58,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		 printf("ans_num = %u \n",num);
 		if (num == test_num)yes++;
 		else no++;
+		assert(num == test_num);
 		
 		
 /*
