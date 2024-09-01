@@ -265,7 +265,7 @@ static int eval(int p,int q) {
     int val2 = eval(op + 1, q);
 if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
-assert(0);
+exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
 	}
 	printf("%d %d %d\n",val1,op_type,val2);
