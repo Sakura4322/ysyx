@@ -28,11 +28,7 @@ int main(int argc, char *argv[]) {
 
 
   /* Initialize the monitor. */
-#ifdef CONFIG_TARGET_AM
-  am_init_monitor();
-#else
-  init_monitor(argc, argv);
-#endif
+
 
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","r");
 assert (fp != NULL);
@@ -54,6 +50,12 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool success_prt = true;
 		bool *success= &success_prt;
 		printf("epr= %s \n",epr);
+		#ifdef CONFIG_TARGET_AM
+  am_init_monitor();
+#else
+  init_monitor(argc, argv);
+#endif
+
 		 int test_num = (int)expr(epr,success);
 		 printf("ans_num = %u \n",num);
 		if (num == test_num)yes++;
