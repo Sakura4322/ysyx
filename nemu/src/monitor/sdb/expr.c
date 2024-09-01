@@ -173,13 +173,15 @@ static bool check_parenthese(int p, int q) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
 				//l = i;
+				printf("%d",pd);
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
 				//r = i;
+				printf("%d",pd);
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
-			printf("%d",pd);
-				//assert(0);
+			
+			assert(0);
 				return false ;
 			}
 			/*
