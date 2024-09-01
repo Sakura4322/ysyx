@@ -105,9 +105,11 @@ static bool make_token(char *e) {
   while (e[position] != '\0') {   
  
   if (e[position] == '\n'){
-  	for (int j=0;j<position;j++){
+  	/*for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
+		测试点，测试输入的表达式是否正确
+		*/
   	break;
   	}
   
