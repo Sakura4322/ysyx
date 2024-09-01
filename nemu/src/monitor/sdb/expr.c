@@ -240,6 +240,7 @@ static Token find_op(int p,int q){
 static int eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
+    printf("Bad expression");
     return -1;
   }
   else if (p == q) {
@@ -265,6 +266,8 @@ if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
 return -1;	
 	}
+	printf("%d %d\n",val1,val2);
+	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
       case TK_MINUS: return val1 - val2;
