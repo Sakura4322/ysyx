@@ -266,7 +266,7 @@ if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
 return -1;	
 	}
-	printf("%d %d\n",val1,val2);
+	printf("%d %d %d\n",val1,op_type,val2);
 	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
