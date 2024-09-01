@@ -39,9 +39,10 @@ assert (fp != NULL);
 int yes=0,no=0;
 while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *epr = strchr(buf, ' ');
+		char *result=buf ;
+		
 		*epr = '\0';
 		epr++;
-		char *result = strcpy(epr,buf); // 找到第一个空格
 		/*
 		strcpy(epr,eprx);
 		int len=strlen(eprx);
