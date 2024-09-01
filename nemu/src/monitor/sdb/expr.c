@@ -288,7 +288,7 @@ word_t expr(char *e, bool *success) {
 
 
   /* TODO: Insert codes to evaluate the expression. */
-   int p=0,q=nr_token-1;
+   int p=0,q=nr_token;
    int num=eval(p,q);
    printf("%u",num);
   
