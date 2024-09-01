@@ -219,7 +219,7 @@ static Token find_op(int p,int q){
 					if (tokens[i].type/2 < ntk/2){
 						ntk=tokens[i].type;
 						op=i;
-						}else if(tokens[i].type/2 == ntk/2&&op<i){
+						}else if(tokens[i].type/2 == ntk/2&&op<i){					ntk=tokens[i].type;
 						op=i;	
 							}
 					//token_type不同时，选择数值更小的token
