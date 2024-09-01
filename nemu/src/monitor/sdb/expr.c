@@ -132,6 +132,7 @@ static bool make_token(char *e) {
          
         if (substr_len <= 32){         
                     if (rules[i].token_type==TK_NOTYPE)continue;
+                    
                      tokens[nr_token].type=rules[i].token_type;				
                      strncpy(tokens[nr_token].str,substr_start,substr_len-1);
 				nr_token++;
@@ -205,6 +206,8 @@ static Token find_op(int p,int q){
 			int ntk=512; //运算符的种类
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
+			if (tokens[i].type==TK_NOTYPE)continue;
+				
 				if (tokens[i].type!=TK_VALUE){
 					
 					if (tokens[i].type==TK_LPAREN){
