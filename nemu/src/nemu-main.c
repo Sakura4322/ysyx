@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 #endif
 	bool success_prt = true;
 	bool *success= &success_prt;
-	char epr[]="1+1";
+	char epr[]="1+1*3";
 	printf("%s\n",epr);
 	 expr(epr,success);
   
