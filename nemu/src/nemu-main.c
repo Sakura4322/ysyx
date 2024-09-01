@@ -35,7 +35,7 @@ int main(int argc, char *argv[]) {
 #endif
 	bool success_prt = true;
 	bool *success= &success_prt;
-	char epr[]="(8*4*1/8-(((8*(6+5+(5-5)*(7)/3))+(9)-(6)-3/2)))*1";
+	char epr[]="(8*4*1/8-(((8*(6+5+(5-5)*7/3))+9-6-3/2)))*1";
 	printf("%s\n",epr);
 	 expr(epr,success);
   
