@@ -198,10 +198,10 @@ static bool check_parenthese(int p, int q) {
 //找到主运算符
 
 static Token find_op(int p,int q){
-			int op=0x3f3f3f3f;
-			int ntk=512;
-			int pd=0;
-			for (int i=p;i<q;i++){
+			int op=0x3f3f3f3f; //主要运算符的位置
+			int ntk=512; //运算符的种类
+			int pd=0;	//括号匹配
+			for (int i=p;i<=q;i++){
 				if (tokens[i].type!=TK_VALUE){
 					
 					if (tokens[i].type==TK_LPAREN){
@@ -284,7 +284,7 @@ word_t expr(char *e, bool *success) {
 
 
   /* TODO: Insert codes to evaluate the expression. */
-   int p=0,q=nr_token;
+   int p=0,q=nr_token-1;
    int num=eval(p,q);
    printf("%d",num);
   
