@@ -103,16 +103,16 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {   
- /*
+ 
   if (e[position] == '\n'){
   	for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
-		测试点，测试输入的表达式是否正确
+		//测试点，测试输入的表达式是否正确
 		
   	break;
   	}
-  */
+ 
   	
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
@@ -272,7 +272,7 @@ printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
 	}
-	printf("%d %d %d\n",val1,op_type,val2);// 测试点，计算的元素和符号
+	//printf("%d %d %d\n",val1,op_type,val2); 测试点，计算的元素和符号
 	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;
