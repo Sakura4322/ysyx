@@ -50,7 +50,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		bool *success= &success_prt;
 		
 		 int test_num = expr(epr,success);
-		 printf("%s\nans_num = %d \n",epr,num);
+		 printf("%s\nans_num = %u \n",epr,num);
 		if (num == test_num)yes++;
 		else no++;
 /*
