@@ -135,7 +135,8 @@ static bool make_token(char *e) {
                     
                      tokens[nr_token].type=rules[i].token_type;				
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
-                    // printf("%s\n",tokens[nr_token].str);//测试输入表达式是否正确
+                     printf("nr_token= %d tokens = %s\n",nr_token,tokens[nr_token].str);
+                     //测试输入表达式是否正确
 				nr_token++;
 			
                 } else {  
