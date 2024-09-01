@@ -103,16 +103,16 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {   
-
+ /*
   if (e[position] == '\n'){
-  	/*for (int j=0;j<position;j++){
+  	for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
 		测试点，测试输入的表达式是否正确
-	*/	
+		
   	break;
   	}
-
+  */
   	
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
@@ -298,7 +298,7 @@ word_t expr(char *e, bool *success) {
 
 
   /* TODO: Insert codes to evaluate the expression. */
-   int p=0,q=nr_token-1;
+   int p=0,q=nr_token-2;
    int num=eval(p,q);
    printf("Ans = %u\n",num);
   
