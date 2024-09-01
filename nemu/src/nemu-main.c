@@ -45,11 +45,13 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		int len=strlen(eprx);
 		epr [len-1]='\0';
 		*/
+		printf("%s\n",epr);
 		epr++;
+		printf("%s\n",epr);
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
-		printf("%s\n",epr);
+		
 		 int test_num = (int)expr(epr,success);
 		 printf("ans_num = %u \n",num);
 		if (num == test_num)yes++;
