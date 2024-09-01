@@ -38,15 +38,17 @@ FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input","
 assert (fp != NULL);
 int yes=0,no=0;
 while (fgets(buf,sizeof(buf),fp) != NULL){
-		char *result = strtok(buf," ");
-		char *epr = strchr(buf, ' '); // 找到第一个空格
+		char *epr = strchr(buf, ' ');
+		*epr = '\0';
+		epr++;
+		char *result = strcpy(epr,buf); // 找到第一个空格
 		/*
 		strcpy(epr,eprx);
 		int len=strlen(eprx);
 		epr [len-1]='\0';
 		*/
 		printf("%s\n",result);
-		epr++;
+		
 		printf("%s\n",epr);
 		/*
 		int num=atoi(result);
