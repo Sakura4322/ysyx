@@ -304,5 +304,5 @@ word_t expr(char *e, bool *success) {
   */
   //TODO();
 
-  return 0;
+  return (word_t)num;
 }
