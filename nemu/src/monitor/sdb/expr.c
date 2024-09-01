@@ -259,7 +259,7 @@ static int eval(int p,int q) {
      */
     return eval(p + 1, q - 1);
   }
-  else if (check_parenthese(p, q) != true){
+  else {
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
@@ -291,7 +291,7 @@ word_t expr(char *e, bool *success) {
 
 
   /* TODO: Insert codes to evaluate the expression. */
-   int p=0,q=nr_token;
+   int p=0,q=nr_token-1;
    int num=eval(p,q);
    printf("%u",num);
   
