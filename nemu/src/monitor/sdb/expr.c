@@ -279,7 +279,7 @@ return 0;
 	printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
     switch (op_type) {
-      case TK_PLUS: return (int)(val1 + val2);
+      case TK_PLUS: return (val1 + val2);
       case TK_MINUS: return (int)(val1 - val2);
       case TK_MULTIPLY: return (int)(val1 * val2);
       case TK_DIVIDE: return (int)(val1 / val2);
