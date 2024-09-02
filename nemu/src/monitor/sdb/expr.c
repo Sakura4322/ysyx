@@ -179,11 +179,11 @@ static bool check_parenthese(int p, int q) {
 			if (tokens[i].type == TK_LPAREN) {
 				pd++;
 				
-				printf("括号匹配 position = %d len = %d  pd判断= %d\n",i,q,pd);//测试点，测试括号匹配
+				//printf("括号匹配 position = %d len = %d  pd判断= %d\n",i,q,pd);//测试点，测试括号匹配
 			} else if (tokens[i].type == TK_RPAREN) {
 				pd--;
 				
-				printf("括号匹配 position = %d len = %d  pd判断= %d\n",i,q,pd);
+				//printf("括号匹配 position = %d len = %d  pd判断= %d\n",i,q,pd);
 			}
 			if (pd < 0 || (i == q && pd != 0)) {
 			
@@ -276,7 +276,7 @@ printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
 	}
-	printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
+	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
     switch (op_type) {
       case TK_PLUS: return val1 + val2;

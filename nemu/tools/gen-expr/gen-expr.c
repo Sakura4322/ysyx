@@ -43,43 +43,66 @@ static void gen(char symbol,int depth) {
     if (len < sizeof(buf) - 2) { // -2 是因为要留下空间给字符和结束符  
         buf[len] = symbol;  
         buf[len + 1] = '\0'; // 确保字符串以 null 结尾  
-    }  
+    }
+   printf ("%d\n",depth);  
 }  
+
 
 // 随机生成符号  
 static void gen_rand_op(int depth) {  
     switch (choose(4)) {  
-        case 0: gen('+',depth+1); break;  
-        case 1: gen('-',depth+1); break;  
-        case 2: gen('*',depth+1); break;  
-        default: gen('/',depth+1); break;  
+        case 0: gen('+',++depth); break;  
+        case 1: gen('-',++depth); break;  
+        case 2: gen('*',++depth); break;  
+        default: gen('/',++depth); break;  
     }  
 }  
 
 // 生成随机数字，并将随机数字存入缓冲区  
-static void gen_num(int depth) {  
-    int num = choose(10);  
-    // 确保不生成 0  
-    if (num == 0) num = 1;   
-    gen(num + '0',depth+1);   
+static void gen_num(int depth) {//最多生成两位数
+switch(choose(2)){
+	case 0:  
+	    int num = choose(10);    
+	    gen(num + '0',++depth);
+	    break;
+	default :   
+		    num = choose(10);    
+		    gen(num + '0',++depth);
+		    num = choose(10);    
+		    gen(num + '0',++depth); 
+    }  
 }  
 static void gen_space(int depth){
-	switch (choose(2)){
-		case 0 : gen (" ",depth+1);
-		default : gen (" ",depth+1);gen_space(depth);
+	switch (choose(3)){
+		case 0 : gen (' ',++depth);break;
+		case 1 : gen (' ',++depth);gen_space(depth);break;
+		default : break;
 		}	
 	}
 
-static void gen_rand_expr(int depth) {  
-if(depth>=5000){ 	
+static void  gen_rand_expr(int depth) {  
+if(depth>=10){ 	
+	gen_num(depth);
 	return ;}
     switch (choose(3)) {  
-        case 0: gen_num(depth); break;  
-        case 1: gen('(',depth+1); gen_rand_expr(depth); gen(')',depth+1); break;  
-        default:   
-            gen_rand_expr(depth);   
-            gen_rand_op(depth);   
-            gen_rand_expr(depth);   
+        case 0: gen_space(depth);
+        	gen_num(depth); break;  
+        case 1: gen_space(depth);
+        	gen('(',++depth);
+        	gen_space(depth); 
+        	gen_rand_expr(depth);
+        	gen_space(depth);
+        	gen(')',++depth);
+        	gen_space(depth);
+        	break;  
+        default:
+            gen_space(depth);   
+            gen_rand_expr(depth);
+            gen_space(depth);   
+            gen_rand_op(depth);
+            gen_space(depth);   
+            gen_rand_expr(depth);
+            gen_space(depth);   
             break;  
     }
       
