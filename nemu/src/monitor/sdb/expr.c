@@ -246,7 +246,7 @@ static Token find_op(int p,int q){
 	}
 
 //递归计算表达式
-static uint32_t eval(int p,int q) {
+static int eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
     printf("Bad expression");
@@ -269,8 +269,8 @@ static uint32_t eval(int p,int q) {
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
-    uint32_t val1 = eval(p, op - 1);
-    uint32_t val2 = eval(op + 1, q);
+    int val1 = eval(p, op - 1);
+    int val2 = eval(op + 1, q);
 if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
