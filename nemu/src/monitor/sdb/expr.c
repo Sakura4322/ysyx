@@ -246,7 +246,7 @@ static Token find_op(int p,int q){
 	}
 
 //递归计算表达式
-static int eval(int p,int q) {
+static uint32_t eval(int p,int q) {
   if (p > q) {
     /* Bad expression */
     printf("Bad expression");
@@ -269,8 +269,8 @@ static int eval(int p,int q) {
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
-    int val1 = (uint32_t)eval(p, op - 1);
-    int val2 = (uint32_t)eval(op + 1, q);
+    uint32_t val1 = eval(p, op - 1);
+    uint32_t val2 = eval(op + 1, q);
 if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
@@ -279,10 +279,10 @@ return 0;
 	printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
     switch (op_type) {
-      case TK_PLUS: return (int)((uint32_t)(val1 + val2));
-      case TK_MINUS: return (int)((uint32_t)(val1 - val2));
-      case TK_MULTIPLY: return (int)((uint32_t)(val1 * val2));
-      case TK_DIVIDE: return (int)((uint32_t)(val1 / val2));
+      case TK_PLUS: return val1 + val2;
+      case TK_MINUS: return val1 - val2;
+      case TK_MULTIPLY: return val1 * val2;
+      case TK_DIVIDE: return val1 / val2;
       default:assert(0);
     }
   }
