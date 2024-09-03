@@ -61,7 +61,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 	fclose(fp);
 	*/
   /* Start engine. */
-  printf("helloworld");
+  printf("helloworld\n");
   engine_start();
   
 
