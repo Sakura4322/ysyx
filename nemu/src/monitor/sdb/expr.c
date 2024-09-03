@@ -306,7 +306,6 @@ return 0;
       			char *reg = tokens[p].str;
       			reg++;
       			return isa_reg_str2val(reg,success);
-      //case TK_ADDR : return 
       //case TK_DEREF : return 
       default:assert(0);
     }
