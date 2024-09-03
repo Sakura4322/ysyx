@@ -51,7 +51,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  {"\\$[a-f0-9]+",TK_REG},	//寄存器
+  {"\\$[a-z0-9]+",TK_REG},	//寄存器
   {"\\0x[a-f0-9]+",TK_ADDR},	//地址
   {" +", TK_NOTYPE},    // spaces
   {"\\+",TK_PLUS},         // plus
