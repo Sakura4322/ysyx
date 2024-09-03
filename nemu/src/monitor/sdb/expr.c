@@ -119,7 +119,6 @@ static bool make_token(char *e) {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
-      	i=0; //重新回到rules【0】开始
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
@@ -143,6 +142,7 @@ static bool make_token(char *e) {
                      printf("nr_token= %d tokens = %s\ntokens_type = %d",nr_token,tokens[nr_token].str,tokens[nr_token].type);
                      //测试输入表达式是否正确
 				nr_token++;
+				i=0; //重新回到rules【0】开始
 			
                 } else {  
                     printf("Error: token array is full.\n");  
