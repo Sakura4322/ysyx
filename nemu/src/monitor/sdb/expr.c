@@ -373,7 +373,7 @@ word_t expr(char *e, bool *success) {
 }
 
 
-int p=0,q=nr_token-1;
+int p=0,q=nr_token-2;
 //printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q,success);
    if (*success==false )return 0;
