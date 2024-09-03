@@ -251,13 +251,15 @@ printf ("进入find_op函数成功\n");
 	}
 word_t paddr_read(paddr_t addr, int len);
 //递归计算表达式
-static int eval(int p,int q) {
+static int eval(int p,int q,bool *success) {
+if (!success)return 0;
 printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
 printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
   if (p > q) {
     /* Bad expression */
+    *success = false;
     printf("Bad expression");
-    return -1;
+    return 0;
   }
   else if (p == q) {
     /* Single token.
@@ -284,7 +286,7 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
-    return eval(p + 1, q - 1);
+    return eval(p + 1, q - 1,success);
   }
   else {
   printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
@@ -293,10 +295,11 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
     int op = atoi(result.str);
     int op_type = result.type;
     printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
-    int val1 = eval(p, op - 1);
-    int val2 = eval(op + 1, q);
+    int val1 = eval(p, op - 1,success);
+    int val2 = eval(op + 1, q,success);
     printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 if (val2==0&&op_type==TK_DIVIDE){
+*success = false ;
 printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
 return 0;	
@@ -344,7 +347,8 @@ printf ("成功make_tokens\n");
 
 int p=0,q=nr_token-1;
 printf ("准备进入计算 p=%d q=%d\n",p,q);
-   int num=eval(p,q);
+   int num=eval(p,q,success);
+   if (!success )return 0;
    printf("Ans = %u\n",num);
    
 
