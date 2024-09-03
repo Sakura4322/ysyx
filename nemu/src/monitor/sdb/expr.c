@@ -166,7 +166,7 @@ static bool make_token(char *e) {
     }
   }
 printf("\n");
-for (int j=0;j<position;j++){
+for (int j=0;j<nr_token;j++){
 		printf("%s",tokens[j].str);
 		}
 		
@@ -373,7 +373,7 @@ word_t expr(char *e, bool *success) {
 }
 
 
-int p=0,q=nr_token-2;
+int p=0,q=nr_token-1;
 //printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q,success);
    if (*success==false )return 0;
