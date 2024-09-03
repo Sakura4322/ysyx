@@ -338,7 +338,7 @@ printf ("成功make_tokens\n");
 
   /* TODO: Insert codes to evaluate the expression. */
   for (int i = 0; i < nr_token; i ++) {
-  if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
+  if (tokens[i].type == TK_MULTIPLY && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
     tokens[i].type = DEREF;
     printf("成功是别解引用符");
   } 
