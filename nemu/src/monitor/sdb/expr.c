@@ -267,7 +267,9 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
      //如果输入的是地址，则输出子长为四个字节的该地址的数值
      if(tokens[p].type == TK_ADDR){
      	long long addr = strtol(tokens[p].str, NULL, 16);
-     	return (int)paddr_read(addr, 4);
+     	int a =(int)paddr_read(addr, 4);
+     	printf ("成功读取地址的值 %s = %d\n",tokens[p].str,a);
+     	return a;
      	}
      return atoi(tokens[p].str);
   }
@@ -306,6 +308,7 @@ return 0;
       			char *reg = tokens[p].str;
       			reg++;
       			return isa_reg_str2val(reg,success);
+      //case TK_ADDR : return 
       //case TK_DEREF : return 
       default:assert(0);
     }
