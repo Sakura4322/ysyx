@@ -281,9 +281,9 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
   printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
   printf ("准备进入find_op函数\n");
   Token result=find_op(p,q);
-  printf ("退出find_op函数成功\n");
     int op = atoi(result.str);
     int op_type = result.type;
+    printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
 if (val2==0&&op_type==TK_DIVIDE){
