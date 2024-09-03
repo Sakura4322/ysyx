@@ -174,6 +174,7 @@ for (int j=0;j<position;j++){
 
 //括号匹配
 static bool check_parenthese(int p, int q) {
+printf ("进入括号匹配成功 p = %d q = %d\n",p,q);
 	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
 		static int pd = 0;
 		
@@ -215,6 +216,7 @@ static int sort(int n){//将所有运算符进行优先排序
 	}
 //找到主运算符
 static Token find_op(int p,int q){
+printf ("进入find_op函数成功\n");
 			int op=0x3f3f3f3f; //主要运算符的位置
 			int ntk=512; //运算符的种类
 			int pd=0;	//括号匹配
@@ -249,6 +251,8 @@ static Token find_op(int p,int q){
 word_t paddr_read(paddr_t addr, int len);
 //递归计算表达式
 static int eval(int p,int q) {
+printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
+printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
   if (p > q) {
     /* Bad expression */
     printf("Bad expression");
@@ -274,7 +278,10 @@ static int eval(int p,int q) {
     return eval(p + 1, q - 1);
   }
   else {
+  printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
+  printf ("准备进入find_op函数\n");
   Token result=find_op(p,q);
+  printf ("退出find_op函数成功\n");
     int op = atoi(result.str);
     int op_type = result.type;
     int val1 = eval(p, op - 1);
@@ -324,7 +331,7 @@ printf ("成功make_tokens\n");
 }
 
 
-int p=0,q=nr_token-2;
+int p=0,q=nr_token-1;
 printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q);
    printf("Ans = %u\n",num);
