@@ -61,7 +61,7 @@ static struct rule {
   {"/",TK_DIVIDE},            //divide
   {"\\(",TK_LPAREN},
   {"\\)",TK_RPAREN},
-  {"[a-zA-Z0-9]+",TK_VALUE},	//所有的字符和数字
+  {"[0-9]+",TK_VALUE},	//所有的字符和数字
   {"\\&&",TK_AND},
   {"\\!=",TK_UNEQUAL},
   {"\n",TK_LIBREAK}
@@ -139,7 +139,7 @@ static bool make_token(char *e) {
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
                      tokens[nr_token].str[substr_len]='\0';
                      
-                     //printf("nr_token= %d tokens = %s\n",nr_token,tokens[nr_token].str);
+                     printf("nr_token= %d tokens = %s\ntokens_type = %d",nr_token,tokens[nr_token].str,tokens[nr_token].type);
                      //测试输入表达式是否正确
 				nr_token++;
 			
