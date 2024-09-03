@@ -22,22 +22,25 @@
 
 enum {
 TK_NOTYPE = 256,
-TK_EQ,
+TK_EQ,		//等于
+
 
 /* TODO: Add more token types */
-TK_PLUS, // 258加号
-TK_MINUS, // 259减号
-TK_MULTIPLY, // 260乘号
-TK_DIVIDE, // 261除号
-TK_LPAREN, // 262左括号
-TK_RPAREN, // 263右括号
-TK_VALUE,  //264整数
-TK_AND,
-TK_SMALLER,
-TK_BIGGER,
-TK_UNEQUAL,
+TK_ADDR,	//地址
+TK_REG,		//寄存器开头
+TK_PLUS,	// 258加号
+TK_MINUS,	// 259减号
+TK_MULTIPLY,	// 260乘号
+TK_DIVIDE,	// 261除号
+TK_LPAREN,	// 262左括号
+TK_RPAREN,	// 263右括号
+TK_VALUE,	//264整数
+TK_AND,		//逻辑与
+TK_UNEQUAL,	//不等于
 DEREF,		//指针解引用
-TK_LIBREAK
+TK_LIBREAK	//换行符
+
+
 };
 
 static struct rule {
@@ -48,7 +51,8 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-
+  {"\\$[a-f0-9]+",TK_REG},	//寄存器
+  {"\\0x[a-f0-9]+",TK_ADDR},	//地址
   {" +", TK_NOTYPE},    // spaces
   {"\\+",TK_PLUS},         // plus
   {"==", TK_EQ},        // equal
@@ -57,10 +61,8 @@ static struct rule {
   {"/",TK_DIVIDE},            //divide
   {"\\(",TK_LPAREN},
   {"\\)",TK_RPAREN},
-  {"[0-9]+",TK_VALUE},
+  {"[a-zA-Z0-9]+",TK_VALUE},	//所有的字符和数字
   {"\\&&",TK_AND},
-  {"\\<=",TK_SMALLER},
-  {"\\>=",TK_BIGGER},
   {"\\!=",TK_UNEQUAL},
   {"\n",TK_LIBREAK}
 };
@@ -202,9 +204,16 @@ static bool check_parenthese(int p, int q) {
 	return false;
 }
 
-
+static int sort(int n){//将所有运算符进行优先排序
+	if(n==TK_PLUS||n==TK_MINUS)return 4;
+	else if(n==TK_MULTIPLY||n==TK_DIVIDE)return 3;
+	else if(n==TK_ADDR||n==TK_REG||n==DEREF) return 2;
+	else if(n==TK_AND)	return 11;
+	else if(n==TK_EQ||n==TK_UNEQUAL)return 7;
+	
+	return 0;
+	}
 //找到主运算符
-
 static Token find_op(int p,int q){
 			int op=0x3f3f3f3f; //主要运算符的位置
 			int ntk=512; //运算符的种类
@@ -222,18 +231,11 @@ static Token find_op(int p,int q){
 					if (pd!=0){
 						continue;
 						}
-					//括号内的不可能是主运算符，直接跳过
 					
-					
-					if (tokens[i].type/2 < ntk/2){
+					if (ntk < sort(tokens[i].type)){
 						ntk=tokens[i].type;
 						op=i;
-						}else if(tokens[i].type/2 == ntk/2&&op<i){					ntk=tokens[i].type;
-						op=i;	
-							}
-					//token_type不同时，选择数值更小的token
-					//+-，*/相同用于是要除以2
-					//token_type相同时，越晚结合优先级越低
+						}
 					}
 					//只有非数字字符是主运算符
 				}
@@ -244,7 +246,7 @@ static Token find_op(int p,int q){
 				strcpy(result.str,temp);
 		return  result;
 	}
-
+word_t paddr_read(paddr_t addr, int len);
 //递归计算表达式
 static int eval(int p,int q) {
   if (p > q) {
@@ -257,6 +259,12 @@ static int eval(int p,int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
+     
+     //如果输入的是地址，则输出子长为四个字节的该地址的数值
+     if(tokens[p].type == TK_ADDR){
+     	long long addr = strtol(tokens[p].str, NULL, 16);
+     	return (int)paddr_read(addr, 4);
+     	}
      return atoi(tokens[p].str);
   }
   else if (check_parenthese(p, q) == true) {
@@ -283,6 +291,16 @@ return 0;
       case TK_MINUS: return val1 - val2;
       case TK_MULTIPLY: return val1 * val2;
       case TK_DIVIDE: return val1 / val2;
+      case TK_AND : return val1 && val2;
+      case TK_EQ : return (val1 ==val2) ? 1 : 0;
+      case TK_UNEQUAL : return (val1 !=val2) ? 1 : 0;
+      case TK_REG : 	bool success_prt = true;
+			bool *success= &success_prt;
+      			char *reg = tokens[p].str;
+      			reg++;
+      			return isa_reg_str2val(reg,success);
+      //case TK_ADDR : return 
+      //case TK_DEREF : return 
       default:assert(0);
     }
   }
@@ -298,18 +316,17 @@ word_t expr(char *e, bool *success) {
 
 
   /* TODO: Insert codes to evaluate the expression. */
-   int p=0,q=nr_token-2;
-   int num=eval(p,q);
-   printf("Ans = %u\n",num);
-  
-  /*
-  for (i = 0; i < nr_token; i ++) {
-  if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == certain type) ) {
+  for (int i = 0; i < nr_token; i ++) {
+  if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
     tokens[i].type = DEREF;
   } 
 }
-  */
-  //TODO();
+
+
+int p=0,q=nr_token-2;
+   int num=eval(p,q);
+   printf("Ans = %u\n",num);
+   
 
   return (word_t)num;
 }

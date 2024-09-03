@@ -108,10 +108,13 @@ static int cmd_x(char *args) { // 扫描内存
 
     return 0;  
 }
-/*
-static int cmd_p(char *arg){//表达式求值
 
+static int cmd_p(char *args){//表达式求值
+	bool success_prt = true;
+	bool *success= &success_prt;
+	return expr(args , success);
 }
+/*
 static int cmd_w(){//设置监视点
 
 }
@@ -133,8 +136,8 @@ static struct {
 {"si","让程序单步执行N条指令后暂停执行,当N没有给出时, 缺省为1",cmd_si},
 {"info","打印寄存器状态,打印监视点信息",cmd_info},
 {"x","求出表达式EXPR的值, 将结果作为起始内存地址, 以十六进制形式输出连续的N个4字节",cmd_x},
-/*
 {"p EXPR","求出表达式EXPR的值, EXPR支持的运算请见调试中的表达式求值小节",cmd_p}
+/*
 {"w EXPR","当表达式EXPR的值发生变化时, 暂停程序执行",cmd_w},
 {"d N","删除序号为N的监视点",cmd_d}*/
 };

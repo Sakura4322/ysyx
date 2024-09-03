@@ -35,12 +35,10 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-		/* for (int i=0;i<num_regs;i++){
-			if (strcmp(cpu.pc , s)==0){
-			success=true;
-				printf("%llu",cpu.gpr);
-				}
+		for(int i=0;i<num_regs;i++){
+			if (strcmp(s,regs[i])==0)return cpu.gpr[i];
 			}
-			*/
+			*success = false ;
+			return 0;
   return 0;	
 }
