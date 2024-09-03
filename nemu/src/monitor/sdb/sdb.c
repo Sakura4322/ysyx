@@ -30,7 +30,8 @@ typedef struct watchpoint {
   uint32_t cur; 
 } WP;
 
-
+extern WP* head;
+extern WP* free_; 
 static int is_batch_mode = false;
 
 void init_regex();
