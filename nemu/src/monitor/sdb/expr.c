@@ -235,7 +235,7 @@ static Token find_op(int p,int q){
 						continue;
 						}
 					
-					if (sort(ntk) < sort(tokens[i].type)){
+					if (sort(ntk) <= sort(tokens[i].type)){
 						ntk=tokens[i].type;
 						op=i;
 						}
