@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);
 #endif
 
+/*
+
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input11","r");
 assert (fp != NULL);
 int yes=0,no=0;
@@ -42,14 +44,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		char *result=buf ;
 		
 		*epr = '\0';
-		epr++;
-		/*
-		strcpy(epr,eprx);
-		int len=strlen(eprx);
-		epr [len-1]='\0';
-		*/
-		
-		
+		epr++;		
 		int num=atoi(result);
 		bool success_prt = true;
 		bool *success= &success_prt;
@@ -59,18 +54,12 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 		if (num == test_num)yes++;
 		else no++;
 		assert(num == test_num);
-		
-		
-/*
-if (num==test_num)printf("yes\n");
-else printf("No\n");
-*/
 		buf[0]='\0';
 		//epr[0]='\0';
 	}
 	printf ("yes=%d\nno=%d\n",yes ,no);
 	fclose(fp);
-	
+	*/
   /* Start engine. */
   engine_start();
   
