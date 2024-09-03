@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);
 #endif
 
-
+/*
 
 FILE *fp = fopen("/home/sakura/ysyx-workbench/nemu/tools/gen-expr/build/input11","r");
 assert (fp != NULL);
@@ -59,7 +59,7 @@ while (fgets(buf,sizeof(buf),fp) != NULL){
 	}
 	printf ("yes=%d\nno=%d\n",yes ,no);
 	fclose(fp);
-	
+	*/
   /* Start engine. */
   engine_start();
   
