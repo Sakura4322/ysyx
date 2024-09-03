@@ -309,6 +309,7 @@ return 0;
 	
 	
 word_t expr(char *e, bool *success) {
+printf ("成功进入函数epr，进入表达式为 ： %s\n",e);
   if (!make_token(e)) {
     *success = false;
     return 0;

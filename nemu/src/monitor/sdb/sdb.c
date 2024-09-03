@@ -112,8 +112,8 @@ static int cmd_x(char *args) { // 扫描内存
 static int cmd_p(char *args){//表达式求值
 	bool success_prt = true;
 	bool *success= &success_prt;
-	printf ("%s\n",args);
-	printf ("%d\n",expr(args , success));
+	printf ("成功进行到执行命令函数，输入表达式为 ： %s\n",args);
+	printf ("成功计算答案为 ： %d\n",expr(args , success));
 	return 0;
 }
 /*
@@ -180,7 +180,13 @@ void sdb_mainloop() {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
-  printf ("%s\n",str);
+  
+  
+  printf ("成功进行到获取命令部分，命令为：%s\n",str);//测试点
+    
+    
+    
+    
     char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
@@ -191,6 +197,13 @@ void sdb_mainloop() {
      * which may need further parsing
      */
     char *args = cmd + strlen(cmd) + 1;
+    
+    
+    printf ("成功进行到分解表达式阶段，表达式为：%s\n",args);//测试点
+    
+    
+    
+    
     if (args >= str_end) {
       args = NULL;
     }
