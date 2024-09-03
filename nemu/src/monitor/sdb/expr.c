@@ -61,7 +61,7 @@ static struct rule {
   {"/",TK_DIVIDE},            //divide
   {"\\(",TK_LPAREN},
   {"\\)",TK_RPAREN},
-  {"[0-9]+",TK_VALUE},	//所有的字符和数字
+  {"[a-zA-Z0-9]+",TK_VALUE},	//所有的字符和数字
   {"\\&&",TK_AND},
   {"\\!=",TK_UNEQUAL},
   {"\n",TK_LIBREAK}
@@ -119,6 +119,7 @@ static bool make_token(char *e) {
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
+      	i=0; //重新回到rules【0】开始
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
