@@ -252,7 +252,7 @@ printf ("进入find_op函数成功\n");
 word_t paddr_read(paddr_t addr, int len);
 //递归计算表达式
 static int eval(int p,int q,bool *success) {
-if (!*success)return 0;
+if (*success==false)return 0;
 printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
 printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
   if (p > q) {
@@ -348,7 +348,7 @@ printf ("成功make_tokens\n");
 int p=0,q=nr_token-1;
 printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q,success);
-   if (!success )return 0;
+   if (*success==false )return 0;
    printf("Ans = %u\n",num);
    
 
