@@ -91,6 +91,7 @@ if (strcmp(args,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
 if (strcmp(args,"w")==0){
+	printf("接下来打印监视点信息\n");
 	display_wp();
 	}
 return 0;
@@ -141,13 +142,14 @@ WP *wp = new_wp();
 arg++;
 long long addr = strtol(arg, NULL, 16);
 wp->cur = paddr_read(addr, 4);
+printf("设置监视点成功\n");
 return 0;
 }
 
 static int cmd_d(char *arg){//删除监视点
 int d = atoi(arg);
 free_wp(d);//删除需要删除的监视点
-
+printf("成功删除监视点\n");
 return 0;
 }
 
