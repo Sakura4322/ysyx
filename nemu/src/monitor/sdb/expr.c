@@ -295,25 +295,54 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
     int op = atoi(result.str);
     int op_type = result.type;
     printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
-    int val1 = eval(p, op - 1,success);
-    int val2 = eval(op + 1, q,success);
-    printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
-if (val2==0&&op_type==TK_DIVIDE){
-*success = false ;
-printf("DIVISION BY ZERO");
-//exit(EXIT_FAILURE); // 终止程序并返回失败状态
-return 0;	
-	}
+ int val1;
+ int val2;
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
     switch (op_type) { 
-      case TK_PLUS: return val1 + val2;
-      case TK_MINUS: return val1 - val2;
-      case TK_MULTIPLY: return val1 * val2;
-      case TK_DIVIDE: return val1 / val2;
-      case TK_AND : return val1 && val2;
-      case TK_EQ : return (val1 ==val2) ? 1 : 0;
-      case TK_UNEQUAL : return (val1 !=val2) ? 1 : 0;
+      case TK_PLUS: 
+		     val1 = eval(p, op - 1,success);
+		     val2 = eval(op + 1, q,success);
+		    printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    return val1 + val2;
+      case TK_MINUS: 
+      			 val1 = eval(p, op - 1,success);
+		    	 val2 = eval(op + 1, q,success);
+		    	printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    	return val1 - val2;
+      case TK_MULTIPLY: 
+      			 val1 = eval(p, op - 1,success);
+    			 val2 = eval(op + 1, q,success);
+    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			return val1 * val2;
+      case TK_DIVIDE:        	
+      			val1 = eval(p, op - 1,success);
+    			 val2 = eval(op + 1, q,success);
+    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			
+    			if (val2==0&&op_type==TK_DIVIDE){
+				*success = false ;
+				printf("DIVISION BY ZERO");
+			return 0;
+			}
+    			return val1 / val2;
+    			
+      case TK_AND : 
+      			val1 = eval(p, op - 1,success);
+    			val2 = eval(op + 1, q,success);
+    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+      			return val1 && val2;
+      			
+      case TK_EQ :  
+      			val1 = eval(p, op - 1,success);
+    			val2 = eval(op + 1, q,success);
+    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			return (val1 ==val2) ? 1 : 0;
+      case TK_UNEQUAL : 
+      			val1 = eval(p, op - 1,success);
+    			val2 = eval(op + 1, q,success);
+    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			return (val1 !=val2) ? 1 : 0;
       case TK_REG : 	
       			char *reg = tokens[p].str;
       			reg++;
