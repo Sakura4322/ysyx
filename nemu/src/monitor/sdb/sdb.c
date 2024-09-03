@@ -112,7 +112,8 @@ static int cmd_x(char *args) { // 扫描内存
 static int cmd_p(char *args){//表达式求值
 	bool success_prt = true;
 	bool *success= &success_prt;
-	printf ("%d",expr(args , success));
+	printf ("%s\n",args);
+	printf ("%d\n",expr(args , success));
 	return 0;
 }
 /*
