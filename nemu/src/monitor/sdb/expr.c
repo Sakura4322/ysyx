@@ -324,7 +324,8 @@ printf ("成功make_tokens\n");
 }
 
 
-int p=0,q=nr_token-1;
+int p=0,q=nr_token-2;
+printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q);
    printf("Ans = %u\n",num);
    
