@@ -165,11 +165,11 @@ static bool make_token(char *e) {
       return false;
     }
   }
-/*
+printf("\n");
 for (int j=0;j<position;j++){
 		printf("%s",tokens[j].str);
 		}
-	*/	
+		
   return true;
 }
 
