@@ -22,7 +22,8 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
-  // unit32_t 
+  uint32_t his;
+  uint32_t cur; 
 } WP;
 
 static WP wp_pool[NR_WP] = {};
@@ -41,34 +42,33 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 
-WP* new_wp() {
-    // 如果没有空闲的监视点，终止程序
+WP *new_wp() {
     assert(free_ != NULL);
-
-    // 从空闲链表中取出第一个空闲监视点
     WP* new_wp = free_;
     free_ = free_->next;
-
-    // 初始化新的监视点并将其加入到活跃链表的头部
-    new_wp->next = head;
-    head = new_wp;
-
-    return new_wp;
+    //将监视点装在head 上面
+    new_wp->next =head;
+    	return new_wp;
 }
 
-// 将监视点归还到空闲链表中
-void free_wp(WP *wp) {
-    // 将监视点从活跃链表中移除
-    WP **cur = &head;
-    while (*cur != NULL) {
-        if (*cur == wp) {
-            *cur = wp->next;
-            break;
-        }
-        cur = &(*cur)->next;
-    }
 
+void free_wp(int num) {//寻找head里面的每个节点，找到之后把这个节点删除，装到free_头部
+	WP *cur = head;
+	WP *front_cur=head;
+	    while (cur!=NULL){
+	    	if (cur->NO==num&&cur!=front_cur){
+	    		head->next = cur->next;
+	    		break;
+	    		}else if(cur->NO==num&&cur==front_cur){
+	    			break;
+	    			}
+	    		front_cur = cur;
+	    		cur = cur ->next;
+	    	}
+	    	if (cur == NULL){
+	    		printf("未找到该监视点，请输入正确的监视点");
+	    		}
     // 将监视点加入到空闲链表的头部
-    wp->next = free_;
-    free_ = wp;
+    cur->next = free_;
+    free_ = cur;
 }

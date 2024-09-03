@@ -20,10 +20,23 @@
 #include <memory/paddr.h>
 #include "sdb.h"
 
+
+typedef struct watchpoint {
+  int NO;
+  struct watchpoint *next;
+
+  /* TODO: Add more members if necessary */
+  uint32_t his;
+  uint32_t cur; 
+} WP;
+
+
 static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
+WP *new_wp();
+void free_wp(int num);
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
@@ -120,15 +133,22 @@ static int cmd_p(char *args){//表达式求值
 	else printf ("计算错误\n");
 	return 0;
 }
-/*
-static int cmd_w(){//设置监视点
 
+static int cmd_w(char *arg){//设置监视点
+WP *wp = new_wp();
+arg++;
+long long addr = strtol(arg, NULL, 16);
+wp->cur = paddr_read(addr, 4);
+return 0;
 }
 
 static int cmd_d(char *arg){//删除监视点
+int d = atoi(arg);
+free_wp(d);//删除需要删除的监视点
 
+return 0;
 }
-*/
+
 static struct {
   const char *name;
   const char *description;
@@ -142,10 +162,9 @@ static struct {
 {"si","让程序单步执行N条指令后暂停执行,当N没有给出时, 缺省为1",cmd_si},
 {"info","打印寄存器状态,打印监视点信息",cmd_info},
 {"x","求出表达式EXPR的值, 将结果作为起始内存地址, 以十六进制形式输出连续的N个4字节",cmd_x},
-{"p","求出表达式EXPR的值, EXPR支持的运算请见调试中的表达式求值小节",cmd_p}
-/*
-{"w EXPR","当表达式EXPR的值发生变化时, 暂停程序执行",cmd_w},
-{"d N","删除序号为N的监视点",cmd_d}*/
+{"p","求出表达式EXPR的值, EXPR支持的运算请见调试中的表达式求值小节",cmd_p},
+{"w","当表达式EXPR的值发生变化时, 暂停程序执行",cmd_w},
+{"d","删除序号为N的监视点",cmd_d}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
