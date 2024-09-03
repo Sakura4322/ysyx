@@ -38,6 +38,7 @@ void init_regex();
 void init_wp_pool();
 WP *new_wp();
 void free_wp(int num);
+void display_wp();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
@@ -90,7 +91,7 @@ if (strcmp(arg,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
 if (strcmp(arg,"w")==0){
-	
+	display_wp();
 	}
 return 0;
 }

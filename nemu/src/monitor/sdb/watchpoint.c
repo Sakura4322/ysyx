@@ -72,3 +72,11 @@ void free_wp(int num) {//寻找head里面的每个节点，找到之后把这个
     cur->next = free_;
     free_ = cur;
 }
+
+void display_wp(){
+	WP *cur=head;
+	while(cur!=NULL){
+		printf("存在监视点 ： %d\n",cur->NO);
+		cur = cur ->next;
+		}	
+	}
