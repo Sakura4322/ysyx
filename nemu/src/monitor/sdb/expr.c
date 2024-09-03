@@ -51,7 +51,7 @@ static struct rule {
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
    */
-  
+  {"\\$[a-z0-9]+",TK_REG},	//寄存器
   {"\\0x[a-f0-9]+",TK_ADDR},	//地址
   {" +", TK_NOTYPE},    // spaces
   {"\\+",TK_PLUS},         // plus
@@ -62,7 +62,6 @@ static struct rule {
   {"\\(",TK_LPAREN},
   {"\\)",TK_RPAREN},
   {"[a-zA-Z0-9]+",TK_VALUE},	//所有的字符和数字
-  {"\\$[a-z0-9]+",TK_REG},	//寄存器
   {"\\&&",TK_AND},
   {"\\!=",TK_UNEQUAL},
   {"\n",TK_LIBREAK}
@@ -134,13 +133,15 @@ static bool make_token(char *e) {
          */
          
         if (substr_len <= 32){         
-                    if (rules[i].token_type==TK_NOTYPE)continue;
+                    if (rules[i].token_type==TK_NOTYPE){
+                    break;
+                    	}
                     
                      tokens[nr_token].type=rules[i].token_type;				
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
                      tokens[nr_token].str[substr_len]='\0';
                      
-                     printf("nr_token= %d tokens = %s\ntokens_type = %d",nr_token,tokens[nr_token].str,tokens[nr_token].type);
+                     printf("nr_token= %d tokens =%s\ntokens_type = %d",nr_token,tokens[nr_token].str,tokens[nr_token].type);
                      //测试输入表达式是否正确
 				nr_token++;
 				
@@ -148,8 +149,7 @@ static bool make_token(char *e) {
                 } else {  
                     printf("Error: token array is full.\n");  
                     return false; 
-                }  
-                i=0; //重新回到rules【0】开始         
+                }         
          
       /*   
         switch (rules[i].token_type) {
