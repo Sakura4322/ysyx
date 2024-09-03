@@ -314,7 +314,7 @@ printf ("成功进入函数epr，进入表达式为 ： %s\n",e);
     *success = false;
     return 0;
   }
-
+printf ("成功make_tokens\n");
 
   /* TODO: Insert codes to evaluate the expression. */
   for (int i = 0; i < nr_token; i ++) {
@@ -324,7 +324,7 @@ printf ("成功进入函数epr，进入表达式为 ： %s\n",e);
 }
 
 
-int p=0,q=nr_token-2;
+int p=0,q=nr_token-1;
    int num=eval(p,q);
    printf("Ans = %u\n",num);
    
