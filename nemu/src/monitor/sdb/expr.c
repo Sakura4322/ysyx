@@ -217,7 +217,7 @@ static int sort(int n){//将所有运算符进行优先排序
 //找到主运算符
 static Token find_op(int p,int q){
 printf ("进入find_op函数成功\n");
-			int op=0x3f3f3f3f; //主要运算符的位置
+			int op=-0x4f4f4f4f; //主要运算符的位置
 			int ntk=512; //运算符的种类
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
