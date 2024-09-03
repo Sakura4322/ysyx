@@ -43,8 +43,7 @@ static void gen(char symbol,int depth) {
     if (len < sizeof(buf) - 2) { // -2 是因为要留下空间给字符和结束符  
         buf[len] = symbol;  
         buf[len + 1] = '\0'; // 确保字符串以 null 结尾  
-    }
-   printf ("%d\n",depth);  
+    } 
 }  
 
 
