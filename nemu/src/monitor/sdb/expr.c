@@ -141,7 +141,7 @@ static bool make_token(char *e) {
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
                      tokens[nr_token].str[substr_len]='\0';
                      
-                     printf("nr_token= %d tokens =%s\ntokens_type = %d\n",nr_token,tokens[nr_token].str,tokens[nr_token].type);
+                      //printf("nr_token= %d tokens =%s\ntokens_type = %d\n",nr_token,tokens[nr_token].str,tokens[nr_token].type);
                      //测试输入表达式是否正确
 				nr_token++;
 				
@@ -175,7 +175,7 @@ for (int j=0;j<position;j++){
 
 //括号匹配
 static bool check_parenthese(int p, int q) {
-printf ("进入括号匹配成功 p = %d q = %d\n",p,q);
+//printf ("进入括号匹配成功 p = %d q = %d\n",p,q);
 	if (tokens[p].type == TK_LPAREN && tokens[q].type == TK_RPAREN) {
 		static int pd = 0;
 		
@@ -217,7 +217,7 @@ static int sort(int n){//将所有运算符进行优先排序
 	}
 //找到主运算符
 static Token find_op(int p,int q){
-printf ("进入find_op函数成功\n");
+//printf ("进入find_op函数成功\n");
 			int op=-0x3f3f3f3f; //主要运算符的位置
 			int ntk=TK_LPAREN; //运算符的种类
 			int pd=0;	//括号匹配
@@ -253,8 +253,8 @@ word_t paddr_read(paddr_t addr, int len);
 //递归计算表达式
 static int eval(int p,int q,bool *success) {
 if (*success==false)return 0;
-printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
-printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
+//printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
+//printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
   if (p > q) {
     /* Bad expression */
     *success = false;
@@ -272,11 +272,11 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
      if(tokens[p-1].type == DEREF){
      	long long addr = strtol(tokens[p].str, NULL, 16);
      	int a =(int)paddr_read(addr, 4);
-     	printf ("成功读取地址的值 %s = %d\n",tokens[p].str,a);
+     	//printf ("成功读取地址的值 %s = %d\n",tokens[p].str,a);
      	return a;
      	}else {
      	long long ox_num = strtol(tokens[p].str, NULL, 16);
-     		printf ("成功读取十六进制数字 %s = %lld\n",tokens[p].str,ox_num);
+     		//printf ("成功读取十六进制数字 %s = %lld\n",tokens[p].str,ox_num);
      		return ox_num;
      		}
      	}
@@ -289,12 +289,12 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
     return eval(p + 1, q - 1,success);
   }
   else {
-  printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
-  printf ("准备进入find_op函数\n");
+  // printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
+  // printf ("准备进入find_op函数\n");
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
-    printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
+    //printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
  int val1;
  int val2;
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
@@ -303,26 +303,26 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
       case TK_PLUS: 
 		     val1 = eval(p, op - 1,success);
 		     val2 = eval(op + 1, q,success);
-		    printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    // printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    return val1 + val2;
       case TK_MINUS: 
       			 val1 = eval(p, op - 1,success);
 		    	 val2 = eval(op + 1, q,success);
-		    	printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    	// printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    	return val1 - val2;
       case TK_MULTIPLY: 
       			 val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			 //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			return val1 * val2;
       case TK_DIVIDE:        	
       			val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			// printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			
     			if (val2==0&&op_type==TK_DIVIDE){
 				*success = false ;
-				printf("DIVISION BY ZERO");
+				//printf("DIVISION BY ZERO");
 			return 0;
 			}
     			return val1 / val2;
@@ -330,18 +330,18 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
       case TK_AND : 
       			val1 = eval(p, op - 1,success);
     			val2 = eval(op + 1, q,success);
-    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			//printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
       			return val1 && val2;
       			
       case TK_EQ :  
       			val1 = eval(p, op - 1,success);
     			val2 = eval(op + 1, q,success);
-    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			//printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			return (val1 ==val2) ? 1 : 0;
       case TK_UNEQUAL : 
       			val1 = eval(p, op - 1,success);
     			val2 = eval(op + 1, q,success);
-    			printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			//printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			return (val1 !=val2) ? 1 : 0;
       case TK_REG : 	
       			char *reg = tokens[p].str;
@@ -357,24 +357,24 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
 	
 	
 word_t expr(char *e, bool *success) {
-printf ("成功进入函数epr，进入表达式为 ： %s\n",e);
+//printf ("成功进入函数epr，进入表达式为 ： %s\n",e);
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-printf ("成功make_tokens\n");
+//printf ("成功make_tokens\n");
 
   /* TODO: Insert codes to evaluate the expression. */
   for (int i = 0; i < nr_token; i ++) {
   if (tokens[i].type == TK_MULTIPLY && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
     tokens[i].type = DEREF;
-    printf("成功是别解引用符");
+    //printf("成功是别解引用符");
   } 
 }
 
 
 int p=0,q=nr_token-1;
-printf ("准备进入计算 p=%d q=%d\n",p,q);
+//printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q,success);
    if (*success==false )return 0;
    printf("Ans = %u\n",num);
