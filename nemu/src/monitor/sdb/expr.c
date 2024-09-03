@@ -288,6 +288,7 @@ printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
     printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
     int val1 = eval(p, op - 1);
     int val2 = eval(op + 1, q);
+    printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 if (val2==0&&op_type==TK_DIVIDE){
 printf("DIVISION BY ZERO");
 //exit(EXIT_FAILURE); // 终止程序并返回失败状态
