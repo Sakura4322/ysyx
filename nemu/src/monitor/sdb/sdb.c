@@ -114,7 +114,7 @@ static int cmd_p(char *args){//表达式求值
 	bool *success= &success_prt;
 	printf ("成功进行到执行命令函数，输入表达式为 ： %s\n",args);
 	int ans=expr(args,success);
-	if (*success){
+	if (*success==true){
 	printf ("成功计算答案为 ： %d\n",ans);
 	}
 	else printf ("计算错误\n");
