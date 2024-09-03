@@ -141,7 +141,7 @@ static bool make_token(char *e) {
                      strncpy(tokens[nr_token].str,substr_start,substr_len);
                      tokens[nr_token].str[substr_len]='\0';
                      
-                     printf("nr_token= %d tokens =%s\ntokens_type = %d",nr_token,tokens[nr_token].str,tokens[nr_token].type);
+                     printf("nr_token= %d tokens =%s\ntokens_type = %d\n",nr_token,tokens[nr_token].str,tokens[nr_token].type);
                      //测试输入表达式是否正确
 				nr_token++;
 				
@@ -337,6 +337,7 @@ printf ("成功make_tokens\n");
   for (int i = 0; i < nr_token; i ++) {
   if (tokens[i].type == '*' && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
     tokens[i].type = DEREF;
+    printf("成功是别解引用符");
   } 
 }
 
