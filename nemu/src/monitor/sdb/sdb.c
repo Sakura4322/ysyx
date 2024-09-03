@@ -86,11 +86,11 @@ char *arg = strtok(NULL , " ");
 }  
 
 static int cmd_info(char *args){
-char *arg=strtok(NULL," ");
-if (strcmp(arg,"r")==0){//打印寄存器信息
+printf("%s",args);
+if (strcmp(args,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
-if (strcmp(arg,"w")==0){
+if (strcmp(args,"w")==0){
 	display_wp();
 	}
 return 0;
