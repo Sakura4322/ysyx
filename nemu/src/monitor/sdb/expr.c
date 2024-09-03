@@ -306,7 +306,7 @@ return 0;
 	}
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
-    switch (op_type) {
+    switch (op_type) { 
       case TK_PLUS: return val1 + val2;
       case TK_MINUS: return val1 - val2;
       case TK_MULTIPLY: return val1 * val2;
@@ -314,13 +314,12 @@ return 0;
       case TK_AND : return val1 && val2;
       case TK_EQ : return (val1 ==val2) ? 1 : 0;
       case TK_UNEQUAL : return (val1 !=val2) ? 1 : 0;
-      case TK_REG : 	bool success_prt = true;
-			bool *success= &success_prt;
+      case TK_REG : 	
       			char *reg = tokens[p].str;
       			reg++;
       			return isa_reg_str2val(reg,success);
       //case TK_ADDR : return 
-      //case TK_DEREF : return 
+      case DEREF : return eval(op+1,op+1,success);
       default:assert(0);
     }
   }
