@@ -295,34 +295,34 @@ if (*success==false)return 0;
     int op = atoi(result.str);
     int op_type = result.type;
     //printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
- int val1;
- int val2;
+ int val1=0;
+ int val2=0;
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
 	
     switch (op_type) { 
       case TK_PLUS: 
 		     val1 = eval(p, op - 1,success);
 		     val2 = eval(op + 1, q,success);
-		    // printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		     printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    return val1 + val2;
       case TK_MINUS: 
       			 val1 = eval(p, op - 1,success);
 		    	 val2 = eval(op + 1, q,success);
-		    	// printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    	 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    	return val1 - val2;
       case TK_MULTIPLY: 
       			 val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			 //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			return val1 * val2;
       case TK_DIVIDE:        	
       			val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			// printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			
-    			if (val2==0&&op_type==TK_DIVIDE){
+    			if (val2==0){
 				*success = false ;
-				//printf("DIVISION BY ZERO");
+				printf("DIVISION BY ZERO");
 			return 0;
 			}
     			return val1 / val2;
