@@ -45,7 +45,8 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 }
 
 void isa_reg_changeval(const char *s,int new_value){
-printf("input *s = %s",s);
+		s++;
+		printf("input *s = %s",s);
 		for(int i=0;i<num_regs;i++){
 			if (strcmp(s,regs[i])==0) {cpu.gpr[i]=new_value;
 				printf("new_value = %d",cpu.gpr[i]);
