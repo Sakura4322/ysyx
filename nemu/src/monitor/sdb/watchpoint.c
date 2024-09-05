@@ -18,8 +18,6 @@
 
 #define NR_WP 32
 
-
-
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 
@@ -37,13 +35,13 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 
 WP *new_wp() {
-printf("获取监视点成功\n");
     assert(free_ != NULL);
-    WP* new_wp = free_;
+    WP* wp = free_;
     free_ = free_->next;
+    printf("获取监视点成功,监视点编号为 : %d\n",wp->NO);
     //将监视点装在head 上面
-    new_wp->next =head;
-    	return new_wp;
+    wp->next =head;
+    	return wp;
 }
 
 
