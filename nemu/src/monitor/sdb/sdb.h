@@ -25,8 +25,7 @@ typedef struct watchpoint {
   /* TODO: Add more members if necessary */
   uint32_t his;
   uint32_t cur; 
-} WP;
-
+}WP;
 
 word_t expr(char *e, bool *success);
 void init_wp_pool();
