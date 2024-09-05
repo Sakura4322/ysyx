@@ -102,6 +102,7 @@ void assert_fail_msg() {
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {
   g_print_step = (n < MAX_INST_TO_PRINT);
+  printf("%d\n",g_print_step);
   if (g_print_step<=0){
   	nemu_state.state = NEMU_END;
   	}
