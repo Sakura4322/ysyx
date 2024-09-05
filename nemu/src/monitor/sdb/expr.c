@@ -38,7 +38,8 @@ TK_VALUE,	//264整数
 TK_AND,		//逻辑与
 TK_UNEQUAL,	//不等于
 DEREF,		//指针解引用
-TK_LIBREAK	//换行符
+TK_LIBREAK,	//换行符
+TK_ASSIGN
 
 
 };
@@ -64,7 +65,8 @@ static struct rule {
   {"[a-zA-Z0-9]+",TK_VALUE},	//所有的字符和数字
   {"\\&&",TK_AND},
   {"\\!=",TK_UNEQUAL},
-  {"\n",TK_LIBREAK}
+  {"\n",TK_LIBREAK},
+  {"\\={1}",TK_ASSIGN}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -212,7 +214,7 @@ static int sort(int n){//将所有运算符进行优先排序
 	else if(n==TK_ADDR||n==TK_REG||n==DEREF) return 2;
 	else if(n==TK_AND)	return 11;
 	else if(n==TK_EQ||n==TK_UNEQUAL)return 7;
-	
+	else if(n==TK_ASSIGN)return 14;
 	return 0;
 	}
 //找到主运算符
@@ -250,6 +252,7 @@ static Token find_op(int p,int q){
 		return  result;
 	}
 word_t paddr_read(paddr_t addr, int len);
+void paddr_write(paddr_t addr, int len, word_t data);
 //递归计算表达式
 static int eval(int p,int q,bool *success) {
 if (*success==false)return 0;
@@ -349,6 +352,21 @@ if (*success==false)return 0;
       			return isa_reg_str2val(reg,success);
       //case TK_ADDR : return 
       case DEREF : return eval(op+1,op+1,success);
+      case TK_ASSIGN : 
+      	if (tokens[p].type == TK_REG&&op==1){//修改寄存器的值
+	      	int new_num= eval(op+1,q,success);
+	      	isa_reg_changeval(tokens[op-1].str, new_num);
+      		return new_num;
+      	}else if(tokens[p].type == TK_ADDR&&op==1){
+      		int new_num= eval(op+1,q,success);
+      		long long addr = strtol(tokens[op-1].str, NULL, 16);
+      		paddr_write(addr,4,new_num);
+      		return new_num;
+      		}else {
+      			*success = false;
+      			printf("Left operand of assignment is not an lvalue.");
+      			return 0;
+      			}
       default:assert(0);
     }
   }
@@ -366,7 +384,7 @@ word_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
   for (int i = 0; i < nr_token; i ++) {
-  if (tokens[i].type == TK_MULTIPLY && (i == 0 || tokens[i - 1].type == TK_LPAREN) ) {
+  if (tokens[i].type == TK_MULTIPLY && (i == 0 || tokens[i - 1].type != TK_VALUE||tokens[i - 1].type !=TK_RPAREN) ) {
     tokens[i].type = DEREF;
     //printf("成功是别解引用符");
   } 

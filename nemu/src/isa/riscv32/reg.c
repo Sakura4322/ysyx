@@ -43,3 +43,9 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 			return 0;
   return 0;	
 }
+
+void isa_reg_changeval(const char *s,int new_value){
+		for(int i=0;i<num_regs;i++){
+			if (strcmp(s,regs[i])==0) cpu.gpr[i]=new_value;
+			}
+	}
