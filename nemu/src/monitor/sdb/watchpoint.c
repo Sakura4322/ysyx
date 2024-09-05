@@ -40,7 +40,8 @@ WP *new_wp() {
     free_ = free_->next;
     printf("获取监视点成功,监视点编号为 : %d\n",wp->NO);
     //将监视点装在head 上面
-    wp->next =head;
+    wp->next = head;
+    head = wp;
     	return wp;
 }
 
