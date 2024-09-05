@@ -68,7 +68,7 @@ printf("删除监视点成功\n");
 }
 
 void display_wp(){
-printf("\t  NO  value\n");
+printf("\t    NO  value\n");
 	WP *cur=head;
 	while(cur!=NULL){
 		printf("存在监视点  %d \t%d \n",cur->NO,cur->cur);
