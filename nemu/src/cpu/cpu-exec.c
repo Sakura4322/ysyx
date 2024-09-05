@@ -17,6 +17,9 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
+#include "/home/sakura/ysyx-workbench/nemu/src/monitor/sdb/sdb.h"
+
+
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -41,11 +44,10 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
 //监视点检查开关
-#ifdef CONFIG_WATCHPOINT
   if (diffest_wp()){
   	nemu_state.state = NEMU_STOP;
   	}
- #endif
+
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
@@ -80,9 +82,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
 #endif
 
-#ifdef CONFIG_WATCHPOINT
+
 step_wp();
-#endif
+
 }
 
 static void execute(uint64_t n) {
