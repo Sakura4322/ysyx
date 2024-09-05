@@ -124,10 +124,24 @@ static int cmd_p(char *args){//表达式求值
 
 static int cmd_w(char *arg){//设置监视点
 WP *wp = new_wp();
-arg++;
-long long addr = strtol(arg, NULL, 16);
-wp->cur = paddr_read(addr, 4);
-printf("设置监视点成功\n");
+
+if (arg[0]=='*'){
+	arg++;
+	long long addr = strtol(arg, NULL, 16);
+	wp->cur = paddr_read(addr, 4);
+	printf("设置监视点成功\n");
+	return 0;	
+	}else if (arg[0]=='$'){
+	bool *success;
+	bool success_ptr = true;
+	success = &success_ptr;
+		arg++;
+		wp ->cur =isa_reg_str2val(arg,success);
+		printf("设置监视点成功\n");
+		return 0;
+		}
+printf("Cannot watch constant value %s.\n",arg);
+printf("usage : w + *+addr or $+reg\n");
 return 0;
 }
 

@@ -45,7 +45,6 @@ WP *new_wp() {
     	return wp;
 }
 
-
 void free_wp(int num) {//寻找head里面的每个节点，找到之后把这个节点删除，装到free_头部
 printf("删除监视点成功\n");
 	WP *cur = head;
@@ -72,7 +71,7 @@ void display_wp(){
 printf("接下来打印监视点信息\n");
 	WP *cur=head;
 	while(cur!=NULL){
-		printf("存在监视点 ： %d\n",cur->NO);
+		printf("存在监视点  %d\n",cur->NO);
 		cur = cur ->next;
 		}	
 	}
