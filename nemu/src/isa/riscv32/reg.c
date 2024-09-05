@@ -46,10 +46,13 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 
 void isa_reg_changeval(const char *s,int new_value){
 		s++;
-		printf("input *s = %s",s);
+		printf("input *s =%sn",s);
 		for(int i=0;i<num_regs;i++){
-			if (strcmp(s,regs[i])==0) {cpu.gpr[i]=new_value;
-				printf("new_value = %d",cpu.gpr[i]);
+		printf("正在进行循环，s = %s  regs = %s\n",s,regs[i]);
+			if (strcmp(s,regs[i])==0) {
+				
+				cpu.gpr[i]=new_value;
+				printf("new_value = %d\n",cpu.gpr[i]);
 				}
 			}
 	}
