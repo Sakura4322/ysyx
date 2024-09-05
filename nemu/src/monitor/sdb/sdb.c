@@ -117,6 +117,7 @@ static int cmd_p(char *args){//表达式求值
 	step_wp();
 	int ans=expr(args,success);
 	step_wp();
+	bool diffest_wp();
 	
 	if (*success==true){
 	printf ("成功计算答案为 ： %d\n",ans);
