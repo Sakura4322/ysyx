@@ -71,7 +71,8 @@ char *arg = strtok(NULL , " ");
 }  
 
 static int cmd_info(char *args){
-printf("%sa",args);
+args = strtok(NULL," ");
+printf("%s",args);
 if (strcmp(args,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
