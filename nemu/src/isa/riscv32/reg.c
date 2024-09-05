@@ -26,19 +26,19 @@ const char *regs[] = {
 static int num_regs = sizeof(regs) / sizeof(regs[0]);  
  
 void isa_reg_display() {
- 
+ bool success_ptr = true;
+ bool *success = &success_ptr;
     // 遍历并输出每个寄存器名称  
     for (int i = 0; i < num_regs; i++) {  
-        printf("%s\n", regs[i]);  
-    }  
-    
+        printf("%s\t%x\t%d\n", regs[i],isa_reg_str2val(regs[i], success),isa_reg_str2val(regs[i], success));  
+    }    
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
 		printf("成功读取寄存器数值");
 		for(int i=0;i<num_regs;i++){
 			if (strcmp(s,regs[i])==0){
-			printf("s : %d",cpu.gpr[i]);
+			printf("s : %d\n",cpu.gpr[i]);
 				return cpu.gpr[i];
 				}
 			}
