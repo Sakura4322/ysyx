@@ -23,6 +23,7 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
+  char name[32];
   uint32_t his;
   uint32_t cur; 
 }WP;
@@ -32,6 +33,8 @@ void init_wp_pool();
 WP *new_wp();
 void free_wp(int num);
 void display_wp();
+bool diffest_wp();
+void step_wp();
 
 
 

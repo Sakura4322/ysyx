@@ -128,6 +128,7 @@ WP *wp = new_wp();
 if (arg[0]=='*'){
 	arg++;
 	long long addr = strtol(arg, NULL, 16);
+	strcpy(wp->name ,arg);
 	wp->cur = paddr_read(addr, 4);
 	printf("设置监视点成功\n");
 	return 0;	
@@ -136,6 +137,7 @@ if (arg[0]=='*'){
 	bool success_ptr = true;
 	success = &success_ptr;
 		arg++;
+		strcpy(wp->name ,arg);
 		wp ->cur =isa_reg_str2val(arg,success);
 		printf("设置监视点成功\n");
 		return 0;

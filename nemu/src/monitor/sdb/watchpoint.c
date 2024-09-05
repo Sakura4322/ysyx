@@ -12,6 +12,10 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
+#include <isa.h>
+#include <cpu/cpu.h>
+#include <memory/paddr.h>
+
 
 #include "sdb.h"
 #define NR_WP 32
@@ -75,4 +79,35 @@ printf("\t    NO  value\n");
 		}	
 	}
 	
+bool diffest_wp(){//识别到监视点的变化时输出true 否则false	
+	WP *cur = head;
+	while(cur !=NULL){
+		if (cur->cur!=cur->his){
+			printf("监视点 %d\t %s\n",cur->NO,cur->name);
+			printf("old value : %d\n",cur->his);
+			printf("new value : %d\n",cur->cur);
+			return true;
+			}
+		cur=cur->next;
+		}	
+		return false;
+	}
+	
+void step_wp(){//cpu每一次运行都输出一个监视点的新值
+		WP *cur = head;
+		while(cur !=NULL){
+			if(cur->name[0] == '0'){//读取地址的新数值
+				long long addr = strtol(cur->name, NULL, 16);
+				cur->his = cur ->cur;
+				cur->cur = paddr_read(addr, 4);
+				}else {	//获取寄存器的值
+					cur->his = cur ->cur;			
+					bool *success;
+					bool success_ptr = true;
+					success = &success_ptr;
+			cur ->cur =isa_reg_str2val(cur->name,success);
+					}
+			cur = cur->next;
+			}
 
+	}
