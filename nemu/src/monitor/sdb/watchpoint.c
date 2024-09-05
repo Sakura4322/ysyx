@@ -109,5 +109,6 @@ void step_wp(){//cpu每一次运行都输出一个监视点的新值
 					}
 			cur = cur->next;
 			}
+			return;
 
 	}
