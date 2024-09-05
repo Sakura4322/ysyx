@@ -15,16 +15,10 @@
 
 #include "sdb.h"
 
+
 #define NR_WP 32
 
-typedef struct watchpoint {
-  int NO;
-  struct watchpoint *next;
 
-  /* TODO: Add more members if necessary */
-  uint32_t his;
-  uint32_t cur; 
-} WP;
 
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
@@ -43,6 +37,7 @@ void init_wp_pool() {
 /* TODO: Implement the functionality of watchpoint */
 
 WP *new_wp() {
+printf("获取监视点成功\n");
     assert(free_ != NULL);
     WP* new_wp = free_;
     free_ = free_->next;
@@ -53,6 +48,7 @@ WP *new_wp() {
 
 
 void free_wp(int num) {//寻找head里面的每个节点，找到之后把这个节点删除，装到free_头部
+printf("删除监视点成功\n");
 	WP *cur = head;
 	WP *front_cur=head;
 	    while (cur!=NULL){
@@ -80,3 +76,5 @@ void display_wp(){
 		cur = cur ->next;
 		}	
 	}
+	
+

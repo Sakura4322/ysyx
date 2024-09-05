@@ -20,25 +20,10 @@
 #include <memory/paddr.h>
 #include "sdb.h"
 
-
-typedef struct watchpoint {
-  int NO;
-  struct watchpoint *next;
-
-  /* TODO: Add more members if necessary */
-  uint32_t his;
-  uint32_t cur; 
-} WP;
-
-extern WP* head;
-extern WP* free_; 
 static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
-WP *new_wp();
-void free_wp(int num);
-void display_wp();
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
@@ -92,7 +77,7 @@ isa_reg_display();
 }
 if (strcmp(args,"w")==0){
 	printf("接下来打印监视点信息\n");
-	display_wp();
+	//display_wp();
 	}
 return 0;
 }
@@ -149,7 +134,7 @@ return 0;
 static int cmd_d(char *arg){//删除监视点
 int d = atoi(arg);
 free_wp(d);//删除需要删除的监视点
-printf("成功删除监视点\n");
+
 return 0;
 }
 
