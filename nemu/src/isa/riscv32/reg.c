@@ -37,7 +37,10 @@ void isa_reg_display() {
 word_t isa_reg_str2val(const char *s, bool *success) {
 		printf("成功读取寄存器数值");
 		for(int i=0;i<num_regs;i++){
-			if (strcmp(s,regs[i])==0)return cpu.gpr[i];
+			if (strcmp(s,regs[i])==0){
+			printf("s : %d",cpu.gpr[i]);
+				return cpu.gpr[i];
+				}
 			}
 			*success = false ;
 			return 0;
