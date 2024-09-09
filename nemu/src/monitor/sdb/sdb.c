@@ -214,7 +214,7 @@ void sdb_mainloop() {
   for (char *str; (str = rl_gets()) != NULL; ) {
   
   
-  printf ("成功进行到获取命令部分，命令为：%s\n",str);//测试点
+ // printf ("成功进行到获取命令部分，命令为：%s\n",str);//测试点
     
     
     
@@ -231,7 +231,7 @@ void sdb_mainloop() {
     char *args = cmd + strlen(cmd) + 1;
     
     
-    printf ("成功进行到分解表达式阶段，表达式为：%s\n",args);//测试点
+   // printf ("成功进行到分解表达式阶段，表达式为：%s\n",args);//测试点
     
     
     
