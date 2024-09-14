@@ -292,7 +292,7 @@ if (*success==false)return 0;
     return eval(p + 1, q - 1,success);
   }
   else {
-  // printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
+   printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
   // printf ("准备进入find_op函数\n");
   Token result=find_op(p,q);
     int op = atoi(result.str);
