@@ -224,7 +224,10 @@ static Token find_op(int p,int q){
 			int ntk=TK_LPAREN; //运算符的种类
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
-			if (tokens[i].type==TK_NOTYPE)continue;
+			if (tokens[i].type==TK_NOTYPE){
+				printf("Yes");
+				continue;
+				}
 				
 				if (tokens[i].type!=TK_VALUE){
 					
