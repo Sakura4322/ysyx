@@ -103,7 +103,7 @@ static int cmd_x(char *args) { // 扫描内存
     }  
 
     for (int i = 0; i < count; i++) {  
-        printf("0x%llx : %d\n", addr, paddr_read(addr, 4));  
+        printf("0x%llx : %x\n", addr, paddr_read(addr, 4));  
         addr += 4;  
     }  
 
