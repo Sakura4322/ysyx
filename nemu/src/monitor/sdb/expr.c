@@ -386,7 +386,7 @@ word_t expr(char *e, bool *success) {
   for (int i = 0; i < nr_token; i ++) {
   if (tokens[i].type == TK_MULTIPLY && (i == 0 || tokens[i - 1].type != TK_VALUE||tokens[i - 1].type !=TK_RPAREN) ) {
     tokens[i].type = DEREF;
-    //printf("成功是别解引用符");
+    printf("成功是别解引用符");
   } 
 }
 
