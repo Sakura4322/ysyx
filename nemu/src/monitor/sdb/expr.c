@@ -297,7 +297,7 @@ if (*success==false)return 0;
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
-    //printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
+    printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
  int val1=0;
  int val2=0;
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
