@@ -237,10 +237,12 @@ static Token find_op(int p,int q){
 							pd--;
 							}
 					if (pd!=0){
+					printf("Yes");
 						continue;
 						}
 					
 					if (sort(ntk) <= sort(tokens[i].type)){
+					printf("ntk = %d  tokens[1].type = %d\n",ntk,tokens[i].type);
 						ntk=tokens[i].type;
 						op=i;
 						}
