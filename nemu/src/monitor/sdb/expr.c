@@ -254,7 +254,7 @@ static Token find_op(int p,int q){
 word_t paddr_read(paddr_t addr, int len);
 void paddr_write(paddr_t addr, int len, word_t data);
 //递归计算表达式
-static int eval(int p,int q,bool *success) {
+static uint32_t eval(int p,int q,bool *success) {
 if (*success==false)return 0;
 //printf ("成功进入eval 函数 p = %d q = %d\n",p,q);
 //printf ("准备进入括号匹配 p = %d q = %d\n",p,q);
