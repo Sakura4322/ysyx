@@ -306,22 +306,22 @@ if (*success==false)return 0;
       case TK_PLUS: 
 		     val1 = eval(p, op - 1,success);
 		     val2 = eval(op + 1, q,success);
-		     printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		     //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    return val1 + val2;
       case TK_MINUS: 
       			 val1 = eval(p, op - 1,success);
 		    	 val2 = eval(op + 1, q,success);
-		    	 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+		    	 //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
 		    	return val1 - val2;
       case TK_MULTIPLY: 
       			 val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			 //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			return val1 * val2;
       case TK_DIVIDE:        	
       			val1 = eval(p, op - 1,success);
     			 val2 = eval(op + 1, q,success);
-    			 printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
+    			 //printf ("计算val成功 val1= %d val2 = %d\n",val1,val2);
     			
     			if (val2==0){
 				*success = false ;
