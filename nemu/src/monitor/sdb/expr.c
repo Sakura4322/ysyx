@@ -225,11 +225,11 @@ static Token find_op(int p,int q){
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
 			if (tokens[i].type==TK_NOTYPE){
-				printf("Yes");
+				//printf("Yes");
 				continue;
 				}
 				
-				if (tokens[i].type!=TK_VALUE){
+				if (tokens[i].type!=TK_VALUE||TK_ADDR){
 					
 					if (tokens[i].type==TK_LPAREN){
 						pd++;
