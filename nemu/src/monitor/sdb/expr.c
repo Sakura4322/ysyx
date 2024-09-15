@@ -221,7 +221,7 @@ static int sort(int n){//将所有运算符进行优先排序，数字越大优�
 static Token find_op(int p,int q){
 //printf ("进入find_op函数成功\n");
 			int op=-0x3f3f3f3f; //主要运算符的位置
-			int ntk=0x3f3f3f3f; //运算符的种类
+			int ntk=-0x3f3f3f3f; //运算符的种类
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
 			if (tokens[i].type==TK_NOTYPE){
