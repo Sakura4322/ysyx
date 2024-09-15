@@ -208,20 +208,20 @@ static bool check_parenthese(int p, int q) {
 	return false;
 }
 
-static int sort(int n){//将所有运算符进行优先排序，数字越大优先级越高
+static int sort(int n){//将所有运算符进行优先排序，数字越大优先级越低
 	if(n==TK_PLUS||n==TK_MINUS)return 4;
 	else if(n==TK_MULTIPLY||n==TK_DIVIDE)return 3;
 	else if(n==TK_ADDR||n==TK_REG||n==DEREF) return 2;
 	else if(n==TK_AND)	return 11;
 	else if(n==TK_EQ||n==TK_UNEQUAL)return 7;
 	else if(n==TK_ASSIGN)return 14;
-	return 0x3f3f3f3f;
+	return 0;
 	}
 //找到主运算符
 static Token find_op(int p,int q){
 //printf ("进入find_op函数成功\n");
 			int op=-0x3f3f3f3f; //主要运算符的位置
-			int ntk=TK_ASSIGN; //运算符的种类
+			int ntk=0; //运算符的种类
 			int pd=0;	//括号匹配
 			for (int i=p;i<=q;i++){
 			if (tokens[i].type==TK_NOTYPE){
@@ -241,7 +241,7 @@ static Token find_op(int p,int q){
 						continue;
 						}
 					
-					if (sort(ntk) >= sort(tokens[i].type)){
+					if (sort(ntk) <= sort(tokens[i].type)){
 					printf("ntk = %d  tokens[1].type = %d\n",ntk,tokens[i].type);
 				  printf("原ntk的优先级为 : %d \n现在的ntk优先级为 %d",sort(ntk),sort(tokens[i].type));	
 					ntk=tokens[i].type;
