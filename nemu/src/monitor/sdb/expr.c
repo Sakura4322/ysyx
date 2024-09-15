@@ -211,7 +211,7 @@ static bool check_parenthese(int p, int q) {
 static int sort(int n){//将所有运算符进行优先排序，数字越大优先级越低
 	if(n==TK_PLUS||n==TK_MINUS)return 4;
 	else if(n==TK_MULTIPLY||n==TK_DIVIDE)return 3;
-	else if(n==TK_ADDR||n==TK_REG||n==DEREF) return 2;
+	else if(n==TK_REG||n==DEREF) return 2;
 	else if(n==TK_AND)	return 11;
 	else if(n==TK_EQ||n==TK_UNEQUAL)return 7;
 	else if(n==TK_ASSIGN)return 14;
