@@ -107,7 +107,7 @@ if(depth>=10){
       
 }  
 
-
+int cnt =0;
 int main(int argc, char *argv[]) {
 
   int seed = time(0);
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
     sscanf(argv[1], "%d", &loop);
   }
   int i;
-  for (i = 0; i < loop; i ++) {
+  for (i = 0; (i < loop || cnt!=loop); i ++) {
   buf[0] = '\0';//初始化
     gen_rand_expr(0);
     gen('\n',0);
@@ -141,6 +141,7 @@ continue;
 
     int result;
     ret = fscanf(fp, "%d", &result);
+		cnt++;
     pclose(fp);
             	printf("%u %s", result, buf);
             	
