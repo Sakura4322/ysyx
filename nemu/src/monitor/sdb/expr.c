@@ -241,7 +241,7 @@ static Token find_op(int p,int q){
 						continue;
 						}
 					
-					if (sort(ntk) <= sort(tokens[i].type)){
+					if (sort(ntk) >= sort(tokens[i].type)){
 					printf("ntk = %d  tokens[1].type = %d\n",ntk,tokens[i].type);
 				  printf("原ntk的优先级为 : %d \n现在的ntk优先级为 %d",sort(ntk),sort(tokens[i].type));	
 					ntk=tokens[i].type;
