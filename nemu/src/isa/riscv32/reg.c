@@ -41,7 +41,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 				}
 			
 			}
-			if (strcmp(s,"pc")==0){
+			if (strcmp(s,"$pc")==0){
 			printf("successfilly output the value of pc\n ");
 				return cpu.pc;
 				}
