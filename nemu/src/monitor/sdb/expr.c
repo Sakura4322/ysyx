@@ -359,11 +359,11 @@ if (*success==false)return 0;
       //case TK_ADDR : return 
       case DEREF : return eval(op+1,op+1,success);
       case TK_ASSIGN : 
-      	if (tokens[p].type == TK_REG&&op==1){//修改寄存器的值
+      	if (tokens[p].type == TK_REG&&op==14){//修改寄存器的值
 	      	int new_num= eval(op+1,q,success);
 	      	isa_reg_changeval(tokens[op-1].str, new_num);
       		return new_num;
-      	}else if(tokens[p].type == TK_ADDR&&op==1){
+      	}else if(tokens[p].type == TK_ADDR&&op==14){
       		int new_num= eval(op+1,q,success);
       		long long addr = strtol(tokens[op-1].str, NULL, 16);
       		paddr_write(addr,4,new_num);
