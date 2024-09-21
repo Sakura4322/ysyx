@@ -363,7 +363,7 @@ if (*success==false)return 0;
 	      	int new_num= eval(op+1,q,success);
 	      	isa_reg_changeval(tokens[op-1].str, new_num);
       		return new_num;
-      	}else if(tokens[p].type == TK_ADDR){
+      	}else if(tokens[p].type == DEREF){
       		int new_num= eval(op+1,q,success);
       		long long addr = strtol(tokens[op-1].str, NULL, 16);
       		paddr_write(addr,4,new_num);
