@@ -355,6 +355,7 @@ if (*success==false)return 0;
       case TK_REG : 	
       			char *reg = tokens[p].str;
       			reg++;
+      			printf("%s",reg);
       			return isa_reg_str2val(reg,success);
       //case TK_ADDR : return 
       case DEREF : return eval(op+1,op+1,success);
