@@ -291,8 +291,8 @@ if (*success==false)return 0;
      	}else if (tokens[p].type == TK_REG){
      		char *reg = tokens[p].str;
       			reg++;
-      			printf("%s",reg);
-      			return isa_reg_str2val(reg,success);
+      			printf("%x",isa_reg_str2val(reg,success));
+      			return 0;
      		}
      return atoi(tokens[p].str);
   }
