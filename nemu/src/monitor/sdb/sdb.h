@@ -17,7 +17,7 @@
 #define __SDB_H__
 
 #include <common.h>
-
+extern vaddr_t pc;
 typedef struct watchpoint {
   int NO;
   struct watchpoint *next;
