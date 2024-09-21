@@ -288,7 +288,12 @@ if (*success==false)return 0;
      		//printf ("成功读取十六进制数字 %s = %lld\n",tokens[p].str,ox_num);
      		return ox_num;
      		}
-     	}
+     	}else if (tokens[p].type == TK_REG){
+     		char *reg = tokens[p].str;
+      			reg++;
+      			printf("%s",reg);
+      			return isa_reg_str2val(reg,success);
+     		}
      return atoi(tokens[p].str);
   }
   else if (check_parenthese(p, q) == true) {
