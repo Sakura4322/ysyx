@@ -169,7 +169,7 @@ static bool make_token(char *e) {
   }
 printf("\n");
 for (int j=0;j<nr_token;j++){
-		printf("%s",tokens[j].str);
+		//printf("%s",tokens[j].str);
 		}
 		
   return true;
@@ -291,7 +291,7 @@ if (*success==false)return 0;
      	}else if (tokens[p].type == TK_REG){
      		char *reg = tokens[p].str;
       			reg++;
-      			printf("%x",isa_reg_str2val(reg,success));
+      			printf("%x\n",isa_reg_str2val(reg,success));
       			return 0;
      		}
      return atoi(tokens[p].str);
@@ -360,7 +360,7 @@ if (*success==false)return 0;
       case TK_REG : 	
       			char *reg = tokens[p].str;
       			reg++;
-      			printf("%s",reg);
+      			//printf("%s",reg);
       			return isa_reg_str2val(reg,success);
       //case TK_ADDR : return 
       case DEREF : return eval(op+1,op+1,success);

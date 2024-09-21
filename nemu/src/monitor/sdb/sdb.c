@@ -72,7 +72,7 @@ char *arg = strtok(NULL , " ");
 
 static int cmd_info(char *args){
 args = strtok(NULL," ");
-printf("%s",args);
+//printf("%s",args);
 if (strcmp(args,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
@@ -113,7 +113,7 @@ static int cmd_x(char *args) { // 扫描内存
 static int cmd_p(char *args){//表达式求值
 	bool success_prt = true;
 	bool *success= &success_prt;
-	printf ("成功进行到执行命令函数，输入表达式为 ： %s\n",args);
+	//printf ("成功进行到执行命令函数，输入表达式为 ： %s\n",args);
 	step_wp();
 	int ans=expr(args,success);
 	step_wp();
