@@ -408,7 +408,7 @@ int p=0,q=nr_token-1;
 //printf ("准备进入计算 p=%d q=%d\n",p,q);
    int num=eval(p,q,success);
    if (*success==false )return 0;
-   printf("Ans = %u\n",num);
+   //printf("Ans = %u\n",num);
    
 
   return (word_t)num;
