@@ -237,13 +237,13 @@ static Token find_op(int p,int q){
 							pd--;
 							}
 					if (pd!=0){
-					printf("Yes");
+					//printf("Yes");
 						continue;
 						}
 					
 					if (sort(ntk) <= sort(tokens[i].type)){
-					printf("ntk = %d  tokens[1].type = %d\n",ntk,tokens[i].type);
-				  printf("原ntk的优先级为 : %d \n现在的ntk优先级为 %d",sort(ntk),sort(tokens[i].type));	
+					//printf("ntk = %d  tokens[1].type = %d\n",ntk,tokens[i].type);
+				 // printf("原ntk的优先级为 : %d \n现在的ntk优先级为 %d",sort(ntk),sort(tokens[i].type));	
 					ntk=tokens[i].type;
 						op=i;
 						}
@@ -303,12 +303,12 @@ if (*success==false)return 0;
     return eval(p + 1, q - 1,success);
   }
   else {
-   printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
+   //printf ("成功退出括号匹配 p = %d q = %d\n",p,q);
   // printf ("准备进入find_op函数\n");
   Token result=find_op(p,q);
     int op = atoi(result.str);
     int op_type = result.type;
-    printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
+   // printf ("退出find_op函数成功 op= %d op_type = %d\n",op,op_type);
  int val1=0;
  int val2=0;
 	//printf("val1 = %d op = %d val2 = %d\n",val1,op_type,val2); //测试点，计算的元素和符号
