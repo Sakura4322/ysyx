@@ -29,18 +29,20 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
 PREPROCESS_DIR = $(NEMU_HOME)/expand_files
 
+
+
 # Compilation patterns
 $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -E -o $(PREPROCESS_DIR)/$*.i $<
+	#@$(CC) $(CFLAGS) -E -o $(PREPROCESS_DIR)/$*.i $<
 	@$(CC) $(CFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
 
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
-	@$(CXX) $(CFLAGS) -E -o $(PREPROCESS_DIR)/$*.i $<
+	#$@$(CXX) $(CFLAGS) -E -o $(PREPROCESS_DIR)/$*.i $<
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
 
@@ -48,7 +50,7 @@ $(OBJ_DIR)/%.o: %.cc
 
 # Targets
 app: $(PREPROCESS_DIR) $(BINARY)
-
+	$(info PREPROCESS_DIR is $(PREPROCESS_DIR))
 
 
 
