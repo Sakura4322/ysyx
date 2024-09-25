@@ -27,28 +27,30 @@ LDFLAGS := -O2 $(LDFLAGS)
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
+PREPROCESS_DIR = $(BUILD_DIR)/preprocess
+
 # Compilation patterns
 $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -E -o $*.i $<
 	@$(CC) $(CFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
 
-$(OBJ_DIR)/%.i: %.c
-	@echo + CC $<
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -E -o $@ $<
-	
-$(OBJ_DIR)/%.i: %.cc
-	@echo + CXX $<
-	@mkdir -p $(dir $@)
-	@$(CXX) $(CFLAGS) $(CXXFLAGS) -E -o $@ $<
-	
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
+	@$(CXX) $(CFLAGS) -E -o $*.i $<
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
+
+
+
+# Targets
+app: $(PREPROCESS_DIR) $(BINARY)
+
+
+
 
 # Depencies
 -include $(OBJS:.o=.d)
