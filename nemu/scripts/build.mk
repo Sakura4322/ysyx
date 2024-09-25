@@ -27,23 +27,26 @@ LDFLAGS := -O2 $(LDFLAGS)
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
-PREPROCESS_DIR = $(NEMU_HOME)/expand_files
+EXPAND_FILES = $(NEMU_HOME)/expand_files
 
 # Compilation patterns
 $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c -o $@ $<
+	@$(CC) $(CFLAGS) -E -o $(OBJ_DIR)/$*.i $<
+	@cp $(OBJ_DIR)/$*.i $(EXPAND_FILES)/
 	$(call call_fixdep, $(@:.o=.d), $@)
 
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -E -o $(OBJ_DIR)/$*.i $<
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
+	@cp $(OBJ_DIR)/$*.i $(EXPAND_FILES)/
 	$(call call_fixdep, $(@:.o=.d), $@)
 
-$(PREPROCESS_DIR)/%.i : %.c
-	@$(CC) $(CFLAGS) -E -o $@ $<
+
 	
 	
 
