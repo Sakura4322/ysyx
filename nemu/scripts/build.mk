@@ -34,7 +34,6 @@ $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c -o $@ $<
-	@$(CC) $(CFLAGS) -E -o $(OBJ_DIR)/$*.i $<
 	$(call call_fixdep, $(@:.o=.d), $@)
 
 $(OBJ_DIR)/%.o: %.cc
@@ -42,6 +41,11 @@ $(OBJ_DIR)/%.o: %.cc
 	@mkdir -p $(dir $@)
 	@$(CXX) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
+
+$(PREPROCESS_DIR)/%.i : %.c
+	@$(CC) $(CFLAGS) -E -o $@ $<
+	
+	
 
 # Depencies
 -include $(OBJS:.o=.d)
