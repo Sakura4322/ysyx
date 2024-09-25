@@ -66,4 +66,4 @@ $(BINARY):: $(OBJS) $(ARCHIVES)
 
 clean:
 	-rm -rf $(BUILD_DIR) $(EXPAND_FILES)
-	mkdir -p $(EXPAND_FILES)
+	mkdir -p $(EXPAND_FILES) 
