@@ -33,6 +33,7 @@ $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c -o $@ $<
 	$(call call_fixdep, $(@:.o=.d), $@)
+	$(call call_fixdep, $(@:.o=.i), $@)
 
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
