@@ -39,6 +39,11 @@ $(OBJ_DIR)/%.i: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -E -o $@ $<
 	
+$(OBJ_DIR)/%.i: %.cc
+	@echo + CXX $<
+	@mkdir -p $(dir $@)
+	@$(CXX) $(CFLAGS) $(CXXFLAGS) -E -o $@ $<
+	
 $(OBJ_DIR)/%.o: %.cc
 	@echo + CXX $<
 	@mkdir -p $(dir $@)
