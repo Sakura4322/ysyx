@@ -29,6 +29,7 @@ OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
 EXPAND_FILES = $(NEMU_HOME)/expand_files
 
+
 # Compilation patterns
 $(OBJ_DIR)/%.o: %.c
 	@echo + CC $<
@@ -64,4 +65,5 @@ $(BINARY):: $(OBJS) $(ARCHIVES)
 	@$(LD) -o $@ $(OBJS) $(LDFLAGS) $(ARCHIVES) $(LIBS)
 
 clean:
-	-rm -rf $(BUILD_DIR)
+	-rm -rf $(BUILD_DIR) $(EXPAND_FILES)
+	mkdir -p $(EXPAND_FILES)
