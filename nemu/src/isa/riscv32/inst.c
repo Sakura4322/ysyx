@@ -33,7 +33,7 @@ enum {
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
 #define immU() do { *imm = SEXT(BITS(i, 31, 12), 20) << 12; } while(0)//用于处理高位立即数，用于地址计算所以需要先进位
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); } while(0)
-#define immJ() do { *imm = (((((SEXT(BITS(i, 31, 31), 1) << 10) | BITS(i, 30, 21)) << 1) |BITS(i, 20, 20)) << 8) | BITS(i, 19, 12); } while(0)
+#define immJ() do { *imm = (((((SEXT(BITS(i, 31, 31), 1) << 8) | BITS(i, 19, 12)) << 1) |BITS(i, 20, 20)) << 8) | BITS(i, 30, 21); } while(0)
 
 
 
