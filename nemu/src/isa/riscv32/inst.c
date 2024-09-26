@@ -24,7 +24,8 @@
 
 enum {
   TYPE_I, TYPE_U, TYPE_S,
-  TYPE_N, // none
+  TYPE_J,
+	TYPE_N, // none
 };
 
 #define src1R() do { *src1 = R(rs1); } while (0)
@@ -32,6 +33,10 @@ enum {
 #define immI() do { *imm = SEXT(BITS(i, 31, 20), 12); } while(0)
 #define immU() do { *imm = SEXT(BITS(i, 31, 12), 20) << 12; } while(0)//用于处理高位立即数，用于地址计算所以需要先进位
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); } while(0)
+#define immJ() do { *imm = (((((SEXT(BITS(i, 31, 31), 1) << 10) | BITS(i, 30, 21)) << 1) |BITS(i, 20, 20)) << 8) | BITS(i, 19, 12); } while(0)
+
+
+
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
   uint32_t i = s->isa.inst.val;
@@ -42,7 +47,7 @@ static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_
     case TYPE_I: src1R();          immI(); break;
     case TYPE_U:                   immU(); break;
     case TYPE_S: src1R(); src2R(); immS(); break;
-		//case TYPE_J:									 imm
+		case TYPE_J:									 immJ(); break;
   }
 }
 
@@ -53,16 +58,17 @@ static int decode_exec(Decode *s) {
 
 #define INSTPAT_INST(s) ((s)->isa.inst.val)
 #define INSTPAT_MATCH(s, name, type, ... /* execute body */ ) { \
-  decode_operand(s, &rd, &src1, &src2, &imm, concat(TYPE_, type)); \
-  __VA_ARGS__ ; \
+    decode_operand(s, &rd, &src1, &src2, &imm, concat(TYPE_, type)); \
+    __VA_ARGS__; \
 }
+
 
   INSTPAT_START();
   INSTPAT("??????? ????? ????? ??? ????? 00101 11", auipc  , U, R(rd) = s->pc + imm);
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
   INSTPAT("??????? ????? ????? 000 ????? 01000 11", sb     , S, Mw(src1 + imm, 1, src2));
  
- 	//INSTPAT("??????? ????? ????? 000 ????? ???00 11", jal    , J, R(rd) = s->pc + imm);	
+ 	INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, R(rd) = s->pc +4 ; s->pc = R(rd) + imm);	
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = R(rd) + imm);
   INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(rd) =imm				 );
 	//INSTPAT("??????? ????? ????? 000 ????? ???00 11", sw     , S, R(rd) = s->pc + imm);
