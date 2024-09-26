@@ -32,6 +32,7 @@ void isa_reg_display() {
     for (int i = 0; i < num_regs; i++) {  
         printf("%s\t%x\t%u\n", regs[i],isa_reg_str2val(regs[i], success),isa_reg_str2val(regs[i], success));  
     }    
+    printf("%s\t%x\t%u\n", "pc",isa_reg_str2val("pc", success),isa_reg_str2val("pc", success));
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
