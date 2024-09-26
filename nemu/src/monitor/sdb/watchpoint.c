@@ -74,7 +74,7 @@ void display_wp(){
 printf("\t    NO  value\n");
 	WP *cur=head;
 	while(cur!=NULL){
-		printf("存在监视点  %d \t%d \n",cur->NO,cur->cur);
+		printf("存在监视点  %d \t%d \n监视目标为 ： %s\n",cur->NO,cur->cur,cur->name);
 		cur = cur ->next;
 		}	
 	}
