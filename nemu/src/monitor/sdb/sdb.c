@@ -140,8 +140,8 @@ if (arg[0]=='*'){
 	bool *success;
 	bool success_ptr = true;
 	success = &success_ptr;
-		arg++;
 		strcpy(wp->name ,arg);//复制监视目标名字
+		arg++;
 		wp ->cur =isa_reg_str2val(arg,success);
 		printf("设置监视点成功\n");
 		return 0;
