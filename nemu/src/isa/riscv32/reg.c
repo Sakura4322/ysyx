@@ -35,8 +35,12 @@ void isa_reg_display() {
     printf("%s\t%x\t%u\n", "pc",isa_reg_str2val("pc", success),isa_reg_str2val("pc", success));
 }
 
-word_t isa_reg_str2val(const char *s, bool *success) {
-		for(int i=0;i<num_regs;i++){
+word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
+	if (strcmp(s,regs[0])==0){
+				return cpu.gpr[0];
+				}
+		s++;
+		for(int i=1;i<num_regs;i++){
 			if (strcmp(s,regs[i])==0){
 				return cpu.gpr[i];
 				}
