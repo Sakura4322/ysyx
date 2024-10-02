@@ -287,7 +287,6 @@ if (*success==false)return 0;
      		}
      	}else if (tokens[p].type == TK_REG){
      		char *reg = tokens[p].str;
-      			reg++;
       			//printf("%x\n",isa_reg_str2val(reg,success));
       			return isa_reg_str2val(reg,success);
      		}

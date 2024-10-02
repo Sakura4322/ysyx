@@ -85,8 +85,8 @@ bool diffest_wp(){//识别到监视点的变化时输出true 否则false
 	while(cur !=NULL){
 		if (cur->cur!=cur->his){
 			printf("监视点 %d\t %s\n",cur->NO,cur->name);
-			printf("old value : %d\n",cur->his);
-			printf("new value : %d\n",cur->cur);
+			printf("old value : %08x\n",cur->his);
+			printf("new value : %08x\n",cur->cur);
 			return true;
 			}
 		cur=cur->next;
