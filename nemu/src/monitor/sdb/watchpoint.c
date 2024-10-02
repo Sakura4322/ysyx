@@ -74,7 +74,7 @@ void display_wp(){
 printf("\t    NO  value\n");
 	WP *cur=head;
 	while(cur!=NULL){
-		printf("存在监视点  %d \t%d \n监视目标为 ： %s\n",\
+		printf("存在监视点  %d \t%08x \n监视目标为 ： %s\n",\
 		cur->NO,cur->cur,cur->name);
 		cur = cur ->next;
 		}	
@@ -95,20 +95,20 @@ bool diffest_wp(){//识别到监视点的变化时输出true 否则false
 	}
 	
 void step_wp(){//cpu每一次运行都输出一个监视点的新值
-		WP *cur = head;
-		while(cur !=NULL){
-			if(cur->name[0]=='0'){//读取地址的新数值
-				long long addr = strtol(cur->name, NULL, 16);
-				cur->his = cur ->cur;
-				cur->cur = paddr_read(addr, 4);
+		WP *wp= head;
+		while(wp !=NULL){
+			if(wp->name[0]=='0'){//读取地址的新数值
+				long long addr = strtol(wp->name, NULL, 16);
+				wp->his = wp ->cur;
+				wp->cur = paddr_read(addr, 4);
 				}else {	//获取寄存器的值
-					cur->his = cur ->cur;			
+					wp->his = wp ->cur;			
 					bool *success;
 					bool success_ptr = true;
 					success = &success_ptr;
-			cur ->cur =isa_reg_str2val(cur->name,success);
+			wp ->cur =isa_reg_str2val(wp->name,success);
 					}
-			cur = cur->next;
+			wp = wp->next;
 			}
 			return;
 
