@@ -41,7 +41,7 @@ WP *new_wp() {
     assert(free_ != NULL);
     WP* wp = free_;
     free_ = free_->next;
-    printf("获取监视点成功,监视点编号为 : %d\n监视目标为 ： %s\n",wp->NO,wp->name);
+    //printf("获取监视点成功,监视点编号为 : %d\n监视目标为 ： %s\n",wp->NO,wp->name);
     //将监视点装在head 上面
     wp->next = head;
     head = wp;
