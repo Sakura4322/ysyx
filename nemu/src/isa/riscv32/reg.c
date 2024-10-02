@@ -36,17 +36,19 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
-	if (strcmp(s,regs[0])==0){
+	char *names = strdup(s);
+	names = strtok(names," ");
+	if (strcmp(names,regs[0])==0){
 				return cpu.gpr[0];
 				}
-		s++;
+		names++;
 		for(int i=1;i<num_regs;i++){
-			if (strcmp(s,regs[i])==0){
+			if (strcmp(names,regs[i])==0){
 				return cpu.gpr[i];
 				}
 			
 			}
-			if (strcmp(s,"pc")==0){
+			if (strcmp(names,"pc")==0){
 			//printf("successfilly output the value of pc\n ");
 			//printf("%x\n",cpu.pc);
 				return cpu.pc;
