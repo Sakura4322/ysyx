@@ -23,9 +23,9 @@ typedef struct watchpoint {
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
-  char name[32];
-  uint32_t his;
-  uint32_t cur; 
+  char name[32];//记录地址，寄存器的名字
+  uint32_t his; //上一个数
+  uint32_t cur; //目前的数
 }WP;
 
 word_t expr(char *e, bool *success);

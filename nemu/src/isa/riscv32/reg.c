@@ -43,9 +43,9 @@ word_t isa_reg_str2val(const char *s, bool *success) {
 			
 			}
 			if (strcmp(s,"pc")==0){
-			printf("successfilly output the value of pc\n ");
-			printf("%x\n",cpu.pc);
-				return 0;
+			//printf("successfilly output the value of pc\n ");
+			//printf("%x\n",cpu.pc);
+				return cpu.pc;
 				}
 			*success = false ;
 			return 0;
@@ -56,10 +56,18 @@ void isa_reg_changeval(const char *s,int new_value){
 		s++;
 		//printf("input *s =%sn",s);
 		for(int i=0;i<num_regs;i++){
-			if (strcmp(s,regs[i])==0) {
-				
+			if (strcmp(s,regs[i])==0) {	
 				cpu.gpr[i]=new_value;
-				printf("new_value = %d\n",cpu.gpr[i]);
+				printf("new_value = %8x\n",cpu.gpr[i]);
+				return ;
 				}
 			}
+		if (strcmp(s,"pc")==0){
+			cpu.pc=new_value;
+			printf("new_value = %8x\n",cpu.pc);
+			return ;
+			}
+			
+			printf("Bad reg");
+			return ;
 	}

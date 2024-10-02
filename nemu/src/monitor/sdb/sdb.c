@@ -120,7 +120,11 @@ static int cmd_p(char *args){//表达式求值
 	bool diffest_wp();
 	
 	if (*success==true){
+	if(args[0]=='$'||(args[1]=='0'&&args[2]=='x')){
+		printf ("成功计算答案为 ： %8x\n",ans);
+		}else {
 	printf ("成功计算答案为 ： %d\n",ans);
+	}
 	}
 	else printf ("计算错误\n");
 	return 0;
@@ -129,21 +133,21 @@ static int cmd_p(char *args){//表达式求值
 static int cmd_w(char *arg){//设置监视点
 WP *wp = new_wp();
 
-if (arg[0]=='*'){
+if (arg[0]=='*'){//地址输入0x开头W
 	arg++;
 	long long addr = strtol(arg, NULL, 16);
 	strcpy(wp->name ,arg);
 	wp->cur = paddr_read(addr, 4);
 	printf("设置监视点成功\n");
 	return 0;	
-	}else if (arg[0]=='$'){
+	}else if (arg[0]=='$'){//寄存器输入$-reg_name
 	bool *success;
 	bool success_ptr = true;
 	success = &success_ptr;
 		strcpy(wp->name ,arg);//复制监视目标名字
 		arg++;
 		wp ->cur =isa_reg_str2val(arg,success);
-		printf("设置监视点成功\n");
+		printf("设置监视点成功\n监视目标为 ：%s \n当前的值 : %8x\n",wp->name,wp->cur);
 		return 0;
 		}
 printf("Cannot watch constant value %s.\n",arg);
