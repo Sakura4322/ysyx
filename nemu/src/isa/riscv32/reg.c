@@ -42,7 +42,6 @@ word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
 	if (strcmp(names,regs[0])==0){
 				return cpu.gpr[0];
 				}
-		names++;
 		for(int i=1;i<num_regs;i++){
 			if (strcmp(names,regs[i])==0){
 				printf("cpu.gpr[%d]==%d",i,cpu.gpr[i]);
