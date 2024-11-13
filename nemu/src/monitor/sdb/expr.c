@@ -284,9 +284,10 @@ if (*success==false)return 0;
      	long long ox_num = strtol(tokens[p].str, NULL, 16);
      		//printf ("成功读取十六进制数字 %s = %lld\n",tokens[p].str,ox_num);
      		return ox_num;
-     		}
+     		} 
      	}else if (tokens[p].type == TK_REG){
      		char *reg = tokens[p].str;
+				reg++;
       			//printf("%x\n",isa_reg_str2val(reg,success));
       			return isa_reg_str2val(reg,success);
      		}
