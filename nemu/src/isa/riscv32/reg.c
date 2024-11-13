@@ -36,6 +36,7 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
+																											//input havent $
 	char *names = strdup(s);
 	names = strtok(names," ");
 	if (strcmp(names,regs[0])==0){
@@ -44,6 +45,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
 		names++;
 		for(int i=1;i<num_regs;i++){
 			if (strcmp(names,regs[i])==0){
+				printf("cpu.gpr[%d]==%d",i,cpu.gpr[i]);
 				return cpu.gpr[i];
 				}
 			
