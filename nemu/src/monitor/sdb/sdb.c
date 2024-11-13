@@ -144,8 +144,8 @@ if (arg[0]=='*'){//地址输入0x开头W
 	bool *success;
 	bool success_ptr = true;
 	success = &success_ptr;
+	arg++;
 		strcpy(wp->name ,arg);//复制监视目标名字
-		arg++;
 		wp ->cur =isa_reg_str2val(arg,success);
 		printf("设置监视点成功\n监视目标为 ：%s \n当前的值 : %08x\n",wp->name,wp->cur);
 		return 0;
