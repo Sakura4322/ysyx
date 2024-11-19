@@ -52,7 +52,7 @@ enum {
         (BITS(i, 7, 7) << 11) | \
         (BITS(i, 30, 25) << 5) | \
         (BITS(i, 11, 8) << 1), \
-        12 \
+        13 \
 	); \
     printf("imm=%08x\n", (unsigned int)*imm); \
 } while(0)
