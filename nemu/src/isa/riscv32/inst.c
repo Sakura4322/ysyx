@@ -35,17 +35,27 @@ enum {
 #define immS() do { *imm = (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); } while(0)
 #define immJ() do { *imm = ((((((SEXT(BITS(i, 31, 31), 1) << 8) | BITS(i, 19, 12)) << 1) |BITS(i, 20, 20)) << 10) | BITS(i, 30, 21))<<1; } while(0)
 
+/*#define immB() do { \
+    *imm = SEXT( \
+        (BITS(i, 31, 31) << 12) | \
+        (BITS(i, 7, 7) << 11) | \
+        (BITS(i, 30, 25) << 5) | \
+        (BITS(i, 11, 8) << 1), \
+        12 \
+	); \
+    printf("imm=%08x\n", (unsigned int)*imm); \
+} while(0)
+*/
 #define immB() do { \
     *imm = SEXT( \
         (BITS(i, 31, 31) << 12) | \
         (BITS(i, 7, 7) << 11) | \
         (BITS(i, 30, 25) << 5) | \
         (BITS(i, 11, 8) << 1), \
-        32 \
+        12 \
 	); \
     printf("imm=%08x\n", (unsigned int)*imm); \
 } while(0)
-
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
   uint32_t i = s->isa.inst.val;
@@ -81,7 +91,7 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 100 ????? 00000 11", lbu    , I, R(rd) = Mr(src1 + imm, 1));
   INSTPAT("??????? ????? ????? 000 ????? 01000 11", sb     , S, Mw(src1 + imm, 1, src2));
 INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, R(rd) = s->pc + 4; s->dnpc = s->pc + imm);
-INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm;/*printf("this is a test : %08x\n",(int)SEXT(-1,32))*/); 
+INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm;uint8_t temp = 0x80; printf("this is a test : %08x\n",(int)SEXT(temp,32))); 
 INSTPAT("0000000 ????? ????? 000 ????? 01100 11", add    , R, R(rd) = src1 + src2;printf("test: %lu\n",SEXT(1,32)));
 INSTPAT("??????? ????? ????? ??? ????? 01101 11", lui    , U, R(rd) = imm);
 INSTPAT("??????? ????? ????? 010 ????? 01000 11", sw     , S, Mw(src1 + imm, 4, src2)); 
