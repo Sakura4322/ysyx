@@ -54,6 +54,7 @@ enum {
         (BITS(i, 11, 8) << 1), \
         12 \
 	); \
+		printf("the 7bit is : %d\tthe 12bit is :%d\n",(int)BITS(i,7,7),(int)BITS(i,31,31));\
     printf("imm=%08x\n", (unsigned int)*imm); \
 } while(0)
 
