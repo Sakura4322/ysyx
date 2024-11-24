@@ -44,7 +44,7 @@ enum {
         12 \
 	); \
 	/*if(BITS(i,7,7)!=BITS(i,31,31))printf("the 7bit is : %d\tthe 12bit is :%d\n\n\n\n\n\n\n\n\n",(int)BITS(i,7,7),(int)BITS(i,31,31));*/\
-    printf("imm=%08x\n", (unsigned int)*imm); \
+    /*printf("imm=%08x\n", (unsigned int)*imm); */\
 } while(0)
 
 static void decode_operand(Decode *s, int *rd, word_t *src1, word_t *src2, word_t *imm, int type) {
