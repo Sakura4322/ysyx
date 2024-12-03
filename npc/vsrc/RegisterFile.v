@@ -6,7 +6,7 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
 	input ren1,
 	input ren2,
   input [ADDR_WIDTH-1:0] raddr1,raddr2,
-	output reg[DATA_WIDTH-1:0] rdata1,rdata2
+	output [DATA_WIDTH-1:0] rdata1,rdata2
 );
   reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
   always @(posedge clk) begin
