@@ -38,7 +38,7 @@ int main(int argc,char **argv){
     0xfe010113,  // addi sp, sp, -32
     0xfff68793,  // addi a5, a3, -1
     0x00170713,  // addi a4, a4, 1
-    0x02010113   // addi sp, sp, 32
+    0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
 unsigned int clk=0;
