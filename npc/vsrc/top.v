@@ -150,14 +150,12 @@ flag <= ebreak(inst);
 end 
 		
     reg [WIDTH-1:0] snpc, dnpc;
-    reg en;
 
     // IFU实例化
     ysyx_24090015_IFU#(
         .WIDTH(32)    
     ) ifu0(
         .clk(clk),
-        .en(en),
         .pc(pc),
         .snpc(snpc),
 				.wen(wen),
