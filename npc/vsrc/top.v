@@ -17,9 +17,6 @@ module ysyx_24090015_IFU#(WIDTH=32) (
     always @(posedge clk) begin 
         if (!en) begin 
             snpc <= pc + 1;
-						wen <=0;
-						ren1 <=0;
-						ren2 <=0;
     end
 	end
 endmodule
