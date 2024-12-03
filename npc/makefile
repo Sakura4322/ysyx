@@ -10,7 +10,7 @@ CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
-	verilator  $(CFLAGS) --trace  $(VSRC) $(CSRC)
+	verilator  $(CFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC)
 	./obj_dir/V$(TOP_NAME)
 	 gtkwave ./*.vcd
 include ../Makefile
