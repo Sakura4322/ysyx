@@ -4,7 +4,7 @@ all:
 TOP_NAME=ysyx_24090015_top
 
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
-CSRC = $(shell find $(abspath ./csrc) -name *.c)
+CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 sim:
