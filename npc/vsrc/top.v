@@ -36,13 +36,12 @@ endmodule
 
 module ysyx_24090015_immI#(WIDTH=32) (
     input [WIDTH-1:0] inst,
-		input clk;
+		input clk,
     output [WIDTH-1:0] imm
 );
 
-    wire [11:0] init;
-				
-     assign init = inst[WIDTH-1:WIDTH-12];
+    wire [11:0] init;				
+    assign init = inst[WIDTH-1:WIDTH-12];
 		
     ysyx_24090015_SEXT#(
         .DATA_WIDTH(12),
