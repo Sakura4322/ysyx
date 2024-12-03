@@ -9,15 +9,12 @@ import "DPI-C" function int ebreak(input int a);
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input clk,
-    input en,
     input [WIDTH-1:0] pc,
     output reg[WIDTH-1:0] snpc,
 		output reg wen,ren1,ren2
 );
     always @(posedge clk) begin 
-        if (!en) begin 
             snpc <= pc + 1;
-    end
 	end
 endmodule
 
