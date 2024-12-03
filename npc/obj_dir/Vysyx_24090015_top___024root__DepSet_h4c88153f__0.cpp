@@ -75,10 +75,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
         __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 
             = vlSelf->ysyx_24090015_top__DOT__rd;
     }
-    if ((1U & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__en)))) {
-        vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
-                                                + vlSelf->pc);
-    }
+    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
+                                            + vlSelf->pc);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
         = (0x7fU & vlSelf->inst);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 

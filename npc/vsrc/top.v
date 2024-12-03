@@ -65,8 +65,8 @@ endmodule
 module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
-    output reg [WIDTH-1:0] imm,
-    output reg ren1, ren2, wen,
+    output  [WIDTH-1:0] imm,
+    output  ren1, ren2, wen,
 );
 
     wire [2:0] inst_type;
@@ -78,7 +78,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
         .inst_type(inst_type)
     );
 
-    reg [WIDTH-1:0] temp_immI;
+    wire [WIDTH-1:0] temp_immI;
     ysyx_24090015_immI#(
         .WIDTH(32)
     ) i0(
@@ -86,23 +86,10 @@ module ysyx_24090015_IDU#(WIDTH=32) (
         .imm(temp_immI)
     );
 
-    always @(*) begin
-
-        case (inst_type)
-            `I: begin
-                ren1 = 1;
-                ren2 = 0;
-                wen  = 1;
-                imm  = temp_immI;
-            end
-            default: begin
-                ren1 = 0;
-                ren2 = 0;
-                wen  = 0;
-                imm  = 0;
-            end 
-        endcase
-    end
+		assign ren1=(inst_type==2);
+		assign ren2=0;
+		assign wen=(inst_type==2);
+		assign imm=temp_immI;
 		
 endmodule
 
