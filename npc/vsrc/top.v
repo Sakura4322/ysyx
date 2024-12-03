@@ -36,17 +36,14 @@ endmodule
 
 module ysyx_24090015_immI#(WIDTH=32) (
     input [WIDTH-1:0] inst,
-		input clk,
-    output [WIDTH-1:0] imm,
-    output reg [WIDTH-1:0] inst_out
+		input clk;
+    output [WIDTH-1:0] imm
 );
-    reg [11:0] init;
 
-		always @(posedge clk)begin 
+    wire [11:0] init;
 				
-     init <= inst[WIDTH-1:WIDTH-12];
-		 inst_out<= inst;
-		end
+     assign init = inst[WIDTH-1:WIDTH-12];
+		
     ysyx_24090015_SEXT#(
         .DATA_WIDTH(12),
         .WIDTH(32)
@@ -77,7 +74,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
     output reg ren1, ren2, wen,
-		output reg[WIDTH-1:0] inst_out
 );
 
     wire [2:0] inst_type;
@@ -93,30 +89,28 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     ysyx_24090015_immI#(
         .WIDTH(32)
     ) i0(
-				.clk(clk),
         .inst(inst_in),
-				.inst_out(inst_1),
         .imm(temp_immI)
     );
-reg [WIDTH-1:0] inst_1;
-    always @(posedge clk) begin
+
+    always @(*) begin
 
         case (inst_type)
             `I: begin
-                ren1 <= 1;
-                ren2 <= 0;
-                wen  <= 1;
-                imm  <= temp_immI;
-								inst_out<=inst_1;
+                ren1 = 1;
+                ren2 = 0;
+                wen  = 1;
+                imm  = temp_immI;
             end
             default: begin
-                ren1 <= 0;
-                ren2 <= 0;
-                wen  <= 0;
-                imm  <= 0;
+                ren1 = 0;
+                ren2 = 0;
+                wen  = 0;
+                imm  = 0;
             end 
         endcase
     end
+		
 endmodule
 
 module ysyx_24090015_EXU#(WIDTH=32) (
@@ -129,7 +123,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     output reg [WIDTH-1:0] npc, dnpc
 );
 
-    always @(posedge clk) begin
+    always @(*) begin
         dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi
@@ -184,7 +178,6 @@ end
     wire ren1, ren2, wen;
     wire [WIDTH-1:0] rd_wdata;
 
-		reg [WIDTH-1:0] inst_2;
     // IDU实例化
     ysyx_24090015_IDU #(
         .WIDTH(32)
@@ -194,7 +187,6 @@ end
         .imm(imm),
         .ren1(ren1),
         .ren2(ren2),
-				.inst_out(inst_2),
         .wen(wen)
     );
 
@@ -203,7 +195,7 @@ end
         .WIDTH(32)
     ) exu0(
         .clk(clk),
-        .inst_in(inst_2),
+        .inst_in(inst),
         .imm(imm),
         .src1(src1),
         .src2(src2),
