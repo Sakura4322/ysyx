@@ -12,23 +12,7 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   always @(posedge clk) begin
     if (wen) rf[waddr] <= wdata;
   end
-  
-always @(posedge clk)begin 
-		if (ren1 && !ren2)begin 
-			rdata1=rf[raddr1];
-			rdata2=0;
-		end
-		else if(!ren1 && ren2)begin 
-			rdata1=0;
-			rdata2=rf[raddr2];
-		end
-		else if (ren1&&ren2)begin 
-			rdata1=rf[raddr1];
-			rdata2=rf[raddr2];
-		end
-		else begin 
-		rdata1=0;
-		rdata2=0;
-		end
-	end
+
+assign rdata1=(ren1)&(rd[addr1]);
+assign rdata2=ren2&rd[addr2];
 endmodule
