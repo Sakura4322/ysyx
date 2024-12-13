@@ -20,11 +20,9 @@ char *to_string(char *out,int a){
  char temp[20];
  int i=0;
  while (a>0){
-		*(temp+i)=a%10+'0';
+		temp[i++]=a%10+'0';
 		a/=10;
-		i++;
  }
-i=strlen(temp);
 for(int j=0;j<i;j++){
 		*(out+j)=*(temp+i-j-1);
 	}
