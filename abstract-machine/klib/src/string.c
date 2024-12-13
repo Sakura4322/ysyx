@@ -37,16 +37,22 @@ char  *strcat(char *dst, const char *src) {
 	return dst;
 } 
 
+int min(int a ,int b){
+if (a>b) return b ;
+return a;
+}
 int strcmp(const char *s1, const char *s2) {
-	int i =0;
-  while (s1||s2){
+	int temp1=strlen(s1);
+	int temp2=strlen(s2);
+	for (int i=0;i<min(temp1,temp2);i++){	
 		if(*(s1+i)>*(s2+i)){
 		return 1;
 		}
 		if(*(s1+i)<*(s2+i)){
 		return -1;
-		}
-			i++;
+	
+	}
+
 	}
 		return 0;
 }
