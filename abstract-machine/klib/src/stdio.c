@@ -42,7 +42,8 @@ if (*(fmt+i)=='%'){
 		}else if(temp=='d'){
 			int num=va_arg(args,int);
 			char temp_str[20];
-			strcat(out,to_string(temp_str,num));
+			to_string(temp_str,num);
+			strcat(out,temp_str);
 		}
 		i++;
 }	else{
