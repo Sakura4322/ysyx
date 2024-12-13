@@ -29,7 +29,9 @@ char *strncpy(char *dst, const char *src, size_t n) {
 
 char  *strcat(char *dst, const char *src) {
 	int temp=strlen(dst);
-  for(int i=0;i<=temp;i++){
+	int temp_2=strlen(src);
+
+  for(int i=0;i<=temp_2;i++){
 		*(dst+temp+i)=*(src+i);
 	}
 	return dst;
