@@ -28,6 +28,7 @@ i=strlen(temp);
 for(int j=0;j<i;j++){
 		*(out+j)=*(temp+i-j-1);
 	}
+out[i]='\0';
 return out;
 }
 
