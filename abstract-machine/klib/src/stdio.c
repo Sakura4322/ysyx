@@ -45,6 +45,7 @@ if (*(fmt+i)=='%'){
 			char temp_str[20];
 			strcat(out,to_string(temp_str,num));
 		}
+		i++;
 }	else{
 *(out+i)=*(fmt+i);	
 }
