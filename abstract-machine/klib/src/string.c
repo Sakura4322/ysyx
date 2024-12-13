@@ -69,29 +69,26 @@ void *memset(void *s, int c, size_t n) {
 	}
 	return s;
 }
-
 void *memmove(void *dst, const void *src, size_t n) {
-if(src<=dst){	
-		if(src+n<dst){
-	for(int i=0;i<n;i++){
-		*((char *)dst+i)=*((char *)src+i);
-	
-	}
-				
-		}else{
-	for(int i=n-1;i>=0;i--){
-		*((char *)dst+i)=*((char *)src+i);
-			} 	
-		}
-	}else {
-	for(int i=0;i<n;i++){
-		*((char *)dst+i)=*((char *)src+i);
-	
-	}
-	}
-return dst;
+    // 如果 src 和 dst 重叠，且 src 在 dst 后面，按照从后往前拷贝
+    if (src < dst && src + n > dst) {
+        // 从后往前拷贝
+        for (size_t i = n; i > 0; i--) {
+            *((char *)dst + i - 1) = *((char *)src + i - 1);
+        }
+    } else {
+        // 没有重叠或 src 在 dst 之前，按正常顺序从前往后拷贝
+        for (size_t i = 0; i < n; i++) {
+            *((char *)dst + i) = *((char *)src + i);
+        }
+    }
+    return dst;
 }
+
 void *memcpy(void *out, const void *in, size_t n) {
+if (out == NULL || in == NULL) {
+        return NULL; // 可以处理空指针的情况
+    }
 	for(int i=0;i<n;i++){
 		*((char *)out+i)=*((char *)in+i);	
 	}
