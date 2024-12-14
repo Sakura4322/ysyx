@@ -32,6 +32,7 @@ return out;
 
 
 int sprintf(char *out, const char *fmt, ...) {
+*out='\0';
 va_list args;
 va_start(args,fmt);
 int i=0;
