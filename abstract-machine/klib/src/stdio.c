@@ -43,7 +43,7 @@ if (*(fmt+i)=='%'){
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
 			int num=va_arg(args,int);
-			char temp_str[20];
+			char temp_str[20]="";
 			to_string(temp_str,num);
 			strcat(out,temp_str);
 		}
