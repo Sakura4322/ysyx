@@ -32,7 +32,7 @@ return out;
 
 
 int sprintf(char *out, const char *fmt, ...) {
-*out='\0';
+memset(out,'\0',sizeof(out));
 va_list args;
 va_start(args,fmt);
 int i=0;
