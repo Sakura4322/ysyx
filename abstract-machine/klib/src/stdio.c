@@ -34,7 +34,9 @@ return out;
 int sprintf(char *out, const char *fmt, ...) {
 va_list args;
 va_start(args,fmt);
-for(int i=0;i<strlen(fmt);i++){
+int i=0;
+int end=strlen(fmt);
+for( i=0; i<end; i++){
 if (*(fmt+i)=='%'){
 		char temp=*(fmt+i+1);
 		if(temp=='s'){
@@ -47,10 +49,11 @@ if (*(fmt+i)=='%'){
 		}
 		i++;
 }	else{
-*(out+i)=*(fmt+i);	
+	int ind_out=strlen(out);
+*(out+ind_out)=*(fmt+i);	
 }
 }
-
+out[i]='\0';
 va_end(args);
 
 return 0;
