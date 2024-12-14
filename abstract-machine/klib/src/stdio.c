@@ -17,7 +17,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 
 char *to_string(char *out,int a){
- char temp[20];
+ char temp[20]="";
  int i=0;
  while (a>0){
 		temp[i++]=a%10+'0';
@@ -37,10 +37,10 @@ va_list args;
 va_start(args,fmt);
 int i=0;
 int end=strlen(fmt);
-for( i=0; i<end; i++){
-if (*(fmt+i)=='%'){
+for( i=0; i<end;  i++){
+if (*(fmt+i)=='%') {
 		char temp=*(fmt+i+1);
-		if(temp=='s'){
+		if(temp=='s'){ 
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
 			int num=va_arg(args,int);
@@ -54,7 +54,8 @@ if (*(fmt+i)=='%'){
 *(out+ind_out)=*(fmt+i);	
 }
 }
-out[i]='\0';
+int ind_out=strlen(out);
+out[ind_out]='\0';
 va_end(args);
 
 return 0;
