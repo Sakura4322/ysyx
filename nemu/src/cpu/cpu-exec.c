@@ -44,13 +44,15 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 
 //监视点检查开关
-#ifdef CONFIG_WATCHPOINT
+#ifdef CONFIG_WATCHPOINT///////////////////////////////////////////////////////////////////////////
   if (diffest_wp()){
   	nemu_state.state = NEMU_STOP;
   	}
 #endif
+
 }
 
+char iringbuf[20][128];
 static void exec_once(Decode *s, vaddr_t pc) {
   s->pc = pc;
   s->snpc = pc;
@@ -58,7 +60,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":whereis the code!!", s->pc);
   
   
   int ilen = s->snpc - s->pc;
@@ -74,6 +76,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
   memset(p, ' ', space_len);
   p += space_len;
 
+#ifdef CONFIG_IRINGBUF///////////////////////////////////////////////////////////////////////////////
+
+#endif//////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef CONFIG_ISA_loongarch32r
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
@@ -81,7 +86,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #else
   p[0] = '\0'; // the upstream llvm does not support loongarch32r
 #endif
-#endif
+#endif//////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 //监视点开关
 #ifdef CONFIG_WATCHPOINT
@@ -93,7 +100,11 @@ step_wp();
 
 static void execute(uint64_t n) {
   Decode s;
+	//char iringbuf[20][512];
+	//int cout_pc_num;
   for (;n > 0; n --) {
+	//	iring_load(iringbuf,cout_pc_num++);
+
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
