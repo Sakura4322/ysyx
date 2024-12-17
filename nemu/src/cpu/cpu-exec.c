@@ -99,13 +99,13 @@ step_wp();
 static void iring_load(char *a[512],Decode *b,int cout_pc_num){
 	char **p=a;
 	char *s=b->logbuf;
-  strcpy(*(p+(cout_pc_num%20)),s);
+  strcpy(*(p+(cout_pc_num%10)),s);
 }
 
 static void execute(uint64_t n) {
   Decode s;
 	char *iringbuf[512];
-  int cout_pc_num=0;
+	int cout_pc_num=0;
   for (;n > 0; n --) {
 
     exec_once(&s, cpu.pc);
