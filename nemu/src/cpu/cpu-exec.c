@@ -95,23 +95,23 @@ step_wp();
 #endif
 
 }
-/*
+
 static void iring_load(char *a[512],Decode *b,int cout_pc_num){
 	char **p=a;
 	char *s=b->logbuf;
-  strcpy(*(p+cout_pc_num%20),s);
+  strcpy(*(p+(cout_pc_num%20)),s);
 }
-*/
+
 static void execute(uint64_t n) {
   Decode s;
-	//char *iringbuf[512];
-//	int cout_pc_num=0;
+	char *iringbuf[512];
+  int cout_pc_num=0;
   for (;n > 0; n --) {
 
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
-	 /* iring_load(iringbuf,&s,cout_pc_num++);
+	  iring_load(iringbuf,&s,cout_pc_num++);
     if (nemu_state.state == NEMU_END){
 	for(int i=0;i<20;i++){
 	if(i==cout_pc_num-2){
@@ -123,7 +123,7 @@ static void execute(uint64_t n) {
 	}	
 	}	
 		}
-		*/
+		
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
