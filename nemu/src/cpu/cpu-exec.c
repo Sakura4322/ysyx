@@ -117,6 +117,9 @@ static void execute(uint64_t n) {
 	if(i==cout_pc_num-2){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
+	//for (int i=0;i<32;i++){
+	//printf("%s : %08x\n",cpu.gpr[1])	
+	//}
  log_write("%s\n", *(iringbuf+i)); 
 	if(i==cout_pc_num-2){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		

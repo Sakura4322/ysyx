@@ -151,7 +151,8 @@ config ITRACE_COND
   string "Only trace instructions when the condition is true"
   default "true"
 
-  
+
+
 config DIFFTEST
   depends on TARGET_NATIVE_ELF
   bool "Enable differential testing"
@@ -219,3 +220,8 @@ endmenu
 config WATCHPOINT
   bool "Enable watchpoint feature'"
   default y
+
+
+config MTREACE
+	bool "Enable mtrace"
+	default y
