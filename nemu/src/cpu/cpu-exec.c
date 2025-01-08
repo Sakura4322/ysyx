@@ -21,6 +21,7 @@
 //#include "/home/sakura/ysyx-workbench/nemu/src/isa/riscv32/reg.c"
 
 extern const char *regs[];
+extern int is_exit_status_bad();
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
@@ -124,7 +125,7 @@ static void execute(uint64_t n) {
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 
-		if (nemu_state.state == NEMU_END){
+		if (!is_exit_status_bad()){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
