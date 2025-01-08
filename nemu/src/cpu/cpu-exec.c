@@ -130,13 +130,13 @@ static void execute(uint64_t n) {
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
 		log_write("%d   %d\n",cout_pc_num,(cout_pc_num-1)%2);
- log_write("\n\n\n\nthe reg information : \n%s\n",*(iringbuf_reg_state+cout_pc_num-1%2));
+ log_write("\n\n\n\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
  log_write("%s\n", *(iringbuf+i)); 
 	if(i==cout_pc_num){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
- log_write("%s\n",*(iringbuf_reg_state+cout_pc_num%2));
+ log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
 	}	
 	}	
 		}
