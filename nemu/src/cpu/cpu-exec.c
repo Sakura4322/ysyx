@@ -125,7 +125,7 @@ static void execute(uint64_t n) {
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 
-		if (!is_exit_status_bad()){
+		if (is_exit_status_bad()){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
