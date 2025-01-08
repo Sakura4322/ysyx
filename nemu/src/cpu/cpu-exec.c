@@ -194,6 +194,9 @@ void cpu_exec(uint64_t n) {
           nemu_state.halt_pc);
 			//log_write()
       // fall through
-    case NEMU_QUIT: statistic();
+    case NEMU_QUIT: 
+			statistic();
+			nemu_state.state=NEMU_END;
+
   }
 }
