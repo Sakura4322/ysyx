@@ -18,9 +18,9 @@
 #include <cpu/difftest.h>
 #include <locale.h>
 #include "/home/sakura/ysyx-workbench/nemu/src/monitor/sdb/sdb.h"
+//#include "/home/sakura/ysyx-workbench/nemu/src/isa/riscv32/reg.c"
 
-
-
+extern const char *regs[];
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
  * This is useful when you use the `si' command.
@@ -114,14 +114,14 @@ static void execute(uint64_t n) {
 	  iring_load(iringbuf,&s,cout_pc_num++);
     if (nemu_state.state == NEMU_END){
 	for(int i=0;i<20;i++){
-	if(i==cout_pc_num-2){
+	if(i==cout_pc_num-1){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
-	//for (int i=0;i<32;i++){
-	//printf("%s : %08x\n",cpu.gpr[1])	
-	//}
+	for (int i=0;i<32;i++){
+		log_write("%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
+	}
  log_write("%s\n", *(iringbuf+i)); 
-	if(i==cout_pc_num-2){
+	if(i==cout_pc_num-1){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
 	}	
