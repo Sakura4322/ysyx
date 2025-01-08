@@ -63,7 +63,7 @@ static uint8_t *pmem = NULL;
 
 void paddr_write(paddr_t addr, int len, word_t data) {
 //#if   defined(CONFIG_MTRACE)
-//	log_write("have  written in :%08x : %08x\n",(int)addr,(int)data);
+	log_write("have  written in :%08x : %08x\n",(int)addr,(int)data);
 //#endif
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
