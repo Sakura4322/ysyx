@@ -96,37 +96,52 @@ step_wp();
 
 }
 
-static void iring_load(char (*a)[512],Decode *b,int cout_pc_num){
-	char (*p)[512]=a;
+static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
+	char (*p)[128]=a;
 	char *s=b->logbuf;
   strcpy(*(p+(cout_pc_num%10)),s);
 }
 
 static void execute(uint64_t n) {
   Decode s;
-	char iringbuf[20][512];
+	char iringbuf[20][128];
+	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
   for (;n > 0; n --) {
-
+	char buf[512]={0};
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
-	  iring_load(iringbuf,&s,cout_pc_num++);
-    if (nemu_state.state == NEMU_END){
-	for(int i=0;i<20;i++){
-	if(i==cout_pc_num-1){
+
+
+
+
+		for (int i=0;i<32;i++){//storage reg information
+		char buf_temp[16]={0};
+		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
+		strcat(buf,buf_temp);
+	}
+		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
+	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
+
+
+		if (nemu_state.state == NEMU_END){
+			 cout_pc_num-=1;
+	for(int i=0;i<=cout_pc_num%20;i++){
+	if(i==cout_pc_num){
+ log_write("\n\n\n\nthe reg information : \n%s\n",*(iringbuf_reg_state-1%2));
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
-	for (int i=0;i<32;i++){
-		log_write("%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
-	}
  log_write("%s\n", *(iringbuf+i)); 
 	if(i==cout_pc_num-1){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
+ log_write("%s\n",*(iringbuf_reg_state+cout_pc_num%2));
 	}	
 	}	
 		}
 		
+
+
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
