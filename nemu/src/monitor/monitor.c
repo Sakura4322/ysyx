@@ -67,7 +67,7 @@ static long load_img() {
 }
 
 static int parse_args(int argc, char *argv[]) {
-  for(int i=0;i<10;i++){
+  for(int i=0;i<100;i++){
 		
 	printf("this is this : %s\n",*(argv+i));
 	}
