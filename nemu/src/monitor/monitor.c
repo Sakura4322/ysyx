@@ -89,11 +89,12 @@ static int parse_args(int argc, char *argv[]) {
       case 'd': diff_so_file = optarg; break;
       case 1:
 							char *suffix=NULL;
-							char *temp=NULL;
+							char temp[256]={0};
 							strcpy(temp,optarg);
 							suffix=strtok(temp,".");
-							img_file=(strcmp(suffix,"bin")==0)?NULL:optarg;
-							elf_file=(strcmp(suffix,"elf")==0)?NULL:optarg;
+							printf("addr is : %s",suffix);
+							img_file=(strcmp(temp+1,"bin")==0)?NULL:optarg;
+							elf_file=(strcmp(temp+1,"elf")==0)?NULL:optarg;
 
 						  printf("what is optarg : %s\n",optarg);
 							break;
