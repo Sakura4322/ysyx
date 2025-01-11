@@ -184,11 +184,55 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     return shdr;
 }
 
+void sym_printf(Elf32_Sym *sym,int sym_num) {
+    // Output header for the symbol table
+    printf("Symbol table '.symtab' contains %d entries:\n",sym_num);
+    printf("   Num:    Value  Size Type    Bind   Vis      Ndx Name\n");
 
-//static Elf32_Sym* sym(Elf32_Ehdr *ehdr){
-//				static Elf32_sym sym;
-//				long long 	
-//}
+    // Iterate through all symbols and print their details
+    for (int i = 0; i < sym_num; i++) {
+        // Assuming we are dealing with valid data from the symbol table
+        // Print symbol information in the desired format
+        printf("     %d: %08x     %d %s %s %s     %d %s\n",
+               i, 
+               sym[i].st_value, 
+               sym[i].st_size, 
+               (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "NOTYPE" : "OTHER_TYPE",  // Example Type
+               (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
+               (ELF32_ST_VISIBILITY(sym[i].st_other) == STV_DEFAULT) ? "DEFAULT" : "OTHER_VISIBILITY",  // Example Visibility
+               sym[i].st_shndx,  // Section Index
+               "Name_Example"  // Placeholder for the symbol's name, you may need to resolve this from the string table
+        );
+    }
+}
+
+
+static Elf32_Sym* prase_sym(Elf32_Shdr *shdr,char *elf){
+				size_t sym_size = shdr[7].sh_size;
+				size_t sym_addr = shdr[7].sh_offset;
+				int    sym_num  = sym_size/sizeof(Elf32_Sym);
+				
+				static Elf32_Sym *sym;
+				sym=malloc(sym_size);
+
+				FILE *fp=fopen(elf_file,"rb");
+        Assert(fp, "Cannot open '%s'", elf_file);
+				fseek(fp,sym_addr,SEEK_SET);
+				int ret=fread(sym,sizeof(Elf32_Sym),sym_num,fp);
+				if (ret!=sym_size/sizeof(Elf32_Sym)){
+        printf("Failed to read symtab header\n");
+        printf("Information about ret: %d\n", ret);
+        printf("Information about sym_size: %lu\n", sym_size);
+        printf("Information about sym_addr: %08lx\n", sym_addr);
+        printf("Information about sym_num: %d\n", sym_num);
+        fclose(fp);
+        return 0;
+					
+				}
+					sym_printf(sym,sym_num);
+					fclose(fp);
+					return sym;
+}
 		
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
@@ -227,8 +271,9 @@ static int parse_args(int argc, char *argv[]) {
 						  //printf("what is elf_file : %s\n",elf_file);
 							if(elf_file){	
               Elf32_Ehdr *ehdr=parse_elf(elf_file);
-							parse_shdr(ehdr,elf_file);
-							printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
+						  Elf32_Shdr *shdr=	parse_shdr(ehdr,elf_file);
+							prase_sym(shdr,elf_file);
+						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
 							break;
 
