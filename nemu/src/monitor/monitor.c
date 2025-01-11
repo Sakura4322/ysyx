@@ -109,6 +109,7 @@ static Elf32_Ehdr* parse_elf(char *elf_file){
 		ehdr_printf(&ehdr);
 		return &ehdr;
 }
+/*
 void shdr_printf(Elf32_Shdr (*shdr)[20],int sections_num){
 			if (!shdr) {
 			        printf("Invalid section header\n");
@@ -130,6 +131,29 @@ void shdr_printf(Elf32_Shdr (*shdr)[20],int sections_num){
 			}
 
 }
+*/
+void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
+	    if (!shdr) {
+				        printf("Invalid section header\n");
+								        return;
+												    }
+			    
+			    printf("节头：\n"); 
+					    
+					    for (int i = 0; i < sections_num; i++) {
+								        printf("[%2d] %-18s %-15s 0x%08x 0x%06x 0x%06x %02x %4s %2d %3d %2d\n", 
+														            i, 
+																				            shdr[i]->sh_name == 0 ? "NULL" : "??",             shdr[i]->sh_type == 0 ? "NULL" : "PROGBITS",             shdr[i]->sh_addr, 
+																										            shdr[i]->sh_offset,
+																																            shdr[i]->sh_size,
+																																						            shdr[i]->sh_entsize,
+																																												            (shdr[i]->sh_flags & SHF_ALLOC) ? "A" : " ",             shdr[i]->sh_link,
+																																																		            shdr[i]->sh_info,
+																																																								            shdr[i]->sh_addralign
+																																																														        );
+												    }
+}
+
 static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
 			static Elf32_Shdr shdr[20];
 			FILE *fp=fopen(elf_file,"rb");
@@ -142,7 +166,7 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
 
 
 			fseek(fp,start_addr_shdr,SEEK_SET);
-			int ret=fread(shdr,sections_num,size_shdr,fp);
+			int ret=fread(shdr,size_shdr,sections_num,fp);
 			if (ret!=size_shdr){
 			printf("Faild to read section header\n");	
 			printf("imformation about ret : %d\n",ret);	
