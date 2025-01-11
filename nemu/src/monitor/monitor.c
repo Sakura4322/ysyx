@@ -111,7 +111,7 @@ static Elf32_Ehdr* parse_elf(char *elf_file){
 }
 
 // 修改shdr_printf函数的打印格式，使其更接近readelf的输出
-void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
+void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
     if (!shdr) {
         printf("Invalid section header\n");
         return;
@@ -122,11 +122,11 @@ void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
 
     for (int i = 0; i < sections_num; i++) {
         // 获取节名称
-        char *section_name = (shdr[i]->sh_name == 0) ? "NULL" : "<section_name>"; // 根据名字表获取实际名称
+        char *section_name = (shdr[i].sh_name == 0) ? "NULL" : "<section_name>"; // 根据名字表获取实际名称
         
         // 通过sh_type转换类型输出
         char *sh_type_str = "<unknown>";
-        switch (shdr[i]->sh_type) {
+        switch (shdr[i].sh_type) {
             case SHT_PROGBITS: sh_type_str = "PROGBITS"; break;
             case SHT_SYMTAB:   sh_type_str = "SYMTAB"; break;
             case SHT_STRTAB:   sh_type_str = "STRTAB"; break;
@@ -140,21 +140,20 @@ void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
             i, // section index
             section_name, // 获取节名称
             sh_type_str,  // 获取节类型
-            shdr[i]->sh_addr,
-            shdr[i]->sh_offset,
-            shdr[i]->sh_size,
-            shdr[i]->sh_entsize,
-            (shdr[i]->sh_flags & SHF_ALLOC) ? "A" : " ", // 检查是否有SHF_ALLOC标志
-            shdr[i]->sh_link,
-            shdr[i]->sh_info,
-            shdr[i]->sh_addralign
+            shdr[i].sh_addr,
+            shdr[i].sh_offset,
+            shdr[i].sh_size,
+            shdr[i].sh_entsize,
+            (shdr[i].sh_flags & SHF_ALLOC) ? "A" : " ", // 检查是否有SHF_ALLOC标志
+            shdr[i].sh_link,
+            shdr[i].sh_info,
+            shdr[i].sh_addralign
         );
     }
 }
 
 
-static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr, char *elf_file))[20] {
-    static Elf32_Shdr shdr[20];
+static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     FILE *fp = fopen(elf_file, "rb");
     Assert(fp, "Cannot open '%s'", elf_file);
 
@@ -162,6 +161,8 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr, char *elf_file))[20] {
     size_t start_addr_shdr = ehdr->e_shoff;
     size_t sections_num = ehdr->e_shnum;
 
+    static Elf32_Shdr *shdr;
+		shdr=malloc(size_shdr*sections_num);
     // 移动到节头表的起始位置
     fseek(fp, start_addr_shdr, SEEK_SET);
     printf("The position of fp: %08lx\n", ftell(fp));
@@ -179,8 +180,8 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr, char *elf_file))[20] {
     }
 
     fclose(fp);
-    shdr_printf(&shdr, sections_num);
-    return &shdr;
+    shdr_printf(shdr, sections_num);
+    return shdr;
 }
 
 
