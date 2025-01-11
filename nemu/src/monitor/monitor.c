@@ -183,46 +183,60 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     shdr_printf(shdr, sections_num);
     return shdr;
 }
-void strtab_printf(char **strlab,int n){
-	for(int i=0;i<n;i++){
-	printf("%s",strlab[i]);	
-	}
-}
-char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
-				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
-				static char **string;
-				string=malloc(sym_num*sizeof(char *));
-
-
-				FILE *fp=fopen(elf_file,"rb");
-        Assert(fp, "Cannot open '%s'", elf_file);
-
-
-				size_t strtab_size=shdr[8].sh_size;
-			  size_t strtab_addr=shdr[8].sh_offset;	
-
-
-			int cnt=0;
-			static char single_word[128][128]={0};
-			for(int i=0;i<strtab_size;i++){
-				fseek(fp,strtab_addr+i,SEEK_SET);
-				char temp_char;
-				int ret=fread(&temp_char,1,1,fp);
-				if(ret!=1){
-				printf("CANNOT READING IN STRTAB\n\n\n\n");	
-				fclose(fp);
-				return 0;
-				}
-				strncat(single_word[cnt],&temp_char,1);
-				if(temp_char==0){
-					string[cnt]=single_word[cnt];
-					cnt++;
-				}
-			}	
-			strtab_printf(string,sym_num);
-return string;
+void strtab_printf(char **strlab, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%s\n", strlab[i]); // 增加换行符以便于阅读
+    }
 }
 
+char **parse_strtab(Elf32_Shdr *shdr, char *elf_file) {
+    int sym_num = shdr[7].sh_size / sizeof(Elf32_Sym);
+    static char **string;
+			string= malloc((sym_num - 6) * sizeof(char *)); // 分配内存
+    if (!string) {
+        fprintf(stderr, "Memory allocation failed\n");
+        return NULL;
+    }
+    memset(string, 0, (sym_num - 6) * sizeof(char *)); // 初始化为NULL
+
+    FILE *fp = fopen(elf_file, "rb");
+    if (!fp) {
+        fprintf(stderr, "Cannot open '%s'\n", elf_file);
+        return NULL;
+    }
+
+    size_t strtab_size = shdr[8].sh_size;
+    size_t strtab_addr = shdr[8].sh_offset;
+
+    int cnt = 0;
+    char single_word[128] = {0}; // 单个字符串缓冲区
+    fseek(fp, strtab_addr, SEEK_SET); // 定位到字符串表的起始位置
+    for (int i = 0; i < strtab_size; i++) {
+        char temp_char;
+        int ret = fread(&temp_char, 1, 1, fp);
+        if (ret != 1) {
+            fprintf(stderr, "CANNOT READING IN STRTAB\n");
+            break;
+        }
+        if (temp_char == '\0') { // 字符串结束符
+            if (strlen(single_word) > 0) { // 非空字符串
+                string[cnt] = strdup(single_word); // 复制字符串
+                if (!string[cnt]) {
+                    fprintf(stderr, "Memory allocation failed\n");
+                    break;
+                }
+                cnt++;
+            }
+            single_word[0] = '\0'; // 重置缓冲区
+        } else {
+            strncat(single_word, &temp_char, 1); // 追加字符
+        }
+    }
+    fclose(fp); // 关闭文件
+
+    strtab_printf(string, cnt); // 打印字符串，使用实际的字符串数量
+    return string;
+}
 void sym_printf(Elf32_Sym *sym,int sym_num) {
     // Output header for the symbol table
     printf("Symbol table '.symtab' contains %d entries:\n",sym_num);
