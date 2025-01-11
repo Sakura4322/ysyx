@@ -117,7 +117,7 @@ void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
     }
     
     printf("节头：\n");  // 根据readelf的输出添加标题
-    printf("[Nr] Name              Type            Addr     Off    Size   ES Flg Lk Inf Al\n");
+    printf("[Nr] Name               Type            Addr      Off    Size   ES Flg Lk Inf Al\n");
 
     for (int i = 0; i < sections_num; i++) {
         printf("[%2d] %-18s %-15s 0x%08x 0x%06x 0x%06x %02x %4s %2d %3d %2d\n", 
