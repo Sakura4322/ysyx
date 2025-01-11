@@ -183,6 +183,43 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     shdr_printf(shdr, sections_num);
     return shdr;
 }
+void strtab_printf(char **strlab,int n){
+	for(int i=0;i<n;i++){
+	printf("%s",strlab[i]);	
+	}
+}
+char **strtab(Elf32_Shdr *shdr,char *elf_file){
+				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
+				static char **string;
+				string=malloc((sym_num-6)*sizeof(char *));
+
+
+				FILE *fp=fopen(elf_file,"rb");
+        Assert(fp, "Cannot open '%s'", elf_file);
+
+
+				size_t strtab_size=shdr[8].sh_size;
+			  size_t strtab_addr=shdr[8].sh_offset;	
+
+
+			int cnt=0;
+			static char single_word[128][128]={0};
+			for(int i=0;i<strtab_size;i++){
+				fseek(fp,strtab_addr+i,SEEK_SET);
+				char temp_char;
+				int ret=fread(&temp_char,1,1,fp);
+				if(ret!=1){
+				printf("CANNOT READING IN STRTAB\n\n\n\n");	
+				}
+				strncat(single_word[cnt],&temp_char,1);
+				if(temp_char==0){
+					string[cnt]=single_word[cnt];
+					cnt++;
+				}
+			}	
+			strtab_printf(string,sym_num-6);
+return string;
+}
 
 void sym_printf(Elf32_Sym *sym,int sym_num) {
     // Output header for the symbol table
