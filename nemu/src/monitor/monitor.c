@@ -145,6 +145,7 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
 			int ret=fread(shdr,sections_num,size_shdr,fp);
 			if (ret!=size_shdr*sections_num){
 			printf("Faild to read section header\n");	
+			printf("imformation about ret : %d\n",ret);	
 			printf("imformation about size_shdr : %lu\n",size_shdr);	
 			printf("imformation about start_addr : %08lx\n",start_addr_shdr);	
 			printf("imformation about sections_num : %lu\n",sections_num);	
