@@ -134,18 +134,30 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
 			static Elf32_Shdr shdr[20];
 			FILE *fp=fopen(elf_file,"rb");
       Assert(fp, "Can not open '%s'", elf_file);
+
+
 			long long size_shdr=ehdr->e_shentsize;
 			long long start_addr_shdr=ehdr->e_shoff;
 			int sections_num=ehdr->e_shnum;
-			for (int i=0;i<sections_num;i++){
-			fseek(fp,start_addr_shdr*(i+1),SEEK_SET);
-			int ret=fread(&shdr[i],1,size_shdr,fp);
-			if (ret!=size_shdr){
+
+
+			fseek(fp,start_addr_shdr,SEEK_SET);
+			int ret=fread(&shdr,sections_num,size_shdr,fp);
+			if (ret!=size_shdr*sections_num){
 			printf("Faild to read section header\n");	
 			fclose(fp);
 			return 0;
 			}
-			}
+
+
+
+			//for (int i=0;i<sections_num;i++){
+			//if (ret!=size_shdr){
+			//printf("Faild to read section header\n");	
+			//fclose(fp);
+			//return 0;
+			//}
+			//}
 			fclose(fp);
 			shdr_printf(&shdr,sections_num);
 			return &shdr;
