@@ -228,6 +228,7 @@ static int parse_args(int argc, char *argv[]) {
 							if(elf_file){	
               Elf32_Ehdr *ehdr=parse_elf(elf_file);
 							parse_shdr(ehdr,elf_file);
+							printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
 							break;
 
