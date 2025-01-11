@@ -109,39 +109,45 @@ static Elf32_Ehdr* parse_elf(char *elf_file){
 		ehdr_printf(&ehdr);
 		return &ehdr;
 }
-void shdr_printf(Elf32_Shdr *shdr){
+void shdr_printf(Elf32_Shdr (*shdr)[20],int sections_num){
 			if (!shdr) {
 			        printf("Invalid section header\n");
 						        return;
 									    }
+			for (int i = 0; i < sections_num; i++) {
+				    printf("Section %d Header:\n", i);  
+						printf("  Name Index:       %u\n", shdr[i]->sh_name);
+						printf("  Type:             %u\n", shdr[i]->sh_type);
+										    printf("  Flags:            %u\n", shdr[i]->sh_flags);
+												    printf("  Address:          0x%x\n", shdr[i]->sh_addr);
+														    printf("  Offset:           0x%x\n", shdr[i]->sh_offset);
+																    printf("  Size:             %u bytes\n", shdr[i]->sh_size);
+																		    printf("  Link:             %u\n", shdr[i]->sh_link);
+																				    printf("  Info:             %u\n", shdr[i]->sh_info);
+																						    printf("  Address Alignment: %u\n", shdr[i]->sh_addralign);
+																								    printf("  Entry Size:       %u\n", shdr[i]->sh_entsize);
+																										    printf("\n");
+			}
 
-		printf("Section Header:\n");
-	    printf("  Name Index:       %u\n", shdr->sh_name);
-		    printf("  Type:             %u\n", shdr->sh_type);
-			    printf("  Flags:            %u\n", shdr->sh_flags);
-				    printf("  Address:          0x%x\n", shdr->sh_addr);
-					    printf("  Offset:           0x%x\n", shdr->sh_offset);
-						    printf("  Size:             %u bytes\n", shdr->sh_size);
-							    printf("  Link:             %u\n", shdr->sh_link);
-								    printf("  Info:             %u\n", shdr->sh_info);
-									    printf("  Address Alignment: %u\n", shdr->sh_addralign);
-										    printf("  Entry Size:       %u\n", shdr->sh_entsize);	
 }
-static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr,char *elf_file){
-			static Elf32_Shdr shdr;
+static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
+			static Elf32_Shdr shdr[20];
 			FILE *fp=fopen(elf_file,"rb");
       Assert(fp, "Can not open '%s'", elf_file);
 			long long size_shdr=ehdr->e_shentsize;
 			long long start_addr_shdr=ehdr->e_shoff;
+			int sections_num=ehdr->e_shnum;
 			fseek(fp,start_addr_shdr,SEEK_SET);
-			int ret=fread(&shdr,1,size_shdr,fp);
+			for (int i=0;i<sections_num;i++){
+			int ret=fread(&shdr[i],1,size_shdr,fp);
 			if (ret!=size_shdr){
 			printf("Faild to read section header\n");	
 			fclose(fp);
 			return 0;
 			}
+			}
 			fclose(fp);
-			shdr_printf(&shdr);
+			shdr_printf(&shdr,sections_num);
 			return &shdr;
 }
 //static Elf32_Sym* sym(Elf32_Ehdr *ehdr){
