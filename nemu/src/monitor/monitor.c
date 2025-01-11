@@ -137,8 +137,8 @@ static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
 			long long size_shdr=ehdr->e_shentsize;
 			long long start_addr_shdr=ehdr->e_shoff;
 			int sections_num=ehdr->e_shnum;
-			fseek(fp,start_addr_shdr,SEEK_SET);
 			for (int i=0;i<sections_num;i++){
+			fseek(fp,start_addr_shdr*(i+1),SEEK_SET);
 			int ret=fread(&shdr[i],1,size_shdr,fp);
 			if (ret!=size_shdr){
 			printf("Faild to read section header\n");	
