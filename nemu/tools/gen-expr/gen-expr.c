@@ -133,8 +133,10 @@ continue;
     fputs(code_buf, fp);
     fclose(fp);
 
-    int ret = system("gcc -Werror /tmp/.code.c -o /tmp/.expr > error.log");
-    if (ret != 0) continue;
+    int ret = system("gcc -Werror /tmp/.code.c -o /tmp/.expr 2>$HOME/ysyx-workbench/nemu/tools/gen-expr/build/error.log");
+    if (ret != 0) {
+		continue;
+		}
 
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);

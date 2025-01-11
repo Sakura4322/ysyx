@@ -15,7 +15,7 @@
 
 #include <isa.h>
 #include <memory/paddr.h>
-
+#include <elf.h>
 void init_rand();
 void init_log(const char *log_file);
 void init_mem();
@@ -67,6 +67,44 @@ static long load_img() {
   return size;
 }
 
+static void parse_elf(){
+	Elf32_Ehdr ehdr;                //generate ELF header
+  FILE *fp=fopen(elf_file,"rb");
+  Assert(fp, "Can not open '%s'", elf_file);
+  //int ret=fread(Ehdr.e_ident,16,1,fp);
+	//assert(ret==1);
+  //int ret=fread(Ehdr.e_type,16,1,fp);
+	//assert(ret==1);
+size_t read_size = fread(&ehdr, 1, sizeof(Elf32_Ehdr), fp);
+    if (read_size != sizeof(Elf32_Ehdr)) {
+			        fprintf(stderr, "Failed to read ELF header\n");
+							        fclose(fp);
+											        return;
+															    }
+		printf("ELF Header:\n");
+		    printf("  Magic:   ");
+				    for  (int i = 0; i < EI_NIDENT; i++) {
+							        printf("%02x ", ehdr.e_ident[i]);
+											    }
+						    printf("\n");
+
+								    printf("  Type:                             0x%x\n", ehdr.e_type);
+										    printf("  Machine:                          0x%x\n", ehdr.e_machine);
+												    printf("  Version:                          0x%x\n", ehdr.e_version);
+														    printf("  Entry point address:              0x%x\n", ehdr.e_entry);
+																    printf("  Start of program headers:         0x%x\n", ehdr.e_phoff);
+																		    printf("  Start of section headers:         0x%x\n", ehdr.e_shoff);
+																				    printf("  Flags:                            0x%x\n", ehdr.e_flags);
+																						    printf("  Size of this header:              %u\n", ehdr.e_ehsize);
+																								    printf("  Size of program headers:          %u\n", ehdr.e_phentsize);
+																										    printf("  Number of program headers:        %u\n", ehdr.e_phnum);
+																												    printf("  Size of section headers:          %u\n", ehdr.e_shentsize);
+																														    printf("  Number of section headers:        %u\n", ehdr.e_shnum);
+																																    printf("  Section header string table index: %u\n", ehdr.e_shstrndx);
+
+																																		    fclose(fp);
+}
+		
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
@@ -115,7 +153,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Parse arguments. */
   parse_args(argc, argv);
-
+parse_elf();
   /* Set random seed. */
   init_rand();
 
