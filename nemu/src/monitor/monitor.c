@@ -138,7 +138,7 @@ static int parse_args(int argc, char *argv[]) {
 							strtok(temp,".");
 							img_file=(strcmp(temp+1,"bin")==0)?img_file:optarg;
 							elf_file=(strcmp(temp+1,"elf")==0)?elf_file:optarg;
-						  printf("what is temp : %s\n",temp);
+						  printf("what is temp : %s\n",temp+1);
 						  printf("what is optarg : %s\n",optarg);
 						  printf("what is img_file : %s\n",img_file);
 						  printf("what is elf_file : %s\n",elf_file);
