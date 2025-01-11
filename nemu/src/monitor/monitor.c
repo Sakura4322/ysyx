@@ -110,25 +110,41 @@ static Elf32_Ehdr* parse_elf(char *elf_file){
 		return &ehdr;
 }
 
+// 修改shdr_printf函数的打印格式，使其更接近readelf的输出
 void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
     if (!shdr) {
         printf("Invalid section header\n");
         return;
     }
-    
-    printf("节头：\n");  // 根据readelf的输出添加标题
+
+    printf("Section Headers:\n");
     printf("[Nr] Name               Type            Addr       Off      Size     ES  Flg  Lk Inf Al\n");
 
     for (int i = 0; i < sections_num; i++) {
-        printf("[%2d] %-18s %-15s 0x%08x 0x%06x 0x%06x %02x %4s %2d %3d %2d\n", 
+        // 获取节名称
+        char *section_name = (shdr[i]->sh_name == 0) ? "NULL" : "<section_name>"; // 根据名字表获取实际名称
+        
+        // 通过sh_type转换类型输出
+        char *sh_type_str = "<unknown>";
+        switch (shdr[i]->sh_type) {
+            case SHT_PROGBITS: sh_type_str = "PROGBITS"; break;
+            case SHT_SYMTAB:   sh_type_str = "SYMTAB"; break;
+            case SHT_STRTAB:   sh_type_str = "STRTAB"; break;
+            case SHT_RELA:     sh_type_str = "RELA"; break;
+            // 添加其他类型的处理
+            default: break;
+        }
+
+        // 打印节头信息
+        printf("[%2d] %-18s %-15s 0x%08x 0x%06x 0x%06x %02x %4s %2d %3d %2d\n",
             i, // section index
-            shdr[i]->sh_name == 0 ? "NULL" : "??", // 如果sh_name为0，表示没有名称，类似readelf的表现
-            shdr[i]->sh_type == 0 ? "NULL" : "PROGBITS", // 这里只是一个例子，具体可以通过sh_type类型来转换
-            shdr[i]->sh_addr, 
+            section_name, // 获取节名称
+            sh_type_str,  // 获取节类型
+            shdr[i]->sh_addr,
             shdr[i]->sh_offset,
             shdr[i]->sh_size,
             shdr[i]->sh_entsize,
-            (shdr[i]->sh_flags & SHF_ALLOC) ? "A" : " ", // 如果有SHF_ALLOC标志就显示A
+            (shdr[i]->sh_flags & SHF_ALLOC) ? "A" : " ", // 检查是否有SHF_ALLOC标志
             shdr[i]->sh_link,
             shdr[i]->sh_info,
             shdr[i]->sh_addralign
@@ -137,34 +153,37 @@ void shdr_printf(Elf32_Shdr (*shdr)[20], int sections_num) {
 }
 
 
-static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr,char *elf_file))[20]{
-			static Elf32_Shdr shdr[20];
-			FILE *fp=fopen(elf_file,"rb");
-      Assert(fp, "Can not open '%s'", elf_file);
+static Elf32_Shdr (*parse_shdr(Elf32_Ehdr *ehdr, char *elf_file))[20] {
+    static Elf32_Shdr shdr[20];
+    FILE *fp = fopen(elf_file, "rb");
+    Assert(fp, "Cannot open '%s'", elf_file);
 
+    size_t size_shdr = ehdr->e_shentsize;
+    size_t start_addr_shdr = ehdr->e_shoff;
+    size_t sections_num = ehdr->e_shnum;
 
-			size_t size_shdr=ehdr->e_shentsize;
-			size_t start_addr_shdr=ehdr->e_shoff;
-			size_t sections_num=ehdr->e_shnum;
+    // 移动到节头表的起始位置
+    fseek(fp, start_addr_shdr, SEEK_SET);
+    printf("The position of fp: %08lx\n", ftell(fp));
 
-			rewind(fp);
-			fseek(fp,start_addr_shdr,SEEK_SET);
-			printf("the position of fp:%08lx",ftell(fp));
-			int ret=fread(shdr,sizeof(Elf32_Shdr),sections_num,fp);
-			if (ret!=sections_num){
-			printf("Faild to read section header\n");	
-			printf("imformation about ret : %d\n",ret);	
-			printf("imformation about size_shdr : %lu\n",size_shdr);	
-			printf("imformation about start_addr : %08lx\n",start_addr_shdr);	
-			printf("imformation about sections_num : %lu\n",sections_num);	
-			fclose(fp);
-			return 0;
-			}
+    // 读取节头表
+    int ret = fread(shdr, sizeof(Elf32_Shdr), sections_num, fp);
+    if (ret != sections_num) {
+        printf("Failed to read section header\n");
+        printf("Information about ret: %d\n", ret);
+        printf("Information about size_shdr: %lu\n", size_shdr);
+        printf("Information about start_addr: %08lx\n", start_addr_shdr);
+        printf("Information about sections_num: %lu\n", sections_num);
+        fclose(fp);
+        return 0;
+    }
 
-			fclose(fp);
-			shdr_printf(&shdr,sections_num);
-			return &shdr;
+    fclose(fp);
+    shdr_printf(&shdr, sections_num);
+    return &shdr;
 }
+
+
 //static Elf32_Sym* sym(Elf32_Ehdr *ehdr){
 //				static Elf32_sym sym;
 //				long long 	
