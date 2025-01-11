@@ -188,7 +188,7 @@ void strtab_printf(char **strlab,int n){
 	printf("%s",strlab[i]);	
 	}
 }
-char **strtab(Elf32_Shdr *shdr,char *elf_file){
+char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
 				static char **string;
 				string=malloc((sym_num-6)*sizeof(char *));
@@ -244,7 +244,7 @@ void sym_printf(Elf32_Sym *sym,int sym_num) {
 }
 
 
-static Elf32_Sym* prase_sym(Elf32_Shdr *shdr,char *elf){
+static Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 				size_t sym_size = shdr[7].sh_size;
 				size_t sym_addr = shdr[7].sh_offset;
 				int    sym_num  = sym_size/sizeof(Elf32_Sym);
@@ -309,7 +309,8 @@ static int parse_args(int argc, char *argv[]) {
 							if(elf_file){	
               Elf32_Ehdr *ehdr=parse_elf(elf_file);
 						  Elf32_Shdr *shdr=	parse_shdr(ehdr,elf_file);
-							prase_sym(shdr,elf_file);
+							parse_sym(shdr,elf_file);
+							parse_strtab(shdr,elf_file);
 						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
 							break;
