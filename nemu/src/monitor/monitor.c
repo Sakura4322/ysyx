@@ -322,7 +322,7 @@ static int parse_args(int argc, char *argv[]) {
 						  //printf("what is optarg : %s\n",optarg);
 						  //printf("what is img_file : %s\n",img_file);
 						  //printf("what is elf_file : %s\n",elf_file);
-							if(elf_file){	
+							if(strcmp(suffix,"elf")==0){	
               Elf32_Ehdr *ehdr=parse_elf(elf_file);
 						  Elf32_Shdr *shdr=	parse_shdr(ehdr,elf_file);
 							parse_sym(shdr,elf_file);
