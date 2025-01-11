@@ -136,9 +136,10 @@ static int parse_args(int argc, char *argv[]) {
 							char temp[256]={0};
 							char *suffix;
 							strcpy(temp,optarg);
-							suffix=strtok(temp,".");
-							img_file=(strcmp(suffix,"bin")==0)?img_file:optarg;
-							elf_file=(strcmp(suffix,"elf")==0)?elf_file:optarg;
+							suffix=strchr(temp,'.');
+							suffix++;
+							img_file=(strcmp(suffix,"bin")==0)?optarg:img_file;
+							elf_file=(strcmp(suffix,"elf")==0)?optarg:elf_file;
 						  printf("what is suffix : %s\n",suffix);
 						  printf("what is temp : %s\n",temp);
 						  printf("what is optarg : %s\n",optarg);
