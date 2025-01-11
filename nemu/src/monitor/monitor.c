@@ -210,6 +210,8 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				int ret=fread(&temp_char,1,1,fp);
 				if(ret!=1){
 				printf("CANNOT READING IN STRTAB\n\n\n\n");	
+				fclose(fp);
+				return 0;
 				}
 				strncat(single_word[cnt],&temp_char,1);
 				if(temp_char==0){
