@@ -66,27 +66,29 @@ static long load_img() {
   fclose(fp);
   return size;
 }
+
+
 static void ehdr_printf(Elf32_Ehdr *ehdr){			
 		printf("ELF Header:\n");
-		    printf("  Magic:   ");
-				    for  (int i = 0; i < EI_NIDENT; i++) {
-							        printf("%02x ", ehdr->e_ident[i]);
+		printf("  Magic:   ");
+		for  (int i = 0; i < EI_NIDENT; i++) {
+				printf("%02x ", ehdr->e_ident[i]);
 											    }
-						    printf("\n");
+		printf("\n");
 
-								    printf("  Type:                             0x%x\n", ehdr->e_type);
-										    printf("  Machine:                          0x%x\n", ehdr->e_machine);
-												    printf("  Version:                          0x%x\n", ehdr->e_version);
-														    printf("  Entry point address:              0x%x\n", ehdr->e_entry);
-																    printf("  Start of program headers:         0x%x\n", ehdr->e_phoff);
-																		    printf("  Start of section headers:         0x%x\n", ehdr->e_shoff);
-																				    printf("  Flags:                            0x%x\n", ehdr->e_flags);
-																						    printf("  Size of this header:              %u\n", ehdr->e_ehsize);
-																								    printf("  Size of program headers:          %u\n", ehdr->e_phentsize);
-																										    printf("  Number of program headers:        %u\n", ehdr->e_phnum);
-																												    printf("  Size of section headers:          %u\n", ehdr->e_shentsize);
-																														    printf("  Number of section headers:        %u\n", ehdr->e_shnum);
-																																    printf("  Section header string table index: %u\n", ehdr->e_shstrndx);
+		printf("  Type:                             0x%x\n", ehdr->e_type);
+	  printf("  Machine:                          0x%x\n", ehdr->e_machine);
+		printf("  Version:                          0x%x\n", ehdr->e_version);
+		printf("  Entry point address:              0x%x\n", ehdr->e_entry);
+		printf("  Start of program headers:         0x%x\n", ehdr->e_phoff);
+		printf("  Start of section headers:         0x%x\n", ehdr->e_shoff);
+    printf("  Flags:                            0x%x\n", ehdr->e_flags);
+		printf("  Size of this header:              %u\n", ehdr->e_ehsize);
+		printf("  Size of program headers:          %u\n", ehdr->e_phentsize);
+		printf("  Number of program headers:        %u\n", ehdr->e_phnum);
+		printf("  Size of section headers:          %u\n", ehdr->e_shentsize);
+		printf("  Number of section headers:        %u\n", ehdr->e_shnum);
+		printf("  Section header string table index: %u\n", ehdr->e_shstrndx);
 }
 
 
@@ -107,6 +109,8 @@ static Elf32_Ehdr* parse_elf(char *a){
 		ehdr_printf(&ehdr);
 		return &ehdr;
 }
+
+//static Elf32
 		
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
@@ -132,8 +136,8 @@ static int parse_args(int argc, char *argv[]) {
 							char temp[256]={0};
 							strcpy(temp,optarg);
 							strtok(temp,".");
-							img_file=(strcmp(temp+1,"bin")==0)?NULL:optarg;
-							elf_file=(strcmp(temp+1,"elf")==0)?NULL:optarg;
+							img_file=(strcmp(temp+1,"bin")==0)?img_file:optarg;
+							elf_file=(strcmp(temp+1,"elf")==0)?elf_file:optarg;
 						  printf("what is optarg : %s\n",optarg);
 							if(elf_file){	
               parse_elf(elf_file);
