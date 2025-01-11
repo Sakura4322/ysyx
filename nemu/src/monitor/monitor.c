@@ -191,7 +191,7 @@ void strtab_printf(char **strlab,int n){
 char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
 				static char **string;
-				string=malloc((sym_num-6)*sizeof(char *));
+				string=malloc(sym_num*sizeof(char *));
 
 
 				FILE *fp=fopen(elf_file,"rb");
