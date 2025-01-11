@@ -168,7 +168,7 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     printf("The position of fp: %08lx\n", ftell(fp));
 
     // 读取节头表
-    int ret = fread(shdr, size_shdr, sections_num, fp);
+    int ret = fread(shdr, sizeof(Elf32_Shdr), sections_num, fp);
     if (ret != sections_num) {
         printf("Failed to read section header\n");
         printf("Information about ret: %d\n", ret);
