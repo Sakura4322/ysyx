@@ -92,7 +92,7 @@ static void ehdr_printf(Elf32_Ehdr *ehdr){
 }
 
 
-static Elf32_Ehdr* parse_elf(char *a){
+static Elf32_Ehdr* parse_elf(char *elf_file){
 	static Elf32_Ehdr ehdr;                //generate ELF header
   FILE *fp=fopen(elf_file,"rb");
   Assert(fp, "Can not open '%s'", elf_file);
@@ -109,8 +109,45 @@ static Elf32_Ehdr* parse_elf(char *a){
 		ehdr_printf(&ehdr);
 		return &ehdr;
 }
+void shdr_printf(Elf32_Shdr *shdr){
+			if (!shdr) {
+			        printf("Invalid section header\n");
+						        return;
+									    }
 
-//static Elf32
+		printf("Section Header:\n");
+	    printf("  Name Index:       %u\n", shdr->sh_name);
+		    printf("  Type:             %u\n", shdr->sh_type);
+			    printf("  Flags:            %u\n", shdr->sh_flags);
+				    printf("  Address:          0x%x\n", shdr->sh_addr);
+					    printf("  Offset:           0x%x\n", shdr->sh_offset);
+						    printf("  Size:             %u bytes\n", shdr->sh_size);
+							    printf("  Link:             %u\n", shdr->sh_link);
+								    printf("  Info:             %u\n", shdr->sh_info);
+									    printf("  Address Alignment: %u\n", shdr->sh_addralign);
+										    printf("  Entry Size:       %u\n", shdr->sh_entsize);	
+}
+static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr,char *elf_file){
+			static Elf32_Shdr shdr;
+			FILE *fp=fopen(elf_file,"rb");
+      Assert(fp, "Can not open '%s'", elf_file);
+			long long size_shdr=ehdr->e_shentsize;
+			long long start_addr_shdr=ehdr->e_shoff;
+			fseek(fp,start_addr_shdr,SEEK_SET);
+			int ret=fread(&shdr,1,size_shdr,fp);
+			if (ret!=size_shdr){
+			printf("Faild to read section header\n");	
+			fclose(fp);
+			return 0;
+			}
+			fclose(fp);
+			shdr_printf(&shdr);
+			return &shdr;
+}
+//static Elf32_Sym* sym(Elf32_Ehdr *ehdr){
+//				static Elf32_sym sym;
+//				long long 	
+//}
 		
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
@@ -123,6 +160,7 @@ static int parse_args(int argc, char *argv[]) {
     {"diff"     , required_argument, NULL, 'd'},
     {"port"     , required_argument, NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
+		{"elf"      , required_argument, NULL, 'e'},
     {0          , 0                , NULL,  0 },
   };
   int o;
@@ -132,6 +170,7 @@ static int parse_args(int argc, char *argv[]) {
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
+			//case 'e': if(optarg=="-h")
       case 1:
 							char temp[256]={0};
 							char *suffix;
@@ -140,13 +179,14 @@ static int parse_args(int argc, char *argv[]) {
 							suffix++;
 							img_file=(strcmp(suffix,"bin")==0)?optarg:img_file;
 							elf_file=(strcmp(suffix,"elf")==0)?optarg:elf_file;
-						  printf("what is suffix : %s\n",suffix);
-						  printf("what is temp : %s\n",temp);
-						  printf("what is optarg : %s\n",optarg);
-						  printf("what is img_file : %s\n",img_file);
-						  printf("what is elf_file : %s\n",elf_file);
+						  //printf("what is suffix : %s\n",suffix);
+						  //printf("what is temp : %s\n",temp);
+						  //printf("what is optarg : %s\n",optarg);
+						  //printf("what is img_file : %s\n",img_file);
+						  //printf("what is elf_file : %s\n",elf_file);
 							if(elf_file){	
-              parse_elf(elf_file);
+              Elf32_Ehdr *ehdr=parse_elf(elf_file);
+							parse_shdr(ehdr,elf_file);
 							}
 							break;
 
