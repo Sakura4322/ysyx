@@ -209,7 +209,13 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				if(ret!=1){
 				printf("CANNOT READING IN STRTAB\n\n\n\n");	
 				}
-				*(string_word+i)=temp_char;
+				/*
+				if (string_word[i] == NULL) {
+				printf("ERRO string_word outside\n\n\n\n\n\n");				
+ 				}
+				*/
+				string_word[i]=temp_char;
+
 				if(temp_char==0){
 					//string[cnt]=single_word[cnt];
 					cnt++;
@@ -220,7 +226,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			string=malloc(cnt*sizeof(char *));
 			string_word++;
 			for(int i=0;i<cnt;i++){
-			*string=string_word;
+			string[i]=string_word;
 		  string_word+=(strlen(string_word)+1);	
 			}
 			strtab_printf(string,cnt);
