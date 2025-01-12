@@ -218,6 +218,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			cnt--;
 			printf("There are %d symbols\n",cnt);
 			string=malloc(cnt*sizeof(char *));
+			string_word++;
 			for(int i=0;i<cnt;i++){
 			*string=string_word;
 		  string_word+=(strlen(string_word)+1);	
