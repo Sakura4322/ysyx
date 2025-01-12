@@ -218,6 +218,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				}
 			}	
 			strtab_printf(string,5);
+			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
 void sym_printf(Elf32_Sym *sym,int sym_num) {
