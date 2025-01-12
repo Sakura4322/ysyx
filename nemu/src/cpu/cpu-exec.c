@@ -128,7 +128,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab){
 
 
 					cnt=0;
-					for(int i=0;i<sym_num-6;i++){
+					for(int i=0;i<sym_num-7;i++){
 					func_addr[cnt].func_name=strtab[sym[i].st_name];
 					func_addr[cnt].start=sym[i].st_value;
 					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
