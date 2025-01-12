@@ -138,7 +138,6 @@ Addr_Imfo* read_sym_func(Elf32_Shdr *shdr, Elf32_Sym *sym, char **strtab) {
                 fprintf(stderr, "Memory allocation failed\n");
                 exit(EXIT_FAILURE);
             }
-					//	printf("this is func_name :%s\n",func_addr[i].func_name);
             func_addr[cnt].start = sym[i].st_value;
             func_addr[cnt].end = sym[i].st_value + sym[i].st_size;
             cnt++;
@@ -170,7 +169,7 @@ static void ftrace(Addr_Imfo *func_addr, Decode *s) {
                     return;
                 }
             }
-           // printf("\n\n\nUsing undefined function\n\n\n");
+            printf("\n\n\nUsing undefined function\n\n\n");
 						exit(-1);
         }
     }
