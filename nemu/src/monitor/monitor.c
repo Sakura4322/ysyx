@@ -217,7 +217,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			for(int i=0;i<cnt;i++){
 				strcpy(string[i],single_word[i]);
 			}
-			strtab_printf(string,cnt);
+			strtab_printf(string,cnt-10);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
