@@ -170,7 +170,7 @@ static void ftrace(Addr_Imfo *func_addr, Decode *s) {
                     return;
                 }
             }
-            printf("\n\n\nUsing undefined function\n\n\n");
+           // printf("\n\n\nUsing undefined function\n\n\n");
 						exit(-1);
         }
     }
