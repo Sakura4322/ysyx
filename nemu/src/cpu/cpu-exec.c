@@ -103,7 +103,7 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
   strcpy(*(p+(cout_pc_num%10)),s);
 }
 
-
+/*
 extern Elf32_Ehdr *ehdr_globle;
 extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
@@ -169,15 +169,15 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 return ;
 } 
 
-
+*/
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
   	
-Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle);
-ftrace(func_addr,&s);
+//Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle);
+//ftrace(func_addr,&s);
 
   for (;n > 0; n --) {
 	char buf[512]={0};
