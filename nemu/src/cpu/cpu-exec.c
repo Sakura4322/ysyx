@@ -125,10 +125,10 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab){
 
 					static Addr_Imfo *func_addr;
 					func_addr=malloc(cnt*sizeof(Addr_Imfo));
-
+					memset(func_addr,0,cnt*sizeof(Addr_Imfo));
 
 					cnt=0;
-					for(int i=0;i<sym_num-7;i++){
+					for(int i=0;i<sym_num;i++){
 					func_addr[cnt].func_name=strtab[sym[i].st_name];
 					func_addr[cnt].start=sym[i].st_value;
 					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
