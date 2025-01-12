@@ -214,10 +214,10 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				}
 			}	
 				string=malloc((cnt-1)*sizeof(char *));
-			for(int i=0;i<cnt;i++){
+			for(int i=0;i<cnt-5;i++){
 				strcpy(string[i],single_word[i]);
 			}
-			strtab_printf(string,cnt);
+			strtab_printf(string,cnt-5);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
