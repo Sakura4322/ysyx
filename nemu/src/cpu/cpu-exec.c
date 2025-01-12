@@ -114,66 +114,62 @@ typedef struct{
 		int start;
 		int end;	
 }Addr_Imfo;
-Addr_Imfo* read_sym_func(Elf32_Shdr *shdr, Elf32_Sym *sym, char **strtab) {
-    int sym_num = shdr->sh_size / sizeof(Elf32_Sym);
+Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab){
+					int sym_num=shdr->sh_size/sizeof(Elf32_Sym);
 
-    int cnt = 0;
-    for (int i = 0; i < sym_num; i++) {
-        if (ELF32_ST_TYPE(sym[i].st_info) == STT_FUNC) {
-            cnt++;
-        }
-    }
+					int cnt=0;
+					for(int i=0;i<sym_num;i++){
+					if(sym[i].st_info==STT_FUNC)cnt++;
+					}
 
-    Addr_Imfo *func_addr = malloc(cnt * sizeof(Addr_Imfo));
-    if (!func_addr) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
 
-    cnt = 0;
-    for (int i = 0; i < sym_num; i++) {
-        if (ELF32_ST_TYPE(sym[i].st_info) == STT_FUNC) {
-            func_addr[cnt].func_name = strdup(strtab[sym[i].st_name]);
-            if (!func_addr[cnt].func_name) {
-                fprintf(stderr, "Memory allocation failed\n");
-                exit(EXIT_FAILURE);
-            }
-            func_addr[cnt].start = sym[i].st_value;
-            func_addr[cnt].end = sym[i].st_value + sym[i].st_size;
-            cnt++;
-        }
-    }
+					static Addr_Imfo *func_addr;
+					func_addr=malloc(cnt*sizeof(Addr_Imfo));
 
-    return func_addr;
+
+					cnt=0;
+					for(int i=0;i<sym_num;i++){
+					func_addr[cnt].func_name=strtab[sym[i].st_name];
+					func_addr[cnt].start=sym[i].st_value;
+					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
+					}
+
+					return func_addr;
+
 }
 
-static void ftrace(Addr_Imfo *func_addr, Decode *s) {
-    static Addr_Imfo addr[200];
-    memset(addr, 0, sizeof(addr));
-    static int rsp = 0;
+static void ftrace(Addr_Imfo *func_addr,Decode *s){
+static Addr_Imfo addr[200];
+memset(addr, 0x00, sizeof(addr));
+int rsp=0;
+Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+  
+if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
+		if(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end){
+		rsp--;	
+		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
+		return ;
+		}//pd ret
+		else{
+		while(func_addr){
+		if(s->dnpc<=func_addr->end&&s->dnpc>=func_addr->start){
+		  rsp++;
+			addr[rsp].func_name=func_addr->func_name;
+			addr[rsp].start=func_addr->start;
+			addr[rsp].end=func_addr->end;
+			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
+		  return ;
+		}
+		func_addr++;
+		}
+	  printf("\n\n\nUsing undefine function\n\n\n");
+		exit(-1);
+		}//pd call
+ }
+return ;
+} 
 
-    assert(rsp < 200 && "Stack Overflow !!!!!!!");
 
-    if (addr[rsp].end < s->dnpc || addr[rsp].start > s->dnpc) {
-        if (s->dnpc >= addr[rsp - 1].start && s->dnpc <= addr[rsp - 1].end) {
-            rsp--;
-            log_write("0x%08x ret %s\n", s->pc, addr[rsp].func_name);
-            return;
-        } else {
-            for (int i = 0; func_addr[i].func_name != NULL; i++) {
-							  printf("this is func_name :%s\n",func_addr[i].func_name);
-                if (s->dnpc <= func_addr[i].end && s->dnpc >= func_addr[i].start) {
-                    rsp++;
-                    addr[rsp] = func_addr[i];
-                    log_write("0x%08x: call [%s @ 0x%08x]\n", s->pc, addr[rsp].func_name, s->dnpc);
-                    return;
-                }
-            }
-            printf("\n\n\nUsing undefined function\n\n\n");
-						exit(-1);
-        }
-    }
-}
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
