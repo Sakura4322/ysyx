@@ -260,7 +260,7 @@ void sym_printf(Elf32_Sym *sym,int sym_num) {
 }
 
 
-static Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
+Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 				size_t sym_size = shdr[7].sh_size;
 				size_t sym_addr = shdr[7].sh_offset;
 				int    sym_num  = sym_size/sizeof(Elf32_Sym);
@@ -286,7 +286,10 @@ static Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 					fclose(fp);
 					return sym;
 }
-		
+Elf32_Ehdr *ehdr_globle;
+Elf32_Shdr *shdr_globle;
+Elf32_Sym  *sym_globle;
+char **str_globle;
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
@@ -323,10 +326,10 @@ static int parse_args(int argc, char *argv[]) {
 						  //printf("what is img_file : %s\n",img_file);
 						  //printf("what is elf_file : %s\n",elf_file);
 							if(strcmp(suffix,"elf")==0){	
-              Elf32_Ehdr *ehdr=parse_elf(elf_file);
-						  Elf32_Shdr *shdr=	parse_shdr(ehdr,elf_file);
-							parse_sym(shdr,elf_file);
-							parse_strtab(shdr,elf_file);
+              ehdr_globle=parse_elf(elf_file);
+						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
+							sym_globle =parse_sym(shdr_globle,elf_file);
+							str_globle =parse_strtab(shdr_globle,elf_file);
 						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
 							break;

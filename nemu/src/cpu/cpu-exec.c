@@ -18,6 +18,7 @@
 #include <cpu/difftest.h>
 #include <locale.h>
 #include "/home/sakura/ysyx-workbench/nemu/src/monitor/sdb/sdb.h"
+#include <elf.h>
 //#include "/home/sakura/ysyx-workbench/nemu/src/isa/riscv32/reg.c"
 
 extern const char *regs[];
@@ -102,11 +103,80 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
   strcpy(*(p+(cout_pc_num%10)),s);
 }
 
+
+extern Elf32_Ehdr *ehdr_globle;
+extern Elf32_Shdr *shdr_globle;
+extern Elf32_Sym  *sym_globle;
+extern char **str_globle;
+
+typedef struct{
+		char *func_name;
+		int start;
+		int end;	
+}Addr_Imfo;
+Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab){
+					int sym_num=shdr->sh_size/sizeof(Elf32_Sym);
+
+					int cnt=0;
+					for(int i=0;i<sym_num;i++){
+					if(sym[i].st_info==STT_FUNC)cnt++;
+					}
+
+
+					static Addr_Imfo *func_addr;
+					func_addr=malloc(cnt*sizeof(Addr_Imfo));
+
+
+					cnt=0;
+					for(int i=0;i<sym_num;i++){
+					func_addr[cnt].func_name=strtab[sym[i].st_name];
+					func_addr[cnt].start=sym[i].st_value;
+					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
+					}
+
+					return func_addr;
+
+}
+
+static void ftrace(Addr_Imfo *func_addr,Decode *s){
+static Addr_Imfo addr[200];
+memset(addr, 0x00, sizeof(addr));
+int rsp=0;
+Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+  
+if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
+		if(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end){
+		rsp--;	
+		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
+		return ;
+		}//pd ret
+		else{
+		while(func_addr){
+		if(s->dnpc<=func_addr->end&&s->dnpc>=func_addr->start){
+		  rsp++;
+			addr[rsp].func_name=func_addr->func_name;
+			addr[rsp].start=func_addr->start;
+			addr[rsp].end=func_addr->end;
+			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
+		  return ;
+		}
+		func_addr++;
+		}
+	  printf("\n\n\nUsing undefine function\n\n\n");
+		exit(-1);
+		}//pd call
+ }
+return ;
+} 
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
+  	
+Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle);
+ftrace(func_addr,&s);
+
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
