@@ -161,7 +161,7 @@ static void ftrace(Addr_Imfo *func_addr, Decode *s) {
             return;
         } else {
             for (int i = 0; func_addr[i].func_name != NULL; i++) {
-							  printf("this is func_name :%s\n",func_addr[i].func_name);
+							  //printf("this is func_name :%s\n",func_addr[i].func_name);
                 if (s->dnpc <= func_addr[i].end && s->dnpc >= func_addr[i].start) {
                     rsp++;
                     addr[rsp] = func_addr[i];
