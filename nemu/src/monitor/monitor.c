@@ -197,7 +197,6 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 
 				size_t strtab_size=shdr[8].sh_size;
 			  size_t strtab_addr=shdr[8].sh_offset;	
-				string=malloc(strtab_size);
 
 			int cnt=0;
 			char single_word[128][128]={0};
@@ -214,10 +213,11 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 					cnt++;
 				}
 			}	
+				string=malloc((cnt-1)*sizeof(char *));
 			for(int i=0;i<cnt;i++){
 				strcpy(string[i],single_word[i]);
 			}
-			strtab_printf(string,cnt-10);
+			strtab_printf(string,cnt);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
