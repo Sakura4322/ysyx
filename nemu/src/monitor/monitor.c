@@ -213,7 +213,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 					cnt++;
 				}
 			}	
-				string=malloc((cnt-1)*sizeof(char *));
+				string=malloc((cnt+10)*sizeof(char *));
 			for(int i=0;i<cnt-5;i++){
 				strcpy(string[i],single_word[i]);
 			}
