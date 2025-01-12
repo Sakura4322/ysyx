@@ -191,19 +191,16 @@ void strtab_printf(char **strlab,int n){
 char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
 				static char **string;
-				string=malloc((sym_num-6)*sizeof(char *));
-
 
 				FILE *fp=fopen(elf_file,"rb");
         Assert(fp, "Cannot open '%s'", elf_file);
 
-
 				size_t strtab_size=shdr[8].sh_size;
 			  size_t strtab_addr=shdr[8].sh_offset;	
-
+				string=malloc(strtab_size);
 
 			int cnt=0;
-			static char single_word[128][128]={0};
+			char single_word[128][128]={0};
 			for(int i=0;i<strtab_size;i++){
 				fseek(fp,strtab_addr+i,SEEK_SET);
 				char temp_char;
@@ -213,10 +210,13 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				}
 				strncat(single_word[cnt],&temp_char,1);
 				if(temp_char==0){
-					string[cnt]=single_word[cnt];
+					//string[cnt]=single_word[cnt];
 					cnt++;
 				}
 			}	
+			for(int i=0;i<cnt;i++){
+				strcpy(string[i],single_word[i]);
+			}
 			strtab_printf(string,cnt);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
