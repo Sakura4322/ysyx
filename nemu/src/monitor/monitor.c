@@ -183,6 +183,9 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     shdr_printf(shdr, sections_num);
     return shdr;
 }
+
+
+int cnt_globle;
 void strtab_printf(char **strlab,int n){
 	for(int i=0;i<n;i++){
 	printf("%s\n",strlab[i]);	
@@ -198,7 +201,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				size_t strtab_size=shdr[8].sh_size;
 			  size_t strtab_addr=shdr[8].sh_offset;	
 
-			int cnt=0;
+		
 			//char single_word[128][128]={0};
 			static char *string_word;
 			string_word=malloc(strtab_size);
@@ -218,18 +221,18 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 
 				if(temp_char==0){
 					//string[cnt]=single_word[cnt];
-					cnt++;
+					cnt_globle++;
 				}
 			}	
-			cnt--;
-			printf("There are %d symbols\n",cnt);
-			string=malloc(cnt*sizeof(char *));
+			cnt_globle--;
+			printf("There are %d symbols\n",cnt_globle);
+			string=malloc(cnt_globle*sizeof(char *));
 			string_word++;
-			for(int i=0;i<cnt;i++){
+			for(int i=0;i<cnt_globle;i++){
 			string[i]=string_word;
 		  string_word+=(strlen(string_word)+1);	
 			}
-			strtab_printf(string,cnt);
+			strtab_printf(string,cnt_globle);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
@@ -242,7 +245,7 @@ void sym_printf(Elf32_Sym *sym,int sym_num) {
     for (int i = 0; i < sym_num; i++) {
         // Assuming we are dealing with valid data from the symbol table
         // Print symbol information in the desired format
-        printf("     %d: %08x     %d %s %s %s     %d %s\n",
+        printf("     %d: %08x     %d %s %s %s     %d %d\n",
                i, 
                sym[i].st_value, 
                sym[i].st_size, 
@@ -250,7 +253,7 @@ void sym_printf(Elf32_Sym *sym,int sym_num) {
                (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
                (ELF32_ST_VISIBILITY(sym[i].st_other) == STV_DEFAULT) ? "DEFAULT" : "OTHER_VISIBILITY",  // Example Visibility
                sym[i].st_shndx,  // Section Index
-               "Name_Example"  // Placeholder for the symbol's name, you may need to resolve this from the string table
+               sym[i].st_name  // Placeholder for the symbol's name, you may need to resolve this from the string table
         );
     }
 }
