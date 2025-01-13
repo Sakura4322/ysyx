@@ -229,7 +229,7 @@ static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static vaddr_t addr[20000];	
 static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
-printf("ALL IS OK\n");
+//printf("ALL IS OK\n");
 if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
 	if(s->dnpc==addr[rsp]){
 		for(int i=0;i<cnt_func_num;i++){
@@ -254,7 +254,7 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 			printf("0x%08x call %s\trsp : %d \n",s->pc,func_addr[i].func_name,rsp);	
 		  //printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
-		  printf("ARE YOU OK??\n");
+		  //printf("ARE YOU OK??\n");
 		  return ;
 		}
 		
@@ -296,7 +296,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 
     ftrace(func_addr,&s);
-		printf("ARE YOU OK??\n");
+		//printf("ARE YOU OK??\n");
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
