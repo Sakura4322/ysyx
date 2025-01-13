@@ -72,7 +72,8 @@ Elf32_Ehdr *ehdr_globle;
 Elf32_Shdr *shdr_globle;
 Elf32_Sym  *sym_globle;
 char *str_globle;
-
+int globle_sym_indx;
+int globle_str_indx;
 
 static void ehdr_printf(Elf32_Ehdr *ehdr){			
 		printf("ELF Header:\n");
@@ -189,8 +190,18 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     shdr_printf(shdr, sections_num);
     return shdr;
 }
-
-
+/*
+void find_shdr_type(Elf32_Ehdr *ehdr ,Elf32_Shdr *shdr){
+	for(int i=0;i<ehdr->e_shnum;i++){
+		if(shdr[i].sh_type==SHT_SYMTAB){
+			globle_sym_indx=i;			
+			printf("Found .symtab section at index %d\n", i);
+		}else if(shdr[i].sh_type==SHT_STRTAB){
+			globle_str_indx=i;
+			printf("Found .strtab section at index %d\n", i);
+	}
+}
+*/
 int cnt_globle;
 void strtab_printf(char *strlab,int cnt_globle){
 	for(int i=0;i<cnt_globle;i++){
@@ -336,6 +347,7 @@ static int parse_args(int argc, char *argv[]) {
 							if(strcmp(suffix,"elf")==0){	
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
+						  //find_shdr_type(ehdr_globle,shdr_globle);
 						  str_globle =parse_strtab(shdr_globle,elf_file);
 							sym_globle =parse_sym(shdr_globle,elf_file);
 							
