@@ -213,7 +213,7 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 		}
 		
 		}
-	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n\n",s->pc);
+	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n%08x\n",s->pc,s->dnpc);
 		exit(-1);
 		}//pd call
  }
