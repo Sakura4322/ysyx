@@ -234,7 +234,7 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 	if(s->dnpc == addr[rsp]){
         for(int i = 0; i < cnt_func_num; i++){
             if(s->pc >= func_addr[i].start && s->pc < func_addr[i].end){
-                printf("0x%08x ret %s\trsp : %d \n", s->pc, func_addr[i].func_name, rsp);	
+                printf("0x%08x ret %s\trsp : %d \n", s->pc, func_addr[i].func_name, rsp-1);	
                 log_write("0x%08x: ret [%s @ 0x%08x]\n", s->pc, func_addr[i].func_name, s->dnpc);
                 rsp--;
                 return;
