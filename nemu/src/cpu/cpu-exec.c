@@ -202,6 +202,7 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 		else{
 		//int temp_times=cnt_func_num;
 		for(int i=0;i<cnt_func_num;i++){
+printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc<=func_addr[i].end&&s->dnpc<func_addr[i].start){
 		  rsp++;
 			addr[rsp].func_name=func_addr->func_name;
