@@ -194,7 +194,7 @@ if(s->pc==0x80000000){
 	 
 	 
 if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
-		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end)){
+		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<addr[rsp-1].end)){
 		rsp--;	
 		//printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
@@ -203,7 +203,7 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		else{
 		int temp_times=cnt_func_num;
 		while(temp_times--){
-		if(s->dnpc<=func_addr->end&&s->dnpc>=func_addr->start){
+		if(s->dnpc<=func_addr->end&&s->dnpc<func_addr->start){
 		  rsp++;
 			addr[rsp].func_name=func_addr->func_name;
 			addr[rsp].start=func_addr->start;
