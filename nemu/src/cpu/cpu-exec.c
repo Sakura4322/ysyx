@@ -227,7 +227,7 @@ return ;
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static vaddr_t addr[2000];	
-int rsp=0;
+static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 
 if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
