@@ -205,9 +205,9 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 //printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc<func_addr[i].end&&s->dnpc>=func_addr[i].start){
 		  rsp++;
-			addr[rsp].func_name=func_addr->func_name;
-			addr[rsp].start=func_addr->start;
-			addr[rsp].end=func_addr->end;
+			addr[rsp].func_name=func_addr[i].func_name;
+			addr[rsp].start=func_addr[i].start;
+			addr[rsp].end=func_addr[i].end;
 		  printf("0x%08x call %s\n",s->pc,addr[rsp].func_name);	
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
 		  return ;
