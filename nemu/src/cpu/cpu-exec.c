@@ -107,6 +107,7 @@ extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
 extern char *str_globle;
 extern int cnt_globle;
+extern int str_globle_indx;
 
 typedef struct{
 		char *func_name;
@@ -116,7 +117,7 @@ typedef struct{
 
 int cnt_func_num;
 Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){//all func info in func_addr
-	        size_t sym_size = shdr[7].sh_size;
+	        size_t sym_size = shdr[str_globle_indx].sh_size;
 					int sym_num  = sym_size/sizeof(Elf32_Sym);
 					cnt_func_num=0;
 
