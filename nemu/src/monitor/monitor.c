@@ -243,52 +243,27 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 return string;
 }
 
-const char* get_symbol_type(unsigned char type) {
-    switch (type) {
-        case STT_NOTYPE: return "NOTYPE";
-        case STT_OBJECT: return "OBJECT";
-        case STT_FUNC: return "FUNC";
-        default: return "OTHER_TYPE";
-    }
-}
-
-const char* get_symbol_bind(unsigned char bind) {
-    switch (bind) {
-        case STB_LOCAL: return "LOCAL";
-        case STB_GLOBAL: return "GLOBAL";
-        default: return "OTHER_BIND";
-    }
-}
-
-const char* get_symbol_visibility(unsigned char visibility) {
-    switch (visibility) {
-        case STV_DEFAULT: return "DEFAULT";
-        default: return "OTHER_VISIBILITY";
-    }
-}
-
-const char* get_section_index(unsigned short index) {
-    switch (index) {
-        case SHN_UNDEF: return "UND";
-        case SHN_ABS: return "ABS";
-        default: return "DEFINED";
-    }
-}
-
-void sym_printf(Elf32_Sym *sym, int sym_num, char **strtab) {
+void sym_printf(Elf32_Sym *sym, int sym_num) {
+    // Output header for the symbol table
     printf("Symbol table '.symtab' contains %d entries:\n", sym_num);
     printf("   Num:    Value  Size Type    Bind   Vis      Ndx Name\n");
 
+    // Iterate through all symbols and print their details
     for (int i = 0; i < sym_num; i++) {
-        printf("%6d: %08x %5d %-7s %-6s %-9s %s %s\n",
+        // Assuming we are dealing with valid data from the symbol table
+        // Print symbol information in the desired format
+        printf("     %d: %08x     %d %s %s %s     %d %d\n",
                i,
                sym[i].st_value,
                sym[i].st_size,
-               get_symbol_type(ELF32_ST_TYPE(sym[i].st_info)),
-               get_symbol_bind(ELF32_ST_BIND(sym[i].st_info)),
-               get_symbol_visibility(sym[i].st_other),
-               get_section_index(sym[i].st_shndx),
-               strtab[sym[i].st_name]);
+             (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "FUNC" : "OTHER_TYPE",
+             (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
+               //sym[i].st_info,  // Example Type
+               //sym[i].st_info,
+               (ELF32_ST_VISIBILITY(sym[i].st_other) == STV_DEFAULT) ? "DEFAULT" : "OTHER_VISIBILITY",  // Example Visibility
+               sym[i].st_shndx,  // Section Index
+               sym[i].st_name  // Placeholder for the symbol's name, you may need to resolve this from the string table
+        );
     }
 }
 
@@ -316,7 +291,7 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
         return 0;
 					
 				}
-					sym_printf(sym,sym_num,str_globle);
+					sym_printf(sym,sym_num);
 					fclose(fp);
 					return sym;
 }
