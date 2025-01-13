@@ -168,7 +168,9 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 }
 
 
+	 /*
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
+	
 static Addr_Imfo addr[2000];
 //memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
@@ -190,7 +192,6 @@ if(s->pc==0x80000000){
 		}	
 		}
 	}//init
-	 
 //if(s->pc>=func.addr[1].start){	
 if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 
@@ -222,7 +223,48 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 //}
 return ;
 } 
+ */
 
+static void ftrace(Addr_Imfo *func_addr,Decode *s){
+static vaddr_t addr[2000];	
+int rsp=0;
+Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+
+if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
+	if(s->dnpc==addr[rsp]){
+		for(int i=0;i<cnt_func_num;i++){
+//printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+		if(s->dnpc>=func_addr[i].start&&s->dnpc<func_addr[i].end){
+			printf("0x%08x ret %s\trsp : %d \n",s->pc,func_addr[i].func_name,rsp);	
+			log_write("0x%08x: ret [%s @ 0x%08x]\n",s->pc,func_addr[rsp].func_name,s->dnpc);
+		  rsp--;
+		  return ;
+		}
+		
+		}
+	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n%08x\n",s->pc,s->dnpc);
+		exit(-1);
+		//ret
+	}else {
+		for(int i=0;i<cnt_func_num;i++){
+//printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+		if(s->dnpc>=func_addr[i].start&&s->dnpc<func_addr[i].end){
+		  rsp++;
+			addr[rsp]=s->pc+4;
+			printf("0x%08x call %s\trsp : %d \n",s->pc,func_addr[i].func_name,rsp);	
+			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[rsp].func_name,s->dnpc);
+		  return ;
+		}
+		
+		}
+	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n%08x\n",s->pc,s->dnpc);
+		exit(-1);
+		}//pd call
+		
+	}
+
+return ;
+}
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
