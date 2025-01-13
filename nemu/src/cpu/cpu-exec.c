@@ -161,6 +161,9 @@ if(s->pc==0x80000000){
 		for(int i=0;i<cnt_func_num;i++){
 		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
 		addr[rsp].func_name=func_addr[i].func_name;	
+		addr[rsp].start=func_addr[i].start;
+		addr[rsp].end=func_addr[i].end;
+
 		printf("init is OK\n");
 		}	
 		}
