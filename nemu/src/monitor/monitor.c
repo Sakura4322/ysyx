@@ -72,8 +72,8 @@ Elf32_Ehdr *ehdr_globle;
 Elf32_Shdr *shdr_globle;
 Elf32_Sym  *sym_globle;
 char *str_globle;
-int globle_sym_indx;
-int globle_str_indx;
+int sym_globle_indx;
+int str_globle_indx;
 
 static void ehdr_printf(Elf32_Ehdr *ehdr){			
 		printf("ELF Header:\n");
@@ -135,8 +135,12 @@ void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
         char *sh_type_str = "<unknown>";
         switch (shdr[i].sh_type) {
             case SHT_PROGBITS: sh_type_str = "PROGBITS"; break;
-            case SHT_SYMTAB:   sh_type_str = "SYMTAB"; break;
-            case SHT_STRTAB:   sh_type_str = "STRTAB"; break;
+            case SHT_SYMTAB:   sym_globle_indx=i;
+															 printf("Found .symtab section at index %d\n", i);
+															 sh_type_str = "SYMTAB"; break;
+						case SHT_STRTAB:   str_globle_indx=(str_globle_indx==0)?i:str_globle_indx;
+			printf("Found .strgloble  section at index %d\n", str_globle_indx);
+															 sh_type_str = "STRTAB"; break;
             case SHT_RELA:     sh_type_str = "RELA"; break;
             // 添加其他类型的处理
             default: break;
