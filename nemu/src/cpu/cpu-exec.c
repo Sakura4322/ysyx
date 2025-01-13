@@ -214,7 +214,7 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		}
 		func_addr++;
 		}
-	  printf("\n\n\nUsing undefine function\n\n\n");
+	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n\n",s->pc);
 		exit(-1);
 		}//pd call
  }
