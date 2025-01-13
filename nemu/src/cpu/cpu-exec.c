@@ -196,20 +196,20 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 
 		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<addr[rsp-1].end)){
 		rsp--;	
-		//printf("0x%08x ret %s\trsp: %d\n",s->pc,addr[rsp].func_name,rsp);	
+		//printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		return ;
 		}//pd ret
 		else{
 
 		for(int i=0;i<cnt_func_num;i++){
-//printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc<func_addr[i].end&&s->dnpc>=func_addr[i].start){
 		  rsp++;
 			addr[rsp].func_name=func_addr[i].func_name;
 			addr[rsp].start=func_addr[i].start;
 			addr[rsp].end=func_addr[i].end;
-		  //printf("0x%08x call %s\trsp : %d \n",s->pc,addr[rsp].func_name,rsp);	
+		  printf("0x%08x call %s\trsp : %d \n",s->pc,addr[rsp].func_name,rsp);	
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
 		  return ;
 		}
