@@ -256,7 +256,7 @@ void sym_printf(Elf32_Sym *sym, int sym_num) {
                i,
                sym[i].st_value,
                sym[i].st_size,
-             (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "FUNC" : "OTHER_TYPE",
+             (ELF32_ST_TYPE(sym[i].st_info) == STT_FUNC) ? "FUNC" : "OTHER_TYPE",
              (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
                //sym[i].st_info,  // Example Type
                //sym[i].st_info,
