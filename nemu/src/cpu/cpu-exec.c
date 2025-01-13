@@ -231,21 +231,19 @@ static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 //printf("ALL IS OK\n");
 if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
-	if(s->dnpc==addr[rsp]){
-		for(int i=0;i<cnt_func_num;i++){
-//printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
-		if(s->pc>=func_addr[i].start&&s->pc<func_addr[i].end){
-			printf("0x%08x ret %s\trsp : %d \n",s->pc,func_addr[i].func_name,rsp);	
-			log_write("0x%08x: ret [%s @ 0x%08x]\n",s->pc,func_addr[rsp].func_name,s->dnpc);
-		  rsp--;
-		  return ;
-		}
-		
-		}
-	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n%08x\n",s->pc,s->dnpc);
-		exit(-1);
-		//ret
-	}else {
+	if(s->dnpc == addr[rsp]){
+        for(int i = 0; i < cnt_func_num; i++){
+            if(s->pc >= func_addr[i].start && s->pc < func_addr[i].end){
+                printf("0x%08x ret %s\trsp : %d \n", s->pc, func_addr[i].func_name, rsp);	
+                log_write("0x%08x: ret [%s @ 0x%08x]\n", s->pc, func_addr[i].func_name, s->dnpc);
+                rsp--;
+                return;
+            }
+        }
+        // 如果没有找到匹配的函数，输出错误信息并退出
+        printf("\n\n\nUsing undefine function\ns->pc is :%08x\n%08x\n", s->pc, s->dnpc);
+        exit(-1);
+    }else {
 		for(int i=0;i<cnt_func_num;i++){
 //printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc>=func_addr[i].start&&s->dnpc<func_addr[i].end){
