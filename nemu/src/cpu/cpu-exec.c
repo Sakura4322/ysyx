@@ -211,7 +211,7 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
 		  return ;
 		}
-		func_addr++;
+		
 		}
 	  printf("\n\n\nUsing undefine function\ns->pc is :%08x\n\n",s->pc);
 		exit(-1);
