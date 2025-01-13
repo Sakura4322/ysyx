@@ -226,7 +226,7 @@ return ;
  */
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
-static vaddr_t addr[2000];	
+static vaddr_t addr[20000];	
 static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 printf("ALL IS OK\n");
@@ -294,6 +294,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 
     ftrace(func_addr,&s);
+		printf("ARE YOU OK??\n");
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
