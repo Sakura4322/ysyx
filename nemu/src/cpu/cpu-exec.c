@@ -140,7 +140,28 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 					}
 					}
 
+					//sort
+					for(int i=0;i<cnt_func_num-1;i++){
+						for(int j=i+1;j<cnt_func_num;j++){
+							if(func_addr[i].start>func_addr[j].start){
+							Addr_Imfo temp;
+							temp.start=func_addr[i].start;
+							temp.end=func_addr[i].end;
+							temp.func_name=func_addr[i].func_name;
+							
+							func_addr[i].start=func_addr[j].start;
+							func_addr[i].end=func_addr[j].end;
+							func_addr[i].func_name=func_addr[j].func_name;
 
+							func_addr[j].start=temp.start;
+							func_addr[j].end=temp.end;
+							func_addr[j].func_name=temp.func_name;
+							}
+						}
+					}
+
+					//start
+					func_addr[0].end=func_addr[1].start;
 					return func_addr;
 
 }
@@ -159,11 +180,11 @@ printf("the first dnpc : %08x\n",s->dnpc);
 
 if(s->pc==0x80000000){
 		for(int i=0;i<cnt_func_num;i++){
-	  printf("cnt_func_num=%d\n",cnt_func_num);
+	  //printf("cnt_func_num=%d\n",cnt_func_num);
 		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
 		addr[rsp].func_name=func_addr[i].func_name;	
-		//addr[rsp].start=func_addr[i].start;
-		//addr[rsp].end=func_addr[i].end;
+		addr[rsp].start=func_addr[i].start;
+		addr[rsp].end=func_addr[i].end;
 		printf("init is OK\n");
 		}	
 		}
