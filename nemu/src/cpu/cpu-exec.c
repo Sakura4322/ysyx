@@ -118,7 +118,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_g
 
 					int cnt=0;
 					for(int i=0;i<sym_num;i++){
-					if(sym[i].st_info==STT_FUNC)cnt++;
+					if(sym[i].st_info==2)cnt++;
 					}
 					printf("There are %d functions\n",cnt);
 
