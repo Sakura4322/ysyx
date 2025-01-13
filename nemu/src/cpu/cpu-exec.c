@@ -155,7 +155,7 @@ printf("ALL IS OK\n");
 
 
 printf("the first pc : %08x\n",s->pc);
-if(s->pc==0){
+if(s->pc==0x80000000){
 		for(int i=0;i<cnt_func_num;i++){
 		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
 		addr[rsp].func_name=func_addr[i].func_name;	
