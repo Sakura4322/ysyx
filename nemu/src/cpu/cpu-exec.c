@@ -170,7 +170,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static Addr_Imfo addr[2000];
-memset(addr, 0x00, sizeof(addr));
+//memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 //printf("ALL IS OK\n");  
@@ -193,6 +193,7 @@ if(s->pc==0x80000000){
 	 
 //if(s->pc>=func.addr[1].start){	
 if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
+
 		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<addr[rsp-1].end)){
 		rsp--;	
 		//printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
@@ -200,7 +201,7 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 		return ;
 		}//pd ret
 		else{
-		//int temp_times=cnt_func_num;
+
 		for(int i=0;i<cnt_func_num;i++){
 //printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc<func_addr[i].end&&s->dnpc>=func_addr[i].start){
