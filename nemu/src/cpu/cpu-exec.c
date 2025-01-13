@@ -105,7 +105,7 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 extern Elf32_Ehdr *ehdr_globle;
 extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
-extern char **str_globle;
+extern char *str_globle;
 extern int cnt_globle;
 
 typedef struct{
@@ -113,7 +113,7 @@ typedef struct{
 		int start;
 		int end;	
 }Addr_Imfo;
-Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_globle){
+Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){
 					int sym_num=cnt_globle;
 
 					int cnt=0;
@@ -129,7 +129,8 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_g
 					cnt=0;
 					for(int i=0;i<sym_num;i++){
 					if(ELF32_ST_TYPE(sym[i].st_info)==STT_FUNC){
-					func_addr[cnt].func_name=strtab[sym[i].st_name];
+					char *temp_func_name=strtab+sym[i].st_name;
+					func_addr[cnt].func_name=temp_func_name;
 					func_addr[cnt].start=sym[i].st_value;
 					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
 					cnt++;	
