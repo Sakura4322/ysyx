@@ -191,9 +191,8 @@ if(s->pc==0x80000000){
 		}
 	}//init
 	 
-	 
-	 
-if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
+//if(s->pc>=func.addr[1].start){	
+if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<addr[rsp-1].end)){
 		rsp--;	
 		//printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
@@ -201,9 +200,9 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		return ;
 		}//pd ret
 		else{
-		int temp_times=cnt_func_num;
-		while(temp_times--){
-		if(s->dnpc<=func_addr->end&&s->dnpc<func_addr->start){
+		//int temp_times=cnt_func_num;
+		for(int i=0;i<cnt_func_num;i++){
+		if(s->dnpc<=func_addr[i].end&&s->dnpc<func_addr[i].start){
 		  rsp++;
 			addr[rsp].func_name=func_addr->func_name;
 			addr[rsp].start=func_addr->start;
@@ -218,6 +217,7 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		exit(-1);
 		}//pd call
  }
+//}
 return ;
 } 
 
