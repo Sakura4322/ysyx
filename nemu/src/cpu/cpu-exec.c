@@ -147,12 +147,13 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static Addr_Imfo addr[200];
 memset(addr, 0x00, sizeof(addr));
-int rsp=0;
+static int rsp=0;
 Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
   
 if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		if(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end){
 		rsp--;	
+		printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		return ;
 		}//pd ret
@@ -163,6 +164,7 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 			addr[rsp].func_name=func_addr->func_name;
 			addr[rsp].start=func_addr->start;
 			addr[rsp].end=func_addr->end;
+		  printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,addr[rsp].func_name,s->dnpc);
 		  return ;
 		}
