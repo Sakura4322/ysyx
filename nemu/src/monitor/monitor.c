@@ -214,14 +214,14 @@ void strtab_printf(char *strlab,int cnt_globle){
 	}
 }
 char *parse_strtab(Elf32_Shdr *shdr,char *elf_file){
-				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
+				int sym_num=shdr[sym_globle_indx].sh_size/sizeof(Elf32_Sym);
 				//static char **string;
 
 				FILE *fp=fopen(elf_file,"rb");
         Assert(fp, "Cannot open '%s'", elf_file);
 
-				size_t strtab_size=shdr[8].sh_size;
-			  size_t strtab_addr=shdr[8].sh_offset;	
+				size_t strtab_size=shdr[str_globle_indx].sh_size;
+			  size_t strtab_addr=shdr[str_globle_indx].sh_offset;	
 
 		
 			//char single_word[128][128]={0};
@@ -287,8 +287,8 @@ void sym_printf(Elf32_Sym *sym, int sym_num) {
 
 
 Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
-				size_t sym_size = shdr[7].sh_size;
-				size_t sym_addr = shdr[7].sh_offset;
+				size_t sym_size = shdr[sym_globle_indx].sh_size;
+				size_t sym_addr = shdr[sym_globle_indx].sh_offset;
 				int    sym_num  = sym_size/sizeof(Elf32_Sym);
 				
 				
