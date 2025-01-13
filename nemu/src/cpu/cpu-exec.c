@@ -154,7 +154,7 @@ Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");
 printf("ALL IS OK\n");  
 
 
-printf("the first pc : %08x",s->pc);
+printf("the first pc : %08x\n",s->pc);
 if(s->pc==0){
 		for(int i=0;i<cnt_func_num;i++){
 		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
