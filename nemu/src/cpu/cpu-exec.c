@@ -120,7 +120,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_g
 					for(int i=0;i<sym_num;i++){
 					if(sym[i].st_info==STT_FUNC)cnt++;
 					}
-
+					printf("There are %d functions\n",cnt);
 
 					static Addr_Imfo *func_addr;
 					func_addr=malloc(cnt*sizeof(Addr_Imfo));
@@ -128,10 +128,14 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_g
 
 					cnt=0;
 					for(int i=0;i<sym_num;i++){
+					if(sym[i].st_info==STT_FUNC){
 					func_addr[cnt].func_name=strtab[sym[i].st_name];
 					func_addr[cnt].start=sym[i].st_value;
 					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
+					cnt++;	
 					}
+					}
+
 
 					return func_addr;
 
