@@ -175,8 +175,8 @@ Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");
 printf("ALL IS OK\n");  
 
 
-printf("the first pc : %08x\n",s->pc);
-printf("the first dnpc : %08x\n",s->dnpc);
+//printf("the first pc : %08x\n",s->pc);
+//printf("the first dnpc : %08x\n",s->dnpc);
 
 if(s->pc==0x80000000){
 		for(int i=0;i<cnt_func_num;i++){
