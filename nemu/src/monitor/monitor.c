@@ -68,6 +68,12 @@ static long load_img() {
 }
 
 
+Elf32_Ehdr *ehdr_globle;
+Elf32_Shdr *shdr_globle;
+Elf32_Sym  *sym_globle;
+char **str_globle;
+
+
 static void ehdr_printf(Elf32_Ehdr *ehdr){			
 		printf("ELF Header:\n");
 		printf("  Magic:   ");
@@ -236,29 +242,56 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
 return string;
 }
-void sym_printf(Elf32_Sym *sym,int sym_num) {
-    // Output header for the symbol table
-    printf("Symbol table '.symtab' contains %d entries:\n",sym_num);
-    printf("   Num:    Value  Size Type    Bind   Vis      Ndx Name\n");
 
-    // Iterate through all symbols and print their details
-    for (int i = 0; i < sym_num; i++) {
-        // Assuming we are dealing with valid data from the symbol table
-        // Print symbol information in the desired format
-        printf("     %d: %08x     %d %d %d %s     %d %d\n",
-               i, 
-               sym[i].st_value, 
-               sym[i].st_size, 
-//               (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "NOTYPE" : "OTHER_TYPE",  // Example Type
-//               (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
-               sym[i].st_info,  // Example Type
-               sym[i].st_info,
-               (ELF32_ST_VISIBILITY(sym[i].st_other) == STV_DEFAULT) ? "DEFAULT" : "OTHER_VISIBILITY",  // Example Visibility
-               sym[i].st_shndx,  // Section Index
-               sym[i].st_name  // Placeholder for the symbol's name, you may need to resolve this from the string table
-        );
+const char* get_symbol_type(unsigned char type) {
+    switch (type) {
+        case STT_NOTYPE: return "NOTYPE";
+        case STT_OBJECT: return "OBJECT";
+        case STT_FUNC: return "FUNC";
+        default: return "OTHER_TYPE";
     }
 }
+
+const char* get_symbol_bind(unsigned char bind) {
+    switch (bind) {
+        case STB_LOCAL: return "LOCAL";
+        case STB_GLOBAL: return "GLOBAL";
+        default: return "OTHER_BIND";
+    }
+}
+
+const char* get_symbol_visibility(unsigned char visibility) {
+    switch (visibility) {
+        case STV_DEFAULT: return "DEFAULT";
+        default: return "OTHER_VISIBILITY";
+    }
+}
+
+const char* get_section_index(unsigned short index) {
+    switch (index) {
+        case SHN_UNDEF: return "UND";
+        case SHN_ABS: return "ABS";
+        default: return "DEFINED";
+    }
+}
+
+void sym_printf(Elf32_Sym *sym, int sym_num, char **strtab) {
+    printf("Symbol table '.symtab' contains %d entries:\n", sym_num);
+    printf("   Num:    Value  Size Type    Bind   Vis      Ndx Name\n");
+
+    for (int i = 0; i < sym_num; i++) {
+        printf("%6d: %08x %5d %-7s %-6s %-9s %s %s\n",
+               i,
+               sym[i].st_value,
+               sym[i].st_size,
+               get_symbol_type(ELF32_ST_TYPE(sym[i].st_info)),
+               get_symbol_bind(ELF32_ST_BIND(sym[i].st_info)),
+               get_symbol_visibility(sym[i].st_other),
+               get_section_index(sym[i].st_shndx),
+               strtab[sym[i].st_name]);
+    }
+}
+
 
 
 Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
@@ -283,14 +316,10 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
         return 0;
 					
 				}
-					sym_printf(sym,sym_num);
+					sym_printf(sym,sym_num,str_globle);
 					fclose(fp);
 					return sym;
 }
-Elf32_Ehdr *ehdr_globle;
-Elf32_Shdr *shdr_globle;
-Elf32_Sym  *sym_globle;
-char **str_globle;
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
@@ -329,8 +358,9 @@ static int parse_args(int argc, char *argv[]) {
 							if(strcmp(suffix,"elf")==0){	
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
+						  str_globle =parse_strtab(shdr_globle,elf_file);
 							sym_globle =parse_sym(shdr_globle,elf_file);
-							str_globle =parse_strtab(shdr_globle,elf_file);
+							
 						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
 							break;
