@@ -71,7 +71,7 @@ static long load_img() {
 Elf32_Ehdr *ehdr_globle;
 Elf32_Shdr *shdr_globle;
 Elf32_Sym  *sym_globle;
-char **str_globle;
+char *str_globle;
 
 
 static void ehdr_printf(Elf32_Ehdr *ehdr){			
@@ -192,14 +192,15 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
 
 
 int cnt_globle;
-void strtab_printf(char **strlab,int n){
-	for(int i=0;i<n;i++){
-	printf("%s\n",strlab[i]);	
+void strtab_printf(char *strlab,int cnt_globle){
+	for(int i=0;i<cnt_globle;i++){
+	printf("%s\n",strlab);	
+	strlab+=(strlen(strlab)+1);
 	}
 }
-char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
+char *parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				int sym_num=shdr[7].sh_size/sizeof(Elf32_Sym);
-				static char **string;
+				//static char **string;
 
 				FILE *fp=fopen(elf_file,"rb");
         Assert(fp, "Cannot open '%s'", elf_file);
@@ -213,7 +214,7 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			string_word=malloc(strtab_size);
 			for(int i=0;i<strtab_size;i++){
 				fseek(fp,strtab_addr+i,SEEK_SET);
-				char temp_char;
+			  char temp_char;
 				int ret=fread(&temp_char,1,1,fp);
 				if(ret!=1){
 				printf("CANNOT READING IN STRTAB\n\n\n\n");	
@@ -232,15 +233,16 @@ char **parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 			}	
 			//cnt_globle--;
 			printf("There are %d symbols\n",cnt_globle);
-			string=malloc(cnt_globle*sizeof(char *));
-			//string_word++;
+			//string=malloc(cnt_globle*sizeof(char *));
+			/*string_word++;
 			for(int i=0;i<cnt_globle;i++){
 			string[i]=string_word;
 		  string_word+=(strlen(string_word)+1);	
 			}
-			strtab_printf(string,cnt_globle);
+			*/
+			strtab_printf(string_word,cnt_globle);
 			printf("sym_num : %d\n\n\n\n\n",sym_num);
-return string;
+return string_word;
 }
 
 void sym_printf(Elf32_Sym *sym, int sym_num) {
