@@ -252,6 +252,7 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 		  rsp++;
 			addr[rsp]=s->pc+4;
 			printf("0x%08x call %s\trsp : %d \n",s->pc,func_addr[i].func_name,rsp);	
+		  printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[rsp].func_name,s->dnpc);
 		  printf("ARE YOU OK??\n");
 		  return ;
