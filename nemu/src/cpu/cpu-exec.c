@@ -143,7 +143,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 }
 
-/*
+
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static Addr_Imfo addr[200];
 memset(addr, 0x00, sizeof(addr));
@@ -174,7 +174,7 @@ if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
  }
 return ;
 } 
-*/
+
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
@@ -182,11 +182,11 @@ static void execute(uint64_t n) {
 	int cout_pc_num=0;
   	
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
-	int a=5;
+	/*int a=5;
 while(a--){
 	printf("funcs : %s\n",func_addr->func_name);
 	func_addr++;
-}
+}*/
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
@@ -205,7 +205,7 @@ while(a--){
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 
-  //  ftrace(func_addr,&s);
+    ftrace(func_addr,&s);
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
