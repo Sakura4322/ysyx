@@ -245,12 +245,14 @@ void sym_printf(Elf32_Sym *sym,int sym_num) {
     for (int i = 0; i < sym_num; i++) {
         // Assuming we are dealing with valid data from the symbol table
         // Print symbol information in the desired format
-        printf("     %d: %08x     %d %s %s %s     %d %d\n",
+        printf("     %d: %08x     %d %d %d %s     %d %d\n",
                i, 
                sym[i].st_value, 
                sym[i].st_size, 
-               (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "NOTYPE" : "OTHER_TYPE",  // Example Type
-               (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
+//               (ELF32_ST_TYPE(sym[i].st_info) == STT_NOTYPE) ? "NOTYPE" : "OTHER_TYPE",  // Example Type
+//               (ELF32_ST_BIND(sym[i].st_info) == STB_LOCAL) ? "LOCAL" : "GLOBAL",  // Example Binding
+               sym[i].st_info,  // Example Type
+               sym[i].st_info,
                (ELF32_ST_VISIBILITY(sym[i].st_other) == STV_DEFAULT) ? "DEFAULT" : "OTHER_VISIBILITY",  // Example Visibility
                sym[i].st_shndx,  // Section Index
                sym[i].st_name  // Placeholder for the symbol's name, you may need to resolve this from the string table
