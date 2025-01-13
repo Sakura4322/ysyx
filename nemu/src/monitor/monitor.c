@@ -276,6 +276,7 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 				size_t sym_addr = shdr[7].sh_offset;
 				int    sym_num  = sym_size/sizeof(Elf32_Sym);
 				
+				
 				static Elf32_Sym *sym;
 				sym=malloc(sym_size);
 

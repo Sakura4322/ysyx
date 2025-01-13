@@ -184,11 +184,11 @@ static void execute(uint64_t n) {
 	int cout_pc_num=0;
   	
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
-	/*int a=5;
+	int a=5;
 while(a--){
 	printf("funcs : %s\n",func_addr->func_name);
 	func_addr++;
-}*/
+}
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
