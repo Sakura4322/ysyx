@@ -102,7 +102,6 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 	char *s=b->logbuf;
   strcpy(*(p+(cout_pc_num%10)),s);
 }
-/*
 extern Elf32_Ehdr *ehdr_globle;
 extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
@@ -138,6 +137,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char **strtab,int cnt_g
 
 }
 
+/*
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static Addr_Imfo addr[200];
 memset(addr, 0x00, sizeof(addr));
@@ -175,8 +175,11 @@ static void execute(uint64_t n) {
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
   	
-//Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
-
+Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
+while(func_addr){
+	printf("funcs : %s\n",func_addr->func_name);
+	func_addr++;
+}
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
