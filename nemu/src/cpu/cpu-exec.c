@@ -172,7 +172,7 @@ static Addr_Imfo addr[2000];
 memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
-printf("ALL IS OK\n");  
+//printf("ALL IS OK\n");  
 
 
 //printf("the first pc : %08x\n",s->pc);
