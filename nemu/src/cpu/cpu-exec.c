@@ -182,7 +182,8 @@ static void execute(uint64_t n) {
 	int cout_pc_num=0;
   	
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
-while(func_addr){
+	int a=5;
+while(a--){
 	printf("funcs : %s\n",func_addr->func_name);
 	func_addr++;
 }
