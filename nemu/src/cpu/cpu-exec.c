@@ -149,7 +149,7 @@ static Addr_Imfo addr[200];
 memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
 Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
-  
+printf("ALL IS OK\n");  
 if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
 		if(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end){
 		rsp--;	
