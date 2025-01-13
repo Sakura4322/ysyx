@@ -114,9 +114,10 @@ typedef struct{
 		int end;	
 }Addr_Imfo;
 Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){
-					int sym_num=cnt_globle;
-
+	        size_t sym_size = shdr[7].sh_size;
+					int sym_num  = sym_size/sizeof(Elf32_Sym);
 					int cnt=0;
+
 					for(int i=0;i<sym_num;i++){
 					if(ELF32_ST_TYPE(sym[i].st_info)==STT_FUNC)cnt++;
 					}
