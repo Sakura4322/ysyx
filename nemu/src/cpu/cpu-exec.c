@@ -196,7 +196,7 @@ if (addr[rsp].end <= s->dnpc || addr[rsp].start >s->dnpc ){
 
 		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<addr[rsp-1].end)){
 		rsp--;	
-		printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
+		printf("0x%08x ret %s\trsp: %d\n",s->pc,addr[rsp].func_name,rsp);	
 		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		return ;
 		}//pd ret
