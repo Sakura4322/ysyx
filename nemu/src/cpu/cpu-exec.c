@@ -168,10 +168,10 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
-static Addr_Imfo addr[200];
+static Addr_Imfo addr[2000];
 memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
-Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 printf("ALL IS OK\n");  
 
 
