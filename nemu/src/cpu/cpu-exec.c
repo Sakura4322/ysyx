@@ -113,28 +113,30 @@ typedef struct{
 		int start;
 		int end;	
 }Addr_Imfo;
-Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){
+
+int cnt_func_num;
+Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){//all func info in func_addr
 	        size_t sym_size = shdr[7].sh_size;
 					int sym_num  = sym_size/sizeof(Elf32_Sym);
-					int cnt=0;
+					cnt_func_num=0;
 
 					for(int i=0;i<sym_num;i++){
-					if(ELF32_ST_TYPE(sym[i].st_info)==STT_FUNC)cnt++;
+					if(ELF32_ST_TYPE(sym[i].st_info)==STT_FUNC)cnt_func_num++;
 					}
-					printf("There are %d functions\n",cnt);
+					printf("There are %d functions\n",cnt_func_num);
 
 					static Addr_Imfo *func_addr;
-					func_addr=malloc(cnt*sizeof(Addr_Imfo));
+					func_addr=malloc(cnt_func_num*sizeof(Addr_Imfo));
 
 
-					cnt=0;
+					cnt_func_num=0;
 					for(int i=0;i<sym_num;i++){
 					if(ELF32_ST_TYPE(sym[i].st_info)==STT_FUNC){
 					char *temp_func_name=strtab+sym[i].st_name;
-					func_addr[cnt].func_name=temp_func_name;
-					func_addr[cnt].start=sym[i].st_value;
-					func_addr[cnt].end=sym[i].st_value+sym[i].st_size;
-					cnt++;	
+					func_addr[cnt_func_num].func_name=temp_func_name;
+					func_addr[cnt_func_num].start=sym[i].st_value;
+					func_addr[cnt_func_num].end=sym[i].st_value+sym[i].st_size;
+					cnt_func_num++;	
 					}
 					}
 
@@ -150,8 +152,21 @@ memset(addr, 0x00, sizeof(addr));
 static int rsp=0;
 Assert(rsp<200,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
 printf("ALL IS OK\n");  
+
+
+
+if(s->pc==0){
+		for(int i=0;i<cnt_func_num;i++){
+		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
+		addr[rsp].func_name=func_addr[i].func_name;	
+		}	
+		}
+	}//init
+	 
+	 
+	 
 if (addr[rsp].end < s->dnpc || addr[rsp].start >s->dnpc ){
-		if(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end){
+		if(rsp>=1&&(s->dnpc>=addr[rsp-1].start&&s->dnpc<=addr[rsp-1].end)){
 		rsp--;	
 		printf("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
 		log_write("0x%08x ret %s\n",s->pc,addr[rsp].func_name);	
