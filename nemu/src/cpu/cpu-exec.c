@@ -155,6 +155,8 @@ printf("ALL IS OK\n");
 
 
 printf("the first pc : %08x\n",s->pc);
+printf("the first dnpc : %08x\n",s->dnpc);
+
 if(s->pc==0x80000000){
 		for(int i=0;i<cnt_func_num;i++){
 		if(func_addr[i].start<=s->pc&&func_addr[i].end>=s->pc){
