@@ -207,7 +207,7 @@ static void execute(uint64_t n) {
   	
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
 for(int i=0;i<cnt_func_num;i++){
-printf("funcs is : %s start : %d end: %d\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 }
   for (;n > 0; n --) {
 	char buf[512]={0};
