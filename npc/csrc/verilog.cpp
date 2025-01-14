@@ -14,7 +14,7 @@ uint32_t *vaddr=NULL;
 char *img_file=NULL;
 static long load_img() {
   if (img_file == NULL) {
-    log("No image is given. Use the default build-in image.");
+    printf("No image is given. Use the default build-in image.\n");
     return 4096; // built-in image size
   }
 
