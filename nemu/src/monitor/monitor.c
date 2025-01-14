@@ -346,8 +346,8 @@ static int parse_args(int argc, char *argv[]) {
 						  //printf("what is suffix : %s\n",suffix);
 						  //printf("what is temp : %s\n",temp);
 						  //printf("what is optarg : %s\n",optarg);
-						  //printf("what is img_file : %s\n",img_file);
-						  //printf("what is elf_file : %s\n",elf_file);
+						  printf("what is img_file : %s\n",img_file);
+						  printf("what is elf_file : %s\n",elf_file);
 							if(strcmp(suffix,"elf")==0){	
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
