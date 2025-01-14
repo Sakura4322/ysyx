@@ -52,11 +52,11 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
 );
     reg [6:0] opcode;
 
-    always @(posedge clk) begin 
+    always @(*) begin 
         opcode = inst[6:0];
         case (opcode)
-            7'b0010011: inst_type <= `I; // I=2
-            default: inst_type <= 0;
+            7'b0010011: inst_type = `I; // I=2
+            default: inst_type = 0;
         endcase
     end
 endmodule 
