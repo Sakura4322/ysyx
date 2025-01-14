@@ -8,10 +8,10 @@ CSRC = $(shell find $(abspath ./csrc) -name *.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 IMG?=
-ARGS=$(IMG)
-CCFLAGS=-DMY_PARAM=$(ARGS)
+override ARGS ?=
+CCFLAGS=-DMY_PARAM=$(IMG)
 CFLAGS+=$(CCFLAGS)
-
+CFLAGS+=$(ARGS)
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."

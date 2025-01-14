@@ -8,7 +8,7 @@
 
 //接入nvboard
 //void nvboard_band_all_pins(Vverilog *top);
-/*
+
 uint32_t *vaddr;
 static long load_img() {
   if (img_file == NULL) {
@@ -35,7 +35,7 @@ static long load_img() {
   fclose(fp);
   return size;
 }
-
+/*
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
@@ -130,11 +130,11 @@ int main(int argc,char **argv){
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
-
-	//char *img_file = argv;
+   //getopt_lon(argc, argv, " ", table, NULL);
+   char *img_file=*argv;
 	//parse_args(argc,argv);
 	//long img_size=load_img();
-unsigned int clk=0;
+  unsigned int clk=0;
 	while (!top->flag){
 		clk = clk ^ 1;
 		top->clk=clk;

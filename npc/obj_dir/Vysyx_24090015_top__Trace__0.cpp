@@ -74,7 +74,7 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
                                           >> 0x1fU))) 
                               << 0xcU) | (vlSelf->inst 
                                           >> 0x14U))),32);
-    bufp->chgIData(oldp+44,(((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+    bufp->chgIData(oldp+44,(((- (IData)((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))) 
                              & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
                              [vlSelf->ysyx_24090015_top__DOT__rs1])),32);
     bufp->chgIData(oldp+45,(vlSelf->ysyx_24090015_top__DOT__rd_wdata),32);

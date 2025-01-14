@@ -189,7 +189,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_full_sub_0(Vysyx_24090015_
                                            >> 0x1fU))) 
                                << 0xcU) | (vlSelf->inst 
                                            >> 0x14U))),32);
-    bufp->fullIData(oldp+45,(((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+    bufp->fullIData(oldp+45,(((- (IData)((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))) 
                               & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
                               [vlSelf->ysyx_24090015_top__DOT__rs1])),32);
     bufp->fullIData(oldp+46,(vlSelf->ysyx_24090015_top__DOT__rd_wdata),32);
