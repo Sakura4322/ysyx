@@ -132,7 +132,7 @@ int main(int argc,char **argv){
 
 */
 	parse_args(argc,argv);
-	long image_size=load_image();
+	long img_size=load_img();
 unsigned int clk=0;
 	while (!top->flag){
 		clk = clk ^ 1;
