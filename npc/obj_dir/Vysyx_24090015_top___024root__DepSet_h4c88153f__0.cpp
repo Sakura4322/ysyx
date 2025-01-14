@@ -83,11 +83,6 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
         vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[__Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0] 
             = __Vdlyvval__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
     }
-    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
-        = (0x7fU & vlSelf->inst);
-    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
-        = ((0x13U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-            ? 2U : 0U);
     vlSelf->ysyx_24090015_top__DOT__dnpc = vlSelf->ysyx_24090015_top__DOT__snpc;
     vlSelf->pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
 }

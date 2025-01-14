@@ -81,6 +81,13 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___stl_sequent__TOP__0\n"); );
     // Body
+    vlSelf->ysyx_24090015_top__DOT__dnpc = vlSelf->ysyx_24090015_top__DOT__snpc;
+    vlSelf->pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
+        = (0x7fU & vlSelf->inst);
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
+        = ((0x13U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
+            ? 2U : 0U);
     if ((0x13U == (0x707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd = (0x1fU 
                                               & (vlSelf->inst 
@@ -95,8 +102,6 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
              + (((- (IData)((vlSelf->inst >> 0x1fU))) 
                  << 0xcU) | (vlSelf->inst >> 0x14U)));
     }
-    vlSelf->ysyx_24090015_top__DOT__dnpc = vlSelf->ysyx_24090015_top__DOT__snpc;
-    vlSelf->pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
 }
 
 VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_stl(Vysyx_24090015_top___024root* vlSelf) {
@@ -106,6 +111,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_stl(Vysyx_24090015_top___0
     // Body
     if (vlSelf->__VstlTriggered.at(0U)) {
         Vysyx_24090015_top___024root___stl_sequent__TOP__0(vlSelf);
+        vlSelf->__Vm_traceActivity[2U] = 1U;
         vlSelf->__Vm_traceActivity[1U] = 1U;
         vlSelf->__Vm_traceActivity[0U] = 1U;
     }
@@ -186,7 +192,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->__Vtrigrprev__TOP__flag = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
     vlSelf->__VactDidInit = 0;
-    for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 3; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
 }
