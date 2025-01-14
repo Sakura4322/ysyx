@@ -2,6 +2,7 @@
 #include "verilated.h"
 #include <stdio.h>
 #include <verilated_vcd_c.h>  //启动波追踪
+#include <cassert>
 //#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
@@ -25,10 +26,10 @@ static long load_img() {
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  log("The image is %s, size = %ld", img_file, size);
+  printf("The image is %s, size = %ld\n", img_file, size);
 	
 
-  vaddr =malloc(size);
+  vaddr =(uint32_t*)malloc(size);
 	if(vaddr=NULL){
 	assert("Memory allocation faile\n");
 	}
