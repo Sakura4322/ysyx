@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <verilated_vcd_c.h>  //启动波追踪
 #include <getopt.h> 
-#include <memory/paddr.h>
+//#include <memory/paddr.h>
 //#include <nvboard.h>
 
 //接入nvboard
