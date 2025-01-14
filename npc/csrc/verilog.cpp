@@ -10,9 +10,10 @@
 //void nvboard_band_all_pins(Vverilog *top);
 
 uint32_t *vaddr;
+char *img_file=NULL;
 static long load_img() {
   if (img_file == NULL) {
-    Log("No image is given. Use the default build-in image.");
+    log("No image is given. Use the default build-in image.");
     return 4096; // built-in image size
   }
 
@@ -22,7 +23,7 @@ static long load_img() {
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
 
-  Log("The image is %s, size = %ld", img_file, size);
+  log("The image is %s, size = %ld", img_file, size);
 	
 
   vaddr =malloc(size);
@@ -131,7 +132,7 @@ int main(int argc,char **argv){
     0x00100073 //ebreak
 };
    //getopt_lon(argc, argv, " ", table, NULL);
-   char *img_file=*argv;
+   img_file=*argv;
 	//parse_args(argc,argv);
 	//long img_size=load_img();
   unsigned int clk=0;
