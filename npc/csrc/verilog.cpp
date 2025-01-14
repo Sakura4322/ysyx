@@ -2,12 +2,13 @@
 #include "verilated.h"
 #include <stdio.h>
 #include <verilated_vcd_c.h>  //启动波追踪
-#include <getopt.h> 
+//#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
 
 //接入nvboard
 //void nvboard_band_all_pins(Vverilog *top);
+/*
 uint32_t *vaddr;
 static long load_img() {
   if (img_file == NULL) {
@@ -41,16 +42,16 @@ static int parse_args(int argc, char *argv[]) {
 	//printf("this is this : %s\n",*(argv+i));
 	//}
 	const struct option table[] = {
-    {"batch"    , no_argument      , NULL, 'b'},
-    {"log"      , required_argument, NULL, 'l'},
-    {"diff"     , required_argument, NULL, 'd'},
-    {"port"     , required_argument, NULL, 'p'},
-    {"help"     , no_argument      , NULL, 'h'},
+//    {"batch"    , no_argument      , NULL, 'b'},
+//    {"log"      , required_argument, NULL, 'l'},
+//    {"diff"     , required_argument, NULL, 'd'},
+//    {"port"     , required_argument, NULL, 'p'},
+//    {"help"     , no_argument      , NULL, 'h'},
 		//{"elf"      , required_argument, NULL, 'e'},
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, " ", table, NULL)) != -1) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
@@ -58,7 +59,7 @@ static int parse_args(int argc, char *argv[]) {
       case 'd': diff_so_file = optarg; break;
 			//case 'e': if(optarg=="-h")
       case 1:
-							/*
+							
 							char temp[256]={0};
 							char *suffix;
 							strcpy(temp,optarg);
@@ -79,7 +80,7 @@ static int parse_args(int argc, char *argv[]) {
 							sym_globle =parse_sym(shdr_globle,elf_file);
 							
 						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
-							*/
+							
 								img_file = optarg; return 0;
 							break;
 
@@ -95,7 +96,7 @@ static int parse_args(int argc, char *argv[]) {
   }
   return 0;
 }
-
+*/
 int main(int argc,char **argv){
 	VerilatedContext* Contextp = new VerilatedContext;
 	Contextp->commandArgs(argc,argv);//初始化verilator
@@ -115,7 +116,7 @@ int main(int argc,char **argv){
 	
 	std::srand(time(NULL));
 	int simTime=0;
-	/*
+	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -130,14 +131,14 @@ int main(int argc,char **argv){
     0x00100073 //ebreak
 };
 
-*/
-	parse_args(argc,argv);
-	long img_size=load_img();
+	//char *img_file = argv;
+	//parse_args(argc,argv);
+	//long img_size=load_img();
 unsigned int clk=0;
 	while (!top->flag){
 		clk = clk ^ 1;
 		top->clk=clk;
-		if(clk) top->inst=vaddr[top->pc];
+		if(clk) top->inst=inst[top->pc];
 	Contextp->timeInc(1);
 	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
