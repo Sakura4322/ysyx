@@ -9,7 +9,7 @@
 //接入nvboard
 //void nvboard_band_all_pins(Vverilog *top);
 
-uint32_t *vaddr;
+uint32_t *vaddr=NULL;
 char *img_file=NULL;
 static long load_img() {
   if (img_file == NULL) {
@@ -18,7 +18,9 @@ static long load_img() {
   }
 
   FILE *fp = fopen(img_file, "rb");
-  Assert(fp, "Can not open '%s'", img_file);
+	if(!fp){
+  assert("Can not open '%s'", img_file);
+	}
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
@@ -27,7 +29,9 @@ static long load_img() {
 	
 
   vaddr =malloc(size);
-	Assert(vaddr,"Memory allocation faile\n");
+	if(vaddr=NULL){
+	assert("Memory allocation faile\n");
+	}
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(vaddr, size, 1, fp);
