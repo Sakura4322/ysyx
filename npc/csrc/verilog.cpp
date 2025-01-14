@@ -2,7 +2,7 @@
 #include "verilated.h"
 #include <stdio.h>
 #include <verilated_vcd_c.h>  //启动波追踪
-#include <cassert>
+//#include <cassert>
 //#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
@@ -20,7 +20,8 @@ static long load_img() {
 
   FILE *fp = fopen(img_file, "rb");
 	if(!fp){
-  assert("Can not open '%s'", img_file);
+  printf("Can not open '%s'\n", img_file);
+	exit(-1);
 	}
 
   fseek(fp, 0, SEEK_END);
@@ -31,7 +32,8 @@ static long load_img() {
 
   vaddr =(uint32_t*)malloc(size);
 	if(vaddr=NULL){
-	assert("Memory allocation faile\n");
+	printf("Memory allocation faile\n");
+	exit(-1);
 	}
 
   fseek(fp, 0, SEEK_SET);
