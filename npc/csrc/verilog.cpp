@@ -139,9 +139,9 @@ int main(int argc,char **argv){
     0x00100073 //ebreak
 };
    //getopt_lon(argc, argv, " ", table, NULL);
+	 argv++;
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
-	 argv++;
 	//parse_args(argc,argv);
 	//long img_size=load_img();
   unsigned int clk=0;
