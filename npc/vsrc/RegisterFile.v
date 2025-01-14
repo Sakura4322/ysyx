@@ -13,6 +13,6 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
     if (wen) rf[waddr] <= wdata;
   end
 
-assign rdata1=(ADDR_WIDTH{ren1})&(rf[raddr1]);
+assign rdata1=(32{ren1})&(rf[raddr1]);
 assign rdata2=ren2&rf[raddr2];
 endmodule
