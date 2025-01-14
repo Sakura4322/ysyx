@@ -143,7 +143,7 @@ int main(int argc,char **argv){
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	//parse_args(argc,argv);
-	//long img_size=load_img();
+	long img_size=load_img();
   unsigned int clk=0;
 	while (!top->flag){
 		clk = clk ^ 1;
