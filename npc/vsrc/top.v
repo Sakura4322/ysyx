@@ -66,7 +66,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
     output reg  ren1, ren2, wen,
-		output reg [4:0] rd,rs1,rs2;
+		output reg [4:0] rd,rs1,rs2
 );
 
     wire [2:0] inst_type;
