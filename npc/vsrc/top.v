@@ -45,21 +45,21 @@ module ysyx_24090015_immI#(WIDTH=32) (
     );
 endmodule
 
-module ysyx_24090015_immU#(WIDTH=32) {
+module ysyx_24090015_immU#(WIDTH=32) (
 	input [WIDTH-1 :0] inst_in,
 	output [WIDTH-1: 0] immU
-};
+);
 	assign immU = {inst_in[31:12],12'b0};
 
 endmodule
 
 
-module ysyx_24090015_immJ#(WIDTH=32) {
+module ysyx_24090015_immJ#(WIDTH=32) (
 
 input [WIDTH-1 : 0] inst_in,
 output [WIDTH-1 : 0] immJ
 
-},
+);
 
 	wire [19 : 0] init;
 	assign init={inst_in[31],{inst_in[19:12],{inst_in[20],inst_in[30:20]}}};
@@ -120,18 +120,18 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 		ysyx_24090015_immU#(
 		.WIDTH(32)	
-		) i1{
+		) i1(
 			.inst_in(inst_in),
 			.immU(temp_immU)
-		}
+		);
 
 
 		ysyx_24090015_immJ#(
 		.WIDTH(32)	
-		) i2{
+		) i2 (
 			.inst_in(inst_in),
 			.immJ(temp_immJ)
-		}
+		);
 
 
 		always @(*)begin
