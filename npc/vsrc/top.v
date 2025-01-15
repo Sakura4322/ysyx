@@ -177,7 +177,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     output reg [WIDTH-1:0] npc, dnpc
 );
 
-    always @(snpc) begin
+    always @(*) begin
         dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi I
