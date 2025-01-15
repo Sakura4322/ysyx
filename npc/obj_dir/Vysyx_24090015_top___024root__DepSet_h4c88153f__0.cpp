@@ -38,11 +38,15 @@ void Vysyx_24090015_top___024root___eval_triggers__act(Vysyx_24090015_top___024r
                                       != (IData)(vlSelf->__Vtrigrprev__TOP__flag));
     vlSelf->__VactTriggered.at(1U) = ((IData)(vlSelf->clk) 
                                       & (~ (IData)(vlSelf->__Vtrigrprev__TOP__clk)));
+    vlSelf->__VactTriggered.at(2U) = (vlSelf->inst 
+                                      != vlSelf->__Vtrigrprev__TOP__inst);
     vlSelf->__Vtrigrprev__TOP__flag = vlSelf->flag;
     vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
+    vlSelf->__Vtrigrprev__TOP__inst = vlSelf->inst;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->__VactDidInit))))) {
         vlSelf->__VactDidInit = 1U;
         vlSelf->__VactTriggered.at(0U) = 1U;
+        vlSelf->__VactTriggered.at(2U) = 1U;
     }
 #ifdef VL_DEBUG
     if (VL_UNLIKELY(vlSymsp->_vm_contextp__->debug())) {
@@ -75,8 +79,6 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
         __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 
             = vlSelf->ysyx_24090015_top__DOT__rd;
     }
-    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
-                                            + vlSelf->pc);
     Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, __Vfunc_ebreak__0__Vfuncout);
     vlSelf->flag = (1U & __Vfunc_ebreak__0__Vfuncout);
     if (__Vdlyvset__ysyx_24090015_top__DOT__reg0__DOT__rf__v0) {
