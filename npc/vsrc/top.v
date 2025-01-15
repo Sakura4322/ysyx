@@ -13,6 +13,7 @@ module ysyx_24090015_IFU#(WIDTH=32) (
     output reg[WIDTH-1:0] snpc
 );
     always @(posedge clk) begin 
+						pc <=dncp;
             snpc <= pc +4;
 	end
 endmodule
@@ -206,7 +207,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 
 				end
         endcase
-        npc = dnpc;
+        //npc = dnpc;
     end
 endmodule
 
@@ -274,7 +275,7 @@ end
 				.pc(pc),
         .snpc(snpc),
         .rd_wdata(rd_wdata),
-        .npc(pc),
+       // .npc(pc),
         .dnpc(dnpc)
     );
 
