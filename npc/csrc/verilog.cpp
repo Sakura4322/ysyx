@@ -150,6 +150,7 @@ int main(int argc,char **argv){
 	long img_size=load_img();
   unsigned int clk=0;
 	while (!top->flag){
+		printf("top->pc is : %d\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
 		if(clk) top->inst=vaddr[top->pc];
