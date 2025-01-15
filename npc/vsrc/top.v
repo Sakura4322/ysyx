@@ -291,5 +291,5 @@ end
         .rdata2(src2)
     );
 		
-		assign dnpc=npc_dnpc/4
+		assign dnpc=npc_dnpc/4;
 endmodule
