@@ -140,7 +140,7 @@ int main(int argc,char **argv){
 };
 */
    //getopt_lon(argc, argv, " ", table, NULL);
-	 char **shell=argv;
+	 char **shell=argv+1;
 	 for(int i=0;i<argc;i++){
 		printf("argvs:%s\n",*(argv+i));
 	 }
