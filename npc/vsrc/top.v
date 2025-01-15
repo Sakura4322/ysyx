@@ -64,8 +64,9 @@ endmodule
 module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
-    output  [WIDTH-1:0] imm,
-    output  ren1, ren2, wen,
+    output reg [WIDTH-1:0] imm,
+    output reg  ren1, ren2, wen,
+		output reg [4:0] rd,rs1,rs2;
 );
 
     wire [2:0] inst_type;
@@ -85,10 +86,20 @@ module ysyx_24090015_IDU#(WIDTH=32) (
         .imm(temp_immI)
     );
 
-		assign ren1=(inst_type==2);
-		assign ren2=0;
-		assign wen=(inst_type==2);
-		assign imm=temp_immI;
+		always @(*)begin
+				case(inst_type)
+					I : begin 
+							rs1=inst_in[19:15];
+							rs2=0;
+							ren1=1;
+							ren2=0;
+							rd=inst_in[11:7];
+							wen=1;
+							imm=temp_immI;
+				end
+				
+				endcase
+		end
 		
 endmodule
 
@@ -97,7 +108,6 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
     input [WIDTH-1:0] snpc,
-    output reg[4:0] rd,rs1,rs2,
     output reg [WIDTH-1:0] rd_wdata,
     output reg [WIDTH-1:0] npc, dnpc
 );
@@ -106,8 +116,6 @@ module ysyx_24090015_EXU#(WIDTH=32) (
         dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi
-           rd  = inst_in[11:7];
-           rs1 = inst_in[19:15];
            rd_wdata = src1 + imm;
             end
         endcase
@@ -160,7 +168,9 @@ end
         .inst_in(inst),
         .imm(imm),
         .ren1(ren1),
+				.rs1(rs1),
         .ren2(ren2),
+				.rs2(rs2)
         .wen(wen)
     );
 
@@ -174,9 +184,6 @@ end
         .src1(src1),
         .src2(src2),
         .snpc(snpc),
-				.rd(rd),
-				.rs1(rs1),
-				.rs2(rs2),
         .rd_wdata(rd_wdata),
         .npc(pc),
         .dnpc(dnpc)
