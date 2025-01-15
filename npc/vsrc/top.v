@@ -210,7 +210,7 @@ endmodule
 module ysyx_24090015_top#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst,
-    output  [WIDTH-1:0] dnpc,
+    output  [WIDTH-1:0] pc,
 		output reg flag
 );
 
@@ -233,7 +233,6 @@ end
     ysyx_24090015_IFU#(
         .WIDTH(32)    
     ) ifu0(
-        .clk(clk),
         .pc(pc),
 				.npc_pc(npc_pc),
         .npc_snpc(npc_snpc)
@@ -291,5 +290,5 @@ end
         .rdata2(src2)
     );
 		
-		assign dnpc=npc_dnpc/4;
+		assign pc=npc_dnpc/4;
 endmodule
