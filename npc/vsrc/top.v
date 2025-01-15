@@ -29,7 +29,6 @@ endmodule
 
 module ysyx_24090015_immI#(WIDTH=32) (
     input [WIDTH-1:0] inst,
-		input clk,
     output [WIDTH-1:0] immI
 );
 
@@ -62,7 +61,7 @@ output [WIDTH-1 : 0] immJ
 );
 
 	wire [19 : 0] init;
-	assign init={inst_in[31],{inst_in[19:12],{inst_in[20],inst_in[30:20]}}};
+	assign init={inst_in[31],{inst_in[19:12],{inst_in[20],inst_in[30:21]}}};
 	ysyx_24090015_SEXT#(
 		.DATA_WIDTH(20),
 		.WIDTH(32)		
@@ -186,7 +185,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
             end
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
-					dnpc = ~((src1+imm)&{32{1}});
+					dnpc = ~((src1+imm)&{32{1'b1}});
 					rd_wdata = dnpc+4;
 
 					end

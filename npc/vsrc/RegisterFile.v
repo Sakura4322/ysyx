@@ -14,5 +14,5 @@ module RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
   end
 
 assign rdata1=({32{ren1}})&(rf[raddr1]);
-assign rdata2=ren2&rf[raddr2];
+assign rdata2=({32{ren2}}&rf[raddr2]);
 endmodule
