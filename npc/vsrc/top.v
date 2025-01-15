@@ -172,12 +172,12 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
-    input [WIDTH-1:0] snpc,
+    input [WIDTH-1:0] pc,snpc,
     output reg [WIDTH-1:0] rd_wdata,
     output reg [WIDTH-1:0] npc, dnpc
 );
 
-    always @(inst) begin
+    always @(inst_in) begin
         dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi I
@@ -271,6 +271,7 @@ end
         .imm(imm),
         .src1(src1),
         .src2(src2),
+				.pc(pc),
         .snpc(snpc),
         .rd_wdata(rd_wdata),
         .npc(pc),
