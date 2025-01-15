@@ -25,12 +25,12 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     // Body
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
         bufp->chgIData(oldp+0,(vlSelf->ysyx_24090015_top__DOT__imm),32);
-        bufp->chgCData(oldp+1,(vlSelf->ysyx_24090015_top__DOT__rs1),5);
-        bufp->chgCData(oldp+2,(vlSelf->ysyx_24090015_top__DOT__rs2),5);
-        bufp->chgBit(oldp+3,(vlSelf->ysyx_24090015_top__DOT__ren1));
-        bufp->chgBit(oldp+4,(vlSelf->ysyx_24090015_top__DOT__ren2));
-        bufp->chgBit(oldp+5,(vlSelf->ysyx_24090015_top__DOT__wen));
-        bufp->chgCData(oldp+6,(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__rd),5);
+        bufp->chgCData(oldp+1,(vlSelf->ysyx_24090015_top__DOT__rd),5);
+        bufp->chgCData(oldp+2,(vlSelf->ysyx_24090015_top__DOT__rs1),5);
+        bufp->chgCData(oldp+3,(vlSelf->ysyx_24090015_top__DOT__rs2),5);
+        bufp->chgBit(oldp+4,(vlSelf->ysyx_24090015_top__DOT__ren1));
+        bufp->chgBit(oldp+5,(vlSelf->ysyx_24090015_top__DOT__ren2));
+        bufp->chgBit(oldp+6,(vlSelf->ysyx_24090015_top__DOT__wen));
         bufp->chgCData(oldp+7,(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type),3);
         bufp->chgCData(oldp+8,(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode),7);
     }

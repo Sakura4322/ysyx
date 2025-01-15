@@ -92,8 +92,9 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
         vlSelf->ysyx_24090015_top__DOT__wen = 1U;
         vlSelf->ysyx_24090015_top__DOT__rs2 = 0U;
         vlSelf->ysyx_24090015_top__DOT__ren2 = 0U;
-        vlSelf->ysyx_24090015_top__DOT__idu0__DOT__rd 
-            = (0x1fU & (vlSelf->inst >> 7U));
+        vlSelf->ysyx_24090015_top__DOT__rd = (0x1fU 
+                                              & (vlSelf->inst 
+                                                 >> 7U));
         vlSelf->ysyx_24090015_top__DOT__ren1 = 1U;
         vlSelf->ysyx_24090015_top__DOT__rs1 = (0x1fU 
                                                & (vlSelf->inst 
@@ -197,7 +198,6 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->ysyx_24090015_top__DOT__ren2 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__wen = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__rd_wdata = VL_RAND_RESET_I(32);
-    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__rd = VL_RAND_RESET_I(5);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type = VL_RAND_RESET_I(3);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode = VL_RAND_RESET_I(7);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk = VL_RAND_RESET_I(1);
