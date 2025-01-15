@@ -84,7 +84,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
         __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 
             = vlSelf->ysyx_24090015_top__DOT__rd;
     }
-    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
+    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(4U) 
                                             + vlSelf->pc);
     Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, __Vfunc_ebreak__0__Vfuncout);
     vlSelf->flag = (1U & __Vfunc_ebreak__0__Vfuncout);
