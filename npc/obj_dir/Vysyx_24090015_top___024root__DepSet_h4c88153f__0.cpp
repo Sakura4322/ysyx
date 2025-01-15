@@ -38,11 +38,15 @@ void Vysyx_24090015_top___024root___eval_triggers__act(Vysyx_24090015_top___024r
                                       != (IData)(vlSelf->__Vtrigrprev__TOP__flag));
     vlSelf->__VactTriggered.at(1U) = ((IData)(vlSelf->clk) 
                                       & (~ (IData)(vlSelf->__Vtrigrprev__TOP__clk)));
-    vlSelf->__VactTriggered.at(2U) = (vlSelf->inst 
-                                      != vlSelf->__Vtrigrprev__TOP__inst);
+    vlSelf->__VactTriggered.at(2U) = ((vlSelf->inst 
+                                       != vlSelf->__Vtrigrprev__TOP__inst) 
+                                      | (vlSelf->ysyx_24090015_top__DOT__snpc 
+                                         != vlSelf->__Vtrigrprev__TOP__ysyx_24090015_top__DOT__snpc));
     vlSelf->__Vtrigrprev__TOP__flag = vlSelf->flag;
     vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
     vlSelf->__Vtrigrprev__TOP__inst = vlSelf->inst;
+    vlSelf->__Vtrigrprev__TOP__ysyx_24090015_top__DOT__snpc 
+        = vlSelf->ysyx_24090015_top__DOT__snpc;
     if (VL_UNLIKELY((1U & (~ (IData)(vlSelf->__VactDidInit))))) {
         vlSelf->__VactDidInit = 1U;
         vlSelf->__VactTriggered.at(0U) = 1U;
