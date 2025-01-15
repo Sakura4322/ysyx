@@ -159,10 +159,10 @@ int main(int argc,char **argv){
   unsigned int clk=0;
 	//int a=10;
 	while (!top->flag){
-		printf("top->pc is : %d\n",vaddr->pc);
+		printf("top->pc is : %d\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
-		if(clk) top->inst=inst[top->pc];
+		if(clk) top->inst=vaddr[top->pc];
 	Contextp->timeInc(1);
 	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
