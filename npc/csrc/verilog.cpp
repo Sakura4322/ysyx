@@ -166,8 +166,8 @@ int main(int argc,char **argv){
 		printf("vaddr is : 0x%08x\n",(top->pc)/4);
 		//if(clk) top->inst=vaddr[(top->pc)/4];
 		if(clk) top->inst=inst[top->pc];
-	Contextp->timeInc(1);
 	top ->eval();
+	Contextp->timeInc(1);
 	 tfp->dump(Contextp->time());  // dump 波形数据
 	 
 	 //nvboard 更新
