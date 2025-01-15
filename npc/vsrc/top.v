@@ -9,10 +9,10 @@ import "DPI-C" function int ebreak(input int a);
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input [WIDTH-1:0] pc,
-    output reg[WIDTH-1:0] npc_pc, npc_snpc,npc_dnpc
+    output [WIDTH-1:0] npc_pc, npc_snpc,npc_dnpc
 );
-						npc_pc = pc * 4;
-            npc_snpc = npc_pc + 4;
+						assign npc_pc = pc * 4;
+            assign npc_snpc = npc_pc + 4;
 endmodule
 
 module ysyx_24090015_SEXT#(
@@ -170,7 +170,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
-    input [WIDTH-1:0] npc_snpc,
+    input  reg [WIDTH-1:0] npc_snpc,
     output reg [WIDTH-1:0] rd_wdata,
     output reg [WIDTH-1:0]  npc_dnpc
 );
