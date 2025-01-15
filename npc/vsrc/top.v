@@ -8,11 +8,13 @@ import "DPI-C" function int ebreak(input int a);
 `define J 6
 
 module ysyx_24090015_IFU#(WIDTH=32) (
+    input clk,
     input [WIDTH-1:0] pc,
-    output [WIDTH-1:0] npc_pc, npc_snpc,npc_dnpc
+    output reg[WIDTH-1:0] snpc
 );
-						assign npc_pc = pc * 4;
-            assign npc_snpc = npc_pc + 4;
+    always @(posedge clk) begin 
+            snpc <= pc + 4;
+	end
 endmodule
 
 module ysyx_24090015_SEXT#(
@@ -170,26 +172,26 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
-    input  reg [WIDTH-1:0] npc_snpc,
+    input [WIDTH-1:0] snpc,
     output reg [WIDTH-1:0] rd_wdata,
-    output reg [WIDTH-1:0]  npc_dnpc
+    output reg [WIDTH-1:0] npc, dnpc
 );
 
     always @(*) begin
-        npc_dnpc = npc_snpc;
+        dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi I
            rd_wdata = src1 + imm;
             end
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
-					npc_dnpc = ~((src1+imm)&{32{1'b1}});
-					rd_wdata = npc_dnpc+4;
+					dnpc = ~((src1+imm)&{32{1'b1}});
+					rd_wdata = dnpc+4;
 
 					end
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
 						
-					rd_wdata = npc_snpc + imm;
+					rd_wdata = snpc + imm;
 				
 					end
 					32'b???????_?????_?????_???_?????_01101_11: begin //lui U
@@ -199,18 +201,19 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					end
 					32'b???????_?????_?????_???_?????_11011_11: begin //jal J
 					
-					rd_wdata=npc_snpc+4;
-					npc_dnpc = npc_dnpc+imm;
+					rd_wdata=snpc+4;
+					dnpc = dnpc+imm;
 
 				end
         endcase
+        npc = dnpc;
     end
 endmodule
 
 module ysyx_24090015_top#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst,
-    output  [WIDTH-1:0] pc,
+    output reg [WIDTH-1:0] pc,
 		output reg flag
 );
 
@@ -227,15 +230,15 @@ always @(posedge clk)begin
 flag <= ebreak(inst);
 end 
 		
-    reg [WIDTH-1:0] npc_pc,npc_snpc, npc_dnpc;
+    reg [WIDTH-1:0] snpc, dnpc;
 
     // IFU实例化
     ysyx_24090015_IFU#(
         .WIDTH(32)    
     ) ifu0(
+        .clk(clk),
         .pc(pc),
-				.npc_pc(npc_pc),
-        .npc_snpc(npc_snpc)
+        .snpc(snpc)
     );
 
     // 信号声明
@@ -268,9 +271,10 @@ end
         .imm(imm),
         .src1(src1),
         .src2(src2),
-        .npc_snpc(npc_snpc),
+        .snpc(snpc),
         .rd_wdata(rd_wdata),
-        .npc_dnpc(npc_dnpc)
+        .npc(pc),
+        .dnpc(dnpc)
     );
 
     // 寄存器堆实例化
@@ -289,6 +293,5 @@ end
         .rdata1(src1),
         .rdata2(src2)
     );
-		
-		assign pc=npc_dnpc/4;
+
 endmodule
