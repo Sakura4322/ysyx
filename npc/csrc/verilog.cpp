@@ -157,7 +157,8 @@ int main(int argc,char **argv){
 	long img_size=load_img();
 	printf("IM OK\n");
   unsigned int clk=0;
-	while (!top->flag){
+	int a=10;
+	while (a--){
 		printf("top->pc is : %d\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
