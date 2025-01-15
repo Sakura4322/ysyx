@@ -13,7 +13,7 @@ module ysyx_24090015_IFU#(WIDTH=32) (
     output reg[WIDTH-1:0] snpc
 );
     always @(posedge clk) begin 
-						pc <=dncp;
+						pc <=dnpc;
             snpc <= pc +4;
 	end
 endmodule
