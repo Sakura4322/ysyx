@@ -9,14 +9,14 @@ CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 IMG?=
 override ARGS ?=
-CCFLAGS=-DMY_PARAM=$(IMG)
-CFLAGS+=$(CCFLAGS)
-CFLAGS+=$(ARGS)
+//CCFLAGS=-DMY_PARAM=$(IMG)
+//CFLAGS+=$(CCFLAGS)
+//CFLAGS+=$(ARGS)
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
 	verilator  $(CFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC)
-	./obj_dir/V$(TOP_NAME)
+	./obj_dir/V$(TOP_NAME) $(ARGS)
 	 gtkwave ./*.vcd
 
 run : sim
