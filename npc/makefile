@@ -8,7 +8,7 @@ CSRC = $(shell find $(abspath ./csrc) -name *.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 IMG?=
-override ARGS ?= --default-arg
+override ARGS ?= $(IMG)
 //CCFLAGS=-DMY_PARAM=$(IMG)
 //CFLAGS+=$(CCFLAGS)
 //CFLAGS+=$(ARGS)
