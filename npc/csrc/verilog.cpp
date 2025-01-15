@@ -148,6 +148,7 @@ int main(int argc,char **argv){
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	//parse_args(argc,argv);
 	long img_size=load_img();
+	printf("IM OK\n");
   unsigned int clk=0;
 	while (!top->flag){
 		printf("top->pc is : %d\n",top->pc);
