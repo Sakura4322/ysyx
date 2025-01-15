@@ -162,6 +162,7 @@ int main(int argc,char **argv){
 		printf("top->pc is : 0x%08x\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
+	top ->eval();
 		
 		printf("vaddr is : 0x%08x\n",(top->pc)/4);
 		//if(clk) top->inst=vaddr[(top->pc)/4];
