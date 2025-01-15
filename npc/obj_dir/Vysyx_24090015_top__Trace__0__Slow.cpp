@@ -40,6 +40,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBus(c+1,"imm", false,-1, 31,0);
     tracep->declBus(c+48,"src1", false,-1, 31,0);
     tracep->declBus(c+49,"src2", false,-1, 31,0);
+    tracep->declBus(c+45,"pc", false,-1, 31,0);
     tracep->declBus(c+10,"snpc", false,-1, 31,0);
     tracep->declBus(c+50,"rd_wdata", false,-1, 31,0);
     tracep->declBus(c+45,"npc", false,-1, 31,0);
