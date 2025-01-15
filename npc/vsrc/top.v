@@ -170,7 +170,7 @@ end
         .ren1(ren1),
 				.rs1(rs1),
         .ren2(ren2),
-				.rs2(rs2)
+				.rs2(rs2),
         .wen(wen)
     );
 
