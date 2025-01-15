@@ -88,7 +88,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 		always @(*)begin
 				case(inst_type)
-					I : begin 
+					`I : begin 
 							rs1=inst_in[19:15];
 							rs2=0;
 							ren1=1;
