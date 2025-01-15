@@ -75,7 +75,7 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     bufp->chgBit(oldp+45,(vlSelf->flag));
     bufp->chgIData(oldp+46,(vlSelf->ysyx_24090015_top__DOT__dnpc),32);
     bufp->chgIData(oldp+47,(vlSelf->ysyx_24090015_top__DOT__src1),32);
-    bufp->chgIData(oldp+48,(((IData)(vlSelf->ysyx_24090015_top__DOT__ren2) 
+    bufp->chgIData(oldp+48,(((- (IData)((IData)(vlSelf->ysyx_24090015_top__DOT__ren2))) 
                              & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
                              [vlSelf->ysyx_24090015_top__DOT__rs2])),32);
     bufp->chgIData(oldp+49,(vlSelf->ysyx_24090015_top__DOT__rd_wdata),32);
@@ -84,22 +84,29 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
                               << 0xcU) | (vlSelf->inst 
                                           >> 0x14U))),32);
     bufp->chgIData(oldp+51,((0xfffff000U & vlSelf->inst)),32);
-    bufp->chgIData(oldp+52,((((- (IData)((1U & (vlSelf->inst 
-                                                >> 0x13U)))) 
-                              << 0x14U) | ((0xff000U 
-                                            & vlSelf->inst) 
-                                           | ((0x800U 
+    bufp->chgIData(oldp+52,((((- (IData)((vlSelf->inst 
+                                          >> 0x1fU))) 
+                              << 0x14U) | ((0x80000U 
+                                            & (vlSelf->inst 
+                                               >> 0xcU)) 
+                                           | ((0x7f800U 
                                                & (vlSelf->inst 
-                                                  >> 9U)) 
-                                              | (0x7ffU 
-                                                 & (vlSelf->inst 
-                                                    >> 0x14U)))))),32);
+                                                  >> 1U)) 
+                                              | ((0x400U 
+                                                  & (vlSelf->inst 
+                                                     >> 0xaU)) 
+                                                 | (0x3ffU 
+                                                    & (vlSelf->inst 
+                                                       >> 0x15U))))))),32);
     bufp->chgSData(oldp+53,((vlSelf->inst >> 0x14U)),12);
-    bufp->chgIData(oldp+54,(((0xff000U & vlSelf->inst) 
-                             | ((0x800U & (vlSelf->inst 
-                                           >> 9U)) 
-                                | (0x7ffU & (vlSelf->inst 
-                                             >> 0x14U))))),20);
+    bufp->chgIData(oldp+54,(((0x80000U & (vlSelf->inst 
+                                          >> 0xcU)) 
+                             | ((0x7f800U & (vlSelf->inst 
+                                             >> 1U)) 
+                                | ((0x400U & (vlSelf->inst 
+                                              >> 0xaU)) 
+                                   | (0x3ffU & (vlSelf->inst 
+                                                >> 0x15U)))))),20);
 }
 
 void Vysyx_24090015_top___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
