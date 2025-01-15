@@ -171,7 +171,8 @@ end
 				.rs1(rs1),
         .ren2(ren2),
 				.rs2(rs2),
-        .wen(wen)
+        .wen(wen),
+				.rd(rd)
     );
 
     // EXU实例化
