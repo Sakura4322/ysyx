@@ -131,7 +131,7 @@ int main(int argc,char **argv){
 	
 	std::srand(time(NULL));
 	int simTime=0;
-	
+/*	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -145,7 +145,7 @@ int main(int argc,char **argv){
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
-
+*/
    //getopt_lon(argc, argv, " ", table, NULL);
 	 char **shell=argv+1;
 	 for(int i=0;i<argc;i++){
@@ -165,8 +165,8 @@ int main(int argc,char **argv){
 	top ->eval();
 		
 		printf("vaddr is : 0x%08x\n",(top->pc)/4);
-		//if(clk) top->inst=vaddr[(top->pc)/4];
-		if(clk) top->inst=inst[top->pc];
+	if(clk) top->inst=vaddr[(top->pc)/4];
+	//	if(clk) top->inst=inst[top->pc];
 	top ->eval();
 	Contextp->timeInc(1);
 	 tfp->dump(Contextp->time());  // dump 波形数据
