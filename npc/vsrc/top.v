@@ -13,7 +13,7 @@ module ysyx_24090015_IFU#(WIDTH=32) (
     output reg[WIDTH-1:0] snpc
 );
     always @(posedge clk) begin 
-            snpc <= pc + 4;
+            snpc <= pc +1;
 	end
 endmodule
 
@@ -172,12 +172,12 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
-    input [WIDTH-1:0] pc, snpc,
+    input [WIDTH-1:0] snpc,
     output reg [WIDTH-1:0] rd_wdata,
     output reg [WIDTH-1:0] npc, dnpc
 );
 
-    always @(inst_in,snpc) begin
+    always @(*) begin
         dnpc = snpc;
         casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi I
@@ -186,12 +186,12 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
 					dnpc = ~((src1+imm)&{32{1'b1}});
-					rd_wdata = pc+4;
+					rd_wdata = dnpc*4+4;
 
 					end
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
 						
-					rd_wdata = pc + imm;
+					rd_wdata = snpc*4 + imm;
 				
 					end
 					32'b???????_?????_?????_???_?????_01101_11: begin //lui U
@@ -201,8 +201,8 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					end
 					32'b???????_?????_?????_???_?????_11011_11: begin //jal J
 					
-					rd_wdata=snpc;
-					dnpc = pc+imm;
+					rd_wdata=snpc+4;
+					dnpc = dnpc+imm;
 
 				end
         endcase
@@ -271,7 +271,6 @@ end
         .imm(imm),
         .src1(src1),
         .src2(src2),
-				.pc(pc),
         .snpc(snpc),
         .rd_wdata(rd_wdata),
         .npc(pc),
