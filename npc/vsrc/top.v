@@ -239,7 +239,8 @@ end
     ) ifu0(
         .clk(clk),
         .pc(pc),
-        .snpc(snpc)
+        .snpc(snpc),
+				.dnpc(dnpc)
     );
 
     // 信号声明
