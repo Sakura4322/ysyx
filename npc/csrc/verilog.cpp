@@ -140,7 +140,10 @@ int main(int argc,char **argv){
 };
 */
    //getopt_lon(argc, argv, " ", table, NULL);
-	 char **shell=argv+1;
+	 char **shell=argv;
+	 for(int i=0;i<argc;i++){
+		printf("argvs:%s\n",*(argv+i));
+	 }
    img_file=*shell;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	//parse_args(argc,argv);
