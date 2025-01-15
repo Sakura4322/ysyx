@@ -159,7 +159,7 @@ int main(int argc,char **argv){
   unsigned int clk=0;
 	//int a=10;
 	while (!top->flag){
-		printf("top->pc is : %d\n",top->pc);
+		printf("top->pc is : 0x%08x\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
 		if(clk) top->inst=vaddr[top->pc/4];
