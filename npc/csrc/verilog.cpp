@@ -31,7 +31,7 @@ static long load_img() {
 	
 
   vaddr =(uint32_t*)malloc(size);
-	if(vaddr=NULL){
+	if(vaddr==NULL){
 	printf("Memory allocation faile\n");
 	exit(-1);
 	}
@@ -40,6 +40,12 @@ static long load_img() {
 	printf("HERE IS OK\n");
   int ret = fread(vaddr, size, 1, fp);
   //assert(ret != 1);
+	if (ret != 1) {
+		        printf("Failed to read the image file\n");
+						free(vaddr);
+		        fclose(fp);
+						exit(-1);
+	}
 
   fclose(fp);
   return size;
