@@ -63,10 +63,10 @@ output [WIDTH-1 : 0] immJ
 
 );
 
-	wire [19 : 0] init;
-	assign init={inst_in[31],{inst_in[19:12],{inst_in[20],inst_in[30:21]}}};
+	wire [20 : 0] init;
+	assign init={{inst_in[31],{inst_in[19:12],{inst_in[20],inst_in[30:21]}}},1'b0};
 	ysyx_24090015_SEXT#(
-		.DATA_WIDTH(20),
+		.DATA_WIDTH(21),
 		.WIDTH(32)		
 	) s1(
 			.in(init),
