@@ -43,6 +43,7 @@ static long load_img() {
 	}
 
   fclose(fp);
+  printf("Read form %s success\n",img_file);
   return size;
 }
 /*
@@ -98,7 +99,7 @@ static int parse_args(int argc, char *argv[]) {
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
         printf("\t-b,--batch              run with batch mode\n");
         printf("\t-l,--log=FILE           output log to FILE\n");
-        printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
+        printf("\t-d,--diff=REF_/SO        run DiffTest with reference REF_SO\n");
         printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
         printf("\n");
         exit(0);
@@ -149,6 +150,7 @@ int main(int argc,char **argv){
 	long img_size=load_img();
   unsigned int clk=0;
 	while (!top->flag){
+	
 		clk = clk ^ 1;
 		top->clk=clk;
 		if(clk) top->inst=vaddr[top->pc];
