@@ -260,8 +260,8 @@ end
     wire [WIDTH-1:0] rd_wdata;
 
 
-assign ren1=ebreak(inst);
-assign hit_good_or_bad=(ebreak(inst))
+//assign ren1=ebreak(inst);
+//assign hit_good_or_bad=(ebreak(inst))
 
 
 
