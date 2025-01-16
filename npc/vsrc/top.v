@@ -192,7 +192,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
             end
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
-					dnpc = src1+imm;
+					dnpc =src1+imm;
 					rd_wdata = pc+4;
 
 					end
@@ -228,22 +228,18 @@ module ysyx_24090015_top#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst,
     output reg [WIDTH-1:0] pc,
-		output reg flag
+		output reg flag,
+		output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
 
 
-always @(flag) begin
- //$display("now the ebreak test is :%x\n",ebreak(inst));	
-	if( flag ) begin 
-		$display("Condition end");
-		$finish;
-	end
-end
 
 always @(posedge clk)begin
 flag <= ebreak(inst);
+
 end 
 		
+
     reg [WIDTH-1:0] snpc, dnpc;
 
     // IFU实例化
