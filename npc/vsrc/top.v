@@ -212,8 +212,15 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					dnpc = pc+imm;
 
 				end
+				32'b???????_?????_?????_010_?????_01000_11: begin //sw
+				
+
+				end
+				default begin 
+
+			end
         endcase
-        
+				        
     end
 endmodule
 
