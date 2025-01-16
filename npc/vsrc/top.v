@@ -32,7 +32,7 @@ endmodule
 module ysyx_24090015_immI#(WIDTH=32) (
     input [WIDTH-1:0] inst,
 		input clk,
-    output [WIDTH-1:0] imm
+    output [WIDTH-1:0] immI
 );
 
     wire [11:0] init;				
@@ -43,7 +43,7 @@ module ysyx_24090015_immI#(WIDTH=32) (
         .WIDTH(32)
     ) s0(
         .in(init),
-        .out(imm)
+        .out(immI)
     );
 endmodule
 
