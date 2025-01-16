@@ -31,7 +31,7 @@ static long load_img() {
 	
 
   vaddr =(uint32_t*)malloc(size);
-	if(vaddr=NULL){
+	if(vaddr==NULL){
 	printf("Memory allocation faile\n");
 	exit(-1);
 	}
@@ -124,6 +124,7 @@ int main(int argc,char **argv){
 	
 	std::srand(time(NULL));
 	int simTime=0;
+/*
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -137,6 +138,7 @@ int main(int argc,char **argv){
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
+*/
    //getopt_lon(argc, argv, " ", table, NULL);
 	 argv++;
    img_file=*argv;
