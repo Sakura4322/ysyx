@@ -16,7 +16,7 @@ module ysyx_24090015_IFU#(WIDTH=32) (
     always @(posedge clk) begin 
 						pc <= dnpc;
 	end
-    assign     snpc = pc + 1;
+    assign     snpc = pc + 4;
 endmodule
 
 module ysyx_24090015_SEXT#(
