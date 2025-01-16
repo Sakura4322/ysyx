@@ -153,7 +153,9 @@ int main(int argc,char **argv){
 	
 		clk = clk ^ 1;
 		top->clk=clk;
-		if(clk) top->inst=vaddr[top->pc];
+		printf("top->pc : 0x%08x\n",top->pc);
+		//if(clk) top->inst=inst[top->pc/4];
+		if(clk) top->inst=vaddr[top->pc/4];
 	Contextp->timeInc(1);
 	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
