@@ -144,7 +144,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->inst = VL_RAND_RESET_I(32);
     vlSelf->pc = VL_RAND_RESET_I(32);
     vlSelf->flag = VL_RAND_RESET_I(1);
-    vlSelf->__pinNumber5 = VL_RAND_RESET_I(1);
+    vlSelf->hit_good_or_bad = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__ebreak_ret = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__dnpc = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__imm = VL_RAND_RESET_I(32);
