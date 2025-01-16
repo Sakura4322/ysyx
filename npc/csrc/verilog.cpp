@@ -149,7 +149,7 @@ int main(int argc,char **argv){
 	//parse_args(argc,argv);
 	long img_size=load_img();
   unsigned int clk=0;
-	int a=15;
+	int a=14;
 	//while (!top->flag){
 	while (a--){
 	
