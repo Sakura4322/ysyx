@@ -8,15 +8,15 @@ CSRC = $(shell find $(abspath ./csrc) -name *.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 IMG?=
-override ARGS ?= $(IMG)
-//CCFLAGS=-DMY_PARAM=$(IMG)
-//CFLAGS+=$(CCFLAGS)
-//CFLAGS+=$(ARGS)
+override ARGS ?=
+CCFLAGS=-DMY_PARAM=$(IMG)
+CFLAGS+=$(CCFLAGS)
+CFLAGS+=$(ARGS)
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
 	verilator  $(CFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC)
-	./obj_dir/V$(TOP_NAME) $(ARGS)
+	./obj_dir/V$(TOP_NAME)
 	 gtkwave ./*.vcd
 
 run : sim
