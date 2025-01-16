@@ -72,19 +72,20 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     bufp->chgIData(oldp+42,(vlSelf->inst),32);
     bufp->chgIData(oldp+43,(vlSelf->pc),32);
     bufp->chgBit(oldp+44,(vlSelf->flag));
-    bufp->chgIData(oldp+45,(((IData)(4U) + vlSelf->pc)),32);
-    bufp->chgIData(oldp+46,(vlSelf->ysyx_24090015_top__DOT__dnpc),32);
-    bufp->chgIData(oldp+47,(vlSelf->ysyx_24090015_top__DOT__src1),32);
-    bufp->chgIData(oldp+48,(((IData)(vlSelf->ysyx_24090015_top__DOT__ren2) 
+    bufp->chgBit(oldp+45,(vlSelf->hit_good_or_bad));
+    bufp->chgIData(oldp+46,(((IData)(4U) + vlSelf->pc)),32);
+    bufp->chgIData(oldp+47,(vlSelf->ysyx_24090015_top__DOT__dnpc),32);
+    bufp->chgIData(oldp+48,(vlSelf->ysyx_24090015_top__DOT__src1),32);
+    bufp->chgIData(oldp+49,(((IData)(vlSelf->ysyx_24090015_top__DOT__ren2) 
                              & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
                              [vlSelf->ysyx_24090015_top__DOT__rs2])),32);
-    bufp->chgIData(oldp+49,(vlSelf->ysyx_24090015_top__DOT__rd_wdata),32);
-    bufp->chgIData(oldp+50,((((- (IData)((vlSelf->inst 
+    bufp->chgIData(oldp+50,(vlSelf->ysyx_24090015_top__DOT__rd_wdata),32);
+    bufp->chgIData(oldp+51,((((- (IData)((vlSelf->inst 
                                           >> 0x1fU))) 
                               << 0xcU) | (vlSelf->inst 
                                           >> 0x14U))),32);
-    bufp->chgIData(oldp+51,((0xfffff000U & vlSelf->inst)),32);
-    bufp->chgIData(oldp+52,((((- (IData)((vlSelf->inst 
+    bufp->chgIData(oldp+52,((0xfffff000U & vlSelf->inst)),32);
+    bufp->chgIData(oldp+53,((((- (IData)((vlSelf->inst 
                                           >> 0x1fU))) 
                               << 0x15U) | ((0x100000U 
                                             & (vlSelf->inst 
@@ -97,8 +98,8 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
                                                  | (0x7feU 
                                                     & (vlSelf->inst 
                                                        >> 0x14U))))))),32);
-    bufp->chgSData(oldp+53,((vlSelf->inst >> 0x14U)),12);
-    bufp->chgIData(oldp+54,(((0x100000U & (vlSelf->inst 
+    bufp->chgSData(oldp+54,((vlSelf->inst >> 0x14U)),12);
+    bufp->chgIData(oldp+55,(((0x100000U & (vlSelf->inst 
                                            >> 0xbU)) 
                              | ((0xff000U & vlSelf->inst) 
                                 | ((0x800U & (vlSelf->inst 

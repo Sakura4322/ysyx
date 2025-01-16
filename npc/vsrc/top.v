@@ -229,14 +229,15 @@ module ysyx_24090015_top#(WIDTH=32) (
     input [WIDTH-1:0] inst,
     output reg [WIDTH-1:0] pc,
 		output reg flag,
-		output hit_good_or_bad//实现HIT GOOD/BAD的功能
+	//	output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
 
+reg [31:0]ebreak_ret;
 
-
+//end emulation
 always @(posedge clk)begin
-flag <= ebreak(inst);
-
+ebreak_ret = ebreak(inst);
+flag <= ebreak_ret[0];
 end 
 		
 
@@ -258,6 +259,8 @@ end
     wire ren1, ren2, wen;
     wire [WIDTH-1:0] rd_wdata;
 
+//assign ren1=ebreak(inst);
+//assign hit_good_or_bad=(ebreak(inst))
     // IDU实例化
     ysyx_24090015_IDU #(
         .WIDTH(32)
