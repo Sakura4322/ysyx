@@ -9,12 +9,11 @@ import "DPI-C" function int ebreak(input int a);
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input clk,
-    input reg [WIDTH-1:0] dnpc,
-    output reg[WIDTH-1:0] pc,snpc
+    input [WIDTH-1:0] pc,
+    output reg[WIDTH-1:0] snpc
 );
     always @(posedge clk) begin 
-						pc <=dnpc;
-            snpc <= pc +4;
+            snpc <= pc + 4;
 	end
 endmodule
 
@@ -173,7 +172,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
-    input [WIDTH-1:0] pc,snpc,
+    input [WIDTH-1:0] snpc,
     output reg [WIDTH-1:0] rd_wdata,
     output reg [WIDTH-1:0] npc, dnpc
 );
@@ -187,12 +186,12 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
 					dnpc = ~((src1+imm)&{32{1'b1}});
-					rd_wdata = pc+4;
+					rd_wdata = dnpc*4+4;
 
 					end
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
 						
-					rd_wdata = pc + imm;
+					rd_wdata = snpc*4 + imm;
 				
 					end
 					32'b???????_?????_?????_???_?????_01101_11: begin //lui U
@@ -202,12 +201,12 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					end
 					32'b???????_?????_?????_???_?????_11011_11: begin //jal J
 					
-					rd_wdata=pc+4;
-					dnpc = pc+imm;
+					rd_wdata=snpc+4;
+					dnpc = dnpc+imm;
 
 				end
         endcase
-        //npc = dnpc;
+        npc = dnpc;
     end
 endmodule
 
@@ -239,8 +238,7 @@ end
     ) ifu0(
         .clk(clk),
         .pc(pc),
-        .snpc(snpc),
-				.dnpc(dnpc)
+        .snpc(snpc)
     );
 
     // 信号声明
@@ -273,10 +271,9 @@ end
         .imm(imm),
         .src1(src1),
         .src2(src2),
-				.pc(pc),
         .snpc(snpc),
         .rd_wdata(rd_wdata),
-       // .npc(pc),
+        .npc(pc),
         .dnpc(dnpc)
     );
 

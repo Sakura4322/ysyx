@@ -131,6 +131,7 @@ int main(int argc,char **argv){
 	
 	std::srand(time(NULL));
 	int simTime=0;
+	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -144,6 +145,7 @@ int main(int argc,char **argv){
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
+
    //getopt_lon(argc, argv, " ", table, NULL);
 	 char **shell=argv+1;
 	 for(int i=0;i<argc;i++){
@@ -157,16 +159,12 @@ int main(int argc,char **argv){
   unsigned int clk=0;
 	//int a=10;
 	while (!top->flag){
-		printf("top->pc is : 0x%08x\n",top->pc);
+		printf("top->pc is : %d\n",top->pc);
 		clk = clk ^ 1;
 		top->clk=clk;
-	top ->eval();
-		
-		printf("vaddr is : 0x%08x\n",(top->pc)/4);
-	//if(clk) top->inst=vaddr[(top->pc)/4];
-		if(clk) top->inst=inst[top->pc];
-//	top ->eval();
+		if(clk) top->inst=vaddr[top->pc/4];
 	Contextp->timeInc(1);
+	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
 	 
 	 //nvboard 更新
