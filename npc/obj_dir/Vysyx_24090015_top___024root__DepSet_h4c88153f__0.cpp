@@ -69,7 +69,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
             = vlSelf->ysyx_24090015_top__DOT__rd;
     }
     Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, __Vfunc_ebreak__0__Vfuncout);
-    vlSelf->flag = (1U & __Vfunc_ebreak__0__Vfuncout);
+    vlSelf->ysyx_24090015_top__DOT__ebreak_ret = __Vfunc_ebreak__0__Vfuncout;
+    vlSelf->flag = (1U & vlSelf->ysyx_24090015_top__DOT__ebreak_ret);
     vlSelf->pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
     if (__Vdlyvset__ysyx_24090015_top__DOT__reg0__DOT__rf__v0) {
         vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[__Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0] 
