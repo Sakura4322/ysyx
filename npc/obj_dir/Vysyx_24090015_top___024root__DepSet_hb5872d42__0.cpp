@@ -114,19 +114,18 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
         vlSelf->ysyx_24090015_top__DOT__imm = (((- (IData)(
                                                            (vlSelf->inst 
                                                             >> 0x1fU))) 
-                                                << 0x14U) 
-                                               | ((0x80000U 
+                                                << 0x15U) 
+                                               | ((0x100000U 
                                                    & (vlSelf->inst 
-                                                      >> 0xcU)) 
-                                                  | ((0x7f800U 
-                                                      & (vlSelf->inst 
-                                                         >> 1U)) 
-                                                     | ((0x400U 
+                                                      >> 0xbU)) 
+                                                  | ((0xff000U 
+                                                      & vlSelf->inst) 
+                                                     | ((0x800U 
                                                          & (vlSelf->inst 
-                                                            >> 0xaU)) 
-                                                        | (0x3ffU 
+                                                            >> 9U)) 
+                                                        | (0x7feU 
                                                            & (vlSelf->inst 
-                                                              >> 0x15U))))));
+                                                              >> 0x14U))))));
         vlSelf->ysyx_24090015_top__DOT__ren1 = 0U;
         vlSelf->ysyx_24090015_top__DOT__rs1 = 0U;
     }
