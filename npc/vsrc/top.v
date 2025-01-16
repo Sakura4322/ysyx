@@ -296,7 +296,7 @@ assign hit_good_or_bad=src1;
     );
 
     // 寄存器堆实例化
-    ysyx_24090015RegisterFile #(
+    ysyx_24090015_RegisterFile #(
         .ADDR_WIDTH(5),
         .DATA_WIDTH(32)
     ) reg0(
