@@ -147,9 +147,9 @@ int main(int argc,char **argv){
 	while (!top->flag){
 		clk = clk ^ 1;
 		top->clk=clk;
+	top ->eval();
 		//if(clk) top->inst=vaddr[top->pc];
 		if(clk) top->inst=inst[top->pc];
-	top ->eval();
 	Contextp->timeInc(1);
 	 tfp->dump(Contextp->time());  // dump 波形数据
 	 

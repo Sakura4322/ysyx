@@ -52,7 +52,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_settle(Vysyx_24090015_top_
 #ifdef VL_DEBUG
                 Vysyx_24090015_top___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 119, "", "Settle region did not converge.");
+                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 120, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -76,7 +76,33 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__stl(Vysyx_240900
 }
 #endif  // VL_DEBUG
 
-void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_24090015_top___024root* vlSelf);
+VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090015_top___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___stl_sequent__TOP__0\n"); );
+    // Body
+    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
+                                            + vlSelf->pc);
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
+        = (0x7fU & vlSelf->inst);
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
+        = ((0x13U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
+            ? 2U : 0U);
+    if ((0x13U == (0x707fU & vlSelf->inst))) {
+        vlSelf->ysyx_24090015_top__DOT__rd = (0x1fU 
+                                              & (vlSelf->inst 
+                                                 >> 7U));
+        vlSelf->ysyx_24090015_top__DOT__rs1 = (0x1fU 
+                                               & (vlSelf->inst 
+                                                  >> 0xfU));
+        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
+            (((- (IData)((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))) 
+              & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
+              [vlSelf->ysyx_24090015_top__DOT__rs1]) 
+             + (((- (IData)((vlSelf->inst >> 0x1fU))) 
+                 << 0xcU) | (vlSelf->inst >> 0x14U)));
+    }
+}
 
 VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_stl(Vysyx_24090015_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -84,7 +110,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_stl(Vysyx_24090015_top___0
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_stl\n"); );
     // Body
     if (vlSelf->__VstlTriggered.at(0U)) {
-        Vysyx_24090015_top___024root___ico_sequent__TOP__0(vlSelf);
+        Vysyx_24090015_top___024root___stl_sequent__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[2U] = 1U;
         vlSelf->__Vm_traceActivity[1U] = 1U;
         vlSelf->__Vm_traceActivity[0U] = 1U;
