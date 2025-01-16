@@ -9,10 +9,11 @@ import "DPI-C" function int ebreak(input int a);
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input clk,
-    input [WIDTH-1:0] pc,
-    output reg[WIDTH-1:0] snpc
+    input [WIDTH-1:0] dnpc,
+    output reg[WIDTH-1:0] pc,snpc
 );
     always @(posedge clk) begin 
+						pc <= dnpc;
             snpc <= pc + 1;
 	end
 endmodule
@@ -143,7 +144,8 @@ end
     ) ifu0(
         .clk(clk),
         .pc(pc),
-        .snpc(snpc)
+        .snpc(snpc),
+				.dnpc(dnpc)
     );
 
     // 信号声明
