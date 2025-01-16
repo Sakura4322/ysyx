@@ -38,7 +38,9 @@ static long load_img() {
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(vaddr, size, 1, fp);
-  assert(ret == 1);
+  if(ret!=1){
+	printf("Read from %s error\n",img_file);	
+	}
 
   fclose(fp);
   return size;
@@ -124,7 +126,7 @@ int main(int argc,char **argv){
 	
 	std::srand(time(NULL));
 	int simTime=0;
-/*
+/*	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -149,10 +151,9 @@ int main(int argc,char **argv){
 	while (!top->flag){
 		clk = clk ^ 1;
 		top->clk=clk;
-	top ->eval();
-		if(clk) top->inst=vaddr[top->pc/4];
-		//if(clk) top->inst=inst[top->pc/4];
+		if(clk) top->inst=vaddr[top->pc];
 	Contextp->timeInc(1);
+	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
 	 
 	 //nvboard 更新
