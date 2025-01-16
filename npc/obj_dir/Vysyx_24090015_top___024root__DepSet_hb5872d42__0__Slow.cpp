@@ -81,7 +81,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___stl_sequent__TOP__0\n"); );
     // Body
-    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
+    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(4U) 
                                             + vlSelf->pc);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
         = (0x7fU & vlSelf->inst);

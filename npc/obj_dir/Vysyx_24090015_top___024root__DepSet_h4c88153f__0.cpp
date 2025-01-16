@@ -82,6 +82,6 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
         vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[__Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0] 
             = __Vdlyvval__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
     }
-    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(1U) 
+    vlSelf->ysyx_24090015_top__DOT__snpc = ((IData)(4U) 
                                             + vlSelf->pc);
 }
