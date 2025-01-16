@@ -147,7 +147,7 @@ int main(int argc,char **argv){
 	while (!top->flag){
 		clk = clk ^ 1;
 		top->clk=clk;
-		if(clk) top->inst=vaddr[top->pc];
+		//if(clk) top->inst=vaddr[top->pc];
 		if(clk) top->inst=inst[top->pc];
 	Contextp->timeInc(1);
 	top ->eval();
