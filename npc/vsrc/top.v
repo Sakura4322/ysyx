@@ -9,8 +9,8 @@ import "DPI-C" function int ebreak(input int a);
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input clk,
-    input reg [WIDTH-1:0] pc,dnpc,
-    output reg[WIDTH-1:0] snpc
+    input reg [WIDTH-1:0] dnpc,
+    output reg[WIDTH-1:0] pc,snpc
 );
     always @(posedge clk) begin 
 						pc <=dnpc;
