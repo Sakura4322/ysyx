@@ -100,7 +100,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input [WIDTH-1:0] snpc,
     output reg[4:0] rd,rs1,rs2,
     output reg [WIDTH-1:0] rd_wdata,
-    output reg [WIDTH-1:0] npc, dnpc
+    output reg [WIDTH-1:0]  dnpc
 );
 
     always @(*) begin
@@ -112,7 +112,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
            rd_wdata = src1 + imm;
             end
         endcase
-        npc = dnpc;
+      
     end
 endmodule
 
@@ -180,7 +180,7 @@ end
 				.rs1(rs1),
 				.rs2(rs2),
         .rd_wdata(rd_wdata),
-        .npc(pc),
+       // .npc(pc),
         .dnpc(dnpc)
     );
 
