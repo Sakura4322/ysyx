@@ -192,7 +192,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
             end
 					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
 
-					dnpc = (src1+imm)~&{32{1'b1}};
+					dnpc = (src1+imm)~&1};
 					rd_wdata = pc+4;
 
 					end
