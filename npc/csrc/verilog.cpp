@@ -155,6 +155,7 @@ int main(int argc,char **argv){
 	
 		clk = clk ^ 1;
 		top->clk=clk;
+	top ->eval();
 		printf("top->pc : 0x%08x\n",top->pc);
 		//if(clk) top->inst=inst[top->pc/4];
 		if(clk) top->inst=vaddr[top->pc/4];
