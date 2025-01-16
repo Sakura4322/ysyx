@@ -149,9 +149,9 @@ int main(int argc,char **argv){
 	//parse_args(argc,argv);
 	long img_size=load_img();
   unsigned int clk=0;
-	int a=22;
-	//while (!top->flag){
-	while (a--){
+	int a=20;
+	while (!top->flag){
+	//while (a--){
 	
 		clk = clk ^ 1;
 		top->clk=clk;
