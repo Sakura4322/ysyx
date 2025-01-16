@@ -1,5 +1,6 @@
 #include <am.h>
 #include <klib-macros.h>
+#include "libgcc/riscv-asm.h"
 
 extern char _heap_start;
 int main(const char *args);
@@ -18,6 +19,7 @@ void putch(char ch) {
 }
 
 void halt(int code) {
+	nemu_trap(code);
   while (1);
 }
 
