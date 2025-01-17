@@ -100,14 +100,14 @@ int main(int argc,char **argv){
 
 sdb_mainloop();
 	
-	
+	/*
 	while (!top->flag){
 	//while (a--){
 	step_and_dump_wave();
 	 simTime++;
 	}
 
-
+*/
 	//checking pragram ending
 	if(!top->hit_good_or_bad){
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	

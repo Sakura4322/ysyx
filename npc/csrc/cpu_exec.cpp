@@ -17,6 +17,7 @@ static void execute(uint64_t n) {
   for (;n > 0; n --) {
 	//char buf[512]={0};
     step_and_dump_wave();
+    if (top->flag)nemu_state.state=NEMU_END;
     //trace_and_difftest(&s, cpu.pc);
 
 
