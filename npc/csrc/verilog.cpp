@@ -54,7 +54,7 @@ void step_and_dump_wave(){
 	if(clk) top->inst=vaddr[top->pc/4];
 	contextp->timeInc(1);
 	top ->eval();
-	tfp->dump(Contextp->time());  // dump 波形数据
+	tfp->dump(contextp->time());  // dump 波形数据
 
 }
 void sim_exit(){
