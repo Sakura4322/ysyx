@@ -49,6 +49,7 @@ void step_and_dump_wave(){
 	
 	printf("top->pc : 0x%08x\n",top->pc);
 	printf("vaddr index: %d\n",top->pc/4);
+	printf("inst :  : 0x%08x\n",inst[top->pc/4]);
 	if(clk) top->inst=inst[top->pc/4];
 	//if(clk) top->inst=vaddr[top->pc/4];
 	contextp->timeInc(1);
@@ -57,7 +58,6 @@ void step_and_dump_wave(){
 
 }
 void sim_exit(){
-	step_and_dump_wave();
 	tfp->close();
 	
 	delete tfp;
