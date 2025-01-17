@@ -50,8 +50,8 @@ void step_and_dump_wave(){
 	top->clk=clk;
 	
 	printf("top->pc : 0x%08x\n",top->pc);
-	//if(clk) top->inst=inst[top->pc/4];
-	if(clk) top->inst=vaddr[top->pc/4];
+	if(clk) top->inst=inst[top->pc/4];
+	//if(clk) top->inst=vaddr[top->pc/4];
 	contextp->timeInc(1);
 	top ->eval();
 	tfp->dump(contextp->time());  // dump 波形数据
