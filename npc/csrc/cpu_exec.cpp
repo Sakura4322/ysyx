@@ -1,9 +1,11 @@
-#include <common.h>
-
+#include "common.h"
+#include "my_share.h"
+#include "cpu.h"
 NEMUState nemu_state;
 
+
 static void execute(uint64_t n) {
-  Decode s;
+  //Decode s;
   /*
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
@@ -13,7 +15,7 @@ static void execute(uint64_t n) {
 
   for (;n > 0; n --) {
 	//char buf[512]={0};
-    exec_once(&s, cpu.pc);
+    step_and_dump_wave();
     //trace_and_difftest(&s, cpu.pc);
 
 
@@ -82,6 +84,8 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
+    	nemu_state.halt=top->hit_good_or_bad;
+    	nemu_state.halt_pc=top->pc;
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :

@@ -43,12 +43,7 @@ std::srand(time(NULL));
 
 }
 
-void cpu__exec(uint64_t n){
 
-		for(int i=0;i<n;i++){
-		step_and_dump();	
-		}	
-}
 
 void step_and_dump_wave(){
 
@@ -108,7 +103,7 @@ sdb_mainloop();
 	
 	while (!top->flag){
 	//while (a--){
-step_and_dump_wave();
+	step_and_dump_wave();
 	 simTime++;
 	}
 

@@ -22,22 +22,22 @@ static char* rl_gets() {
   return line_read;
 }
 
-/*
+
 static int cmd_c(char *args) {
-	printf("HAHAHA I'M OK!\n");
+  printf("HAHAHA I'M OK!\n");
   cpu_exec(-1);
   return 0;
 }
-*/
 
-/*
+
+
 static int cmd_q(char *args) {
 cpu_exec(0);
   return -1;
 }
 
 static int cmd_help(char *args);
-*/
+
 
 /*
 static int cmd_si(char *args) {  
@@ -162,8 +162,8 @@ static struct {
   int (*handler) (char *);
 } cmd_table [] = {
   { "help", "Display information about all supported commands", cmd_help },
-  //{ "c", "Continue the execution of the program", cmd_c },
-  //{ "q", "Exit NEMU", cmd_q },
+  { "c", "Continue the execution of the program", cmd_c },
+  { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
 //{"si","让程序单步执行N条指令后暂停执行,当N没有给出时, 缺省为1",cmd_si},
