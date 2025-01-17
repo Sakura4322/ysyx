@@ -46,6 +46,7 @@ void step_and_dump_wave(){
 
 	clk = clk ^ 1;
 	top->clk=clk;
+	top ->eval();
 	
 	printf("top->pc : 0x%08x\n",top->pc);
 	printf("vaddr index: %d\n",top->pc/4);
@@ -53,7 +54,6 @@ void step_and_dump_wave(){
 	if(clk) top->inst=inst[top->pc/4];
 	//if(clk) top->inst=vaddr[top->pc/4];
 	contextp->timeInc(1);
-	top ->eval();
 	tfp->dump(contextp->time());  // dump 波形数据
 
 }
