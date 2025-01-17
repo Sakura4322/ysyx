@@ -294,7 +294,7 @@ assign hit_good_or_bad=src1;
         .rd_wdata(rd_wdata),
         .dnpc(dnpc)
     );
-reg [31:0]rf[31:0];
+wire [31:0]rf[31:0];
 import "DPI-C" function void get_reg_value(input logic [31:0]a[31:0]);
     // 寄存器堆实例化
     ysyx_24090015_RegisterFile #(
