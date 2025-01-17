@@ -1,31 +1,7 @@
-/***************************************************************************************
-* Copyright (c) 2014-2022 Zihao Yu, Nanjing University
-*
-* NEMU is licensed under Mulan PSL v2.
-* You can use this software according to the terms and conditions of the Mulan PSL v2.
-* You may obtain a copy of Mulan PSL v2 at:
-*          http://license.coscl.org.cn/MulanPSL2
-*
-* THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
-* EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
-* MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
-*
-* See the Mulan PSL v2 for more details.
-***************************************************************************************/
-
-#include <isa.h>
-#include <cpu/cpu.h>
+#include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <memory/paddr.h>
-#include "sdb.h"
 
-static int is_batch_mode = true;
-
-void init_regex();
-void init_wp_pool();
-
-/* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
 
@@ -43,12 +19,13 @@ static char* rl_gets() {
   return line_read;
 }
 
+/*
 static int cmd_c(char *args) {
 	printf("HAHAHA I'M OK!\n");
   cpu_exec(-1);
   return 0;
 }
-
+*/
 
 static int cmd_q(char *args) {
 cpu_exec(0);
@@ -57,7 +34,7 @@ cpu_exec(0);
 
 static int cmd_help(char *args);
 
-
+/*
 static int cmd_si(char *args) {  
   static  int n = 1; // 默认单步执行1条指令  
 char *arg = strtok(NULL , " ");
@@ -70,7 +47,9 @@ char *arg = strtok(NULL , " ");
 
     return 0; // 返回0表示执行成功  
 }  
+*/
 
+/*
 static int cmd_info(char *args){
 args = strtok(NULL," ");
 //printf("%s",args);
@@ -82,7 +61,9 @@ if (strcmp(args,"w")==0){
 	}
 return 0;
 }
+*/
 
+/*
 static int cmd_x(char *args) { // 扫描内存  
     char *arg = strtok(NULL, " ");  
     char *addr_char = strtok(NULL, " ");  
@@ -96,7 +77,7 @@ static int cmd_x(char *args) { // 扫描内存
 
     int count = atoi(arg);  
     long long addr = strtol(addr_char, NULL, 16);  
-
+		
     // 检查地址对齐  
     if (addr % 4 != 0) {  
         printf("Address 0x%llx not aligned to 4 bytes!\n", addr);  
@@ -111,6 +92,9 @@ static int cmd_x(char *args) { // 扫描内存
     return 0;  
 }
 
+*/
+
+/*
 static int cmd_p(char *args){//表达式求值
 	bool success_prt = true;
 	bool *success= &success_prt;
@@ -130,7 +114,9 @@ static int cmd_p(char *args){//表达式求值
 	else printf ("计算错误\n");
 	return 0;
 }
+*/
 
+/*
 static int cmd_w(char *arg){//设置监视点
 WP *wp = new_wp();
 
@@ -162,6 +148,8 @@ free_wp(d);//删除需要删除的监视点
 
 return 0;
 }
+*/
+
 
 static struct {
   const char *name;
@@ -239,16 +227,10 @@ void sdb_mainloop() {
    // printf ("成功进行到分解表达式阶段，表达式为：%s\n",args);//测试点
     
     
-    
-    
     if (args >= str_end) {
       args = NULL;
     }
 
-#ifdef CONFIG_DEVICE
-    extern void sdl_clear_event_queue();
-    sdl_clear_event_queue();
-#endif
 
     int i;
     for (i = 0; i < NR_CMD; i ++) {
@@ -262,10 +244,11 @@ void sdb_mainloop() {
   }
 }
 
-void init_sdb() {
+
+//void init_sdb() {
   /* Compile the regular expressions. */
-  init_regex();
+  //init_regex();
 
   /* Initialize the watchpoint pool. */
-  init_wp_pool();
-}
+//  init_wp_pool();
+//}

@@ -1,133 +1,19 @@
 #include "Vysyx_24090015_top.h"
 #include "verilated.h"
-#include <stdio.h>
+#include "common.h"
+#include "my_share.h"
 #include <verilated_vcd_c.h>  //启动波追踪
-//#include <cassert>
 //#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
 
-//接入nvboard
-//void nvboard_band_all_pins(Vverilog *top);
 
-uint32_t *vaddr=NULL;
-char *img_file=NULL;
-static long load_img() {
-  if (img_file == NULL) {
-    printf("No image is given. Use the default build-in image.\n");
-    return 4096; // built-in image size
-  }
+VerilatedContext *contextp = NULL;
+Vysyx_24090015_top* top=NULL;
+VerilatedVcdC *tfp=NULL;
 
-  FILE *fp = fopen(img_file, "rb");
-	if(!fp){
-  printf("Can not open '%s'\n", img_file);
-	exit(-1);
-	}
 
-  fseek(fp, 0, SEEK_END);
-  long size = ftell(fp);
 
-  printf("The image is %s, size = %ld\n", img_file, size);
-	
-
-  vaddr =(uint32_t*)malloc(size);
-	if(vaddr==NULL){
-	printf("Memory allocation faile\n");
-	exit(-1);
-	}
-
-  fseek(fp, 0, SEEK_SET);
-  int ret = fread(vaddr, size, 1, fp);
-  if(ret!=1){
-	printf("Read from %s error\n",img_file);	
-	}
-
-  fclose(fp);
-  printf("Read form %s success\n",img_file);
-  return size;
-}
-/*
-static int parse_args(int argc, char *argv[]) {
-  //for(int i=0;i<100;i++){
-		
-	//printf("this is this : %s\n",*(argv+i));
-	//}
-	const struct option table[] = {
-//    {"batch"    , no_argument      , NULL, 'b'},
-//    {"log"      , required_argument, NULL, 'l'},
-//    {"diff"     , required_argument, NULL, 'd'},
-//    {"port"     , required_argument, NULL, 'p'},
-//    {"help"     , no_argument      , NULL, 'h'},
-		//{"elf"      , required_argument, NULL, 'e'},
-    {0          , 0                , NULL,  0 },
-  };
-  int o;
-  while ( (o = getopt_long(argc, argv, " ", table, NULL)) != -1) {
-    switch (o) {
-      case 'b': sdb_set_batch_mode(); break;
-      case 'p': sscanf(optarg, "%d", &difftest_port); break;
-      case 'l': log_file = optarg; break;
-      case 'd': diff_so_file = optarg; break;
-			//case 'e': if(optarg=="-h")
-      case 1:
-							
-							char temp[256]={0};
-							char *suffix;
-							strcpy(temp,optarg);
-							suffix=strchr(temp,'.');
-							suffix++;
-							img_file=(strcmp(suffix,"bin")==0)?optarg:img_file;
-							elf_file=(strcmp(suffix,"elf")==0)?optarg:elf_file;
-						  //printf("what is suffix : %s\n",suffix);
-						  //printf("what is temp : %s\n",temp);
-						  //printf("what is optarg : %s\n",optarg);
-						  printf("what is img_file : %s\n",img_file);
-						  printf("what is elf_file : %s\n",elf_file);
-							if(strcmp(suffix,"elf")==0){	
-              ehdr_globle=parse_elf(elf_file);
-						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
-						  //find_shdr_type(ehdr_globle,shdr_globle);
-						  str_globle =parse_strtab(shdr_globle,elf_file);
-							sym_globle =parse_sym(shdr_globle,elf_file);
-							
-						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
-							
-								img_file = optarg; return 0;
-							break;
-
-      default:
-        printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
-        printf("\t-b,--batch              run with batch mode\n");
-        printf("\t-l,--log=FILE           output log to FILE\n");
-        printf("\t-d,--diff=REF_/SO        run DiffTest with reference REF_SO\n");
-        printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
-        printf("\n");
-        exit(0);
-    }
-  }
-  return 0;
-}
-*/
-int main(int argc,char **argv){
-	VerilatedContext* Contextp = new VerilatedContext;
-	Contextp->commandArgs(argc,argv);//初始化verilator
-	
-	
-	Verilated::traceEverOn(true);//启动追踪
-	
-	Vysyx_24090015_top * top=new Vysyx_24090015_top;//创建top实体
-														 
-	VerilatedVcdC *tfp=new VerilatedVcdC;//创建VCD追踪文件对象
-  	top->trace(tfp,99);
-	tfp->open("wave.vcd");
-	
-	//nvboard接入引脚并且初始化
-	//nvboard_bind_all_pins(top);
-	//nvboard_init();
-	
-	std::srand(time(NULL));
-	int simTime=0;
-/*	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -141,8 +27,52 @@ int main(int argc,char **argv){
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
-*/
-   //getopt_lon(argc, argv, " ", table, NULL);
+
+
+void step_and_dump_wave(){
+
+	clk = clk ^ 1;
+	top->clk=clk;
+	
+	printf("top->pc : 0x%08x\n",top->pc);
+	if(clk) top->inst=inst[top->pc/4];
+//	if(clk) top->inst=vaddr[top->pc/4];
+	Contextp->timeInc(1);
+	top ->eval();
+	tfp->dump(Contextp->time());  // dump 波形数据
+
+}
+void sim_exit(){
+	step_and_dump_wave();
+	tfp->close();
+	
+	delete tfp;
+	delete contextp;
+	delete top;
+}
+
+
+
+int main(int argc,char **argv){
+	/*
+	VerilatedContext* Contextp = new VerilatedContext;
+	Contextp->commandArgs(argc,argv);//初始化verilator
+	
+	
+	Verilated::traceEverOn(true);//启动追踪
+	
+	Vysyx_24090015_top * top=new Vysyx_24090015_top;//创建top实体
+														 
+	VerilatedVcdC *tfp=new VerilatedVcdC;//创建VCD追踪文件对象
+  	top->trace(tfp,99);
+	tfp->open("wave.vcd");
+	*/
+	
+  sim_init(argc,argv);
+
+	int simTime=0;
+
+//get bin
 	 argv++;
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
@@ -150,6 +80,8 @@ int main(int argc,char **argv){
 	long img_size=load_img();
   unsigned int clk=0;
 	int a=20;
+
+	/*
 	while (!top->flag){
 	//while (a--){
 	
@@ -163,20 +95,39 @@ int main(int argc,char **argv){
 	top ->eval();
 	 tfp->dump(Contextp->time());  // dump 波形数据
 	 
-	 //nvboard 更新
-	 //nvboard_update();
 	 
 	 simTime++;
 	}
+	*/
+
+	
+  unsigned int clk=0;
+	int a=20;
+	
+	while (!top->flag){
+	//while (a--){
+step_and_dump_wave();
+	 simTime++;
+	}
+
+
+	//checking pragram ending
 	if(!top->hit_good_or_bad){
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
 	}else{
-	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
-		
+	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
 	}
+
+
+/*
 	tfp->close(); 
 	delete tfp;
 	delete top;
 	delete Contextp;
+	*/
+
+
+sim_exit();
+
 	return 0;
 }
