@@ -314,6 +314,6 @@ import "DPI-C" function void get_reg_value(chandle a);
         .rdata2(src2)
     );
 		chandle rf_handle;
-	 rf_handle=(chandle) rf;	
+	 rf_handle= rf;	
 		get_reg_value(rf_handle);
 endmodule
