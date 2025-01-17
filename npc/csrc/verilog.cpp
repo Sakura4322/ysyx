@@ -13,8 +13,8 @@ VerilatedContext *contextp = NULL;
 Vysyx_24090015_top* top=NULL;
 VerilatedVcdC *tfp=NULL;
 
-
-	unsigned int inst[11] = {
+/*
+unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
     0x00678793,  // addi a5, a5, 6
@@ -27,6 +27,7 @@ VerilatedVcdC *tfp=NULL;
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
+*/
 
 void sim_init(int argc,char **argv){
 contextp = new VerilatedContext;
@@ -50,13 +51,20 @@ void step_and_dump_wave(){
 	
 	printf("top->pc : 0x%08x\n",top->pc);
 	printf("vaddr index: %d\n",top->pc/4);
-	printf("inst :  : 0x%08x\n",inst[top->pc/4]);
-	if(clk) top->inst=inst[top->pc/4];
-	//if(clk) top->inst=vaddr[top->pc/4];
+
+	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
+	//if(clk) top->inst=inst[top->pc/4];
+	
+//input instructions
+	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
+	if(clk) top->inst=vaddr[top->pc/4];
+
+
 	contextp->timeInc(1);
 	tfp->dump(contextp->time());  // dump 波形数据
 
-}
+ }
+
 void sim_exit(){
 	tfp->close();
 	
@@ -71,29 +79,13 @@ printf("IS it runing 2?\n");
 return ;
 }
 
-
-
 int main(int argc,char **argv){
-	/*
-	VerilatedContext* Contextp = new VerilatedContext;
-	Contextp->commandArgs(argc,argv);//初始化verilator
-	
-	
-	Verilated::traceEverOn(true);//启动追踪
-	
-	Vysyx_24090015_top * top=new Vysyx_24090015_top;//创建top实体
-														 
-	VerilatedVcdC *tfp=new VerilatedVcdC;//创建VCD追踪文件对象
-  	top->trace(tfp,99);
-	tfp->open("wave.vcd");
-	*/
 	
   sim_init(argc,argv);
 
 	int simTime=0;
 
 
-	/*
 //get bin
 	 argv++;
    img_file=*argv;
@@ -101,27 +93,9 @@ int main(int argc,char **argv){
 	//parse_args(argc,argv);
 	long img_size=load_img();
 	
-	*/
+	
 	int a=20;
 
-	/*
-	while (!top->flag){
-	//while (a--){
-	
-		clk = clk ^ 1;
-		top->clk=clk;
-	top ->eval();
-		printf("top->pc : 0x%08x\n",top->pc);
-		//if(clk) top->inst=inst[top->pc/4];
-		if(clk) top->inst=vaddr[top->pc/4];
-	Contextp->timeInc(1);
-	top ->eval();
-	 tfp->dump(Contextp->time());  // dump 波形数据
-	 
-	 
-	 simTime++;
-	}
-	*/
 
 	
 	
@@ -138,7 +112,6 @@ step_and_dump_wave();
 	}else{
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
 	}
-
 
 
 sim_exit();
