@@ -18,7 +18,7 @@ extern "C" int ebreak(int a){
 
 int reg_value[32]={0};
 
-extern "C" void get_reg_value(int a[32]){
+extern "C" void get_reg_value(int *a){
 	for(int i=0;i<32;i++){
 		reg_value[i]=a[i];
 		}	
