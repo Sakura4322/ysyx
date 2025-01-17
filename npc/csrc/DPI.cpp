@@ -18,14 +18,23 @@ extern "C" int ebreak(int a){
 
 int reg_value[32]={0};
 
-extern "C" void get_reg_value(int a[32]){
+extern "C" long long get_gpr_ptr();
+
+void read_regs() {
+	    int *regs = (int *)get_gpr_ptr();  // 获取寄存器数组的指针
+						     for(int i = 0; i < 32; i++) {
+								          reg_value[i] = regs[i];  // 读取寄存器值
+																				                  }
+i/*	
+exter "C" void get_reg_value(int a[32]){
 	for(int i=0;i<32;i++){
 		reg_value[i]=a[i];
 		}	
 		return ;
 	}
-	
+	*/
 void isa_reg_display(){
+	read_regs();
 printf("reg\tvalue\n");
 	for(int i=0;i<31;i++){
 		printf("%s\t0x%08x\n",regs[i],reg_value[i]);
