@@ -342,7 +342,9 @@ static int parse_args(int argc, char *argv[]) {
 							sym_globle =parse_sym(shdr_globle,elf_file);
 							 	break;
       case 1:
+							
 							img_file=optarg;
+						  printf("what is img_file : %s\n",img_file);
 /*
 							char temp[256]={0};
 							char *suffix;
