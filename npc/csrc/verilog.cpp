@@ -53,6 +53,7 @@ void sim_exit(){
 
 
 
+unsigned int clk=0;
 int main(int argc,char **argv){
 	/*
 	VerilatedContext* Contextp = new VerilatedContext;
@@ -101,7 +102,6 @@ int main(int argc,char **argv){
 	*/
 
 	
-  unsigned int clk=0;
 	int a=20;
 	
 	while (!top->flag){
