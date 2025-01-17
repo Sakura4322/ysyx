@@ -136,7 +136,7 @@ step_and_dump_wave();
 tfp->close();
 		delete tfp;
 			delete top;
-				delete Contextp;
+				delete contextp;
 
 
 sim_exit();
