@@ -8,7 +8,7 @@
 //#include <nvboard.h>
 
 
-uint32_t *vaddr=NULL;
+unsigned int clk=0;
 VerilatedContext *contextp = NULL;
 Vysyx_24090015_top* top=NULL;
 VerilatedVcdC *tfp=NULL;
@@ -32,7 +32,7 @@ VerilatedVcdC *tfp=NULL;
 
 void sim_init(int argc,char **argv){
 contextp = new VerilatedContext;
-contextp->commandArgs(argc,argv)
+contextp->commandArgs(argc,argv);
 top= new Vysyx_24090015_top;
 
 contextp->traceEverOn(true);
@@ -68,7 +68,6 @@ void sim_exit(){
 
 
 
-  unsigned int clk=0;
 int main(int argc,char **argv){
 	/*
 	VerilatedContext* Contextp = new VerilatedContext;
@@ -116,8 +115,6 @@ int main(int argc,char **argv){
 	*/
 
 	
-  unsigned int clk=0;
-	int a=20;
 	
 	while (!top->flag){
 	//while (a--){
