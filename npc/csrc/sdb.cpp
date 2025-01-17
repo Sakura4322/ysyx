@@ -1,4 +1,5 @@
 #include "common.h"
+#include "my_share.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
