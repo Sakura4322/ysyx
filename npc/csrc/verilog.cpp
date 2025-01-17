@@ -60,10 +60,11 @@ void step_and_dump_wave(){
 void sim_exit(){
 	tfp->close();
 	
-printf("IS it runing ?\n");
 	delete tfp;
 	delete contextp;
 	delete top;
+printf("IS it runing ?\n");
+return ;
 }
 
 
