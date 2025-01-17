@@ -5,7 +5,7 @@ TOP_NAME=ysyx_24090015_top
 
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 #CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
-CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp)
+CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp)
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
