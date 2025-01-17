@@ -39,7 +39,7 @@ long load_img() {
   return size;
 }
 
-
+/*
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
@@ -72,29 +72,6 @@ static int parse_args(int argc, char *argv[]) {
 							
 							img_file=optarg;
 						  printf("what is img_file : %s\n",img_file);
-/*
-							char temp[256]={0};
-							char *suffix;
-							strcpy(temp,optarg);
-							suffix=strchr(temp,'.');
-							suffix++;
-							img_file=(strcmp(suffix,"bin")==0)?optarg:img_file;
-							elf_file=(strcmp(suffix,"elf")==0)?optarg:elf_file;
-						  //printf("what is suffix : %s\n",suffix);
-						  //printf("what is temp : %s\n",temp);
-						  //printf("what is optarg : %s\n",optarg);
-						  printf("what is img_file : %s\n",img_file);
-						  printf("what is elf_file : %s\n",elf_file);
-							if(strcmp(suffix,"elf")==0){	
-              ehdr_globle=parse_elf(elf_file);
-						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
-						  //find_shdr_type(ehdr_globle,shdr_globle);
-						  str_globle =parse_strtab(shdr_globle,elf_file);
-							sym_globle =parse_sym(shdr_globle,elf_file);
-							
-						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
-							}
-							*/
 							break;
 
       default:
@@ -109,35 +86,25 @@ static int parse_args(int argc, char *argv[]) {
   }
   return 0;
 }
-
-
+*/
+/*
 void init_monitor(int argc, char *argv[]) {
-  /* Perform some global initialization. */
 
-  /* Parse arguments. */
   parse_args(argc, argv);
-  /* Set random seed. */
   init_rand();
 
-  /* Open the log file. */
   init_log(log_file);
 
-  /* Initialize memory. */
   init_mem();
 
-  /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
 
-  /* Perform ISA dependent initialization. */
   init_isa();
 
-  /* Load the image to memory. This will overwrite the built-in image. */
   long img_size = load_img();
 
-  /* Initialize differential testing. */
   init_difftest(diff_so_file, img_size, difftest_port);
 
-  /* Initialize the simple debugger. */
   init_sdb();
 
 #ifndef CONFIG_ISA_loongarch32r
@@ -151,6 +118,6 @@ void init_monitor(int argc, char *argv[]) {
   ));
 #endif
 
-  /* Display welcome message. */
   welcome();
 }
+*/
