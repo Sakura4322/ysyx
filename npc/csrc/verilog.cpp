@@ -133,7 +133,10 @@ step_and_dump_wave();
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
 	}
 
-
+tfp->close();
+		delete tfp;
+			delete top;
+				delete Contextp;
 
 
 sim_exit();
