@@ -8,12 +8,13 @@
 //#include <nvboard.h>
 
 
+uint32_t *vaddr=NULL;
 VerilatedContext *contextp = NULL;
 Vysyx_24090015_top* top=NULL;
 VerilatedVcdC *tfp=NULL;
 
 
-
+/*	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -27,7 +28,21 @@ VerilatedVcdC *tfp=NULL;
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
+*/
 
+void sim_init(int argc,char **argv){
+contextp = new VerilatedContext;
+contextp->commandArgs(argc,argv)
+top= new Vysyx_24090015_top;
+
+contextp->traceEverOn(true);
+tfp = new VerilatedVcdC;
+top->trace(tfp,99); 
+tfp->open("wave.vcd");
+
+std::srand(time(NULL));
+
+}
 
 void step_and_dump_wave(){
 
@@ -35,8 +50,8 @@ void step_and_dump_wave(){
 	top->clk=clk;
 	
 	printf("top->pc : 0x%08x\n",top->pc);
-	if(clk) top->inst=inst[top->pc/4];
-//	if(clk) top->inst=vaddr[top->pc/4];
+	//if(clk) top->inst=inst[top->pc/4];
+	if(clk) top->inst=vaddr[top->pc/4];
 	Contextp->timeInc(1);
 	top ->eval();
 	tfp->dump(Contextp->time());  // dump 波形数据
@@ -53,7 +68,7 @@ void sim_exit(){
 
 
 
-unsigned int clk=0;
+  unsigned int clk=0;
 int main(int argc,char **argv){
 	/*
 	VerilatedContext* Contextp = new VerilatedContext;
@@ -79,7 +94,6 @@ int main(int argc,char **argv){
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	//parse_args(argc,argv);
 	long img_size=load_img();
-  unsigned int clk=0;
 	int a=20;
 
 	/*
@@ -102,6 +116,7 @@ int main(int argc,char **argv){
 	*/
 
 	
+  unsigned int clk=0;
 	int a=20;
 	
 	while (!top->flag){
