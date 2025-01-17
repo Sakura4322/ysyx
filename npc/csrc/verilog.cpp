@@ -1,8 +1,8 @@
-#include "Vysyx_24090015_top.h"
+//#include "Vysyx_24090015_top.h"
 #include "verilated.h"
 #include "common.h"
-#include "my_share.h"
-#include <verilated_vcd_c.h>  //启动波追踪
+//#include "my_share.h"
+//#include <verilated_vcd_c.h>  //启动波追踪
 //#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
