@@ -313,5 +313,5 @@ import "DPI-C" function void get_reg_value(input int a[32]);
         .rdata1(src1),
         .rdata2(src2)
     );
-get_reg_value(rf);
+		get_reg_value(rf);
 endmodule
