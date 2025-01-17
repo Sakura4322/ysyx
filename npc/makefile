@@ -9,11 +9,12 @@ CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
+
 IMG?=
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
-	verilator  $(CFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
+	verilator  $(CFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) -lreadline
 	./obj_dir/V$(TOP_NAME) $(IMG)
 	 gtkwave ./*.vcd
 
