@@ -96,7 +96,7 @@ int main(int argc,char **argv){
 	
 	int a=20;
 
-
+sdb_mainloop();
 	
 	
 	while (!top->flag){

@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "common.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 
@@ -27,12 +27,14 @@ static int cmd_c(char *args) {
 }
 */
 
+/*
 static int cmd_q(char *args) {
 cpu_exec(0);
   return -1;
 }
 
 static int cmd_help(char *args);
+*/
 
 /*
 static int cmd_si(char *args) {  
@@ -199,11 +201,12 @@ void sdb_set_batch_mode() {
 }
 
 void sdb_mainloop() {
+	/*
   if (is_batch_mode) {
     cmd_c(NULL);
     return;
   }
-
+*/
   for (char *str; (str = rl_gets()) != NULL; ) {
   
   
