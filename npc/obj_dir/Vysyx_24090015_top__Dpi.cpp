@@ -14,3 +14,11 @@
 #include "Vysyx_24090015_top__Dpi.h"
 #include "Vysyx_24090015_top.h"
 
+#ifndef VL_DPIDECL_get_gpr_ptr_
+#define VL_DPIDECL_get_gpr_ptr_
+long long get_gpr_ptr() {
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:46
+    return Vysyx_24090015_top::get_gpr_ptr();
+}
+#endif
+

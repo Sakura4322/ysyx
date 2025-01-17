@@ -25,14 +25,15 @@ void read_regs() {
 						     for(int i = 0; i < 32; i++) {
 								          reg_value[i] = regs[i];  // 读取寄存器值
 																				                  }
-i/*	
+/*	
 exter "C" void get_reg_value(int a[32]){
 	for(int i=0;i<32;i++){
 		reg_value[i]=a[i];
 		}	
 		return ;
 	}
-	*/
+	 */
+
 void isa_reg_display(){
 	read_regs();
 printf("reg\tvalue\n");

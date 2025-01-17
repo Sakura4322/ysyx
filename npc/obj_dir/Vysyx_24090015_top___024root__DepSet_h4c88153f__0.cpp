@@ -8,6 +8,14 @@
 #include "Vysyx_24090015_top__Syms.h"
 #include "Vysyx_24090015_top___024root.h"
 
+void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, QData/*63:0*/ &get_gpr_ptr__Vfuncrtn) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP\n"); );
+    // Init
+    // Body
+    get_gpr_ptr__Vfuncrtn = (QData)((IData)((0xffffffffU 
+                                             == vlSymsp->TOP.ysyx_24090015_top__DOT__reg0__DOT__rf)));
+}
+
 #ifdef VL_DEBUG
 VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__ico(Vysyx_24090015_top___024root* vlSelf);
 #endif  // VL_DEBUG
