@@ -135,7 +135,7 @@ step_and_dump_wave();
 
 
 
-sim_exit();
 printf("IS it runing ?\n");
+sim_exit();
 	return 0;
 }
