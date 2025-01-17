@@ -225,3 +225,7 @@ config WATCHPOINT
 config MTREACE
 	bool "Enable mtrace"
 	default y
+
+config FTRACE
+	bool "Enable ftrace"
+	default n

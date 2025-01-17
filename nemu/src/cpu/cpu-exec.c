@@ -102,6 +102,9 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 	char *s=b->logbuf;
   strcpy(*(p+(cout_pc_num%10)),s);
 }
+
+
+#ifdef CONFIG_FTRACE
 extern Elf32_Ehdr *ehdr_globle;
 extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
@@ -166,7 +169,6 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 					return func_addr;
 
 }
-
 
 	 /*
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
@@ -267,16 +269,25 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 
 return ;
 }
+
+
+#endif 
+
+
+
 static void execute(uint64_t n) {
   Decode s;
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
   	
+#ifdef CONFIG_FTRACE
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
 for(int i=0;i<cnt_func_num;i++){
 printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 }
+#endif
+
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
@@ -290,12 +301,14 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 		char buf_temp[16]={0};
 		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
 		strcat(buf,buf_temp);
-	}
+ 	}
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
-
+#ifdef CONFIG_FTRACE
     ftrace(func_addr,&s);
+#endif
+
 		//printf("ARE YOU OK??\n");
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
@@ -337,7 +350,7 @@ void assert_fail_msg() {
 /* Simulate how the CPU works. */
 void cpu_exec(uint64_t n) {
   g_print_step = (n < MAX_INST_TO_PRINT);
-  switch (nemu_state.state) {
+   switch (nemu_state.state) {
     case NEMU_END: 
     case NEMU_ABORT:
       printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
@@ -350,7 +363,7 @@ void cpu_exec(uint64_t n) {
   execute(n);
   if (n == 0){
   	nemu_state.state = NEMU_QUIT;
-  	}
+   	}
 
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
