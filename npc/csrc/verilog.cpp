@@ -48,6 +48,7 @@ void step_and_dump_wave(){
 	top->clk=clk;
 	
 	printf("top->pc : 0x%08x\n",top->pc);
+	printf("vaddr index: %d\n",top->pc/4);
 	if(clk) top->inst=inst[top->pc/4];
 	//if(clk) top->inst=vaddr[top->pc/4];
 	contextp->timeInc(1);
@@ -133,12 +134,6 @@ step_and_dump_wave();
 	}
 
 
-/*
-	tfp->close(); 
-	delete tfp;
-	delete top;
-	delete Contextp;
-	*/
 
 
 sim_exit();
