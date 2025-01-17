@@ -367,13 +367,12 @@ void cpu_exec(uint64_t n) {
   }
 
   uint64_t timer_start = get_time();
-
-  execute(n);
-  /*
-  if (n == 0){
+  
+if (n == 0){
   	nemu_state.state = NEMU_QUIT;
    	}
-*/
+  execute(n);
+ 
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
