@@ -133,13 +133,9 @@ step_and_dump_wave();
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
 	}
 
-tfp->close();
-		delete tfp;
-			delete top;
-				delete contextp;
 
 
 sim_exit();
-
+printf("IS it runing ?\n");
 	return 0;
 }
