@@ -65,6 +65,7 @@ printf("IS it runing 1 ?\n");
 	delete contextp;
 printf("IS it runing 2?\n");
 	delete top;
+printf("IS it runing 3?\n");
 return ;
 }
 
