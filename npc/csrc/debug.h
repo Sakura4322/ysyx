@@ -1,4 +1,5 @@
-#ifndef DEBUG_H
+/*
+S#ifndef DEBUG_H
 #define DEBUG_H
 
 // ANSI 转义码
