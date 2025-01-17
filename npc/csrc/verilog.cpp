@@ -52,7 +52,7 @@ void step_and_dump_wave(){
 	printf("top->pc : 0x%08x\n",top->pc);
 	//if(clk) top->inst=inst[top->pc/4];
 	if(clk) top->inst=vaddr[top->pc/4];
-	Contextp->timeInc(1);
+	contextp->timeInc(1);
 	top ->eval();
 	tfp->dump(Contextp->time());  // dump 波形数据
 
