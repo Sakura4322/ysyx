@@ -295,7 +295,7 @@ assign hit_good_or_bad=src1;
         .dnpc(dnpc)
     );
 wire [31:0]rf[31:0];
-import "DPI-C" function void get_reg_value(chandle a);
+import "DPI-C" function void get_reg_value(input int logic [31:0]a[31:0]);
     // 寄存器堆实例化
     ysyx_24090015_RegisterFile #(
         .ADDR_WIDTH(5),
@@ -313,7 +313,5 @@ import "DPI-C" function void get_reg_value(chandle a);
         .rdata1(src1),
         .rdata2(src2)
     );
-		chandle rf_handle;
-	 rf_handle= rf;	
-		get_reg_value(rf_handle);
+		get_reg_value(rf);
 endmodule
