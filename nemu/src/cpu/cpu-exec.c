@@ -240,8 +240,8 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 							for(int i=0;i<rsp;i++){
 							printf(" ");	
 							}
-                printf("ret 0x%08x%s\trsp : %d \n", addr[rsp],func_addr[i].func_name, rsp-1);	
-			          //printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
+                printf("ret %s\trsp : %d \n",  func_addr[i].func_name, rsp-1);	
+			          printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
                 log_write("0x%08x: ret [%s @ 0x%08x]\n", s->pc, func_addr[i].func_name, s->dnpc);
                 rsp--;
                 return;
@@ -261,7 +261,7 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 							printf(" ");	
 							}
 			printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
-			//printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
+			printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
 		  //printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
 		  //printf("ARE YOU OK??\n");
