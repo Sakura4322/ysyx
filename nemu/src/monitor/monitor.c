@@ -328,14 +328,22 @@ static int parse_args(int argc, char *argv[]) {
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
-			//case 'e': if(optarg=="-h")
+			case 'e': elf_file=optarg;
+              ehdr_globle=parse_elf(elf_file);
+						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
+						  //find_shdr_type(ehdr_globle,shdr_globle);
+						  str_globle =parse_strtab(shdr_globle,elf_file);
+							sym_globle =parse_sym(shdr_globle,elf_file);
+							 	break;
       case 1:
+							img_file=optarg;
+/*
 							char temp[256]={0};
 							char *suffix;
 							strcpy(temp,optarg);
@@ -357,6 +365,7 @@ static int parse_args(int argc, char *argv[]) {
 							
 						//	printf("size of sym struct : %ld\n\n\n\n",sizeof(Elf32_Sym) );
 							}
+							*/
 							break;
 
       default:
