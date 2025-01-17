@@ -14,7 +14,6 @@ Vysyx_24090015_top* top=NULL;
 VerilatedVcdC *tfp=NULL;
 
 
-/*	
 	unsigned int inst[11] = {
     0xffc10113,  // addi sp, sp, -4
     0x00278713,  // addi a4, a5, 2
@@ -28,7 +27,6 @@ VerilatedVcdC *tfp=NULL;
     0x02010113,   // addi sp, sp, 32
     0x00100073 //ebreak
 };
-*/
 
 void sim_init(int argc,char **argv){
 contextp = new VerilatedContext;
