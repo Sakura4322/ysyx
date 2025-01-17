@@ -1,4 +1,4 @@
-#include "commom.h"
+#include "common.h"
 #include "my_share.h"
 
 
@@ -38,6 +38,8 @@ static long load_img() {
   printf("Read form %s success\n",img_file);
   return size;
 }
+
+
 /*
 static int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
