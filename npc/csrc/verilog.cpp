@@ -62,12 +62,12 @@ void sim_exit(){
 	
 	delete tfp;
 printf("IS it runing 1 ?\n");
-	delete contextp;
-printf("IS it runing 2?\n");
 if(top)
 	delete top;
 else
 printf("IS it runing 3?\n");
+	delete contextp;
+printf("IS it runing 2?\n");
 return ;
 }
 
