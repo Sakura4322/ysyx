@@ -8,3 +8,5 @@ extern void cpu_exec(uint64_t n);
 extern VerilatedContext *contextp;
 extern Vysyx_24090015_top* top;
 extern VerilatedVcdC *tfp;
+extern int reg_value[32];
+extern void isa_reg_display();
