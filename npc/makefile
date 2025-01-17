@@ -14,7 +14,7 @@ IMG?=
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
-	verilator  $(CFLAGS) $(LDFLAGS) --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
+	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	./obj_dir/V$(TOP_NAME) $(IMG)
 	 gtkwave ./*.vcd
 
