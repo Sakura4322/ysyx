@@ -32,12 +32,12 @@ S#ifndef DEBUG_H
 */
 
 // 日志写入宏
-#define log_write(...) IFDEF(CONFIG_TARGET_NATIVE_ELF, \ 
+#define log_write(...)  \ 
     extern FILE* log_fp; \
       fprintf(log_fp, __VA_ARGS__); \
-      fflush(log_fp); \
+      fflush(log_fp); 
 
-)
+
 
 /*
 // 内部日志宏
