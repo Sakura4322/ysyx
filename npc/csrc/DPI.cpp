@@ -19,11 +19,10 @@ extern "C" int ebreak(int a){
 		else return 0;
 }
 //size of sram
-#define MAX_SRAM_SIZE 128;
 
 uint32_t reg_value[32]={0};//Register file
 													 
-uint32_t sram[MAX_SRAM_SZIE]={0};
+uint32_t sram[MAX_SRAM_SIZE]={0};
 
 extern int read_wire(int sec);
 
