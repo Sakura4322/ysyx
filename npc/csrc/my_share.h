@@ -1,5 +1,4 @@
 #define MAX_SRAM_SIZE 128
-extern long load_img();
 extern uint32_t *vaddr;
 extern char *img_file;
 extern void sdb_mainloop();
@@ -21,3 +20,6 @@ extern void isa_reg_display();
 
 
 extern void sdb_set_batch_mode();
+
+extern int parse_args(int argc,char *argv[]);
+extern long load_img();

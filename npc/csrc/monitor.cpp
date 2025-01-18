@@ -50,11 +50,11 @@ static int parse_args(int argc, char *argv[]) {
     //{"diff"     , required_argument, NULL, 'd'},
     //{"port"     , required_argument, NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
-		{"elf"      , required_argument, NULL, 'e'},
+		//{"elf"      , required_argument, NULL, 'e'},
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:e:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "-bhl:", table, NULL)) != -1) {
   //while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
@@ -63,7 +63,7 @@ static int parse_args(int argc, char *argv[]) {
 								static FILE *log_fp=fopen(log_file,"w"); 
 								break;
       //case 'd': diff_so_file = optarg; break;
-			case 'e': elf_file=optarg;
+			//case 'e': elf_file=optarg;
 							/*
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
