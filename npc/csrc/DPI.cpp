@@ -1,5 +1,6 @@
 #include "common.h"
 #include "svdpi.h"
+#include "my_share.h"
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
@@ -18,14 +19,13 @@ extern "C" int ebreak(int a){
 
 int reg_value[32]={0};
 
-extern "C" int read_gpr(int idx);
 
-void read_regs(const svScope scope) {
-	svSetScope(scope);
-						     for(int i = 0; i < 32; i++) {
-								          reg_value[i] = read_gpr(i);  // 读取寄存器值
-						             }
+void read_regs(int wen,int waddr,int wdada) {
+			if(wen){
+			reg_value[waddr]=wdata;	
+			}
 }
+
 /*	
 exter "C" void get_reg_value(int a[32]){
 	for(int i=0;i<32;i++){
