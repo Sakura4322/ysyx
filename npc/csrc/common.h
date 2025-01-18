@@ -4,6 +4,7 @@
 #include <verilated_vcd_c.h>
 #include "debug.h"
 #include <getopt.h>
+#include <string.h>
 
 
 
