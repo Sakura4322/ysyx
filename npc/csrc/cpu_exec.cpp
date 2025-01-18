@@ -4,6 +4,12 @@
 
 NEMUState nemu_state;
 
+static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
+	char (*p)[128]=a;
+	//char *s=b->logbuf;
+	char *s=b->inst;
+  strcpy(*(p+(cout_pc_num%10)),s);
+}
 
 static void execute(uint64_t n) {
   Decode s;
@@ -22,7 +28,7 @@ static void execute(uint64_t n) {
 
 		for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
-		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
+		sprintf(buf_temp,"%s : %08x",regs[i],reg_value[i]);	
 		strcat(buf,buf_temp);
  	}
  	
