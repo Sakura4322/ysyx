@@ -17,15 +17,19 @@ extern "C" int ebreak(int a){
 		else return 0;
 }
 
+
 int reg_value[32]={0};
 
+extern "C" int read_wire(int sec);
 
-void read_regs(int wen,int waddr,int wdata) {
+void read_regs() {
+	int wen=read_wire(1);
+	int waddr=read_wire(2);
+	int wdata=read_wire(3);
 			if(wen){
 			reg_value[waddr]=wdata;	
 			}
 }
-
 /*	
 exter "C" void get_reg_value(int a[32]){
 	for(int i=0;i<32;i++){

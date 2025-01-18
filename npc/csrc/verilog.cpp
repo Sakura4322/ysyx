@@ -58,7 +58,7 @@ void step_and_dump_wave(){
 	//if(clk) top->inst=inst[top->pc/4];
 
 
-	read_regs(top->wen,top->rd,top->rd_wdata);
+	read_regs();
 //input instructions
 	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk) top->inst=vaddr[top->pc/4];

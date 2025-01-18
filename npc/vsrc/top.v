@@ -231,12 +231,12 @@ module ysyx_24090015_top#(WIDTH=32) (
 		output reg flag,
 		output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
-
+/*
 import "DPI-C" context function void read_regs(input string scope);
 always@(*) begin 
 read_regs($sformatf("%m.reg0"));
 end
-
+*/
 reg [31:0]ebreak_ret;
 
 //end emulation
@@ -315,4 +315,14 @@ assign hit_good_or_bad=src1;
         .rdata1(src1),
         .rdata2(src2)
     );
+
+		export "DPI-C" function read_wire;
+
+		function automatic int read_wire(input int sec);
+			if(sec==1)return wen;
+			else if (sec==2)return rd;
+			else if (sec==3)return rd_wdata;
+			else return 0;
+		endfunction
+
 endmodule
