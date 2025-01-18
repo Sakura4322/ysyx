@@ -44,7 +44,7 @@ long load_img() {
 int parse_args(int argc, char *argv[]) {
   //for(int i=0;i<100;i++){
 		
-	//printf("this is this : %s\n",*(argv+i));
+	printf("this is this : %s\n",*(argv));
 	//}
 	const struct option table[] = {
     {"batch"    , no_argument      , NULL, 'b'},
@@ -79,7 +79,6 @@ int parse_args(int argc, char *argv[]) {
 								
 							*/
       case 1:
-							
 							img_file=optarg;
 						  printf("what is img_file : %s\n",img_file);
 							break;
