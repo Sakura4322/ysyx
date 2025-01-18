@@ -12,8 +12,8 @@ LDFLAGS= -lreadline
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 
 
-override ARGS?= --log=$(abspath ./npc-log.txt);
-#override ARGS+= -b;
+override ARGS?= --log=$(abspath ./npc-log.txt)
+#override ARGS+= -b
 
 IMG?=
 sim:
