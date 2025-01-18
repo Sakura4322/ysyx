@@ -27,7 +27,7 @@ extern int read_wire(int sec);
 	svScope scope;
 
 void read_regs() {
-	scope = svGetScope() ;
+	scope = svGetScopeFromName("TOP.ysyx_24090015_top") ;
 	svSetScope(scope);
 	int wen=read_wire(1);
 	int waddr=read_wire(2);
