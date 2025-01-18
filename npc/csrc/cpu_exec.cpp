@@ -6,23 +6,20 @@ NEMUState nemu_state;
 
 
 static void execute(uint64_t n) {
-  //Decode s;
-  /*
+  Decode s;
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
-  */	
 
 
   for (;n > 0; n --) {
-	//char buf[512]={0};
+	char buf[512]={0};
     step_and_dump_wave();
     if (top->flag)nemu_state.state=NEMU_END;
     //trace_and_difftest(&s, cpu.pc);
 
 
 
-/*itrace
 		for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
 		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
@@ -32,7 +29,6 @@ static void execute(uint64_t n) {
  	
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
-		*/
 
 /*ftrace
 #ifdef CONFIG_FTRACE
@@ -41,7 +37,7 @@ static void execute(uint64_t n) {
 */
 
 
-/*itrace
+itrace
 		//printf("ARE YOU OK??\n");
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
@@ -59,7 +55,7 @@ static void execute(uint64_t n) {
 	}	
 		}
 		
-*/
+
 
     if (nemu_state.state != NEMU_RUNNING) break;
     

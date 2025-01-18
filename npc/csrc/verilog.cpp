@@ -74,14 +74,8 @@ void sim_exit(){
 	tfp->close();
 	
 	delete tfp;
-printf("IS it runing 1 ?\n");
-if(top)
 	delete top;
-else
-printf("IS it runing 3?\n");
 	delete contextp;
-printf("IS it runing 2?\n");
-return ;
 }
 
 int main(int argc,char **argv){
