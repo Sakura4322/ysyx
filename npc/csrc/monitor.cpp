@@ -70,8 +70,9 @@ int parse_args(int argc, char *argv[]) {
 						  //find_shdr_type(ehdr_globle,shdr_globle);
 						  str_globle =parse_strtab(shdr_globle,elf_file);
 							sym_globle =parse_sym(shdr_globle,elf_file);
-							*/
 							 	break;
+								
+							*/
       case 1:
 							
 							img_file=optarg;
