@@ -5,6 +5,7 @@
 uint32_t *vaddr=NULL;
 char *img_file=NULL;
 char *log_file=NULL;
+FILE *log_fp=NULL;
 
 long load_img() {
   if (img_file == NULL) {
@@ -67,7 +68,7 @@ int parse_args(int argc, char *argv[]) {
 								printf("HELLO THIS IS THIS\n");
 								log_file = optarg;
 								if (log_file)
-								static FILE *log_fp=fopen(log_file,"w"); 
+							  log_fp=fopen(log_file,"w"); 
 								else printf("FAIL OPEN LOG_FILE");
 								break;
       //case 'd': diff_so_file = optarg; break;
