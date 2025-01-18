@@ -21,7 +21,7 @@ extern "C" int ebreak(int a){
 int reg_value[32]={0};
 
 extern "C" int read_wire(int sec);
-vScope scope = svGetScopeFromName("TOP.top");
+svScope scope = svGetScopeFromName("TOP.top");
 svSetScope(scope);
 void read_regs() {
 	int wen=read_wire(1);
