@@ -9,7 +9,7 @@ CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline
-LDFLAGS+= -l/$(VERILATOR_ROOT)/verilator/include/vltstd
+LDFLAGS += -l/$(VERILATOR_ROOT)/verilator/include/vltstd
 IMG?=
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
