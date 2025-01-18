@@ -96,7 +96,7 @@ int main(int argc,char **argv){
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 */
-	printf("I'M OK NOW"); 
+	printf("I'M OK NOW/n"); 
 	parse_args(argc,argv);
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	long img_size=load_img();
