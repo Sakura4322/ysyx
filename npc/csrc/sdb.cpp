@@ -5,7 +5,7 @@
 
 static int cmd_help(char *args);
 
-is_batch_mode=false;
+bool is_batch_mode=false;
 static char* rl_gets() {
   static char *line_read = NULL;
 
