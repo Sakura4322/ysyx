@@ -318,7 +318,7 @@ assign hit_good_or_bad=src1;
 
 		export "DPI-C" function read_wire;
 
-		function automatic int read_wire(input int sec);
+		function automatic uint32_t read_wire(input int sec);
 			if(sec==1)return wen;
 			else if (sec==2)return rd;
 			else if (sec==3)return rd_wdata;

@@ -20,7 +20,7 @@ extern "C" int ebreak(int a){
 }
 
 
-int reg_value[32]={0};
+uint32_t reg_value[32]={0};
 
 extern int read_wire(int sec);
 
@@ -32,7 +32,7 @@ void read_regs() {
 	int wen=read_wire(1);
 	int waddr=read_wire(2);
 	int wdata=read_wire(3);
-	printf("wen: %d,waddr : %d,wdata : %d\n",wen,waddr,wdata);
+	printf("wen: 0x%08x,waddr : 0x%08x,wdata : 0x%08x\n",wen,waddr,wdata);
 			if(wen){
 			reg_value[waddr]=wdata;	
 			}
