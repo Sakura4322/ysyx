@@ -18,3 +18,6 @@ extern uint32_t sram[MAX_SRAM_SIZE];
 
 extern void read_regs();
 extern void isa_reg_display();
+
+
+extern void sdb_set_batch_mode();
