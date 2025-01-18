@@ -70,7 +70,8 @@ int parse_args(int argc, char *argv[]) {
 							  log_fp=fopen(log_file,"w"); 
 								if (log_fp==NULL){
 								printf("open log_file FAIL!!\n");	
-								}
+								}else 
+								printf("open log_file SUCCESS!!\n");	
 								}
 								else printf("FAIL OPEN LOG_FILE");
 								break;
