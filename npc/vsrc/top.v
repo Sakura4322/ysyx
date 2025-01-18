@@ -232,6 +232,11 @@ module ysyx_24090015_top#(WIDTH=32) (
 		output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
 
+import "DPI-C" context function void read_regs(input string scope);
+always@(*) begin 
+read_regs($sformatf("%m.reg0"));
+end
+
 reg [31:0]ebreak_ret;
 
 //end emulation

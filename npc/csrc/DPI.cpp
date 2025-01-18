@@ -20,7 +20,8 @@ int reg_value[32]={0};
 
 extern "C" int read_gpr(int idx);
 
-void read_regs() {
+void read_regs(const svScope scope) {
+	svSetScope(scope);
 						     for(int i = 0; i < 32; i++) {
 								          reg_value[i] = read_gpr(i);  // 读取寄存器值
 						             }

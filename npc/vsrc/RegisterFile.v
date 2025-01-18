@@ -11,7 +11,7 @@ module ysyx_24090015_RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
  reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
 
  // 添加DPI-C导出函数
-export "DPI-C" function read_gpr;
+export "DPI-C" context function read_gpr;
           
               // 函数返回寄存器组的地址
 function automatic int read_gpr(input int idx);
