@@ -2,6 +2,7 @@
 #include "svdpi.h"
 #include "my_share.h"
 #include "verilated_dpi.h"
+#include "Vysyx_24090015_top__Dpi.h"
 
 const char *regs[] = {
   "$0", "ra", "sp", "gp", "tp", "t0", "t1", "t2",
