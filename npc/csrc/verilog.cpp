@@ -92,7 +92,7 @@ int main(int argc,char **argv){
 	int simTime=0;
 
 //get bin
-	 argv++;
+	 //argv++;
 /*
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
