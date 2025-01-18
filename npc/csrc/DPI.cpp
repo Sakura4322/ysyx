@@ -1,5 +1,5 @@
 #include "common.h"
-#include "svdpi.h"
+//#include "svdpi.h"
 #include "my_share.h"
 
 const char *regs[] = {
