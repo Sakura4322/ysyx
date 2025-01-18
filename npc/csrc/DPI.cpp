@@ -25,7 +25,7 @@ int reg_value[32]={0};
 extern "C" int read_wire(int sec);
 
 	svScope scope = svGetScopeFromName("TOP.Vysyx_24090015_top");
-	svSetScope(scope);
+	svSetScope(scppe);
 
 void read_regs() {
 	int wen=read_wire(1);
