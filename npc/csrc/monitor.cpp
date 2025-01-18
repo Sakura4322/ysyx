@@ -64,6 +64,7 @@ int parse_args(int argc, char *argv[]) {
       case 'b': sdb_set_batch_mode(); break;
       //case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': 
+								printf("HELLO THIS IS THIS\n");
 								log_file = optarg;
 								if (log_file)
 								static FILE *log_fp=fopen(log_file,"w"); 
