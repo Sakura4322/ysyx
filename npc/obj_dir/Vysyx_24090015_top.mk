@@ -38,7 +38,7 @@ VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -l/verilator/include/vltstd \
+	-lreadline -l//home/sakura/verilator//verilator/include/vltstd \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
