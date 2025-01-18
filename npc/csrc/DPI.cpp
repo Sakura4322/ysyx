@@ -18,13 +18,11 @@ extern "C" int ebreak(int a){
 
 int reg_value[32]={0};
 
-extern "C" long long get_gpr_ptr();
+extern "C" int read_gpr(int idx);
 
 void read_regs() {
-	    long long ptr= get_gpr_ptr();
-	    int *regs = (int *)ptr;  // 获取寄存器数组的指针
 						     for(int i = 0; i < 32; i++) {
-								          reg_value[i] = regs[i];  // 读取寄存器值
+								          reg_value[i] = read_gpr(i);  // 读取寄存器值
 						             }
 }
 /*	

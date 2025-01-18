@@ -17,7 +17,7 @@
 #ifndef VL_DPIDECL_get_gpr_ptr_
 #define VL_DPIDECL_get_gpr_ptr_
 long long get_gpr_ptr() {
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:46
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:28
     return Vysyx_24090015_top::get_gpr_ptr();
 }
 #endif
