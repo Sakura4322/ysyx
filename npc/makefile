@@ -8,7 +8,7 @@ VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
-LDFLAGS= -lreadline -lgetopt
+LDFLAGS= -lreadline
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 
 
