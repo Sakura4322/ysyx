@@ -79,8 +79,8 @@ int parse_args(int argc, char *argv[]) {
 								
 							*/
       case 1:
+						  printf("what is img_file : %s\n",optarg);
 							img_file=optarg;
-						  printf("what is img_file : %s\n",img_file);
 							break;
 
       default:
