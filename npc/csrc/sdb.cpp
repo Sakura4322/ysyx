@@ -53,19 +53,20 @@ char *arg = strtok(NULL , " ");
     return 0; // 返回0表示执行成功  
 }  
 
-/*
+
 static int cmd_info(char *args){
 args = strtok(NULL," ");
 //printf("%s",args);
 if (strcmp(args,"r")==0){//打印寄存器信息
 isa_reg_display();
 }
+/*
 if (strcmp(args,"w")==0){
 	display_wp();
 	}
+	*/
 return 0;
 }
-*/
 
 /*
 static int cmd_x(char *args) { // 扫描内存  
@@ -166,7 +167,7 @@ static struct {
 
   /* TODO: Add more commands */
 {"si","让程序单步执行N条指令后暂停执行,当N没有给出时, 缺省为1",cmd_si},
-//{"info","打印寄存器状态,打印监视点信息",cmd_info},
+{"info","打印寄存器状态,打印监视点信息",cmd_info},
 //{"x","求出表达式EXPR的值, 将结果作为起始内存地址, 以十六进制形式输出连续的N个4字节",cmd_x},
 //{"p","求出表达式EXPR的值, EXPR支持的运算请见调试中的表达式求值小节",cmd_p},
 //{"w","当表达式EXPR的值发生变化时, 暂停程序执行",cmd_w},

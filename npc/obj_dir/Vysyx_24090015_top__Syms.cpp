@@ -6,7 +6,7 @@
 #include "Vysyx_24090015_top___024root.h"
 #include "Vysyx_24090015_top___024unit.h"
 
-void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, QData/*63:0*/ &get_gpr_ptr__Vfuncrtn);
+void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ idx, IData/*31:0*/ &read_gpr__Vfuncrtn);
 
 // FUNCTIONS
 Vysyx_24090015_top__Syms::~Vysyx_24090015_top__Syms()
@@ -33,6 +33,6 @@ Vysyx_24090015_top__Syms::Vysyx_24090015_top__Syms(VerilatedContext* contextp, c
     __Vscope_ysyx_24090015_top__reg0.configure(this, name(), "ysyx_24090015_top.reg0", "reg0", -9, VerilatedScope::SCOPE_OTHER);
     // Setup export functions
     for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
-        __Vscope_ysyx_24090015_top__reg0.exportInsert(__Vfinal, "get_gpr_ptr", (void*)(&Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP));
+        __Vscope_ysyx_24090015_top__reg0.exportInsert(__Vfinal, "read_gpr", (void*)(&Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP));
     }
 }

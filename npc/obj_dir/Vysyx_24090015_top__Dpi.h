@@ -16,8 +16,8 @@ extern "C" {
 
 
     // DPI EXPORTS
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:28
-    extern long long get_gpr_ptr();
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:24
+    extern int read_gpr(int idx);
 
     // DPI IMPORTS
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:2:29

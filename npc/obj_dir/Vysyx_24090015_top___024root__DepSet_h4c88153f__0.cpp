@@ -8,12 +8,12 @@
 #include "Vysyx_24090015_top__Syms.h"
 #include "Vysyx_24090015_top___024root.h"
 
-void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, QData/*63:0*/ &get_gpr_ptr__Vfuncrtn) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__get_gpr_ptr_TOP\n"); );
+void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ idx, IData/*31:0*/ &read_gpr__Vfuncrtn) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP\n"); );
     // Init
     // Body
-    get_gpr_ptr__Vfuncrtn = (QData)((IData)((0xffffffffU 
-                                             == vlSymsp->TOP.ysyx_24090015_top__DOT__reg0__DOT__rf)));
+    read_gpr__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__reg0__DOT__rf
+        [(0x1fU & idx)];
 }
 
 #ifdef VL_DEBUG

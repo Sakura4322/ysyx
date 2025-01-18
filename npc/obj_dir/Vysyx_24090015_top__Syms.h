@@ -18,7 +18,7 @@
 #include "Vysyx_24090015_top___024unit.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
-using Vysyx_24090015_top__Vcb_get_gpr_ptr_t = void (*) (Vysyx_24090015_top__Syms* __restrict vlSymsp, QData/*63:0*/ &get_gpr_ptr__Vfuncrtn);
+using Vysyx_24090015_top__Vcb_read_gpr_t = void (*) (Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ idx, IData/*31:0*/ &read_gpr__Vfuncrtn);
 
 // SYMS CLASS (contains all model state)
 class Vysyx_24090015_top__Syms final : public VerilatedSyms {
