@@ -1,5 +1,5 @@
 #include "common.h"
-//#include "svdpi.h"
+#include "svdpi.h"
 #include "my_share.h"
 
 const char *regs[] = {
@@ -21,7 +21,8 @@ extern "C" int ebreak(int a){
 int reg_value[32]={0};
 
 extern "C" int read_wire(int sec);
-
+vScope scope = svGetScopeFromName("TOP.top");
+svSetScope(scope);
 void read_regs() {
 	int wen=read_wire(1);
 	int waddr=read_wire(2);
