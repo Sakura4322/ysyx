@@ -11,12 +11,12 @@ module ysyx_24090015_RegisterFile #(ADDR_WIDTH = 1, DATA_WIDTH = 1) (
  reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
 
  // 添加DPI-C导出函数
-      export "DPI-C" function get_gpr_ptr;
+export "DPI-C" function get_gpr_ptr;
           
               // 函数返回寄存器组的地址
-                  function automatic longint get_gpr_ptr();
-                          return $unsigned(&rf);  // 返回寄存器数组的地址
-                              endfunction
+function automatic longint get_gpr_ptr();
+  return $unsigned(&rf);  // 返回寄存器数组的地址
+endfunction
  
  
   always @(posedge clk) begin
