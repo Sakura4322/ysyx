@@ -52,7 +52,7 @@ void step_and_dump_wave(){
 	top ->eval();
 	
 	printf("top->pc : 0x%08x\n",top->pc);
-	printf("vaddr index: %d\n",top->pc/4);
+//	printf("vaddr index: %d\n",top->pc/4);
 
 	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
 	//if(clk) top->inst=inst[top->pc/4];
@@ -62,9 +62,7 @@ void step_and_dump_wave(){
 	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	 	top->inst=vaddr[top->pc/4];
-	read_regs();
-
-	}
+	}else read_regs();
 
 
 	contextp->timeInc(1);
