@@ -22,12 +22,13 @@ extern "C" int ebreak(int a){
 
 int reg_value[32]={0};
 
-extern "C" int read_wire(int sec);
+extern int read_wire(int sec);
 
-	svScope scope = svGetScopeFromName("TOP.Vysyx_24090015_top");
-	svSetScope(scope);
+	svScope scope;
 
 void read_regs() {
+	scope = svGetScope() ;
+	svSetScope(scope);
 	int wen=read_wire(1);
 	int waddr=read_wire(2);
 	int wdata=read_wire(3);
