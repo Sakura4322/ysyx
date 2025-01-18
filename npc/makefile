@@ -20,6 +20,7 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
 	@echo "$(VERILATOR_ROOT)"
+	@echo "$(ARGS)"
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	 gtkwave ./*.vcd

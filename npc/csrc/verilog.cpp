@@ -98,8 +98,9 @@ int main(int argc,char **argv){
 */
 	 
 	parse_args(argc,argv);
+	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	long img_size=load_img();
-	
+	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	
 	int a=20;
 
