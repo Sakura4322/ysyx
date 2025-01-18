@@ -13,7 +13,7 @@ LDFLAGS= -lreadline
 
 
 override ARGS?=--log=$(abspath ./npc-log);
-override ARGS+= -b;
+#override ARGS+= -b;
 
 IMG?=
 sim:
