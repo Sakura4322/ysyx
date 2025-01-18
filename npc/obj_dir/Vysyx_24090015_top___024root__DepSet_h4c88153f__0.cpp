@@ -8,12 +8,15 @@
 #include "Vysyx_24090015_top__Syms.h"
 #include "Vysyx_24090015_top___024root.h"
 
-void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ idx, IData/*31:0*/ &read_gpr__Vfuncrtn) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_gpr_TOP\n"); );
-    // Init
+extern "C" void read_regs(const char* scope);
+
+VL_INLINE_OPT void Vysyx_24090015_top___024root____Vdpiimwrap_ysyx_24090015_top__DOT__read_regs_TOP(const VerilatedScope* __Vscopep, const char* __Vfilenamep, IData/*31:0*/ __Vlineno, std::string scope) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiimwrap_ysyx_24090015_top__DOT__read_regs_TOP\n"); );
     // Body
-    read_gpr__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__reg0__DOT__rf
-        [(0x1fU & idx)];
+    const char* scope__Vcvt;
+    for (size_t scope__Vidx = 0; scope__Vidx < 1; ++scope__Vidx) scope__Vcvt = scope.c_str();
+    Verilated::dpiContext(__Vscopep, __Vfilenamep, __Vlineno);
+    read_regs(scope__Vcvt);
 }
 
 #ifdef VL_DEBUG
@@ -40,8 +43,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___ico_sequent__TOP__0\n"); );
     // Body
-    Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, vlSelf->__Vfunc_ebreak__1__Vfuncout);
-    vlSelf->ysyx_24090015_top__DOT__ren1 = (1U & vlSelf->__Vfunc_ebreak__1__Vfuncout);
+    Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, vlSelf->__Vfunc_ebreak__2__Vfuncout);
+    vlSelf->ysyx_24090015_top__DOT__ren1 = (1U & vlSelf->__Vfunc_ebreak__2__Vfuncout);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
         = (0x7fU & vlSelf->inst);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
@@ -220,8 +223,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___nba_sequent__TOP__0\n"); );
     // Init
-    IData/*31:0*/ __Vfunc_ebreak__0__Vfuncout;
-    __Vfunc_ebreak__0__Vfuncout = 0;
+    IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
+    __Vfunc_ebreak__1__Vfuncout = 0;
     CData/*4:0*/ __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
     __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 = 0;
     IData/*31:0*/ __Vdlyvval__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
@@ -230,8 +233,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
     __Vdlyvset__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 = 0;
     // Body
     __Vdlyvset__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 = 0U;
-    Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, __Vfunc_ebreak__0__Vfuncout);
-    vlSelf->ysyx_24090015_top__DOT__ebreak_ret = __Vfunc_ebreak__0__Vfuncout;
+    Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, __Vfunc_ebreak__1__Vfuncout);
+    vlSelf->ysyx_24090015_top__DOT__ebreak_ret = __Vfunc_ebreak__1__Vfuncout;
     vlSelf->flag = (1U & vlSelf->ysyx_24090015_top__DOT__ebreak_ret);
     if (vlSelf->ysyx_24090015_top__DOT__wen) {
         __Vdlyvval__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 

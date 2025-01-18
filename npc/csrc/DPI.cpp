@@ -20,7 +20,7 @@ extern "C" int ebreak(int a){
 int reg_value[32]={0};
 
 
-void read_regs(int wen,int waddr,int wdada) {
+void read_regs(int wen,int waddr,int wdata) {
 			if(wen){
 			reg_value[waddr]=wdata;	
 			}
@@ -36,7 +36,6 @@ exter "C" void get_reg_value(int a[32]){
 	 */
 
 void isa_reg_display(){
-	read_regs();
 printf("reg\tvalue\n");
 	for(int i=0;i<31;i++){
 		printf("%s\t0x%08x\n",regs[i],reg_value[i]);

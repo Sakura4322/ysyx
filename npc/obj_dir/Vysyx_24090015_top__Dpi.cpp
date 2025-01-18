@@ -14,11 +14,3 @@
 #include "Vysyx_24090015_top__Dpi.h"
 #include "Vysyx_24090015_top.h"
 
-#ifndef VL_DPIDECL_read_gpr_
-#define VL_DPIDECL_read_gpr_
-int read_gpr(int idx) {
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:17:24
-    return Vysyx_24090015_top::read_gpr(idx);
-}
-#endif
-

@@ -18,7 +18,6 @@
 #include "Vysyx_24090015_top___024unit.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
-using Vysyx_24090015_top__Vcb_read_gpr_t = void (*) (Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ idx, IData/*31:0*/ &read_gpr__Vfuncrtn);
 
 // SYMS CLASS (contains all model state)
 class Vysyx_24090015_top__Syms final : public VerilatedSyms {
@@ -35,7 +34,7 @@ class Vysyx_24090015_top__Syms final : public VerilatedSyms {
     Vysyx_24090015_top___024unit   TOP____024unit;
 
     // SCOPE NAMES
-    VerilatedScope __Vscope_ysyx_24090015_top__reg0;
+    VerilatedScope __Vscope_ysyx_24090015_top;
 
     // CONSTRUCTORS
     Vysyx_24090015_top__Syms(VerilatedContext* contextp, const char* namep, Vysyx_24090015_top* modelp);
