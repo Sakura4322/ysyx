@@ -63,7 +63,9 @@ int parse_args(int argc, char *argv[]) {
       //case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': 
 								log_file = optarg;
+								if (log_file)
 								static FILE *log_fp=fopen(log_file,"w"); 
+								else printf("FAIL OPEN LOG_FILE");
 								break;
       //case 'd': diff_so_file = optarg; break;
 			//case 'e': elf_file=optarg;
