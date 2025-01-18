@@ -59,11 +59,11 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       //case 'p': sscanf(optarg, "%d", &difftest_port); break;
-      case 'l': log_file = optarg;
+      case 'l': char *log_file = optarg;
 								static FILE *log_fp=fopen(log_file,"w"); 
 								break;
-      case 'd': diff_so_file = optarg; break;
-			//case 'e': elf_file=optarg;
+      //case 'd': diff_so_file = optarg; break;
+			case 'e': elf_file=optarg;
 							/*
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
