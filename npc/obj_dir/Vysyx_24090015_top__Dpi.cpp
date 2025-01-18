@@ -14,3 +14,11 @@
 #include "Vysyx_24090015_top__Dpi.h"
 #include "Vysyx_24090015_top.h"
 
+#ifndef VL_DPIDECL_read_wire_
+#define VL_DPIDECL_read_wire_
+int read_wire(int sec) {
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/top.v:321:26
+    return Vysyx_24090015_top::read_wire(sec);
+}
+#endif
+

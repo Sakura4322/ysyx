@@ -9,5 +9,5 @@ extern VerilatedContext *contextp;
 extern Vysyx_24090015_top* top;
 extern VerilatedVcdC *tfp;
 extern int reg_value[32];
-extern void read_regs(int wen,int waddr,int wdata);
+extern void read_regs();
 extern void isa_reg_display();

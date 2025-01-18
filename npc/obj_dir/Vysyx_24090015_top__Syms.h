@@ -18,6 +18,7 @@
 #include "Vysyx_24090015_top___024unit.h"
 
 // DPI TYPES for DPI Export callbacks (Internal use)
+using Vysyx_24090015_top__Vcb_read_wire_t = void (*) (Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ sec, IData/*31:0*/ &read_wire__Vfuncrtn);
 
 // SYMS CLASS (contains all model state)
 class Vysyx_24090015_top__Syms final : public VerilatedSyms {

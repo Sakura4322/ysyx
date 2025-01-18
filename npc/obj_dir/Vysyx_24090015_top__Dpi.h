@@ -15,11 +15,13 @@ extern "C" {
 #endif
 
 
+    // DPI EXPORTS
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/top.v:321:26
+    extern int read_wire(int sec);
+
     // DPI IMPORTS
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:2:29
     extern int ebreak(int a);
-    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:235:38
-    extern void read_regs(const char* scope);
 
 #ifdef __cplusplus
 }

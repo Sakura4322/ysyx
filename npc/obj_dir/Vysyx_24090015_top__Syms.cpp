@@ -6,6 +6,8 @@
 #include "Vysyx_24090015_top___024root.h"
 #include "Vysyx_24090015_top___024unit.h"
 
+void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__read_wire_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ sec, IData/*31:0*/ &read_wire__Vfuncrtn);
+
 // FUNCTIONS
 Vysyx_24090015_top__Syms::~Vysyx_24090015_top__Syms()
 {
@@ -31,5 +33,6 @@ Vysyx_24090015_top__Syms::Vysyx_24090015_top__Syms(VerilatedContext* contextp, c
     __Vscope_ysyx_24090015_top.configure(this, name(), "ysyx_24090015_top", "ysyx_24090015_top", -9, VerilatedScope::SCOPE_OTHER);
     // Setup export functions
     for (int __Vfinal = 0; __Vfinal < 2; ++__Vfinal) {
+        __Vscope_ysyx_24090015_top.exportInsert(__Vfinal, "read_wire", (void*)(&Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__read_wire_TOP));
     }
 }
