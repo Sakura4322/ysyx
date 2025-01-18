@@ -4,6 +4,8 @@
 
 uint32_t *vaddr=NULL;
 char *img_file=NULL;
+char *log_file=NULL;
+
 long load_img() {
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.\n");
@@ -59,7 +61,8 @@ int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       //case 'p': sscanf(optarg, "%d", &difftest_port); break;
-      case 'l': char *log_file = optarg;
+      case 'l': 
+								log_file = optarg;
 								static FILE *log_fp=fopen(log_file,"w"); 
 								break;
       //case 'd': diff_so_file = optarg; break;
