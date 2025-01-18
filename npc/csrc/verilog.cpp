@@ -49,6 +49,7 @@ void step_and_dump_wave(){
 
 	clk = clk ^ 1;
 	top->clk=clk;
+	read_regs();
 	top ->eval();
 	
 	printf("top->pc : 0x%08x\n",top->pc);
@@ -58,7 +59,6 @@ void step_and_dump_wave(){
 	//if(clk) top->inst=inst[top->pc/4];
 
 
-	read_regs();
 //input instructions
 	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk) top->inst=vaddr[top->pc/4];
