@@ -10,7 +10,7 @@ extern Vysyx_24090015_top* top;
 extern VerilatedVcdC *tfp;
 
 
-extern const *regs[];
+extern char const *regs[];
 extern uint32_t reg_value[32];
 extern uint32_t sram[MAX_SRAM_SIZE];
 
