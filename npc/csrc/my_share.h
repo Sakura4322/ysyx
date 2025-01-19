@@ -1,4 +1,5 @@
 #define MAX_SRAM_SIZE 128
+#include "cpu.h"
 extern uint32_t *vaddr;
 extern void sdb_mainloop();
 extern void step_and_dump_wave(Decode *s);
