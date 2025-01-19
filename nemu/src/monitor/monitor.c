@@ -334,8 +334,7 @@ static int parse_args(int argc, char *argv[]) {
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
-	case 'e': elf_file=optarg;
-	rintf("what is elf_file : %s\n",elf_file);
+			case 'e': elf_file=optarg;
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
 						  //find_shdr_type(ehdr_globle,shdr_globle);
