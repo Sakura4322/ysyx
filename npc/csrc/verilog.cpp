@@ -40,7 +40,7 @@ top->trace(tfp,99);
 tfp->open("wave.vcd");
 
 std::srand(time(NULL));
-
+init_disasm("riscv32");
 }
 
 

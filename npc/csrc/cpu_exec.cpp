@@ -20,7 +20,7 @@ static void execute(uint64_t n) {
 
 
 //init disasm before step_and_dump_wave
-init_disasm("riscv32");
+//init_disasm("riscv32");
 
 
 
