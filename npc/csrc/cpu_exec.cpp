@@ -34,7 +34,7 @@ static void execute(uint64_t n) {
 if(n%2==0){
 for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
-		sprintf(buf_temp,"%s : %08x",regs[i],reg_value[i]);	
+		sprintf(buf_temp,"%s : %08x\n",regs[i],reg_value[i]);	
 		strcat(buf,buf_temp);
  	}
  	
