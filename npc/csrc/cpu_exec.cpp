@@ -13,9 +13,9 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 
 static void execute(uint64_t n) {
   Decode s;
-	char iringbuf[20][128];
-	char iringbuf_reg_state[2][512];
-	int cout_pc_num=0;
+	static char iringbuf[20][128];
+	static char iringbuf_reg_state[2][512];
+	static int cout_pc_num=0;
 
 
 
@@ -50,7 +50,7 @@ static void execute(uint64_t n) {
 
 
 //itrace
-		//printf("ARE YOU OK??\n");
+		//ret == 0 is good trap  or bad trap
 		if (nemu_state.halt_ret&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){

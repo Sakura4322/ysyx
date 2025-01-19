@@ -67,8 +67,8 @@ void step_and_dump_wave(Decode *s){
 	}else {
 		read_regs();
 		s->dnpc=top->dnpc;
-	}
-////////////////////////////////////////itrace
+		
+		////////////////////////////////////////itrace
 char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
   
@@ -95,6 +95,10 @@ char *p = s->logbuf;
       
       
 ////////////////////////////////////////itrace
+
+
+	}
+
   
 	contextp->timeInc(1);
 	tfp->dump(contextp->time());  // dump 波形数据
