@@ -152,11 +152,10 @@ for (int i=0;i<32;i++){//storage reg information
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
-/*ftrace
-#ifdef CONFIG_FTRACE
+//ftrace
+
     ftrace(func_addr,&s);
-#endif
-*/
+
 
 
 //itrace
