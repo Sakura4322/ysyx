@@ -1,16 +1,14 @@
 #define MAX_SRAM_SIZE 128
-extern long load_img();
 extern uint32_t *vaddr;
-extern char *img_file;
 extern void sdb_mainloop();
-extern void step_and_dump_wave();
+extern void step_and_dump_wave(Decode *s);
 extern void cpu_exec(uint64_t n);
 extern VerilatedContext *contextp;
 extern Vysyx_24090015_top* top;
 extern VerilatedVcdC *tfp;
 
 
-extern char const *regs[];
+
 extern uint32_t reg_value[32];
 extern uint32_t sram[MAX_SRAM_SIZE];
 
@@ -20,5 +18,9 @@ extern void read_regs();
 extern void isa_reg_display();
 
 
-extern void init_disasm(const char *triple);
-extern void disassemble(char *str,int size,uint64_t pc, uint8_t *code,int nbyte);
+extern void sdb_set_batch_mode();
+
+extern char *img_file;
+extern char *log_file;
+extern int parse_args(int argc,char *argv[]);
+extern long load_img();

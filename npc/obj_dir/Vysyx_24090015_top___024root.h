@@ -33,8 +33,8 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*0:0*/ __VactContinue;
     VL_IN(inst,31,0);
     VL_OUT(pc,31,0);
+    VL_OUT(dnpc,31,0);
     IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
-    IData/*31:0*/ ysyx_24090015_top__DOT__dnpc;
     IData/*31:0*/ ysyx_24090015_top__DOT__imm;
     IData/*31:0*/ ysyx_24090015_top__DOT__src1;
     IData/*31:0*/ ysyx_24090015_top__DOT__rd_wdata;
