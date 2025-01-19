@@ -16,7 +16,7 @@ const char *regs[] = {
 	"s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6" 
 };
 */
-extern char *regs[];
+extern const char *regs[];
 extern uint32_t reg_value[32];
 extern uint32_t sram[MAX_SRAM_SIZE];
 
