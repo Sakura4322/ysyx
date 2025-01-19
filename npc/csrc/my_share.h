@@ -31,3 +31,6 @@ extern char *img_file;
 extern char *log_file;
 extern int parse_args(int argc,char *argv[]);
 extern long load_img();
+
+extern void init_disasm(const char *triple);
+

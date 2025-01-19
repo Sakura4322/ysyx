@@ -18,6 +18,12 @@ static void execute(uint64_t n) {
 	int cout_pc_num=0;
 
 
+
+//init disasm before step_and_dump_wave
+init_disasm("riscv32");
+
+
+
   for (;n > 0; n --) {
 	char buf[512]={0};
     step_and_dump_wave(&s);

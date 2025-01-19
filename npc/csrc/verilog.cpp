@@ -89,7 +89,7 @@ char *p = s->logbuf;
   p += space_len;
   
   
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+ extern  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
       
       
