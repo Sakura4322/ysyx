@@ -110,7 +110,7 @@ void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
 
     for (int i = 0; i < sections_num; i++) {
         // 获取节名称
-        char *section_name = (shdr[i].sh_name == 0) ? "NULL" : "<section_name>"; // 根据名字表获取实际名称
+        char *section_name = const_cast<char*>((shdr[i].sh_name == 0) ? "NULL" : "<section_name>"); // 根据名字表获取实际名称
         
         // 通过sh_type转换类型输出
         char *sh_type_str = "<unknown>";
@@ -158,7 +158,7 @@ static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     size_t sections_num = ehdr->e_shnum;
 
     static Elf32_Shdr *shdr;
-		shdr=malloc(size_shdr*sections_num);
+		shdr=(Elf32_Shdr *)malloc(size_shdr*sections_num);
     // 移动到节头表的起始位置
     fseek(fp, start_addr_shdr, SEEK_SET);
     printf("The position of fp: %08lx\n", ftell(fp));
@@ -205,7 +205,7 @@ char *parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 		
 			//char single_word[128][128]={0};
 			static char *string_word;
-			string_word=malloc(strtab_size);
+			string_word=(char *)malloc(strtab_size);
 			for(int i=0;i<strtab_size;i++){
 				fseek(fp,strtab_addr+i,SEEK_SET);
 			  char temp_char;
@@ -272,7 +272,7 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 				
 				
 				static Elf32_Sym *sym;
-				sym=malloc(sym_size);
+				sym=(Elf32_Sym *)malloc(sym_size);
 
 				FILE *fp=fopen(elf_file,"rb");
         //Assert(fp, "Cannot open '%s'", elf_file);

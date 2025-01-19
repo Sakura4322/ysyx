@@ -33,6 +33,7 @@ extern void sdb_set_batch_mode();
 
 extern char *img_file;
 extern char *log_file;
+extern char *elf_file;
 extern int parse_args(int argc,char *argv[]);
 extern long load_img();
 
