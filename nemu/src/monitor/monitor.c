@@ -329,6 +329,7 @@ static int parse_args(int argc, char *argv[]) {
   };
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
+		printf("o is : %d\n",o);
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
@@ -337,7 +338,6 @@ static int parse_args(int argc, char *argv[]) {
 			case 'e': elf_file=optarg;
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
-						  //find_shdr_type(ehdr_globle,shdr_globle);
 						  str_globle =parse_strtab(shdr_globle,elf_file);
 							sym_globle =parse_sym(shdr_globle,elf_file);
 							 	break;
