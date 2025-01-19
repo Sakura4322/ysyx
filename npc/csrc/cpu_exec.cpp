@@ -24,7 +24,7 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 					printf("There are %d functions\n",cnt_func_num);
 
 					static Addr_Imfo *func_addr;
-					func_addr=malloc(cnt_func_num*sizeof(Addr_Imfo));
+					func_addr=(Addr_Imfo*)malloc(cnt_func_num*sizeof(Addr_Imfo));
 
 
 					cnt_func_num=0;
@@ -66,11 +66,15 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
-static vaddr_t addr[20000];	
+static uint32_t addr[20000];	
 static int rsp=0;
-Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+//Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
+if(rsp>=2000){
+	printf("\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");
+	return ;
+	}
 //printf("ALL IS OK\n");
-if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
+if(((s->inst & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->inst & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
 	if(s->isa.inst.val == 0b00000000000000001000000001100111){
         for(int i = 0; i < cnt_func_num; i++){
 					printf("0x%08x : ",s->pc);
