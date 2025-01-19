@@ -22,6 +22,6 @@ image: $(IMAGE).elf
 
 
 run : image 
-	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin 
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf
 
 

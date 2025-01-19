@@ -1,6 +1,8 @@
 #define MAX_SRAM_SIZE 128
 #include "cpu.h"
 #include "disasm.h"
+#include <elf.h>
+
 extern uint32_t *vaddr;
 extern void sdb_mainloop();
 extern void step_and_dump_wave(Decode *s);
@@ -35,4 +37,20 @@ extern int parse_args(int argc,char *argv[]);
 extern long load_img();
 
 extern void init_disasm(const char *triple);
+
+
+extern Elf32_Ehdr *ehdr_globle;
+extern Elf32_Shdr *shdr_globle;
+extern Elf32_Sym  *sym_globle;
+extern char *str_globle;
+extern int cnt_globle;         //real num of sym(the num of str_char)
+extern int sym_globle_indx;
+
+typedef struct{
+		char *func_name;
+		int start;
+		int end;	
+}Addr_Imfo;
+
+
 

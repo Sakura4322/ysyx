@@ -3,6 +3,10 @@ all: sim
 
 TOP_NAME=ysyx_24090015_top
 
+
+IMG?=
+ELF?=
+
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 #CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
@@ -17,8 +21,8 @@ LDFLAGS += $(shell llvm-config --libs)
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
 override ARGS+= -b
+override ARGS+= --elf=$(ELF)
 
-IMG?=
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
