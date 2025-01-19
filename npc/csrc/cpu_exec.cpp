@@ -51,7 +51,7 @@ static void execute(uint64_t n) {
 
 //itrace
 		//printf("ARE YOU OK??\n");
-		if (!nemu_state.halt_ret&& nemu_state.state!=NEMU_RUNNING){
+		if (nemu_state.halt_ret&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
