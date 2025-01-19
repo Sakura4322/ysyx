@@ -154,7 +154,7 @@ for (int i=0;i<32;i++){//storage reg information
 
 //ftrace
 
-    ftrace(func_addr,&s);
+   // ftrace(func_addr,&s);
 
 
 
