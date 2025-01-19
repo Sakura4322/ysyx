@@ -34,7 +34,7 @@ extern "C" void init_disasm(const char *triple) {
   auto target = llvm::TargetRegistry::lookupTarget(gTriple, errstr);
   if (!target) {
     llvm::errs() << "Can't find target for " << gTriple << ": " << errstr << "\n";
-    printf("\n\n\n\n\n\INIT FAIL!!!\n\n\n\n\n ");
+    printf("\n\n\n\n\nINIT FAIL!!!\n\n\n\n\n ");
     assert(0);
   }
 
