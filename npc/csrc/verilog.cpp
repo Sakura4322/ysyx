@@ -7,7 +7,9 @@
 //#include <memory/paddr.h>
 //#include <nvboard.h>
 
-
+ extern  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+ 
+ 
 unsigned int clk=0;
 VerilatedContext *contextp = NULL;
 Vysyx_24090015_top* top=NULL;
@@ -51,7 +53,7 @@ void step_and_dump_wave(Decode *s){
 	top->clk=clk;
 	top ->eval();
 	
-	printf("top->pc : 0x%08x\n",top->pc);
+//	printf("top->pc : 0x%08x\n",top->pc);
 //	printf("vaddr index: %d\n",top->pc/4);
 
 	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
@@ -59,14 +61,12 @@ void step_and_dump_wave(Decode *s){
 
 
 //input instructions
-	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
+//	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	 	top->inst=vaddr[top->pc/4];
 		s->pc=top->pc;
 		s->inst = vaddr[top->pc/4];
-	}else {
-		read_regs();
-		s->dnpc=top->dnpc;
+		
 		
 		////////////////////////////////////////itrace
 char *p = s->logbuf;
@@ -88,8 +88,7 @@ char *p = s->logbuf;
   memset(p, ' ', space_len);
   p += space_len;
   
-  
- extern  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
       
       
@@ -97,6 +96,10 @@ char *p = s->logbuf;
 ////////////////////////////////////////itrace
 
 
+	}else {
+		read_regs();
+		s->dnpc=top->dnpc;
+		
 	}
 
   
