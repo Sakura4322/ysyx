@@ -78,7 +78,11 @@ static void ehdr_printf(Elf32_Ehdr *ehdr){
 static Elf32_Ehdr* parse_elf(char *elf_file){
 	static Elf32_Ehdr ehdr;                //generate ELF header
   FILE *fp=fopen(elf_file,"rb");
-  Assert(fp, "Can not open '%s'", elf_file);
+  //Assert(fp, "Can not open '%s'", elf_file);
+  if(fp==NULL){
+  	printf("\n\n\n\nCan not open '%s'\n\n\n\n", elf_file);
+  	return 0;
+  	}
 
 	
 	size_t read_size = fread(&ehdr, 1, sizeof(Elf32_Ehdr), fp);
@@ -143,7 +147,11 @@ void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
 
 static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     FILE *fp = fopen(elf_file, "rb");
-    Assert(fp, "Cannot open '%s'", elf_file);
+    //Assert(fp, "Cannot open '%s'", elf_file);
+      if(fp==NULL){
+  	printf("\n\n\n\nCan not open '%s'\n\n\n\n", elf_file);
+  	return 0;
+  	}
 
     size_t size_shdr = ehdr->e_shentsize;
     size_t start_addr_shdr = ehdr->e_shoff;
@@ -185,7 +193,11 @@ char *parse_strtab(Elf32_Shdr *shdr,char *elf_file){
 				//static char **string;
 
 				FILE *fp=fopen(elf_file,"rb");
-        Assert(fp, "Cannot open '%s'", elf_file);
+        //Assert(fp, "Cannot open '%s'", elf_file);
+        if(fp==NULL){
+  	printf("\n\n\n\nCan not open '%s'\n\n\n\n", elf_file);
+  	return 0;
+  	}
 
 				size_t strtab_size=shdr[str_globle_indx].sh_size;
 			  size_t strtab_addr=shdr[str_globle_indx].sh_offset;	
@@ -263,7 +275,12 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 				sym=malloc(sym_size);
 
 				FILE *fp=fopen(elf_file,"rb");
-        Assert(fp, "Cannot open '%s'", elf_file);
+        //Assert(fp, "Cannot open '%s'", elf_file);
+        if(fp==NULL){
+  	printf("\n\n\n\nCan not open '%s'\n\n\n\n", elf_file);
+  	return 0;
+  	}
+  	
 				fseek(fp,sym_addr,SEEK_SET);
 				int ret=fread(sym,sizeof(Elf32_Sym),sym_num,fp);
 				if (ret!=sym_size/sizeof(Elf32_Sym)){
