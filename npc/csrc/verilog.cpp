@@ -64,7 +64,7 @@ void step_and_dump_wave(Decode *s){
 //	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	 	top->inst=vaddr[top->pc/4];
-		s->pc=top->pc;
+		s->pc=top->pc+0x80000000;
 		s->inst = vaddr[top->pc/4];
 		
 		
@@ -98,7 +98,7 @@ char *p = s->logbuf;
 
 	}else {
 		read_regs();
-		s->dnpc=top->dnpc;
+		s->dnpc=top->dnpc+0x80000000;
 		
 	}
 
