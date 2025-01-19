@@ -5,6 +5,7 @@
 uint32_t *vaddr=NULL;
 char *img_file=NULL;
 char *log_file=NULL;
+char *elf_file=NULL;
 FILE *log_fp=NULL;
 
 long load_img() {
