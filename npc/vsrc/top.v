@@ -227,7 +227,7 @@ endmodule
 module ysyx_24090015_top#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst,
-    output reg [WIDTH-1:0] pc,
+    output reg [WIDTH-1:0] pc,dnpc,
 		output reg flag,
 		output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
@@ -246,7 +246,7 @@ flag = ebreak_ret[0];
 end 
 		
 
-    reg [WIDTH-1:0] snpc, dnpc;
+    reg [WIDTH-1:0] snpc;
 
     // IFU实例化
     ysyx_24090015_IFU#(

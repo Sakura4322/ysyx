@@ -18,3 +18,7 @@ extern uint32_t sram[MAX_SRAM_SIZE];
 
 extern void read_regs();
 extern void isa_reg_display();
+
+
+extern void init_disasm(const char *triple);
+extern void disassemble(char *str,int size,uint64_t pc, uint8_t *code,int nbyte);

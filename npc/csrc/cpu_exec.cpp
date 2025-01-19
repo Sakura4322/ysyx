@@ -6,9 +6,9 @@ NEMUState nemu_state;
 
 static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 	char (*p)[128]=a;
-	//char *s=b->logbuf;
-	uint32_t inst_num=b->inst;
-	char *s = to_string(inst_num);
+	char *s=b->logbuf;
+	//uint32_t inst_num=b->inst;
+	//char *s = to_string(inst_num);
   strcpy(*(p+(cout_pc_num%10)),s);
 }
 

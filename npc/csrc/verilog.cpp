@@ -45,7 +45,7 @@ std::srand(time(NULL));
 
 
 
-void step_and_dump_wave(){
+void step_and_dump_wave(Decode *s){
 
 	clk = clk ^ 1;
 	top->clk=clk;
@@ -62,9 +62,39 @@ void step_and_dump_wave(){
 	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	 	top->inst=vaddr[top->pc/4];
-	}else read_regs();
-
-
+		s->pc=top->pc;
+		s->inst = vaddr[top->pc/4];
+	}else {
+		read_regs();
+		s->dnpc=top->dnpc;
+	}
+////////////////////////////////////////itrace
+char *p = s->logbuf;
+  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
+  
+  
+  int ilen = s->snpc - s->pc;
+  int i;
+  uint8_t *inst = (uint8_t *)&s->inst;
+  for (i = ilen - 1; i >= 0; i --) {
+    p += snprintf(p, 4, " %02x", inst[i]);
+  }
+  //int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
+  int ilen_max =4;
+  int space_len = ilen_max - ilen;
+  if (space_len < 0) space_len = 0;
+  space_len = space_len * 3 + 1;
+  memset(p, ' ', space_len);
+  p += space_len;
+  
+  
+  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+      
+      
+      
+////////////////////////////////////////itrace
+  
 	contextp->timeInc(1);
 	tfp->dump(contextp->time());  // dump 波形数据
 

@@ -11,4 +11,6 @@ extern NEMUState nemu_state;
 typedef struct {
 	uint32_t pc;
 	uint32_t inst;
+	uint32_t dnpc;
+	char logbuf[128];
 }Decode;
