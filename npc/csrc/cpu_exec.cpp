@@ -51,7 +51,11 @@ for (int i=0;i<32;i++){//storage reg information
 
 //itrace
 		//ret == 0 is good trap  or bad trap
-		if (!nemu_state.halt_ret&& nemu_state.state!=NEMU_RUNNING){
+			
+	}
+	
+	
+	if (!nemu_state.halt_ret&& nemu_state.state!=NEMU_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
@@ -65,8 +69,9 @@ for (int i=0;i<32;i++){//storage reg information
  log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
 	}	
 	}	
-		}	
-	}
+		}
+		
+		
 		
 
 
