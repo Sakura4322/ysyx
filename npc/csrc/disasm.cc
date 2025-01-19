@@ -1,4 +1,5 @@
 #include "my_share.h"
+#include "common.h"
 #include "llvm/MC/MCAsmInfo.h"
 #include "llvm/MC/MCContext.h"
 #include "llvm/MC/MCDisassembler/MCDisassembler.h"
