@@ -65,10 +65,10 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
-
+/*
   ref_difftest_memcpy = dlsym(handle, "difftest_memcpy");
   assert(ref_difftest_memcpy);
-
+*/
   ref_difftest_regcpy = dlsym(handle, "difftest_regcpy");
   assert(ref_difftest_regcpy);
 
@@ -87,7 +87,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
       "If it is not necessary, you can turn it off in menuconfig.", ref_so_file);
 
   ref_difftest_init(port);
-  ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
+  //ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
