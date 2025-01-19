@@ -1,6 +1,5 @@
 #include "common.h"
 #include "my_share.h"
-#include "cpu.h"
 
 NEMUState nemu_state;
 
