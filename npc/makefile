@@ -10,7 +10,7 @@ ELF?=
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 #CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
-CSRC +=$(abspath ./csrc/disasm.cc)
+CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline 
