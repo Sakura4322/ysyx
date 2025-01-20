@@ -44,7 +44,6 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	DPI \
 	cpu_exec \
-	difftest_dut \
 	disasm \
 	monitor \
 	sdb \
@@ -67,8 +66,6 @@ VPATH += $(VM_USER_DIR)
 DPI.o: /home/sakura/ysyx-workbench/npc/csrc/DPI.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu_exec.o: /home/sakura/ysyx-workbench/npc/csrc/cpu_exec.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-difftest_dut.o: /home/sakura/ysyx-workbench/npc/csrc/difftest_dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: /home/sakura/ysyx-workbench/npc/csrc/disasm.cc
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
