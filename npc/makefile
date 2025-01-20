@@ -29,6 +29,7 @@ LDFLAGS += $(shell llvm-config --libs)# LLVM 库
 
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
+override ARGS+= --diff=$(NEMU_HOME)/build/libriscv32-nemu-interpreter.so
 override ARGS+= -b
 override ARGS+= --elf=$(ELF)
 
