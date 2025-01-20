@@ -17,7 +17,7 @@ CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline 											#readline
 LDFLAGS += $(shell llvm-config --libs)		#llvm
-LDFLAGS += -L$(LIBS_SO) -l$(LIBS_NAME)
+LDFLAGS += -L$(LIBS_SO) $(LIBS_NAME)
 #LDFLAGS += -lgetopt
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 
