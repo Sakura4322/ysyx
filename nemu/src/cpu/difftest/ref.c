@@ -19,7 +19,7 @@
 #include <memory/paddr.h>
 
 //1:ref copy dut. 0:dut copy ref.
-__EXPORT void difftest_memcpy(paddr_t addr, uint32_t *buf, size_t n, bool direction) {
+__EXPORT void difftest_memcpy(uint32_t addr, uint32_t *buf, size_t n, bool direction) {
 if(direction){
 for(int i=0;i<CONFIG_MSIZE;i++){
 	paddr_write(addr,n,buf[addr/4]);
@@ -62,7 +62,7 @@ __EXPORT void difftest_exec(uint64_t n) {
   assert(0);
 }
 
-__EXPORT void difftest_raise_intr(word_t NO) {
+__EXPORT void difftest_raise_intr(uint8_t NO); {
   assert(0);
 }
 
