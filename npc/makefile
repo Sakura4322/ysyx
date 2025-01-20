@@ -20,7 +20,7 @@ CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
 
 LDFLAGS += -lreadline# readline 库
 LDFLAGS += $(shell llvm-config --libs)# LLVM 库
-LDFLAGS += -L$(NEMU_LIB_DIR) -l$(NEMU_LIB)
+LDFLAGS += -L$(NEMU_LIB_DIR) $(NEMU_LIB)
 LDFLAGS += -v
 
 
