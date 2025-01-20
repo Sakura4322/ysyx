@@ -15,7 +15,7 @@ CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/
 CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
-LDFLAGS= -lreadline 											#readline
+LDFLAGS= -lreadline#readline
 LDFLAGS += $(shell llvm-config --libs)		#llvm
 LDFLAGS += $(LIBS_SO)/$(LIBS_NAME)
 #LDFLAGS += -lgetopt
