@@ -9,18 +9,18 @@ extern void difftest_raise_intr(word_t NO);
 
 
 
-static void checkregs(CPU_state *ref, vaddr_t pc) {
+static void checkregs(CPU_state *ref, uint32_t pc) {
 for (int i=0;i<32;i++){
-  if (ref[i]!=reg_value) {
+  if (ref[i]!=cpu.gpr[i]) {
     nemu_state.state = NEMU_ABORT;
     nemu_state.halt_pc = pc;
-    isa_reg_display();
+    npc_reg_display();
   	}
   }
 }
 
 
-void difftest_step(vaddr_t pc, vaddr_t npc) {
+void difftest_step(uint32_t pc, uint32_t npc) {
   CPU_state ref_r;
 
   difftest_exec(1);

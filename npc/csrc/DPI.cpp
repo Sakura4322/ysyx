@@ -20,7 +20,8 @@ const char *regs[] = {
 		"s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"                    
 }; 
 
-uint32_t reg_value[32]={0};//Register file
+
+CPU_state cpu;
 													 
 uint32_t sram[MAX_SRAM_SIZE]={0};
 
@@ -36,8 +37,9 @@ void read_regs() {
 	int wdata=read_wire(3);
 	printf("wen: 0x%08x,waddr : 0x%08x,wdata : 0x%08x\n",wen,waddr,wdata);
 			if(wen){
-			reg_value[waddr]=wdata;	
+			cpu.gpr[waddr]=wdata;	
 			}
+			cpu.pc=top->pc;
 }
 /*	
 exter "C" void get_reg_value(int a[32]){
@@ -48,10 +50,10 @@ exter "C" void get_reg_value(int a[32]){
 	}
 	 */
 
-void isa_reg_display(){
+void npc_reg_display(){
 printf("reg\tvalue\n");
 	for(int i=0;i<31;i++){
-		printf("%s\t0x%08x\n",regs[i],reg_value[i]);
+		printf("%s\t0x%08x\n",regs[i],cpu.gpr[i]);
 		}
 		
 	return;

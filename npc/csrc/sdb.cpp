@@ -59,7 +59,7 @@ static int cmd_info(char *args){
 args = strtok(NULL," ");
 //printf("%s",args);
 if (strcmp(args,"r")==0){//打印寄存器信息
-isa_reg_display();
+npc_reg_display();
 }
 /*
 if (strcmp(args,"w")==0){
