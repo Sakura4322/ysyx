@@ -40,6 +40,7 @@ sim:
 	verilator $(CFLAGS) \
 		--trace \
 		--top-module $(TOP_NAME) \
+		--no-Werror \
 		$(VSRC) $(CSRC) \
 		-LDFLAGS "$(LDFLAGS)"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
