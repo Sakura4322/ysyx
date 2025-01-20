@@ -19,6 +19,7 @@ LIBS_SO = $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 LIBS_NAME=riscv32-nemu-interpreter-so
 
 
+
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
 image: $(IMAGE).elf
