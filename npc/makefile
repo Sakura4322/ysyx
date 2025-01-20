@@ -15,10 +15,13 @@ CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
-LDFLAGS= -lreadline
-LDFLAGS +=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
-LDFLAGS += $(shell llvm-config --libs)
-LDFLAGS += -Wl,-rpath,$(NEMU_LIB_DIR)
+
+
+LDFLAGS = -Wl,-rpath,$(NEMU_LIB_DIR)  # 首先设置 rpath
+LDFLAGS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so# 然后是 NEMU 解释器
+LDFLAGS += -lreadline# readline 库
+LDFLAGS += $(shell llvm-config --libs)# LLVM 库
+
 
 
 #LDFLAGS += -lgetopt
@@ -33,8 +36,12 @@ sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
-	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
-	@echo "\033[32m链接成功！\033[0m"  # 添加这一行，绿色输出"链接成功！"
+	verilator $(CFLAGS) \
+		-LDFLAGS "-Wl,-rpath,$(NEMU_LIB_DIR) $(NEMU_SO) -lreadline $(shell llvm-config --libs)" \
+		--trace \
+		--top-module $(TOP_NAME) \
+		$(VSRC) $(CSRC)
+	@echo "\033[32m链接成功！\033[0m"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
 
