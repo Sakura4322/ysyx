@@ -11,7 +11,7 @@ extern void difftest_raise_intr(uint8_t NO);
 
 static void checkregs(CPU_state *ref, uint32_t pc) {
 for (int i=0;i<32;i++){
-  if (ref.gpr[i]!=cpu.gpr[i]) {
+  if (ref->gpr[i]!=cpu.gpr[i]) {
     npc_state.state = NPC_ABORT;
     npc_state.halt_pc = pc;
     npc_reg_display();
