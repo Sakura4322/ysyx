@@ -22,7 +22,7 @@ for (int i=0;i<32;i++){
 
 void difftest_step(uint32_t pc, uint32_t npc) {
   CPU_state ref_r;
-
+difftest_raise_intr(1);
   difftest_exec(1);
   difftest_regcpy(ref_r.gpr, 0);
 
