@@ -13,7 +13,7 @@ CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/
 CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 
 NEMU_LIB_DIR=$(NEMU_HOME)/build/
-NEMU_LIB=riscv32-nemu-interpreter
+NEMU_LIB=riscv32-nemu-interpreter.so
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
 
