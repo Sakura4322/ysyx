@@ -15,7 +15,7 @@ LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
 
-LIBS_SO = $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+LIBS_SO = $(NEMU_HOME)/build/
 LIBS_NAME=riscv32-nemu-interpreter-so
 
 
