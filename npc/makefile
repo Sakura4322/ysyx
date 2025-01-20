@@ -41,7 +41,8 @@ sim:
 		--trace \
 		--top-module $(TOP_NAME) \
 		$(VSRC) $(CSRC) \
-		-LDFLAGS "$(LDFLAGS)"
+		-LDFLAGS "$(LDFLAGS)" \
+		--no-Werror
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
 
