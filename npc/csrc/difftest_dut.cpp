@@ -12,8 +12,8 @@ extern void difftest_raise_intr(word_t NO);
 static void checkregs(CPU_state *ref, uint32_t pc) {
 for (int i=0;i<32;i++){
   if (ref[i]!=cpu.gpr[i]) {
-    nemu_state.state = NEMU_ABORT;
-    nemu_state.halt_pc = pc;
+    npc_state.state = NPC_ABORT;
+    npc_state.halt_pc = pc;
     npc_reg_display();
   	}
   }
