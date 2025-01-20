@@ -15,8 +15,6 @@ LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
 
-LIBS_SO = $(NEMU_HOME)/build/
-LIBS_NAME=riscv32-nemu-interpreter-so
 
 
 
@@ -29,7 +27,7 @@ image: $(IMAGE).elf
 
 
 run : image 
-	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf LIBS_SO=$(LIBS_SO) LIBS_NAME=$(LIBS_NAME)
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf
 LDFLAGS += -L$(LIBS_SO)
 
 

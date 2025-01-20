@@ -44,6 +44,7 @@ VM_USER_LDLIBS = \
 VM_USER_CLASSES = \
 	DPI \
 	cpu_exec \
+	disasm \
 	monitor \
 	sdb \
 	verilog \
@@ -65,6 +66,8 @@ VPATH += $(VM_USER_DIR)
 DPI.o: /home/sakura/ysyx-workbench/npc/csrc/DPI.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 cpu_exec.o: /home/sakura/ysyx-workbench/npc/csrc/cpu_exec.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+disasm.o: /home/sakura/ysyx-workbench/npc/csrc/disasm.cc
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 monitor.o: /home/sakura/ysyx-workbench/npc/csrc/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
