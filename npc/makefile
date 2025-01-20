@@ -17,8 +17,7 @@ NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
 
 
-LDFLAGS = -Wl,-rpath,$(NEMU_LIB_DIR)# 首先设置 rpath
-LDFLAGS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so# 然后是 NEMU 解释器
+LDFLAGS += $(NEMU_HOME)/build/libriscv32-nemu-interpreter.so# 然后是 NEMU 解释器
 LDFLAGS += -lreadline# readline 库
 LDFLAGS += $(shell llvm-config --libs)# LLVM 库
 LDFLAGS += -v
@@ -38,11 +37,10 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator $(CFLAGS) \
-		-LDFLAGS "-Wl,-rpath,$(NEMU_LIB_DIR) $(NEMU_SO) -lreadline $(shell llvm-config --libs)" \
+		-LDFLAGS "$(LDFLAGS)" \
 		--trace \
 		--top-module $(TOP_NAME) \
 		$(VSRC) $(CSRC)
-	@echo "\033[32m链接成功！\033[0m"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
 
