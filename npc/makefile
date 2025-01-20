@@ -34,8 +34,9 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
+	@echo "\033[32m链接成功！\033[0m"  # 添加这一行，绿色输出"链接成功！"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
-	 gtkwave ./*.vcd
+	gtkwave ./*.vcd
 
 run : sim
 
