@@ -38,10 +38,10 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator $(CFLAGS) \
-		-LDFLAGS "$(LDFLAGS)" \
 		--trace \
 		--top-module $(TOP_NAME) \
-		$(VSRC) $(CSRC)
+		$(VSRC) $(CSRC) \
+		-LDFLAGS "$(LDFLAGS)"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
 
