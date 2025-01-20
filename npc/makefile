@@ -7,6 +7,7 @@ TOP_NAME=ysyx_24090015_top
 IMG?=
 ELF?=
 LIBS_SO?=
+LIBS_NAME?=
 
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 #CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
@@ -16,7 +17,7 @@ CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline 											#readline
 LDFLAGS += $(shell llvm-config --libs)		#llvm
-LDFLAGS += -L$(LIBS_SO)
+LDFLAGS += -L$(LIBS_SO) -l$(LIBS_NAME)
 #LDFLAGS += -lgetopt
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 

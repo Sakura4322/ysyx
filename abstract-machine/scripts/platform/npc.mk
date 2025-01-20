@@ -12,8 +12,13 @@ CFLAGS    += -fdata-sections -ffunction-sections
 LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
 						 --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0
 LDFLAGS   += --gc-sections -e _start
-LIBS_SO = $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
+
+
+LIBS_SO = $(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+LIBS_NAME=riscv32-nemu-interpreter-so
+
+
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
 image: $(IMAGE).elf
@@ -23,7 +28,8 @@ image: $(IMAGE).elf
 
 
 run : image 
-	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf LIBS_SO=$(LIBS_SO)
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf LIBS_SO=$(LIBS_SO) LIBS_NAME=$(LIBS_NAME)
+LDFLAGS += -L$(LIBS_SO)
 
 
 
