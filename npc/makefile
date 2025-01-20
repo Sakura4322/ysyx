@@ -12,15 +12,15 @@ VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
 CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 
-NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+NEMU_LIB_DIR=$(NEMU_HOME)/build
+NEMU_LIB=riscv32-nemu-interpreter
 
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
 
 
-LDFLAGS = -Wl,-rpath,$(NEMU_LIB_DIR)# 首先设置 rpath
-LDFLAGS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so# 然后是 NEMU 解释器
 LDFLAGS += -lreadline# readline 库
 LDFLAGS += $(shell llvm-config --libs)# LLVM 库
+LDFLAGS += -L$(NEMU_LIB_DIR) -l$(NEMU_LIB)
 LDFLAGS += -v
 
 
