@@ -18,8 +18,8 @@ CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 
 
 LDFLAGS += $(NEMU_HOME)/build/libriscv32-nemu-interpreter.so# 然后是 NEMU 解释器
-#LDFLAGS += -lreadline# readline 库
-#LDFLAGS += $(shell llvm-config --libs)# LLVM 库
+LDFLAGS += -lreadline# readline 库
+LDFLAGS += $(shell llvm-config --libs)# LLVM 库
 #LDFLAGS += -v
 
 
