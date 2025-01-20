@@ -229,3 +229,8 @@ config MTREACE
 config FTRACE
 	bool "Enable ftrace"
 	default n
+
+config ITRACE
+	bool "Enable itrace"
+	default y
+
