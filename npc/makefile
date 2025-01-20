@@ -15,7 +15,7 @@ CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 NEMU_LIB_DIR=$(NEMU_HOME)/build/
 NEMU_LIB=riscv32-nemu-interpreter.so
 
-CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
+CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --whole-file
 
 
 LDFLAGS += -lreadline# readline 库
