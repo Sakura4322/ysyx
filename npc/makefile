@@ -38,7 +38,7 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator $(CFLAGS) \
-		-LDFLAGS "$(LDFLAGS)"\
+		-LDFLAGS "$(LDFLAGS)" \
 		--trace \
 		--top-module $(TOP_NAME) \
 		$(VSRC) $(CSRC)
