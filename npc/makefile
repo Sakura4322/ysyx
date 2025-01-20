@@ -12,10 +12,13 @@ VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
 CSRC +=$(abspath ./csrc/disasm.cc)#$(abspath ./csrc/difftest_dut.cpp)
 
+NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline
 LDFLAGS +=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 LDFLAGS += $(shell llvm-config --libs)
+LDFLAGS += -Wl,-rpath,$(NEMU_LIB_DIR)
 
 
 #LDFLAGS += -lgetopt
