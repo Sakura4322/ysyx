@@ -12,16 +12,16 @@ VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
 CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 
-NEMU_LIB_DIR=$(NEMU_HOME)/build/
-NEMU_LIB=riscv32-nemu-interpreter
+NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
-CFLAGS= --cc --build --exe -j 0 -Wall
+CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --debug
 
 
+LDFLAGS = -Wl,-rpath,$(NEMU_LIB_DIR)# 首先设置 rpath
+LDFLAGS += $(NEMU_HOME)/build/riscv32-nemu-interpreter-so# 然后是 NEMU 解释器
 LDFLAGS += -lreadline# readline 库
 LDFLAGS += $(shell llvm-config --libs)# LLVM 库
-LDFLAGS += -L$(NEMU_LIB_DIR) -l$(NEMU_LIB)
-#LDFLAGS += -v
+LDFLAGS += -v
 
 
 
@@ -38,11 +38,11 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator $(CFLAGS) \
+		-LDFLAGS "-Wl,-rpath,$(NEMU_LIB_DIR) $(NEMU_SO) -lreadline $(shell llvm-config --libs)" \
 		--trace \
 		--top-module $(TOP_NAME) \
-		$(VSRC) $(CSRC) \
-		-LDFLAGS "$(LDFLAGS)" \
-		--no-Werror
+		$(VSRC) $(CSRC)
+	@echo "\033[32m链接成功！\033[0m"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
 
