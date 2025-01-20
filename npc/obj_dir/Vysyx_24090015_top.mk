@@ -38,7 +38,7 @@ VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline -lLLVM-14 /home/sakura/ysyx-workbench/nemu/build/riscv32-nemu-interpreter.so -Wl,-rpath=/home/sakura/ysyx-workbench/nemu/build/ \
+	-lreadline -lLLVM-14 /home/sakura/ysyx-workbench/nemu/build/riscv32-nemu-interpreter.so --whole-archive \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
