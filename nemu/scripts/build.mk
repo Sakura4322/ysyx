@@ -2,7 +2,7 @@
 
 # Add necessary options if the target is a shared library
 ifeq ($(SHARE),1)
-SO = .so
+SO = -so
 CFLAGS  += -fPIC -fvisibility=hidden
 LDFLAGS += -shared -fPIC
 endif
@@ -12,7 +12,7 @@ BUILD_DIR = $(WORK_DIR)/build
 
 INC_PATH := $(WORK_DIR)/include $(INC_PATH)
 OBJ_DIR  = $(BUILD_DIR)/obj-$(NAME)$(SO)
-BINARY   = $(BUILD_DIR)/lib$(NAME)$(SO)
+BINARY   = $(BUILD_DIR)/$(NAME)$(SO)
 
 # Compilation flags
 ifeq ($(CC),clang)

@@ -233,4 +233,3 @@ config FTRACE
 config ITRACE
 	bool "Enable itrace"
 	default y
-

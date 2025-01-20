@@ -10,40 +10,27 @@ ELF?=
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 #CSRC = $(shell find $(abspath ./csrc) -name *.cpp)	
 CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/monitor.cpp) $(abspath ./csrc/sdb.cpp) $(abspath ./csrc/cpu_exec.cpp)
-CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
+CSRC +=$(abspath ./csrc/disasm.cc)
 
-NEMU_LIB_DIR=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
-
-CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal 
-
-
-LDFLAGS += $(NEMU_HOME)/build/libriscv32-nemu-interpreter.so# 然后是 NEMU 解释器
-LDFLAGS += -lreadline# readline 库
-LDFLAGS += $(shell llvm-config --libs)# LLVM 库
-#LDFLAGS += -v
-
-
-
+CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
+LDFLAGS= -lreadline 
+LDFLAGS += $(shell llvm-config --libs)
 #LDFLAGS += -lgetopt
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
-override ARGS+= --diff=$(NEMU_HOME)/build/libriscv32-nemu-interpreter.so
 override ARGS+= -b
 override ARGS+= --elf=$(ELF)
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	@echo "Write this Makefile by your self."
-	@echo "$(LDFLAGS)"
-	verilator $(CFLAGS) \
-		-LDFLAGS "$(LDFLAGS)" \
-		--trace \
-		--top-module $(TOP_NAME) \
-		$(VSRC) $(CSRC)
+	@echo "$(VERILATOR_ROOT)"
+	@echo "$(ARGS)"
+	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
-	gtkwave ./*.vcd
+	 gtkwave ./*.vcd
 
 run : sim
 

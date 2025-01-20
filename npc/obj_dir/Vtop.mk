@@ -2,9 +2,9 @@
 # DESCRIPTION: Verilator output: Makefile for building Verilated archive or executable
 #
 # Execute this makefile from the object directory:
-#    make -f Vysyx_24090015_top.mk
+#    make -f Vtop.mk
 
-default: Vysyx_24090015_top
+default: Vtop
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -30,24 +30,18 @@ VM_SC_TARGET_ARCH = linux
 
 ### Vars...
 # Design prefix (from --prefix)
-VM_PREFIX = Vysyx_24090015_top
+VM_PREFIX = Vtop
 # Module prefix (from --prefix)
-VM_MODPREFIX = Vysyx_24090015_top
+VM_MODPREFIX = Vtop
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
-	-lreadline  -lLLVM-14 \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	DPI \
-	cpu_exec \
-	disasm \
-	monitor \
-	sdb \
-	verilog \
+	main \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -56,28 +50,18 @@ VM_USER_DIR = \
 
 ### Default rules...
 # Include list of all generated classes
-include Vysyx_24090015_top_classes.mk
+include Vtop_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
 
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-DPI.o: /home/sakura/ysyx-workbench/npc/csrc/DPI.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-cpu_exec.o: /home/sakura/ysyx-workbench/npc/csrc/cpu_exec.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-disasm.o: /home/sakura/ysyx-workbench/npc/csrc/disasm.cc
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-monitor.o: /home/sakura/ysyx-workbench/npc/csrc/monitor.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/sakura/ysyx-workbench/npc/csrc/sdb.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-verilog.o: /home/sakura/ysyx-workbench/npc/csrc/verilog.cpp
+main.o: /home/sakura/ysyx-workbench/npc/csrc/main.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
-Vysyx_24090015_top: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+Vtop: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
 	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
 
 

@@ -20,13 +20,13 @@ const char *regs[] = {
 };
 */
 extern const char *regs[];
-extern CPU_state cpu;
+extern uint32_t reg_value[32];
 extern uint32_t sram[MAX_SRAM_SIZE];
 
 
 
 extern void read_regs();
-extern void npc_reg_display();
+extern void isa_reg_display();
 
 
 extern void sdb_set_batch_mode();
@@ -54,7 +54,4 @@ typedef struct{
 }Addr_Imfo;
 
 
-
-
-void difftest_step(uint32_t pc, uint32_t npc);
 

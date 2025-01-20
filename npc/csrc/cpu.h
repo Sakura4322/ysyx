@@ -1,12 +1,12 @@
-enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };
+enum { NEMU_RUNNING, NEMU_STOP, NEMU_END, NEMU_ABORT, NEMU_QUIT };
 
 typedef struct {
 	int state;
 	uint32_t halt_pc;
 	uint32_t halt_ret;
-} NPCState;
+} NEMUState;
 
-extern NPCState npc_state;
+extern NEMUState nemu_state;
 
 typedef struct {
 	uint32_t pc;
@@ -14,8 +14,3 @@ typedef struct {
 	uint32_t dnpc;
 	char logbuf[128];
 }Decode;
-
-typedef struct{
-uint32_t gpr[32];
-uint32_t pc;	
-	}CPU_state;
