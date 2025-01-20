@@ -15,7 +15,7 @@ CSRC +=$(abspath ./csrc/disasm.cc) $(abspath ./csrc/difftest_dut.cpp)
 NEMU_LIB_DIR=$(NEMU_HOME)/build/
 NEMU_LIB=riscv32-nemu-interpreter.so
 
-CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal --whole-file
+CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal 
 
 
 LDFLAGS += -lreadline# readline 库
@@ -38,10 +38,10 @@ sim:
 	@echo "Write this Makefile by your self."
 	@echo "$(LDFLAGS)"
 	verilator $(CFLAGS) \
-		-LDFLAGS "$(LDFLAGS)" \
 		--trace \
 		--top-module $(TOP_NAME) \
 		$(VSRC) $(CSRC)
+		-LDFLAGS "$(LDFLAGS)" \
 	@echo "\033[32m链接成功！\033[0m"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
