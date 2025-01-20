@@ -40,8 +40,8 @@ sim:
 	verilator $(CFLAGS) \
 		--trace \
 		--top-module $(TOP_NAME) \
-		$(VSRC) $(CSRC)
-		-LDFLAGS "$(LDFLAGS)" \
+		$(VSRC) $(CSRC)\
+		-LDFLAGS "$(LDFLAGS)"
 	@echo "\033[32m链接成功！\033[0m"
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	gtkwave ./*.vcd
