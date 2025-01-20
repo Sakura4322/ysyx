@@ -14,10 +14,6 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
-
-
-
-
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
 image: $(IMAGE).elf
@@ -28,7 +24,5 @@ image: $(IMAGE).elf
 
 run : image 
 	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf
-LDFLAGS += -L$(LIBS_SO)
-
 
 
