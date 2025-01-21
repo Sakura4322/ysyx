@@ -58,7 +58,7 @@ char iringbuf[20][128];
 static void exec_once(Decode *s, vaddr_t pc) {
 printf("exec_once : coming exec_once\n");
   s->pc = pc;
-  s->snpc = pc;
+  s->snpc = pc+4;
   isa_exec_once(s);
   cpu.pc = s->dnpc;
   printf("cpu.pc: 0x%08x\n",cpu.pc);
