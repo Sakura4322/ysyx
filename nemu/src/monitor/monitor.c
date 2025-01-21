@@ -391,7 +391,7 @@ printf("OK IM COMMING\n");
 
 void init_monitor(int argc, char *argv[]) {
   /* Perform some global initialization. */
-printf("HERE\n\n\n\n\n");
+
   /* Parse arguments. */
   parse_args(argc, argv);
   /* Set random seed. */

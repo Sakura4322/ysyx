@@ -25,7 +25,7 @@ static char* rl_gets() {
 
 
 static int cmd_c(char *args) {
-  printf("HAHAHA I'M OK!\n");
+  printf("FUCK DAMN!\n");
   cpu_exec(-1);
   return 0;
 }
@@ -133,7 +133,7 @@ if (arg[0]=='*'){//地址输入0x开头W
 	wp->cur = paddr_read(addr, 4);
 	printf("设置监视点成功\n");
 	return 0;	
-	}else if (arg[0]=='$'){//寄存器输入$-reg_name
+	}else if (arg[0]=='$'){//寄存器输入$-/reg_name
 	bool *success;
 	bool success_ptr = true;
 	success = &success_ptr;
