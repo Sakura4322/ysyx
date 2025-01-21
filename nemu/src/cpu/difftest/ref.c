@@ -31,7 +31,7 @@ if(direction){
 		
 	for(int i=0;i<n/4;i++){
 	
-	paddr_write(addr,4,temp[i]);
+	paddr_write(addr,1,temp[i]);
 	}
 	}	
 }
