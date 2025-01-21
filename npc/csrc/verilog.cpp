@@ -105,7 +105,7 @@ char *p = s->logbuf;
 
 	}else {
 		read_regs();
-		s->dnpc=top->dnpc+0x80000000;
+		s->dnpc=top->dnpc;
 		
 	}
 
