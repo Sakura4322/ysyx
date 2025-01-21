@@ -37,11 +37,11 @@ long load_img() {
   fseek(fp, 0, SEEK_SET);
   int ret = fread(vaddr, size, 1, fp);
   if(ret!=1){
-	printf("Read from %s error\n",img_file);	
+	printf("load_img : Read from %s error\n",img_file);	
 	}
 
   fclose(fp);
-  printf("Read form %s success\n",img_file);
+  printf("load_img : Read form %s success\n",img_file);
   return size;
 }
 

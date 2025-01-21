@@ -21,14 +21,12 @@
 //1:ref copy dut. 0:dut copy ref.
 __EXPORT void difftest_memcpy(uint32_t addr, uint32_t *buf, size_t n, bool direction) {
 if(direction){
-for(int i=0;i<CONFIG_MSIZE;i++){
-	paddr_write(addr,n,buf[addr/4]);
+	paddr_write(addr,n,buf);
 	/*
 	if(buf[addr/4]==NULL){
 	assert("memcpy out of bound!");	
 	}
-	*/
-		}	
+	*/	
 	}else {
 for(int i=0;i<CONFIG_MSIZE;i++){
 	buf[addr/4]=paddr_read(addr,n);
