@@ -379,7 +379,7 @@ if (n == 0){
    	}
    printf("cpu_exec : ready go in execute\n");
   execute(n);
- 
+ printf("cpu_exec : go out execute\n");
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
