@@ -70,7 +70,7 @@ void step_and_dump_wave(Decode *s){
 //	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	 	top->inst=vaddr[top->pc/4];
-		s->pc=top->pc+0x80000000;
+		s->pc=top->pc;
 		cpu.pc=s->pc;
 		s->inst = vaddr[top->pc/4];
 		
