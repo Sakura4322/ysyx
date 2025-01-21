@@ -1,7 +1,9 @@
 #include "difftest.h"
+#include "my_share.h"
+
 
 void (*ref_difftest_memcpy)(uint32_t addr, uint32_t *buf, size_t n, bool direction) = NULL;
-void (*ref_difftest_regcpy)(uint32_t *dut_regs, bool direction) = NULL;
+void (*ref_difftest_regcpy)(CPU_state *dut_regs, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
@@ -11,18 +13,18 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
-  ref_difftest_memcpy = dlsym(handle, "difftest_memcpy");
+  ref_difftest_memcpy = reinterpret_cast<void (*)(uint32_t, uint32_t*, size_t, bool)>(dlsym(handle, "difftest_memcpy"));
   assert(ref_difftest_memcpy);
-  ref_difftest_regcpy = dlsym(handle, "difftest_regcpy");
+  ref_difftest_regcpy = reinterpret_cast<void (*)(uint32_t*, bool)>(dlsym(handle, "difftest_regcpy"));
   assert(ref_difftest_regcpy);
 
-  ref_difftest_exec = dlsym(handle, "difftest_exec");
+  ref_difftest_exec = reinterpret_cast<void (*)(uint64_t)>(dlsym(handle, "difftest_exec"));
   assert(ref_difftest_exec);
 
-  ref_difftest_raise_intr = dlsym(handle, "difftest_raise_intr");
+  ref_difftest_raise_intr = reinterpret_cast<void (*)(uint64_t)>(dlsym(handle, "difftest_raise_intr"));
   assert(ref_difftest_raise_intr);
 
-  void (*ref_difftest_init)(int) = dlsym(handle, "difftest_init");
+  void (*ref_difftest_init)(int) = reinterpret_cast<void (*)(int)>(dlsym(handle, "difftest_init"));
   assert(ref_difftest_init);
 /*
   Log("Differential testing: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
@@ -32,7 +34,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 */
   ref_difftest_init(port);
   //ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
-  ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+  ref_difftest_regcpy(&cpu, 1);
 }
 
 static void checkregs(CPU_state *ref, uint32_t pc) {
@@ -68,7 +70,7 @@ void difftest_step(uint32_t pc, uint32_t npc) {
   }
 */
   ref_difftest_exec(1);
-  ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
+  ref_difftest_regcpy(&ref_r, 0);
 
   checkregs(&ref_r, pc);
 }

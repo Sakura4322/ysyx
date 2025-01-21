@@ -44,14 +44,14 @@ for(int i=0;i<CONFIG_MSIZE;i++){
 
 
 //1:ref copy dut. 0:dut copy ref.
-__EXPORT void difftest_regcpy(uint32_t *dut_regs, bool direction) {
+__EXPORT void difftest_regcpy(CPU_state *dut_regs, bool direction) {
 if(direction){
 for(int i=0;i<32;i++){
-	cpu.gpr[i]=dut_regs[i];
+	cpu.gpr[i]=dut_regs->gpr[i];
 		}	
 	}else {
 for(int i=0;i<32;i++){
-	dut_regs[i]=cpu.gpr[i];
+	dut_regs->gpr[i]=cpu.gpr[i];
 		}	
 	
 	}	
