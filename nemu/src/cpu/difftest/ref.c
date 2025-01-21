@@ -21,21 +21,11 @@
 //1:ref copy dut. 0:dut copy ref.
 __EXPORT void difftest_memcpy(uint32_t addr, uint32_t *buf, size_t n, bool direction) {
 if(direction){
-	paddr_write(addr,n,buf);
-	/*
-	if(buf[addr/4]==NULL){
-	assert("memcpy out of bound!");	
+	word_t *temp = (word_t *)buf;
+	for(int i=0;i<n;i++){
+	
+	paddr_write(addr,1,temp[i]);
 	}
-	*/	
-	}else {
-for(int i=0;i<CONFIG_MSIZE;i++){
-	buf[addr/4]=paddr_read(addr,n);
-		}	
-/*
-	if(buf[addr/4]==NULL){
-	assert("memcpy out of bound!");	
-	}
-	*/
 	}	
 }
 
