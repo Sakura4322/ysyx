@@ -144,7 +144,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
     if (top->flag)npc_state.state=NPC_END;
     static int cnt_fuck=0;
     cnt_fuck++;
-    if(cnt_fuck>1)difftest_step(s.pc,s.dnpc);
+    if(cnt_fuck>2)difftest_step(s.pc,s.dnpc);
     //trace_and_difftest(&s, cpu.pc);
 
 
