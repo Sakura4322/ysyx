@@ -54,7 +54,7 @@ typedef struct{
 }Addr_Imfo;
 
 
-extern CPU_state cpu;
+
 
 
 

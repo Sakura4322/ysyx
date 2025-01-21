@@ -1,3 +1,5 @@
+#include "difftest.h"
+
 void (*ref_difftest_memcpy)(uint32_t addr, uint32_t *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(uint32_t *dut_regs, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;

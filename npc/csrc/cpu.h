@@ -1,3 +1,6 @@
+#include "difftest.h"
+
+
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };
 
 typedef struct {
@@ -6,7 +9,7 @@ typedef struct {
 	uint32_t halt_ret;
 } NPCState;
 
-extern NEMUState nemu_state;
+extern NPCState npc_state;
 
 typedef struct {
 	uint32_t pc;
@@ -19,3 +22,5 @@ typedef struct {
 	uint32_t gpr[32];
 	uint32_t pc;
 }CPU_state;
+
+extern CPU_state cpu;
