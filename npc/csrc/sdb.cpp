@@ -14,7 +14,7 @@ static char* rl_gets() {
     line_read = NULL;
   }
 
-  line_read = readline("(nemu) ");
+  line_read = readline("(npc) ");
 
   if (line_read && *line_read) {
     add_history(line_read);
@@ -59,7 +59,7 @@ static int cmd_info(char *args){
 args = strtok(NULL," ");
 //printf("%s",args);
 if (strcmp(args,"r")==0){//打印寄存器信息
-isa_reg_display();
+npc_reg_display();
 }
 /*
 if (strcmp(args,"w")==0){
@@ -164,7 +164,7 @@ static struct {
 } cmd_table [] = {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
+  { "q", "Exit NPC", cmd_q },
 
   /* TODO: Add more commands */
 {"si","让程序单步执行N条指令后暂停执行,当N没有给出时, 缺省为1",cmd_si},

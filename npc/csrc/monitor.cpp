@@ -7,6 +7,8 @@ char *img_file=NULL;
 char *log_file=NULL;
 char *elf_file=NULL;
 FILE *log_fp=NULL;
+char *diff_so_file =NULL;
+static int diff_port=6666;
 
 long load_img() {
   if (img_file == NULL) {

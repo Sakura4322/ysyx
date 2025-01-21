@@ -26,7 +26,7 @@ extern uint32_t sram[MAX_SRAM_SIZE];
 
 
 extern void read_regs();
-extern void isa_reg_display();
+extern void npc_reg_display();
 
 
 extern void sdb_set_batch_mode();
@@ -52,6 +52,10 @@ typedef struct{
 		int start;
 		int end;	
 }Addr_Imfo;
+
+
+extern CPU_state cpu;
+
 
 
 
