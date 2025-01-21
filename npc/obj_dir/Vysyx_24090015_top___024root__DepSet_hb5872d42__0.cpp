@@ -50,7 +50,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
     }
     if ((0x13U == (0x707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
-            (vlSelf->ysyx_24090015_top__DOT__src1 + vlSelf->ysyx_24090015_top__DOT__imm);
+            (vlSelf->ysyx_24090015_top__DOT__src1 - vlSelf->ysyx_24090015_top__DOT__imm);
     } else if ((0x67U == (0x707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
             ((IData)(4U) + vlSelf->pc);

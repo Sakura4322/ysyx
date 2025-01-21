@@ -17,6 +17,7 @@ typedef struct {
 	uint32_t dnpc;
 	char logbuf[128];
 }Decode;
+extern Decode s;
 
 typedef struct {
 	uint32_t gpr[32];

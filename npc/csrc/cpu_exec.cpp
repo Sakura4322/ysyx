@@ -121,9 +121,8 @@ if(((s->inst & 0b00000000000000000000000001111111) == 0b000000000000000000000000
 return ;
 }
 
-
+Decode s;
 static void execute(uint64_t n) {
-  Decode s;
 	static char iringbuf[20][128];
 	static char iringbuf_reg_state[2][512];
 	static int cout_pc_num=0;
