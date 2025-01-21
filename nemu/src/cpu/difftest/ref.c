@@ -31,7 +31,7 @@ if(direction){
 		
 	for(int i=0;i<n/4;i++){
 	
-	paddr_write(addr,1,temp[i]);
+	paddr_write(addr,4,temp[i]);
 	}
 	}	
 }
@@ -53,6 +53,7 @@ for(int i=0;i<32;i++){
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
+	printf("difftest_exec : %ld\n",n);
 	cpu_exec(n);
   assert(0);
 }
