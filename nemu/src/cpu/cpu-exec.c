@@ -60,6 +60,7 @@ printf("exec_once : coming exec_once\n");
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
+  printf("s->snpc : %08x",s->snpc);
   cpu.pc = s->dnpc;
   printf("cpu.pc: 0x%08x\n",cpu.pc);
 #ifdef CONFIG_ITRACE
