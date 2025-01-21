@@ -46,7 +46,7 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     printf("%s\n",s.logbuf);
     printf("ref_refs info\n");
     for(int j=0;j<32;j++){
-    	printf("ref_regs : 0x%08x\n",ref->gpr[j]);
+    	printf("%s : 0x%08x\n",regs[i],ref->gpr[j]);
     	}
     exit(-1);
   }
@@ -77,7 +77,7 @@ void difftest_step(uint32_t pc, uint32_t npc) {
     return;
   }
 */
-  ref_difftest_exec(3);
+  ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, 0);
 
   checkregs(&ref_r, pc);
