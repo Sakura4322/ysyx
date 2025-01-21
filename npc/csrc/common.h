@@ -5,6 +5,7 @@
 #include "debug.h"
 #include <getopt.h>
 #include <string>
+#include <dlfcn.h>
 
 
 
