@@ -61,7 +61,7 @@ printf("exec_once : coming exec_once\n");
   s->snpc = pc;
   isa_exec_once(s);
   cpu.pc = s->dnpc;
-  printf("cpu_exec_once : ready go out\n");
+  printf("cpu.pc: 0x%08x\n",cpu.pc);
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
