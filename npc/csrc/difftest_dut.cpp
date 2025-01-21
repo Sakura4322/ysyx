@@ -46,7 +46,7 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     printf("%s\n",s.logbuf);
     printf("ref_refs info\n");
     for(int j=0;j<32;j++){
-    	printf("ref_regs : 0x%0x\n",ref->gpr[j]);
+    	printf("ref_regs : 0x%08x\n",ref->gpr[j]);
     	}
     exit(-1);
   }
