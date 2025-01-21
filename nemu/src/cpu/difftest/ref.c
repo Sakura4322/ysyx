@@ -29,9 +29,9 @@ if(direction){
 		printf("difftest_memcpy : temp : 0x%02x\n",temp[i]);
 		}
 		
-	for(int i=0;i<n;i++){
+	for(int i=0;i<n/4;i++){
 	
-	paddr_write(addr,1,temp[i]);
+	paddr_write(addr,4,temp[i]);
 	}
 	}	
 }
