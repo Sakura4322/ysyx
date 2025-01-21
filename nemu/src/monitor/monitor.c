@@ -334,7 +334,9 @@ static int parse_args(int argc, char *argv[]) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p':
       printf("OK IM COMMING\n"); 
-      sscanf(optarg, "%d", &difftest_port); break;
+      sscanf(optarg, "%d", &difftest_port);
+      printf("difftest_port : %d\n",difftest_port);
+       break;
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
 			case 'e': elf_file=optarg;
