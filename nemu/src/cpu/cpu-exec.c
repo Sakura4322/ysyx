@@ -95,7 +95,7 @@ printf("exec_once : coming exec_once\n");
 
 step_wp();
 #endif
-
+printf("cpu_exec_once : ready go out\n");
 }
 
 static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
@@ -309,7 +309,7 @@ printf("execute : come in success\n");
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
 
-
+printf("execute : ready go out\n");
 
 #ifdef CONFIG_ITRACE
 		for (int i=0;i<32;i++){//storage reg information
