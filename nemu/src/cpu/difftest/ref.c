@@ -22,7 +22,7 @@
 __EXPORT void difftest_memcpy(uint32_t addr, uint32_t *vaddr, size_t n, bool direction) {
 if(direction){
 	word_t *temp = (word_t *)vaddr;
-/*		debug info
+
 	for(int i=0;i<n/4;i++){
 		printf("difftest_memcpy : vaddr : 0x%08x\n",vaddr[i]);
 		}
@@ -30,7 +30,7 @@ if(direction){
 	for(int i=0;i<n;i++){
 		printf("difftest_memcpy : temp : 0x%02x\n",temp[i]);
 		}
-*/		
+		
 	for(int i=0;i<n/4;i++){
 	
 	paddr_write(addr,4,temp[i]);
