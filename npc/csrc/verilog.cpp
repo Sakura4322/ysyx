@@ -43,6 +43,14 @@ tfp->open("wave.vcd");
 
 std::srand(time(NULL));
 init_disasm("riscv32");
+
+printf("argv : %s\n",*argv); 
+parse_args(argc,argv);
+printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
+long img_size=load_img();
+printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
+	 
+init_difftest(diff_so_file, img_size, difftest_port);
 }
 
 
@@ -129,11 +137,7 @@ int main(int argc,char **argv){
    img_file=*argv;
 	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 */
-	printf("argv : %s\n",*argv); 
-	parse_args(argc,argv);
-	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
-	long img_size=load_img();
-	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
+
 	
 	int a=20;
 

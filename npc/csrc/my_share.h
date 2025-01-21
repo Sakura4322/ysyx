@@ -34,6 +34,10 @@ extern void sdb_set_batch_mode();
 extern char *img_file;
 extern char *log_file;
 extern char *elf_file;
+extern char *diff_so_file;
+extern int difftest_port;
+
+
 extern int parse_args(int argc,char *argv[]);
 extern long load_img();
 
