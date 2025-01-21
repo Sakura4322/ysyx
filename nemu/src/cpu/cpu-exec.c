@@ -60,6 +60,7 @@ printf("exec_once : coming exec_once\n");
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
+  printf("cpu_exec_once : ready go out\n");
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
@@ -95,7 +96,7 @@ printf("exec_once : coming exec_once\n");
 
 step_wp();
 #endif
-printf("cpu_exec_once : ready go out\n");
+
 }
 
 static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
