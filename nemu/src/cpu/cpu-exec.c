@@ -60,8 +60,8 @@ printf("exec_once : coming exec_once\n");
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  printf("cpu_exec_once : ready go out\n");
   cpu.pc = s->dnpc;
+  printf("cpu_exec_once : ready go out\n");
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
@@ -79,6 +79,9 @@ printf("exec_once : coming exec_once\n");
   space_len = space_len * 3 + 1;
   memset(p, ' ', space_len);
   p += space_len;
+
+
+
 
 #ifndef CONFIG_ISA_loongarch32r
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
@@ -99,12 +102,13 @@ step_wp();
 
 }
 
+#ifdef CONFIG_ITRACE
 static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 	char (*p)[128]=a;
 	char *s=b->logbuf;
   strcpy(*(p+(cout_pc_num%10)),s);
 }
-
+#endif
 
 #ifdef CONFIG_FTRACE
 extern Elf32_Ehdr *ehdr_globle;
@@ -288,13 +292,13 @@ return ;
 static void execute(uint64_t n) {
   Decode s;
   
- #ifdef CONFIG_ITRACE
+#ifdef CONFIG_ITRACE
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
+#endif	
 	
-	
-#endif
+
   	
 #ifdef CONFIG_FTRACE
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
@@ -312,7 +316,7 @@ printf("execute : come in success\n");
 
 printf("execute : ready go out\n");
 
-#ifdef CONFIG_ITRACE
+#if CONFIG_ITRACE
 		for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
 		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
@@ -337,8 +341,8 @@ printf("execute : ready go out\n");
 	}	
 	}	
 		}
-		
-#endif
+#endif		
+
 
 
 #ifdef CONFIG_FTRACE
