@@ -25,7 +25,7 @@ char buf[70000];
 
 
 int main(int argc, char *argv[]) {
-
+printf("can I come here?\n\n\n\n");
 
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM
