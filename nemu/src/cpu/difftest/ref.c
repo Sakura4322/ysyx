@@ -58,6 +58,7 @@ for(int i=0;i<32;i++){
 
 __EXPORT void difftest_exec(uint64_t n) {
 	printf("difftest_exec : %ld\n",n);
+	isa_reg_display();
 	cpu_exec(n);
 }
 

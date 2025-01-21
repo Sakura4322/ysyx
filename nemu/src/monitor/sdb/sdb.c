@@ -44,7 +44,6 @@ static char* rl_gets() {
 }
 
 static int cmd_c(char *args) {
-	printf("HAHAHA I'M OK!\n");
   cpu_exec(-1);
   return 0;
 }
