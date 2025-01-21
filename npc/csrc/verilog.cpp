@@ -48,7 +48,6 @@ printf("argv : %s\n",*argv);
 parse_args(argc,argv);
 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 long img_size=load_img();
-printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
 	 
 init_difftest(diff_so_file, img_size, difftest_port);
 }
