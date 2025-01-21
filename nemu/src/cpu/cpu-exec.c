@@ -56,6 +56,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 char iringbuf[20][128];
 static void exec_once(Decode *s, vaddr_t pc) {
+printf("exec_once : coming exec_once\n");
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
@@ -285,9 +286,14 @@ return ;
 
 static void execute(uint64_t n) {
   Decode s;
+  
+ #ifdef CONFIG_ITRACE
 	char iringbuf[20][128];
 	char iringbuf_reg_state[2][512];
 	int cout_pc_num=0;
+	
+	
+#endif
   	
 #ifdef CONFIG_FTRACE
 Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
@@ -296,6 +302,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 }
 #endif
 
+printf("execute : come in success\n");
   for (;n > 0; n --) {
 	char buf[512]={0};
     exec_once(&s, cpu.pc);
@@ -304,7 +311,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 
 
-
+#ifdef CONFIG_ITRACE
 		for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
 		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
@@ -312,10 +319,6 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
  	}
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
-
-#ifdef CONFIG_FTRACE
-    ftrace(func_addr,&s);
-#endif
 
 		//printf("ARE YOU OK??\n");
 		if (is_exit_status_bad()&& nemu_state.state!=NEMU_RUNNING){
@@ -334,8 +337,12 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 	}	
 		}
 		
+#endif
 
 
+#ifdef CONFIG_FTRACE
+    ftrace(func_addr,&s);
+#endif
     if (nemu_state.state != NEMU_RUNNING) break;
     IFDEF(CONFIG_DEVICE, device_update());
   }
@@ -370,6 +377,7 @@ void cpu_exec(uint64_t n) {
 if (n == 0){
   	nemu_state.state = NEMU_QUIT;
    	}
+   printf("cpu_exec : ready go in execute\n");
   execute(n);
  
   uint64_t timer_end = get_time();
