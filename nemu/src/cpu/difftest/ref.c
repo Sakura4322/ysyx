@@ -33,7 +33,7 @@ if(direction){
 */		
 	for(int i=0;i<n/4;i++){
 	
-	paddr_write(addr,1,temp[i]);
+	paddr_write(addr,4,temp[i]);
 	}
 	}	
 }
@@ -58,7 +58,8 @@ for(int i=0;i<32;i++){
 
 __EXPORT void difftest_exec(uint64_t n) {
 	printf("difftest_exec : %ld\n",n);
-	isa_reg_display();
+	//isa_reg_display();
+	printf("pmem_read : %08x   :   %08x\n",cpu.pc,paddr_read(cpu.pc,4));
 	cpu_exec(n);
 	
 	
