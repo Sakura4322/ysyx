@@ -142,7 +142,9 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
     step_and_dump_wave(&s);
     difftest_step(s.pc,s.dnpc);
     if (top->flag)npc_state.state=NPC_END;
-    //trace_and_difftest(&s, cpu.pc);
+    static int cnt_fuck=0;
+    cnt_fuck++;
+    if(cnt_fuck>1)trace_and_difftest(&s, cpu.pc);
 
 
 if(n%2==0){
