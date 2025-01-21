@@ -73,7 +73,7 @@ void step_and_dump_wave(Decode *s){
 	 	top->inst=vaddr[top->pc/4];
 		s->pc=top->pc+0x80000000;
 		s->inst = vaddr[top->pc/4];
-		
+		cpu.pc=s->pc;
 		
 		////////////////////////////////////////itrace
 char *p = s->logbuf;
