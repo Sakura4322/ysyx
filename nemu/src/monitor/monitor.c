@@ -314,6 +314,7 @@ Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf){
 					return sym;
 }
 static int parse_args(int argc, char *argv[]) {
+printf("OK IM COMMING\n");
   //for(int i=0;i<100;i++){
 		
 	//printf("this is this : %s\n",*(argv+i));
@@ -333,7 +334,7 @@ static int parse_args(int argc, char *argv[]) {
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p':
-      printf("OK IM COMMING\n"); 
+      printf("HERE IS NEME_p : %s\n",optarg); 
       sscanf(optarg, "%d", &difftest_port);
       printf("difftest_port : %d\n",difftest_port);
        break;
@@ -346,6 +347,7 @@ static int parse_args(int argc, char *argv[]) {
 							sym_globle =parse_sym(shdr_globle,elf_file);
 							 	break;
       case 1:
+      printf("HERE IS NEME_1 : %s\n",optarg);
 							
 							img_file=optarg;
 						  printf("what is img_file : %s\n",img_file);
