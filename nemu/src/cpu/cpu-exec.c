@@ -309,7 +309,6 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 printf("execute : come in success\n");
   for (;n > 0; n --) {
-	char buf[512]={0};
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
@@ -317,6 +316,7 @@ printf("execute : come in success\n");
 printf("execute : ready go out\n");
 
 #if CONFIG_ITRACE
+		char buf[512]={0};
 		for (int i=0;i<32;i++){//storage reg information
 		char buf_temp[16]={0};
 		sprintf(buf_temp,"%s : %08x\n",regs[i],(int)cpu.gpr[i]);	
