@@ -26,6 +26,10 @@ if(direction){
 		}
 	word_t *temp = (word_t *)vaddr;
 	for(int i=0;i<n;i++){
+		printf("difftest_memcpy : temp : 0x%02x\n",temp[i]);
+		}
+		
+	for(int i=0;i<n;i++){
 	
 	paddr_write(addr,1,temp[i]);
 	}
