@@ -55,7 +55,6 @@ for(int i=0;i<32;i++){
 __EXPORT void difftest_exec(uint64_t n) {
 	printf("difftest_exec : %ld\n",n);
 	cpu_exec(n);
-  assert(0);
 }
 
 __EXPORT void difftest_raise_intr(uint64_t NO){
