@@ -21,14 +21,16 @@
 //1:ref copy dut. 0:dut copy ref.
 __EXPORT void difftest_memcpy(uint32_t addr, uint32_t *vaddr, size_t n, bool direction) {
 if(direction){
+	word_t *temp = (word_t *)vaddr;
+/*		debug info
 	for(int i=0;i<n/4;i++){
 		printf("difftest_memcpy : vaddr : 0x%08x\n",vaddr[i]);
 		}
-	word_t *temp = (word_t *)vaddr;
+	
 	for(int i=0;i<n;i++){
 		printf("difftest_memcpy : temp : 0x%02x\n",temp[i]);
 		}
-		
+*/		
 	for(int i=0;i<n/4;i++){
 	
 	paddr_write(addr,4,temp[i]);
@@ -43,17 +45,19 @@ __EXPORT void difftest_regcpy(CPU_state *dut_regs, bool direction) {
 if(direction){
 for(int i=0;i<32;i++){
 	cpu.gpr[i]=dut_regs->gpr[i];
+	cpu.pc=dut_regs->pc;
 		}	
 	}else {
 for(int i=0;i<32;i++){
 	dut_regs->gpr[i]=cpu.gpr[i];
+	dut_regs->pc=cpu.pc;
 		}	
 	
 	}	
 }
 
 __EXPORT void difftest_exec(uint64_t n) {
-	printf("difftest_exec : %ld\n",n);
+	//printf("difftest_exec : %ld\n",n);
 	cpu_exec(n);
 }
 
