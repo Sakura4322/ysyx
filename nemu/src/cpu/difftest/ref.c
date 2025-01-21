@@ -19,9 +19,12 @@
 #include <memory/paddr.h>
 
 //1:ref copy dut. 0:dut copy ref.
-__EXPORT void difftest_memcpy(uint32_t addr, uint32_t *buf, size_t n, bool direction) {
+__EXPORT void difftest_memcpy(uint32_t addr, uint32_t *vaddr, size_t n, bool direction) {
 if(direction){
-	word_t *temp = (word_t *)buf;
+	for(int i=0;i<n/4;i++){
+		printf("difftest_memcpy : vaddr : 0x%08x\n",vaddr[i]);
+		}
+	word_t *temp = (word_t *)vaddr;
 	for(int i=0;i<n;i++){
 	
 	paddr_write(addr,1,temp[i]);

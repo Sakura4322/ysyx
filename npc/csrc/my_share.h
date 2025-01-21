@@ -4,6 +4,8 @@
 #include <elf.h>
 
 extern uint32_t *vaddr;
+
+
 extern void sdb_mainloop();
 extern void step_and_dump_wave(Decode *s);
 extern void cpu_exec(uint64_t n);
