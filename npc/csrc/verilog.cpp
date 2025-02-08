@@ -40,7 +40,7 @@ contextp->traceEverOn(true);
 tfp = new VerilatedVcdC;
 top->trace(tfp,99); 
 tfp->open("wave.vcd");
-cpu->pc=0x80000000;
+cpu.pc=0x80000000;
 std::srand(time(NULL));
 init_disasm("riscv32");			//init disasm 
 parse_args(argc,argv);			//parse args
