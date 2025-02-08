@@ -73,6 +73,7 @@ void step_and_dump_wave(Decode *s){
 		s->pc=top->pc;
 		cpu.pc=s->pc;
 		s->inst = vaddr[top->pc-0x80000000/4];
+		print("get inst successful\n");
 		
 		
 ///////////////////////////////////////////////////////////itrace
