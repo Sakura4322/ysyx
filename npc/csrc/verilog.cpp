@@ -42,13 +42,12 @@ top->trace(tfp,99);
 tfp->open("wave.vcd");
 
 std::srand(time(NULL));
-init_disasm("riscv32");
- 
-parse_args(argc,argv);
-long img_size=load_img();
+init_disasm("riscv32");			//init disasm 
+parse_args(argc,argv);			//parse args
+long img_size=load_img();		
 	 
-cpu.pc=0x80000000;
-init_difftest(diff_so_file, img_size, difftest_port);
+init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
+
 }
 
 
@@ -73,7 +72,7 @@ void step_and_dump_wave(Decode *s){
 		s->pc=top->pc;
 		cpu.pc=s->pc;
 		s->inst = vaddr[top->pc-0x80000000/4];
-		print("get inst successful\n");
+		printf"get inst successful\n");
 		
 		
 ///////////////////////////////////////////////////////////itrace
