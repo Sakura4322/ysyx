@@ -68,11 +68,12 @@ void step_and_dump_wave(Decode *s){
 //input instructions
 //	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
+	printf("get inst successful\n");
 	 	top->inst=vaddr[top->pc-0x80000000/4];
 		s->pc=top->pc;
 		cpu.pc=s->pc;
 		s->inst = vaddr[top->pc-0x80000000/4];
-		printf("get inst successful\n");
+		
 		
 		
 ///////////////////////////////////////////////////////////itrace
