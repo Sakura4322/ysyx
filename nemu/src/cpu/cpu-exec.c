@@ -56,7 +56,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 char iringbuf[20][128];
 static void exec_once(Decode *s, vaddr_t pc) {
-printf("exec_once : coming exec_once\n");
+	printf("cpu.pc : %08x\n",pc);
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
