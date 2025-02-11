@@ -227,8 +227,8 @@ ysyx_24090015_immJ#(
 							imm=temp_immJ;
 				end
 					`S : begin 
-							rs1=[19:15];
-							rs2=[24:20];
+							rs1=inst_in[19:15];
+							rs2=inst_in[24:20];
 							ren1=1;
 							ren2=1;
 							pren=0;
