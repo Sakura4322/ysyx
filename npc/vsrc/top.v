@@ -115,7 +115,7 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
 						7'b1101111: inst_type = `J;
 						7'b1100111: inst_type = `IJ;//jalr
 						7'b0000011: inst_type = `IS;//lb,lh,lw,lbu,lhu
-						7'b0100011: inst_type = 'S;
+						7'b0100011: inst_type = `S;
             default: inst_type = 0;
         endcase
     end
@@ -226,7 +226,7 @@ ysyx_24090015_immJ#(
 							pwen=0;
 							imm=temp_immJ;
 				end
-					'S : begin 
+					`S : begin 
 							rs1=[19:15];
 							rs2=[24:20];
 							ren1=1;
@@ -415,6 +415,6 @@ assign hit_good_or_bad=src1;
 		.waddr(pmem_waddr),
 		.wdata(pmem_wdata),
 		.rdata(pmem_rdata)
-		)
+		);
 
 endmodule
