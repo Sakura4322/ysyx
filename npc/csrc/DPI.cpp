@@ -58,7 +58,7 @@ return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 
 extern "C" void pmem_write(int waddr,int wdata,char wmask){
 
-	uint8_t *temp= &wdata;
+	uint8_t *temp= (uint8_t *)&wdata;
 	if(wmask==0b0001){
 
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
