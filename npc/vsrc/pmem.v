@@ -6,7 +6,7 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 
 	input  ren ,wen,
 	input [WIDTH-1:0] raddr,waddr,wdata,
-	output [WIDTH-1:0] rdata
+	output reg[WIDTH-1:0] rdata
 	
 	);
 reg wmask;
