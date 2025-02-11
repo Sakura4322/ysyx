@@ -2,7 +2,7 @@
 #include "my_share.h"
 
 
-uint32_t *vaddr=NULL;
+uint8_t *vaddr=NULL;
 char *img_file=NULL;
 char *log_file=NULL;
 char *elf_file=NULL;
@@ -28,7 +28,8 @@ long load_img() {
   printf("The image is %s, size = %ld\n", img_file, size);
 	
 
-  vaddr =(uint32_t*)malloc(CONFIG_MSIZE);
+  vaddr =(uint8_t*)malloc(CON
+    FIG_MSIZE);
 	if(vaddr==NULL){
 	printf("Memory allocation faile\n");
 	exit(-1);
