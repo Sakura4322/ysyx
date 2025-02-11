@@ -98,6 +98,27 @@ output [WIDTH-1 : 0] immS
 
 	endmodule
 	
+
+	module ysyx_24090015_immB#(WIDTH=32) (
+
+input [WIDTH-1 : 0] inst_in,
+output [WIDTH-1 : 0] immB
+
+);
+
+	wire [12 : 0] init;
+	assign init={inst_in[31],{inst_in[7],{inst_in[30:25],{inst_in[11:8],1'b0}}}};
+	
+	ysyx_24090015_SEXT#(
+		.DATA_WIDTH(13),
+		.WIDTH(32)		
+	) s1(
+			.in(init),
+			.out(immB)
+		);
+
+	endmodule
+
 	
 
 module ysyx_24090015_TYPE#(WIDTH=32) (
@@ -110,12 +131,17 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     always @(*) begin 
         opcode = inst[6:0];
         case (opcode)
-                        7'b0010011: inst_type = `II; // I=2
 						7'b0010111: inst_type = `U;
 						7'b1101111: inst_type = `J;
-						7'b1100111: inst_type = `IJ;//jalr
+                        7'b1100111: inst_type = `IJ;//jalr
+						7'b1100011: inst_type = `B;
 						7'b0000011: inst_type = `IS;//lb,lh,lw,lbu,lhu
-						7'b0100011: inst_type = `S;
+						7'b0100011: inst_type = `S;						
+						7'b0010011: inst_type = `II; // I=2
+						7'b0110011: inst_type = `R ;
+						7'b0001111: inst_type = `IC;
+						
+						
             default: inst_type = 0;
         endcase
     end
@@ -140,7 +166,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
         .inst_type(inst_type)
     );
 
-    wire [WIDTH-1:0] temp_immI , temp_immU,temp_immJ,temp_immS;
+    wire [WIDTH-1:0] temp_immI , temp_immU,temp_immJ,temp_immS,temp_immB;
     ysyx_24090015_immI#(
         .WIDTH(32)
     ) i0(
@@ -167,6 +193,13 @@ ysyx_24090015_immJ#(
 		) i3 (
 			.inst_in(inst_in),
 			.immJ(temp_immS)
+		);
+
+		ysyx_24090015_immB#(
+		.WIDTH(32)	
+		) i4 (
+			.inst_in(inst_in),
+			.immJ(temp_immB)
 		);
 
 		always @(*)begin
@@ -238,6 +271,30 @@ ysyx_24090015_immJ#(
 							imm=temp_immS;							
 							
 				end
+				    `B : begin 
+							rs1=inst_in[19:15];
+							rs2=inst_in[24:20];
+							ren1=1;
+							ren2=1;
+							pren=0;
+							rd=0;
+							wen=0;
+							pwen=0;
+							imm=temp_immB;							
+							
+				end
+				    `R : begin 
+							rs1=inst_in[19:15];
+							rs2=inst_in[24:20];
+							ren1=1;
+							ren2=1;
+							pren=0;
+							rd=inst_in[11:7];
+							wen=1;
+							pwen=0;
+							imm=0;							
+							
+				end
 				
 				endcase
 		end
@@ -256,14 +313,22 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     always @(*) begin
         dnpc = snpc;
         casez (inst_in)
-					32'b???????_?????_?????_000_?????_00100_11: begin //addi I
-           rd_wdata = src1 + imm;
-            end
-					32'b???????_?????_?????_000_?????_11001_11: begin //jalr I
+					32'b???????_?????_?????_000_?????_00100_11: begin //addi II
+                    rd_wdata = src1 + imm;
+                    end
+			        32'b??????? ????? ????? 011 ????? 00100 11: begin //sltiu II
+						rd_wdata = (src1 < imm);
+					end
+					32'b???????_?????_?????_000_?????_11001_11: begin //jalr IJ
 
 					dnpc =src1+imm;
 					rd_wdata = pc+4;
 
+					end
+					32'b???????_?????_?????_010_?????_00000_11: begin //lw IS
+					
+					pmem_raddr = src1;
+                    rd_wdata = pmem_rdata + imm;
 					end
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
 						
@@ -281,10 +346,24 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					dnpc = pc+imm;
 
 				    end
-				    32'b???????_?????_?????_010_?????_01000_11: begin //sw
+				    32'b???????_?????_?????_010_?????_01000_11: begin //sw S
 					pmem_waddr = src2;
 					pmem_wdata = src1+imm;
 				    end
+					32'b???????_?????_?????_001_?????_11000_11: begin //bne B
+					
+					if(src1!=src2)dnpc=dnpc+imm;
+					end
+					32'b???????_?????_?????_000_?????_11000_11: begin //beq B
+					
+					if(src1==src2)dnpc=dnpc+imm;
+					end
+					32'b0100000_?????_?????_000_?????_01100_11: begin //sub R
+						
+						rd_wdata = src1 - src2;
+					end
+
+
 				default begin 
 
 			end
