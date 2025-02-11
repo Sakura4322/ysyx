@@ -306,14 +306,12 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 }
 #endif
 
-printf("execute : come in success\n");
   for (;n > 0; n --) {
 	printf("cpu.pc : %08x\n",cpu.pc);
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
 
-printf("execute : ready go out\n");
 
 #if CONFIG_ITRACE
 		char buf[512]={0};
@@ -382,9 +380,7 @@ void cpu_exec(uint64_t n) {
 if (n == 0){
   	nemu_state.state = NEMU_QUIT;
    	}
-   printf("cpu_exec : ready go in execute\n");
   execute(n);
- printf("cpu_exec : go out execute\n");
   uint64_t timer_end = get_time();
   g_timer += timer_end - timer_start;
 
