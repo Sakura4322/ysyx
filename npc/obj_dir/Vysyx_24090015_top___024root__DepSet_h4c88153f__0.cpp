@@ -231,7 +231,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
         vlSelf->ysyx_24090015_top__DOT__ren1 = 0U;
         vlSelf->ysyx_24090015_top__DOT__rs1 = 0U;
     } else if ((6U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) {
-        vlSelf->ysyx_24090015_top__DOT__wen = 1U;
+        vlSelf->ysyx_24090015_top__DOT__wen = 0U;
         vlSelf->ysyx_24090015_top__DOT__rd = 0U;
         vlSelf->ysyx_24090015_top__DOT__pwen = 1U;
         vlSelf->ysyx_24090015_top__DOT__pren = 0U;
