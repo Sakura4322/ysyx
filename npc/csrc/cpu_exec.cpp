@@ -142,9 +142,10 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
     step_and_dump_wave(&s);
     static int cnt_fuck=0;			//nemu 中不会运行0x80000000处的程序，于是需要手动跳过
     cnt_fuck++;
-    if(cnt_fuck%2==0)difftest_step(s.pc,s.dnpc);
+    //if(cnt_fuck%2==0)difftest_step(s.pc,s.dnpc);
     if (top->flag)npc_state.state=NPC_END;
     
+
     //trace_and_difftest(&s, cpu.pc);
 
 

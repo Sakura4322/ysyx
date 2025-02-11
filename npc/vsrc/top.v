@@ -212,7 +212,6 @@ ysyx_24090015_immJ#(
 							pren=0;
 							rd=inst_in[11:7];
 							wen=1;
-							
 							pwen=0;
 							imm=temp_immU;
 				end
