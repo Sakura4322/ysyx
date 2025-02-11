@@ -53,7 +53,7 @@ printf("reg\tvalue\n");
 extern "C" int pmem_read(int raddr){
 printf("vaddr is : %x\n",raddr-CONFIG_MBASE);
 
-return *(uint32_t *)(vaddr + raddr -CONFIG_MBASE);
+return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
 
