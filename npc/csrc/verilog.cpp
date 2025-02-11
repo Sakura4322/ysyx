@@ -56,7 +56,7 @@ void step_and_dump_wave(Decode *s){
 
 	clk = clk ^ 1;
 	top->clk=clk;
-	top ->eval();
+	if(!clk)top ->eval();
 	
 //	printf("top->pc : 0x%08x\n",top->pc);
 //	printf("vaddr index: %d\n",top->pc/4);

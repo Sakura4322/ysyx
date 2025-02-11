@@ -233,7 +233,7 @@ ysyx_24090015_immJ#(
 							ren2=1;
 							pren=0;
 							rd=0;
-							wen=1;
+							wen=0;
 							pwen=1;
 							imm=temp_immS;							
 							
