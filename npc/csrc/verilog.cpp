@@ -49,7 +49,7 @@ long img_size=load_img();
 init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
 
 printf("Inst\n");
-for (int i=0;i<img_size;i++){
+for (int i=0;i<img_size/4;i++){
 	printf("%08x : %08x\n",0x80000000+i*4,pmem_read(0x80000000+i*4));
 }
 }
