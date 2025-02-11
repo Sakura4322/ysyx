@@ -1,11 +1,14 @@
 `timescale 1ns/1ns
 import "DPI-C" function int ebreak(input int a);
 `define R 1
-`define I 2
-`define S 3
-`define B 4
-`define U 5
-`define J 6
+`define II 2
+`define IJ 3
+`define IS 4
+`define IC 5
+`define S 6
+`define B 7
+`define U 8
+`define J 9
 
 module ysyx_24090015_IFU#(WIDTH=32) (
     input clk,
@@ -75,6 +78,26 @@ output [WIDTH-1 : 0] immJ
 
 	endmodule
 	
+module ysyx_24090015_immS#(WIDTH=32) (
+
+input [WIDTH-1 : 0] inst_in,
+output [WIDTH-1 : 0] immS
+
+);
+
+	wire [20 : 0] init;
+	assign init={inst_in[31:25],inst_in[11:7]};
+	
+	ysyx_24090015_SEXT#(
+		.DATA_WIDTH(12),
+		.WIDTH(32)		
+	) s1(
+			.in(init),
+			.out(immS)
+		);
+
+	endmodule
+	
 	
 
 module ysyx_24090015_TYPE#(WIDTH=32) (
@@ -87,11 +110,12 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     always @(*) begin 
         opcode = inst[6:0];
         case (opcode)
-            7'b0010011: inst_type = `I; // I=2
+            7'b0010011: inst_type = `II; // I=2
 						7'b0010111: inst_type = `U;
 						7'b1101111: inst_type = `J;
-						7'b1100111: inst_type = `I;//jalr
-						7'b0000011: inst_type = `I;//lb,lh,lw,lbu,lhu
+						7'b1100111: inst_type = `IJ;//jalr
+						7'b0000011: inst_type = `IS;//lb,lh,lw,lbu,lhu
+						7'b0100011: inst_type = 'S;
             default: inst_type = 0;
         endcase
     end
@@ -103,7 +127,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
-    output reg  ren1, ren2, wen,
+    output reg  ren1, ren2, wen,pwen,pren,
 		output reg [4:0] rd,rs1,rs2
 );
 
@@ -116,7 +140,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
         .inst_type(inst_type)
     );
 
-    wire [WIDTH-1:0] temp_immI , temp_immU,temp_immJ;
+    wire [WIDTH-1:0] temp_immI , temp_immU,temp_immJ,temp_immS;
     ysyx_24090015_immI#(
         .WIDTH(32)
     ) i0(
@@ -138,17 +162,46 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 			.inst_in(inst_in),
 			.immJ(temp_immJ)
 		);
-
+ysyx_24090015_immJ#(
+		.WIDTH(32)	
+		) i3 (
+			.inst_in(inst_in),
+			.immJ(temp_immS)
+		);
 
 		always @(*)begin
 				case(inst_type)
-					`I : begin 
+					`II : begin 
 							rs1=inst_in[19:15];
 							rs2=0;
 							ren1=1;
 							ren2=0;
+							pren=0;
 							rd=inst_in[11:7];
 							wen=1;
+							pwen=0;
+							imm=temp_immI;
+				end
+					`IJ : begin 
+							rs1=inst_in[19:15];
+							rs2=0;
+							ren1=1;
+							ren2=0;
+							pren=0;
+							rd=inst_in[11:7];
+							wen=1;
+							pwen=0;
+							imm=temp_immI;
+				end
+				`IS : begin 
+							rs1=inst_in[19:15];
+							rs2=0;
+							ren1=1;
+							ren2=0;
+							pren=1;
+							rd=inst_in[11:7];
+							wen=1;
+							pwen=1;
 							imm=temp_immI;
 				end
 					`U : begin 
@@ -156,8 +209,10 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							rs2=0;
 							ren1=0;
 							ren2=0;
+							pren=0;
 							rd=inst_in[11:7];
 							wen=1;
+							pwen=0;
 							imm=temp_immU;
 				end
 					`J : begin 
@@ -165,9 +220,23 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							rs2=0;
 							ren1=0;
 							ren2=0;
+							pren=0;
 							rd=inst_in[11:7];
 							wen=1;
+							pwen=0;
 							imm=temp_immJ;
+				end
+					'S : begin 
+							rs1=[19:15];
+							rs2=[24:20];
+							ren1=1;
+							ren2=1;
+							pren=0;
+							rd=0;
+							wen=1;
+							pwen=1;
+							imm=temp_immS;							
+							
 				end
 				
 				endcase
@@ -180,7 +249,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in, imm,
     input [WIDTH-1:0] src1, src2,
     input [WIDTH-1:0] pc,snpc,
-    output reg [WIDTH-1:0] rd_wdata,
+    output reg [WIDTH-1:0] rd_wdata,pmem_wdata,pmem_waddr,pmem_raddr,
     output reg [WIDTH-1:0]  dnpc
 );
 
@@ -212,10 +281,11 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					dnpc = pc+imm;
 
 				end
-//				32'b???????_?????_?????_010_?????_01000_11: begin //sw
-				
+				32'b???????_?????_?????_010_?????_01000_11: begin //sw
+					pmem_waddr = src2;
+					pmem_wdata = src1+imm;
 
-//				end
+				end
 				default begin 
 
 			end
@@ -265,8 +335,8 @@ end
     // 信号声明
     wire [WIDTH-1:0] imm, src1, src2;
     wire [4:0] rd, rs1, rs2;
-    wire ren1, ren2, wen;
-    wire [WIDTH-1:0] rd_wdata;
+    wire ren1, ren2, wen,pren,pwen;
+    wire [WIDTH-1:0] rd_wdata, pmem_raddr,pmem_waddr,pmem_wdata,pmem_rdata;
 
 
 assign ren1=ebreak(inst);
@@ -285,6 +355,8 @@ assign hit_good_or_bad=src1;
 	.rs1(rs1),
         .ren2(ren2),
 	.rs2(rs2),
+	.pren(pren),
+	.pwen(pwen),
         .wen(wen),
 	.rd(rd)
     );
@@ -298,9 +370,13 @@ assign hit_good_or_bad=src1;
         .imm(imm),
         .src1(src1),
         .src2(src2),
-				.pc(pc),
+        .pmem_rdata(pmem_rdata),
+	.pc(pc),
         .snpc(snpc),
         .rd_wdata(rd_wdata),
+        .pmem_raddr(pmem_raddr),
+        .pmem_waddr(pmem_waddr),
+        .pmem_wdata(pmem_wdata),
         .dnpc(dnpc)
     );
     // 寄存器堆实例化
@@ -328,5 +404,17 @@ assign hit_good_or_bad=src1;
 			else if (sec==3)return rd_wdata;
 			else return 0;
 		endfunction
+		
+		
+	ysyx_24090015_pmem #(
+	.WIDTH(32)
+	) pmem0(
+		.ren(pren),
+		.wen(pwen),
+		.raddr(pmem_raddr),
+		.waddr(pmem_waddr),
+		.wdata(pmem_wdata),
+		.rdata(pmem_rdata)
+		)
 
 endmodule

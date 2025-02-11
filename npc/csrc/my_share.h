@@ -1,4 +1,4 @@
-#define MAX_SRAM_SIZE 128
+#define MAX_SRAM_SIZE 1024
 #include "cpu.h"
 #include "disasm.h"
 #include <elf.h>

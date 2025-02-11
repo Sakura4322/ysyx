@@ -60,9 +60,7 @@ printf("exec_once : coming exec_once\n");
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
-  printf("s->dnpc : %08x",s->dnpc);
   cpu.pc = s->dnpc;
-  printf("cpu.pc: 0x%08x\n",cpu.pc);
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
@@ -310,6 +308,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 printf("execute : come in success\n");
   for (;n > 0; n --) {
+	printf("cpu.pc : %08x\n",cpu.pc);
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
