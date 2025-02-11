@@ -103,14 +103,14 @@ output [WIDTH-1 : 0] immS
 module ysyx_24090015_TYPE#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst,
-    output reg [2:0] inst_type
+    output reg [3:0] inst_type
 );
     reg [6:0] opcode;
 
     always @(*) begin 
         opcode = inst[6:0];
         case (opcode)
-            7'b0010011: inst_type = `II; // I=2
+                        7'b0010011: inst_type = `II; // I=2
 						7'b0010111: inst_type = `U;
 						7'b1101111: inst_type = `J;
 						7'b1100111: inst_type = `IJ;//jalr
@@ -131,7 +131,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 		output reg [4:0] rd,rs1,rs2
 );
 
-    wire [2:0] inst_type;
+    wire [3:0] inst_type;
     ysyx_24090015_TYPE#(
         .WIDTH(32)
     ) t0(
@@ -212,6 +212,7 @@ ysyx_24090015_immJ#(
 							pren=0;
 							rd=inst_in[11:7];
 							wen=1;
+							
 							pwen=0;
 							imm=temp_immU;
 				end
