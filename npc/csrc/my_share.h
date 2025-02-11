@@ -1,3 +1,5 @@
+#define CONFIG_MBASE 0x80000000
+#define CONFIG_MSIZE 0x80000000
 #define MAX_SRAM_SIZE 1024
 #include "cpu.h"
 #include "disasm.h"
