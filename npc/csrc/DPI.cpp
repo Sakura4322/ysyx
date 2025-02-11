@@ -50,12 +50,12 @@ printf("reg\tvalue\n");
 }
 
 
-int pmem_read(int raddr){
-return 0;
+extern "C" int pmem_read(int raddr){
 
+return *(uint32_t *)(vaddr + raddr -CONFIG_MBASE);
 }
 
 
-void pmem_write(int waddr,int wdata,char wmask){
-return;
+extern "C" void pmem_write(int waddr,int wdata,char wmask){
+return ;
 	}

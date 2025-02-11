@@ -69,10 +69,11 @@ void step_and_dump_wave(Decode *s){
 //	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	printf("get inst successful top->pc : %08x \n",top->pc);
-	 	top->inst=vaddr[(top->pc-CONFIG_MBASE)/4];
+	
+	 	top->inst=pmem_read(top->pc);
 		s->pc=top->pc;
 		cpu.pc=s->pc;
-		s->inst = vaddr[(top->pc-CONFIG_MBASE)/4];
+		s->inst = pmem_read(top->pc);
 		
 		
 		

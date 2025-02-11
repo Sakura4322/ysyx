@@ -62,6 +62,8 @@ typedef struct{
 }Addr_Imfo;
 
 
+extern "C" int pmem_read(int raddr);
+
 
 
 
