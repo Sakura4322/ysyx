@@ -199,7 +199,7 @@ ysyx_24090015_immJ#(
 		.WIDTH(32)	
 		) i4 (
 			.inst_in(inst_in),
-			.immJ(temp_immB)
+			.immB(temp_immB)
 		);
 
 		always @(*)begin
