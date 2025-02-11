@@ -9,10 +9,9 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 	output [WIDTH-1:0] rdata
 	
 	);
+reg wmask;
 
 
-
-reg [31:0] rdata;
 always @(*) begin
   if (ren) begin // 有读写请求时
     rdata = pmem_read(raddr);
