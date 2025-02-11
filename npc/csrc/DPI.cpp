@@ -48,3 +48,15 @@ printf("reg\tvalue\n");
 		
 	return;
 }
+
+
+int pmem_read(int raddr){
+return 0;
+
+}
+
+
+void pmem_write(
+	int waddr,int wdata,int wmask){
+return ;
+	}
