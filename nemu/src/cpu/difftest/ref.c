@@ -19,7 +19,7 @@
 #include <memory/paddr.h>
 
 //1:ref copy dut. 0:dut copy ref.
-__EXPORT void difftest_memcpy(uint32_t addr, uint32_t *vaddr, size_t n, bool direction) {
+__EXPORT void difftest_memcpy(uint32_t addr, uint8_t *vaddr, size_t n, bool direction) {
 if(direction){
 	word_t *temp = (word_t *)vaddr;
 /*		debug info

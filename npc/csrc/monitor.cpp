@@ -28,8 +28,7 @@ long load_img() {
   printf("The image is %s, size = %ld\n", img_file, size);
 	
 
-  vaddr =(uint8_t*)malloc(CON
-    FIG_MSIZE);
+  vaddr =(uint8_t*)malloc(CONFIG_MSIZE);
 	if(vaddr==NULL){
 	printf("Memory allocation faile\n");
 	exit(-1);
