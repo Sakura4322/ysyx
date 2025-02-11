@@ -56,7 +56,6 @@ return 0;
 }
 
 
-void pmem_write(
-	int waddr,int wdata,int wmask){
-return ;
+void pmem_write(int waddr,int wdata,int wmask){
+return;
 	}

@@ -16,12 +16,16 @@ extern "C" {
 
 
     // DPI EXPORTS
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/top.v:325:26
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/top.v:401:26
     extern int read_wire(int sec);
 
     // DPI IMPORTS
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:2:29
     extern int ebreak(int a);
+    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/pmem.v:1:29
+    extern int pmem_read(int raddr);
+    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/pmem.v:2:30
+    extern void pmem_write(int waddr, int wdata, char wmask);
 
 #ifdef __cplusplus
 }

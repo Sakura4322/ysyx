@@ -26,46 +26,8 @@ void Vysyx_24090015_top___024root___eval_act(Vysyx_24090015_top___024root* vlSel
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_act\n"); );
 }
 
-VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_24090015_top___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___nba_sequent__TOP__1\n"); );
-    // Body
-    vlSelf->ysyx_24090015_top__DOT__src1 = ((- (IData)((IData)(vlSelf->ysyx_24090015_top__DOT__ren1))) 
-                                            & vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf
-                                            [vlSelf->ysyx_24090015_top__DOT__rs1]);
-    vlSelf->hit_good_or_bad = (1U & vlSelf->ysyx_24090015_top__DOT__src1);
-    vlSelf->dnpc = ((IData)(4U) + vlSelf->pc);
-    if ((0x13U != (0x707fU & vlSelf->inst))) {
-        if ((0x67U == (0x707fU & vlSelf->inst))) {
-            vlSelf->dnpc = (vlSelf->ysyx_24090015_top__DOT__src1 
-                            + vlSelf->ysyx_24090015_top__DOT__imm);
-        } else if ((0x17U != (0x7fU & vlSelf->inst))) {
-            if ((0x37U != (0x7fU & vlSelf->inst))) {
-                if ((0x6fU == (0x7fU & vlSelf->inst))) {
-                    vlSelf->dnpc = (vlSelf->pc + vlSelf->ysyx_24090015_top__DOT__imm);
-                }
-            }
-        }
-    }
-    if ((0x13U == (0x707fU & vlSelf->inst))) {
-        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
-            (vlSelf->ysyx_24090015_top__DOT__src1 + vlSelf->ysyx_24090015_top__DOT__imm);
-    } else if ((0x67U == (0x707fU & vlSelf->inst))) {
-        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
-            ((IData)(4U) + vlSelf->pc);
-    } else if ((0x17U == (0x7fU & vlSelf->inst))) {
-        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
-            (vlSelf->pc + vlSelf->ysyx_24090015_top__DOT__imm);
-    } else if ((0x37U == (0x7fU & vlSelf->inst))) {
-        vlSelf->ysyx_24090015_top__DOT__rd_wdata = vlSelf->ysyx_24090015_top__DOT__imm;
-    } else if ((0x6fU == (0x7fU & vlSelf->inst))) {
-        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
-            ((IData)(4U) + vlSelf->pc);
-    }
-}
-
 void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_24090015_top___024root* vlSelf);
+void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_24090015_top___024root* vlSelf);
 
 void Vysyx_24090015_top___024root___eval_nba(Vysyx_24090015_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -112,7 +74,7 @@ void Vysyx_24090015_top___024root___eval(Vysyx_24090015_top___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vysyx_24090015_top___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 227, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 297, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -135,7 +97,7 @@ void Vysyx_24090015_top___024root___eval(Vysyx_24090015_top___024root* vlSelf) {
 #ifdef VL_DEBUG
                     Vysyx_24090015_top___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 227, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 297, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -150,7 +112,7 @@ void Vysyx_24090015_top___024root___eval(Vysyx_24090015_top___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vysyx_24090015_top___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 227, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 297, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             Vysyx_24090015_top___024root___eval_nba(vlSelf);
