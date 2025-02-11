@@ -5,7 +5,7 @@
 #include "disasm.h"
 #include <elf.h>
 
-extern uint32_t *vaddr;
+extern uint8_t *vaddr;
 
 
 extern void sdb_mainloop();
