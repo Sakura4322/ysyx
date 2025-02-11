@@ -247,7 +247,7 @@ endmodule
 module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
-    input [WIDTH-1:0] src1, src2,
+    input [WIDTH-1:0] src1, src2,pmem_rdata,
     input [WIDTH-1:0] pc,snpc,
     output reg [WIDTH-1:0] rd_wdata,pmem_wdata,pmem_waddr,pmem_raddr,
     output reg [WIDTH-1:0]  dnpc
