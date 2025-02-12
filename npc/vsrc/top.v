@@ -307,6 +307,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
     input [WIDTH-1:0] src1, src2,pmem_rdata,
     input [WIDTH-1:0] pc,snpc,
     output reg [WIDTH-1:0] rd_wdata,pmem_wdata,pmem_waddr,pmem_raddr,
+	output [7:0] wmask,
     output reg [WIDTH-1:0]  dnpc
 );
 
@@ -347,6 +348,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 
 				    end
 				    32'b???????_?????_?????_010_?????_01000_11: begin //sw S
+					wmask = 8'b00001111;
 					pmem_waddr = src1+imm;
 					pmem_wdata = src2;
 				    end
@@ -414,6 +416,7 @@ end
     wire [WIDTH-1:0] imm, src1, src2;
     wire [4:0] rd, rs1, rs2;
     wire ren1, ren2, wen,valid,pwen;
+	wire [7:0] wmask;
     wire [WIDTH-1:0] rd_wdata, pmem_raddr,pmem_waddr,pmem_wdata,pmem_rdata;
 
 
@@ -455,6 +458,7 @@ assign hit_good_or_bad=src1;
         .pmem_raddr(pmem_raddr),
         .pmem_waddr(pmem_waddr),
         .pmem_wdata(pmem_wdata),
+		.wmask(.wmask),
         .dnpc(dnpc)
     );
     // 寄存器堆实例化
@@ -489,6 +493,7 @@ assign hit_good_or_bad=src1;
 	) pmem0(
 		.valid(valid),
 		.wen(pwen),
+		.wmask(wmask),
 		.raddr(pmem_raddr),
 		.waddr(pmem_waddr),
 		.wdata(pmem_wdata),
