@@ -139,7 +139,6 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
   for (;n > 0; n --) {
 	char buf[512]={0};
-	printf("\n\nOK!!!\n\n");
     step_and_dump_wave(&s);
     static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
     cnt_fuck++;
