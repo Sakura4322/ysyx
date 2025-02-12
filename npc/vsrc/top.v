@@ -365,6 +365,10 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 						
 						rd_wdata = src1 - src2;
 					end
+					32'b0000000_?????_?????_000_?????_01100_11: begin //add R
+						
+                        rd_wdata = src1 + src2;
+					end
 
 
 				default begin 
