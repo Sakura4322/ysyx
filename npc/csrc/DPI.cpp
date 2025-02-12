@@ -68,20 +68,20 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 
 		log_write("pmem_write\taddr : %08x\tdata : %02x %02x\n",waddr,temp[0],temp[1]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
-		vaddr[waddr-CONFIG_MBASE]=temp[1];
+		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
 	}else if(wmask==0b0111){
 
 		log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
-		vaddr[waddr-CONFIG_MBASE]=temp[1];
-		vaddr[waddr-CONFIG_MBASE]=temp[2];
+		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
+		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
 	}else if(wmask==0b1111){
 
 		log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2],temp[3]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
-		vaddr[waddr-CONFIG_MBASE]=temp[1];
-		vaddr[waddr-CONFIG_MBASE]=temp[2];
-		vaddr[waddr-CONFIG_MBASE]=temp[3];
+		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
+		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
+		vaddr[waddr-CONFIG_MBASE+3]=temp[3];
 	}
 	return ;
 	}
