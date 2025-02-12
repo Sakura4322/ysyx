@@ -5,11 +5,11 @@ import "DPI-C" function void pmem_write(
 module ysyx_24090015_pmem#(WIDTH = 32) (
 
 	input  valid ,wen,
+  input [7:0] wmask,
 	input [WIDTH-1:0] raddr,waddr,wdata,
 	output reg[WIDTH-1:0] rdata
 	
 	);
-reg wmask;
 
 
 always @(*) begin
