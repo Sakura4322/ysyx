@@ -458,7 +458,7 @@ assign hit_good_or_bad=src1;
         .pmem_raddr(pmem_raddr),
         .pmem_waddr(pmem_waddr),
         .pmem_wdata(pmem_wdata),
-		.wmask(.wmask),
+		.wmask(wmask),
         .dnpc(dnpc)
     );
     // 寄存器堆实例化
