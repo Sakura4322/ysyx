@@ -235,7 +235,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							valid=1;
 							rd=inst_in[11:7];
 							wen=1;
-							pwen=1;
+							pwen=0;
 							imm=temp_immI;
 				end
 					`U : begin 
