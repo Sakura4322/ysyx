@@ -188,11 +188,12 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 			.inst_in(inst_in),
 			.immJ(temp_immJ)
 		);
-ysyx_24090015_immJ#(
+		
+        ysyx_24090015_immS#(
 		.WIDTH(32)	
 		) i3 (
 			.inst_in(inst_in),
-			.immJ(temp_immS)
+			.immS(temp_immS)
 		);
 
 		ysyx_24090015_immB#(

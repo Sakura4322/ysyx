@@ -28,10 +28,10 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*0:0*/ ysyx_24090015_top__DOT__wen;
     CData/*0:0*/ ysyx_24090015_top__DOT__valid;
     CData/*0:0*/ ysyx_24090015_top__DOT__pwen;
+    CData/*7:0*/ ysyx_24090015_top__DOT__wmask;
     CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
     CData/*6:0*/ ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode;
     CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
-    CData/*0:0*/ ysyx_24090015_top__DOT__pmem0__DOT__wmask;
     CData/*0:0*/ __Vtrigrprev__TOP__clk;
     CData/*0:0*/ __VactContinue;
     VL_IN(inst,31,0);

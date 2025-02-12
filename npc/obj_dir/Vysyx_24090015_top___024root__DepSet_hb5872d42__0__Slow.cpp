@@ -62,7 +62,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_settle(Vysyx_24090015_top_
 #ifdef VL_DEBUG
                 Vysyx_24090015_top___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 375, "", "Settle region did not converge.");
+                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 377, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -169,6 +169,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->ysyx_24090015_top__DOT__wen = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__valid = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__pwen = VL_RAND_RESET_I(1);
+    vlSelf->ysyx_24090015_top__DOT__wmask = VL_RAND_RESET_I(8);
     vlSelf->ysyx_24090015_top__DOT__rd_wdata = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__pmem_raddr = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__pmem_waddr = VL_RAND_RESET_I(32);
@@ -182,7 +183,6 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->ysyx_24090015_top__DOT__pmem0__DOT__wmask = VL_RAND_RESET_I(1);
     vlSelf->__Vfunc_ebreak__1__Vfuncout = 0;
     vlSelf->__Vfunc_pmem_read__2__Vfuncout = 0;
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
