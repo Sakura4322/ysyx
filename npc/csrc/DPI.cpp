@@ -51,7 +51,8 @@ printf("reg\tvalue\n");
 
 
 extern "C" int pmem_read(int raddr){
-printf("vaddr : %08x\n",raddr-CONFIG_MBASE);
+//printf("vaddr : %08x\n",raddr-CONFIG_MBASE);
+log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
@@ -61,18 +62,22 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	uint8_t *temp= (uint8_t *)&wdata;
 	if(wmask==0b0001){
 
+		log_write("pmem_write\taddr : %08x\tdata : %x\n",waddr,temp[0]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 	}else if(wmask==0b0011){
 
+		log_write("pmem_write\taddr : %08x\tdata : %x %x\n",waddr,temp[0],temp[1]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE]=temp[1];
 	}else if(wmask==0b0111){
 
+		log_write("pmem_write\taddr : %08x\tdata : %x %x %x\n",waddr,temp[0],temp[1],temp[2]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE]=temp[1];
 		vaddr[waddr-CONFIG_MBASE]=temp[2];
 	}else if(wmask==0b1111){
 
+		log_write("pmem_write\taddr : %08x\tdata : %x %x %x %x\n",waddr,temp[0],temp[1],temp[2],temp[3]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE]=temp[1];
 		vaddr[waddr-CONFIG_MBASE]=temp[2];
