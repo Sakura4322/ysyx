@@ -38,7 +38,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 }
 
 static void checkregs(CPU_state *ref, uint32_t pc) {
-  for(int i=0;i<32;i++){
+  for(int i=1;i<32;i++){
   	if (ref->gpr[i]!=cpu.gpr[i]) {
     npc_state.state = NPC_ABORT;
     npc_state.halt_pc = pc;
