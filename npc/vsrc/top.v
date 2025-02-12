@@ -85,7 +85,7 @@ output [WIDTH-1 : 0] immS
 
 );
 
-	wire [20 : 0] init;
+	wire [11 : 0] init;
 	assign init={inst_in[31:25],inst_in[11:7]};
 	
 	ysyx_24090015_SEXT#(
@@ -188,7 +188,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 			.inst_in(inst_in),
 			.immJ(temp_immJ)
 		);
-		
+
         ysyx_24090015_immS#(
 		.WIDTH(32)	
 		) i3 (

@@ -47,7 +47,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     IData/*31:0*/ ysyx_24090015_top__DOT__pmem_wdata;
     IData/*31:0*/ ysyx_24090015_top__DOT__pmem_rdata;
     IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
-    IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immJ;
     IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
     IData/*31:0*/ __Vfunc_pmem_read__2__Vfuncout;
     IData/*31:0*/ __VstlIterCount;
