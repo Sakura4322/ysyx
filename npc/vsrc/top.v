@@ -153,7 +153,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
-    output reg  ren1, ren2, wen,pwen,pren,
+    output reg  ren1, ren2, wen,pwen,valid,
 		output reg [4:0] rd,rs1,rs2
 );
 
@@ -209,7 +209,7 @@ ysyx_24090015_immJ#(
 							rs2=0;
 							ren1=1;
 							ren2=0;
-							pren=0;
+							valid=0;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=0;
@@ -220,7 +220,7 @@ ysyx_24090015_immJ#(
 							rs2=0;
 							ren1=1;
 							ren2=0;
-							pren=0;
+							valid=0;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=0;
@@ -231,7 +231,7 @@ ysyx_24090015_immJ#(
 							rs2=0;
 							ren1=1;
 							ren2=0;
-							pren=1;
+							valid=1;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=1;
@@ -242,7 +242,7 @@ ysyx_24090015_immJ#(
 							rs2=0;
 							ren1=0;
 							ren2=0;
-							pren=0;
+							valid=0;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=0;
@@ -253,7 +253,7 @@ ysyx_24090015_immJ#(
 							rs2=0;
 							ren1=0;
 							ren2=0;
-							pren=0;
+							valid=0;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=0;
@@ -264,7 +264,7 @@ ysyx_24090015_immJ#(
 							rs2=inst_in[24:20];
 							ren1=1;
 							ren2=1;
-							pren=0;
+							valid=1;
 							rd=0;
 							wen=0;
 							pwen=1;
@@ -276,7 +276,7 @@ ysyx_24090015_immJ#(
 							rs2=inst_in[24:20];
 							ren1=1;
 							ren2=1;
-							pren=0;
+							valid=0;
 							rd=0;
 							wen=0;
 							pwen=0;
@@ -288,7 +288,7 @@ ysyx_24090015_immJ#(
 							rs2=inst_in[24:20];
 							ren1=1;
 							ren2=1;
-							pren=0;
+							valid=0;
 							rd=inst_in[11:7];
 							wen=1;
 							pwen=0;
@@ -413,7 +413,7 @@ end
     // 信号声明
     wire [WIDTH-1:0] imm, src1, src2;
     wire [4:0] rd, rs1, rs2;
-    wire ren1, ren2, wen,pren,pwen;
+    wire ren1, ren2, wen,valid,pwen;
     wire [WIDTH-1:0] rd_wdata, pmem_raddr,pmem_waddr,pmem_wdata,pmem_rdata;
 
 
@@ -433,7 +433,7 @@ assign hit_good_or_bad=src1;
 	.rs1(rs1),
         .ren2(ren2),
 	.rs2(rs2),
-	.pren(pren),
+	.valid(valid),
 	.pwen(pwen),
         .wen(wen),
 	.rd(rd)
@@ -487,7 +487,7 @@ assign hit_good_or_bad=src1;
 	ysyx_24090015_pmem #(
 	.WIDTH(32)
 	) pmem0(
-		.ren(pren),
+		.ren(valid),
 		.wen(pwen),
 		.raddr(pmem_raddr),
 		.waddr(pmem_waddr),

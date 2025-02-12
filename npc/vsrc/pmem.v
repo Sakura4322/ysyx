@@ -4,7 +4,7 @@ import "DPI-C" function void pmem_write(
 
 module ysyx_24090015_pmem#(WIDTH = 32) (
 
-	input  ren ,wen,
+	input  valid ,wen,
 	input [WIDTH-1:0] raddr,waddr,wdata,
 	output reg[WIDTH-1:0] rdata
 	
@@ -13,7 +13,7 @@ reg wmask;
 
 
 always @(*) begin
-  if (ren) begin // 有读写请求时
+  if (valid) begin // 有读写请求时
     rdata = pmem_read(raddr);
     if (wen) begin // 有写请求时
       pmem_write(waddr, wdata, wmask);
