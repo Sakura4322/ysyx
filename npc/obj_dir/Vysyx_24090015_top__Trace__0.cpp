@@ -134,15 +134,11 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
                                               >> 9U)) 
                                    | (0x7feU & (vlSelf->inst 
                                                 >> 0x14U)))))),21);
-    bufp->chgIData(oldp+66,(((0xfe0U & (vlSelf->inst 
-                                        >> 0x14U)) 
-                             | (0x1fU & (vlSelf->inst 
-                                         >> 7U)))),21);
-    bufp->chgSData(oldp+67,(((0xfe0U & (vlSelf->inst 
+    bufp->chgSData(oldp+66,(((0xfe0U & (vlSelf->inst 
                                         >> 0x14U)) 
                              | (0x1fU & (vlSelf->inst 
                                          >> 7U)))),12);
-    bufp->chgSData(oldp+68,(((0x1000U & (vlSelf->inst 
+    bufp->chgSData(oldp+67,(((0x1000U & (vlSelf->inst 
                                          >> 0x13U)) 
                              | ((0x800U & (vlSelf->inst 
                                            << 4U)) 
