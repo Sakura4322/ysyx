@@ -20,8 +20,7 @@ endfunction
  */
  
   always @(posedge clk) begin
-//    if (wen && (waddr!=0)) rf[waddr] <= wdata;
-    if (wen) rf[waddr] <= wdata;
+    if (wen && (waddr!=0)) rf[waddr] <= wdata;
   end
 
 assign rdata1=({32{ren1}})&(rf[raddr1]);
