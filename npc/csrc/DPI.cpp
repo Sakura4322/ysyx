@@ -33,8 +33,8 @@ void read_regs() {
 	int wen=read_wire(1);
 	int waddr=read_wire(2);
 	int wdata=read_wire(3);
-	printf("wen: 0x%08x,waddr : 0x%08x,wdata : 0x%08x\n",wen,waddr,wdata);
-			if(wen){
+	//printf("wen: 0x%08x,waddr : 0x%08x,wdata : 0x%08x\n",wen,waddr,wdata);
+			if(wen&&waddr!=0){
 			cpu.gpr[waddr]=wdata;	
 			}
 }
