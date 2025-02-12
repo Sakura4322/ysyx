@@ -75,8 +75,8 @@ void step_and_dump_wave(Decode *s){
 //input instructions
 //	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
+	uint32_t temp_inst = pmem_read(top->pc);
 	printf("get inst successful top->pc : %08x \n",top->pc);
-    uint32_t temp_inst = pmem_read(top->pc);
 	printf("inst : %08x\n",temp_inst);
 	 	top->inst=temp_inst;
 		s->pc=top->pc;
