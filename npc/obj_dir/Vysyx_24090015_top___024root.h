@@ -26,7 +26,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*0:0*/ ysyx_24090015_top__DOT__ren1;
     CData/*0:0*/ ysyx_24090015_top__DOT__ren2;
     CData/*0:0*/ ysyx_24090015_top__DOT__wen;
-    CData/*0:0*/ ysyx_24090015_top__DOT__pren;
+    CData/*0:0*/ ysyx_24090015_top__DOT__valid;
     CData/*0:0*/ ysyx_24090015_top__DOT__pwen;
     CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
     CData/*6:0*/ ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode;

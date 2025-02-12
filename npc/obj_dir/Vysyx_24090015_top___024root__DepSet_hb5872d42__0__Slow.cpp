@@ -167,7 +167,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->ysyx_24090015_top__DOT__ren1 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__ren2 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__wen = VL_RAND_RESET_I(1);
-    vlSelf->ysyx_24090015_top__DOT__pren = VL_RAND_RESET_I(1);
+    vlSelf->ysyx_24090015_top__DOT__valid = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__pwen = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__rd_wdata = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__pmem_raddr = VL_RAND_RESET_I(32);

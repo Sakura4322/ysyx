@@ -36,7 +36,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBit(c+5,"ren1", false,-1);
     tracep->declBit(c+6,"ren2", false,-1);
     tracep->declBit(c+7,"wen", false,-1);
-    tracep->declBit(c+8,"pren", false,-1);
+    tracep->declBit(c+8,"valid", false,-1);
     tracep->declBit(c+9,"pwen", false,-1);
     tracep->declBus(c+16,"rd_wdata", false,-1, 31,0);
     tracep->declBus(c+17,"pmem_raddr", false,-1, 31,0);
@@ -68,7 +68,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBit(c+6,"ren2", false,-1);
     tracep->declBit(c+7,"wen", false,-1);
     tracep->declBit(c+9,"pwen", false,-1);
-    tracep->declBit(c+8,"pren", false,-1);
+    tracep->declBit(c+8,"valid", false,-1);
     tracep->declBus(c+2,"rd", false,-1, 4,0);
     tracep->declBus(c+3,"rs1", false,-1, 4,0);
     tracep->declBus(c+4,"rs2", false,-1, 4,0);
@@ -144,7 +144,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("pmem0 ");
     tracep->declBus(c+66,"WIDTH", false,-1, 31,0);
-    tracep->declBit(c+8,"ren", false,-1);
+    tracep->declBit(c+8,"valid", false,-1);
     tracep->declBit(c+9,"wen", false,-1);
     tracep->declBus(c+17,"raddr", false,-1, 31,0);
     tracep->declBus(c+18,"waddr", false,-1, 31,0);
@@ -218,7 +218,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_full_sub_0(Vysyx_24090015_
     bufp->fullBit(oldp+5,(vlSelf->ysyx_24090015_top__DOT__ren1));
     bufp->fullBit(oldp+6,(vlSelf->ysyx_24090015_top__DOT__ren2));
     bufp->fullBit(oldp+7,(vlSelf->ysyx_24090015_top__DOT__wen));
-    bufp->fullBit(oldp+8,(vlSelf->ysyx_24090015_top__DOT__pren));
+    bufp->fullBit(oldp+8,(vlSelf->ysyx_24090015_top__DOT__valid));
     bufp->fullBit(oldp+9,(vlSelf->ysyx_24090015_top__DOT__pwen));
     bufp->fullCData(oldp+10,(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type),4);
     bufp->fullIData(oldp+11,(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__temp_immI),32);
