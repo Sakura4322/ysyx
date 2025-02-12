@@ -56,7 +56,6 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 
 char iringbuf[20][128];
 static void exec_once(Decode *s, vaddr_t pc) {
-	printf("\ncpu.pc : %08x\n",pc);
   s->pc = pc;
   s->snpc = pc;
   isa_exec_once(s);
@@ -307,7 +306,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 #endif
 
   for (;n > 0; n --) {
-	printf("cpu.pc : %08x\n",cpu.pc);
+	//printf("cpu.pc : %08x\n",cpu.pc);
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
