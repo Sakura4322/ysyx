@@ -33,7 +33,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*6:0*/ ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode;
     CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
     CData/*0:0*/ ysyx_24090015_top__DOT__pmem0__DOT__clk;
-    CData/*3:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__idu0__DOT__inst_type;
     CData/*0:0*/ __Vtrigrprev__TOP__clk;
     CData/*0:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__pwen;
     CData/*0:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__valid;
@@ -61,11 +60,11 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     IData/*31:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__pmem_wdata;
     IData/*31:0*/ __VactIterCount;
     VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
-    VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
-    VlTriggerVec<3> __VactTriggered;
-    VlTriggerVec<3> __VnbaTriggered;
+    VlTriggerVec<2> __VactTriggered;
+    VlTriggerVec<2> __VnbaTriggered;
 
     // INTERNAL VARIABLES
     Vysyx_24090015_top__Syms* const vlSymsp;
