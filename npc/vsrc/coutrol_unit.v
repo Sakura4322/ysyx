@@ -3,7 +3,7 @@ module ysyx_24090015_control_unit(
     output reg ren1_out,ren2_out,wen_out,valid_out,pren_out
 );
 
-reg [3:0] cpu_state,
+reg [3:0] cpu_state;
 
 always @(*) begin
 
