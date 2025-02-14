@@ -21,6 +21,9 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 
                     rd_wdata = src1 >> imm[4:0];
                     end
+                    32'b0000000 ????? ????? 001 ????? 00100 11: begin //strlli
+                    rd_wdata = src1 << imm[4:0];
+                    end
 			        32'b???????_?????_?????_011_?????_00100_11: begin //sltiu II
 						rd_wdata = (src1 < imm);
 					end
