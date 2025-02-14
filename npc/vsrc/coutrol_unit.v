@@ -1,12 +1,12 @@
 module ysyx_24090015_control_unit(
-    input ren1,ren2,wen,valid,pren,
+    input clk,ren1,ren2,wen,valid,pren,
     output reg ren1_out,ren2_out,wen_out,valid_out,pren_out
 );
 
 reg [3:0] cpu_state;
 reg [3:0] next_state;
 
-always @(next_state) begin
+always @(clk) begin
  cpu_state <= next_state;
 end
 
