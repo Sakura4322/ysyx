@@ -59,6 +59,7 @@ if(raddr<0x80000000||raddr>0x8fffffff){
       raddr, cpu.pc);
 	  log_write("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
       raddr, cpu.pc);
+	  return 0;
 	//exit(-1);
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
@@ -76,6 +77,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		  waddr, cpu.pc);
 		  log_write("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
 		  waddr, cpu.pc);
+		  return ;
 		//exit(-1);
 	}
 
