@@ -60,7 +60,7 @@ for (int i=0;i<img_size;i++){
 
 
 void step_and_dump_wave(Decode *s){
-	
+	printf("OK!\n");
 	clk = clk ^ 1;
 	top->clk=clk;
 	top ->eval();
@@ -125,7 +125,7 @@ char *p = s->logbuf;
   
 	contextp->timeInc(1);
 	tfp->dump(contextp->time());  // dump 波形数据
-    printf("OK!\n");
+    
  }
 
 void sim_exit(){
