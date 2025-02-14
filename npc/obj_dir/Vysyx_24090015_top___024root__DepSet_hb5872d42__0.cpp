@@ -48,7 +48,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
             vlSelf->ysyx_24090015_top__DOT__valid_control 
                 = vlSelf->ysyx_24090015_top__DOT__valid;
             vlSelf->ysyx_24090015_top__DOT__pwen_control 
-                = vlSelf->ysyx_24090015_top__DOT__pren;
+                = vlSelf->ysyx_24090015_top__DOT__pwen;
             vlSelf->ysyx_24090015_top__DOT__ren2_control 
                 = vlSelf->ysyx_24090015_top__DOT__ren2;
             vlSelf->ysyx_24090015_top__DOT__ren1_control 

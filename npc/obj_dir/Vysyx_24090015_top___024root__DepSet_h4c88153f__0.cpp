@@ -176,18 +176,6 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
            | (6U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) 
           | (7U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) 
          | (1U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))) {
-        vlSelf->ysyx_24090015_top__DOT__pwen = ((2U 
-                                                 != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
-                                                & ((3U 
-                                                    != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
-                                                   & ((4U 
-                                                       != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
-                                                      & ((8U 
-                                                          != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
-                                                         & ((9U 
-                                                             != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
-                                                            & (6U 
-                                                               == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))))));
         if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) {
             vlSelf->ysyx_24090015_top__DOT__rd = (0x1fU 
                                                   & (vlSelf->inst 
@@ -319,6 +307,18 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                                                                != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
                                                               & (7U 
                                                                  != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))))))));
+        vlSelf->ysyx_24090015_top__DOT__pwen = ((2U 
+                                                 != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+                                                & ((3U 
+                                                    != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+                                                   & ((4U 
+                                                       != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+                                                      & ((8U 
+                                                          != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+                                                         & ((9U 
+                                                             != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
+                                                            & (6U 
+                                                               == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)))))));
         vlSelf->ysyx_24090015_top__DOT__valid = ((2U 
                                                   != (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
                                                  & ((3U 
@@ -354,12 +354,15 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
     }
     if ((1U == (IData)(vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state))) {
         vlSelf->ysyx_24090015_top__DOT__wen_control = 0U;
+        vlSelf->ysyx_24090015_top__DOT__pwen_control = 0U;
         vlSelf->ysyx_24090015_top__DOT__valid_control = 0U;
         vlSelf->ysyx_24090015_top__DOT__ren2_control = 0U;
         vlSelf->ysyx_24090015_top__DOT__ren1_control = 0U;
     } else if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state))) {
         vlSelf->ysyx_24090015_top__DOT__wen_control 
             = vlSelf->ysyx_24090015_top__DOT__wen;
+        vlSelf->ysyx_24090015_top__DOT__pwen_control 
+            = vlSelf->ysyx_24090015_top__DOT__pwen;
         vlSelf->ysyx_24090015_top__DOT__valid_control 
             = vlSelf->ysyx_24090015_top__DOT__valid;
         vlSelf->ysyx_24090015_top__DOT__ren2_control 
