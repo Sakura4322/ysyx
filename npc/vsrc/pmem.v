@@ -7,7 +7,7 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 	input  valid ,wen,
   input [7:0] wmask,
 	input [WIDTH-1:0] raddr,waddr,wdata,
-	output reg[WIDTH-1:0] rdata
+	output [WIDTH-1:0] rdata
 	
 	);
 
@@ -27,5 +27,5 @@ end
 always @(posedge clk) begin
   if(valid&&wen)pmem_write(waddr, wdata, wmask);
 end
-rdata = ({32{valid}}&(pmem_read(raddr)));
+assign rdata = ({32{valid}}&(pmem_read(raddr)));
 endmodule
