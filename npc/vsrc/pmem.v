@@ -7,12 +7,12 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 	input  clk,valid ,wen,
   input [7:0] wmask,
 	input [WIDTH-1:0] raddr,waddr,wdata,
-	output reg [WIDTH-1:0] rdata
+	output reg[WIDTH-1:0] rdata
 	
 	);
 
 
-always @(valid,wen) begin
+always @(*) begin
   if (valid) begin // 有读写请求时
     rdata = pmem_read(raddr);
     if (wen) begin // 有写请求时
