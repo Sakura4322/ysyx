@@ -146,6 +146,7 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
                                               >> 0x14U)) 
                                    | (0x1eU & (vlSelf->inst 
                                                >> 7U)))))),13);
+    bufp->chgBit(oldp+68,((1U & (~ (IData)(vlSelf->clk)))));
 }
 
 void Vysyx_24090015_top___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

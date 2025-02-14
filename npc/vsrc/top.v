@@ -497,7 +497,7 @@ assign hit_good_or_bad=src1;
 	ysyx_24090015_pmem #(
 	.WIDTH(32)
 	) pmem0(
-		.clk(~clk),
+		//.clk(clk),
 		.valid(valid),
 		.wen(pwen),
 		.wmask(wmask),

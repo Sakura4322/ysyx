@@ -128,6 +128,9 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__act(Vysyx_240900
     if (vlSelf->__VactTriggered.at(0U)) {
         VL_DBG_MSGF("         'act' region trigger index 0 is active: @(posedge clk)\n");
     }
+    if (vlSelf->__VactTriggered.at(1U)) {
+        VL_DBG_MSGF("         'act' region trigger index 1 is active: @(negedge clk)\n");
+    }
 }
 #endif  // VL_DEBUG
 
@@ -142,6 +145,9 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__nba(Vysyx_240900
     }
     if (vlSelf->__VnbaTriggered.at(0U)) {
         VL_DBG_MSGF("         'nba' region trigger index 0 is active: @(posedge clk)\n");
+    }
+    if (vlSelf->__VnbaTriggered.at(1U)) {
+        VL_DBG_MSGF("         'nba' region trigger index 1 is active: @(negedge clk)\n");
     }
 }
 #endif  // VL_DEBUG
