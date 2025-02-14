@@ -40,12 +40,12 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
     if ((1U == (IData)(vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state))) {
         vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__next_state = 2U;
         vlSelf->ysyx_24090015_top__DOT__pwen_control = 0U;
-    } else if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state))) {
-        vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__next_state = 1U;
-        vlSelf->ysyx_24090015_top__DOT__pwen_control 
-            = vlSelf->ysyx_24090015_top__DOT__pren;
     } else {
-        vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__next_state = 2U;
+        vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__next_state = 1U;
+        if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state))) {
+            vlSelf->ysyx_24090015_top__DOT__pwen_control 
+                = vlSelf->ysyx_24090015_top__DOT__pren;
+        }
     }
     if (((((((((0x13U == (0x707fU & vlSelf->inst)) 
                | (0x3013U == (0x707fU & vlSelf->inst))) 

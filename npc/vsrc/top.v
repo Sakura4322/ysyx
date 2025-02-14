@@ -161,16 +161,16 @@ reg ren1_control,ren2_control,pwen_control,valid_control,wen_control;
 
     ysyx_24090015_control_unit control_unit0(
 		.clk(clk),
-		
+
         .ren1(ren1),
 		.ren2(ren2),
-		.pren(pren),
+		.pwen(pwen),
 		.wen(wen),
 		.valid(valid),
 
 		.ren1_out(ren1_control),
 		.ren2_out(ren2_control),
-		.pren_out(pwen_control),
+		.pwen_out(pwen_control),
 		.wen_out(wen_control),
 		.valid_out(valid_control)
 	);
