@@ -350,6 +350,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 				    end
 				    32'b???????_?????_?????_010_?????_01000_11: begin //sw S
 					wmask = 8'b00001111;
+					pmem_raddr = src1+imm
 					pmem_waddr = src1+imm;
 					pmem_wdata = src2;
 				    end
