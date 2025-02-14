@@ -42,7 +42,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*3:0*/ ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state;
     CData/*3:0*/ ysyx_24090015_top__DOT__control_unit0__DOT__next_state;
     CData/*0:0*/ __Vtrigrprev__TOP__clk;
-    CData/*3:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__control_unit0__DOT__next_state;
     CData/*0:0*/ __VactDidInit;
     CData/*0:0*/ __VactContinue;
     VL_IN(inst,31,0);

@@ -51,6 +51,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBit(c+67,"wen_control", false,-1);
     tracep->declBit(c+77,"pren", false,-1);
     tracep->pushNamePrefix("control_unit0 ");
+    tracep->declBit(c+57,"clk", false,-1);
     tracep->declBit(c+5,"ren1", false,-1);
     tracep->declBit(c+6,"ren2", false,-1);
     tracep->declBit(c+7,"wen", false,-1);

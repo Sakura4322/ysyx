@@ -32,7 +32,7 @@ always @(*) begin
              next_state <= `Fetch;
         end
         default : begin
-            next_state <= `Decode;
+            next_state <= `Fetch;
         end
 
         endcase
