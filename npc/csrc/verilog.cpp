@@ -64,7 +64,7 @@ void step_and_dump_wave(Decode *s){
 	clk = clk ^ 1;
 	top->clk=clk;
 	top ->eval();
-	printf("\n\nOK!\n\n");
+	
 //	printf("top->pc : 0x%08x\n",top->pc);
 //	printf("vaddr index: %d\n",top->pc/4);
 
@@ -115,6 +115,7 @@ char *p = s->logbuf;
 
 
 	}else {
+		printf("\n\nOK!\n\n");
 		read_regs();
 		s->dnpc=top->dnpc;
 		
