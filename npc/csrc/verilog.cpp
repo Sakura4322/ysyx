@@ -119,13 +119,13 @@ char *p = s->logbuf;
 		read_regs();
 		
 		s->dnpc=top->dnpc;
-		printf("OK!\n");
+		
 	}
 
   
 	contextp->timeInc(1);
 	tfp->dump(contextp->time());  // dump 波形数据
-
+    printf("OK!\n");
  }
 
 void sim_exit(){
