@@ -146,6 +146,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("pmem0 ");
     tracep->declBus(c+69,"WIDTH", false,-1, 31,0);
+    tracep->declBit(c+54,"clk", false,-1);
     tracep->declBit(c+8,"valid", false,-1);
     tracep->declBit(c+9,"wen", false,-1);
     tracep->declBus(c+10,"wmask", false,-1, 7,0);
