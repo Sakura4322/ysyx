@@ -18,7 +18,7 @@ always @(*) begin
             pren_out=0;
             cpu_state = `Decode;
         end
-        `Decode begin
+        `Decode : begin
              ren1_out = ren1;
              ren2_out = ren2;
              wen_out  = wen;
