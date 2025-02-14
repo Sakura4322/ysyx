@@ -203,7 +203,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 			.immB(temp_immB)
 		);
 
-		always @(inst_type)begin
+		always @(*)begin
 				case(inst_type)
 					`II : begin 
 							rs1=inst_in[19:15];
