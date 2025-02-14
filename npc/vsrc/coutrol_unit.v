@@ -21,7 +21,7 @@ always @(*) begin
             wen_out=0;
             valid_out=0;
             pren_out=0;
-            next_state = `Decode;
+            next_state <= `Decode;
         end
         `Decode : begin
              ren1_out = ren1;
@@ -29,10 +29,10 @@ always @(*) begin
              wen_out  = wen;
              valid_out= valid;
              pren_out = pren;
-             next_state = `Fetch;
+             next_state <= `Fetch;
         end
         default : begin
-            next_state = `Decode;
+            next_state <= `Decode;
         end
 
         endcase
