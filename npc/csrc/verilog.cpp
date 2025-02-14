@@ -115,8 +115,9 @@ char *p = s->logbuf;
 
 
 	}else {
-		printf("\n\nOK!\n\n");
+		
 		read_regs();
+		printf("\n\nOK!\n\n");
 		s->dnpc=top->dnpc;
 		
 	}
