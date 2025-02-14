@@ -11,7 +11,7 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 	
 	);
 
-
+/*
 always @(*) begin
   if (valid) begin // 有读写请求时
     rdata = pmem_read(raddr);
@@ -23,5 +23,9 @@ always @(*) begin
     rdata = 0;
   end
 end
-
+*/
+always @(posedge clk) begin
+  if(valid&&wen)pmem_write(waddr, wdata, wmask);
+end
+rdata = ({32{valid}}&(pmem_read(raddr)));
 endmodule
