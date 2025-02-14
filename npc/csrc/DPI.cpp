@@ -54,7 +54,6 @@ extern "C" int pmem_read(int raddr){
 //printf("vaddr : %08x\n",raddr-CONFIG_MBASE);
 if(raddr<0x80000000||raddr>0x8fffffff){
 	npc_state.state = NPC_ABORT;
-    npc_state.halt_pc = pc;
 	printf("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
       raddr, cpu.pc);
 	  log_write("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
@@ -72,7 +71,6 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	uint8_t *temp= (uint8_t *)&wdata;
 	if(waddr<0x80000000||waddr>0x8fffffff){
 		npc_state.state = NPC_ABORT;
-		npc_state.halt_pc = pc;
 		printf("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
 		  waddr, cpu.pc);
 		  log_write("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0x8fffffff ] at pc = %08x" ,
