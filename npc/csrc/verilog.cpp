@@ -60,11 +60,11 @@ for (int i=0;i<img_size;i++){
 
 
 void step_and_dump_wave(Decode *s){
-	printf("\n\nOK!\n\n");
+	
 	clk = clk ^ 1;
 	top->clk=clk;
 	top ->eval();
-	
+	printf("\n\nOK!\n\n");
 //	printf("top->pc : 0x%08x\n",top->pc);
 //	printf("vaddr index: %d\n",top->pc/4);
 
