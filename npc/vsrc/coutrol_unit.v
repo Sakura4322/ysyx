@@ -4,6 +4,11 @@ module ysyx_24090015_control_unit(
 );
 
 reg [3:0] cpu_state;
+reg [3:0] next_state;
+
+always @(next_state) begin
+ cpu_state <= next_state;
+end
 
 always @(*) begin
 
@@ -16,7 +21,7 @@ always @(*) begin
             wen_out=0;
             valid_out=0;
             pren_out=0;
-            cpu_state = `Decode;
+            next_state = `Decode;
         end
         `Decode : begin
              ren1_out = ren1;
@@ -24,10 +29,10 @@ always @(*) begin
              wen_out  = wen;
              valid_out= valid;
              pren_out = pren;
-             cpu_state = `Fetch;
+             next_state = `Fetch;
         end
         default : begin
-            cpu_state = `Decode;
+            next_state = `Decode;
         end
 
         endcase
