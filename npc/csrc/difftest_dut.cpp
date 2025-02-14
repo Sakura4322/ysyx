@@ -43,10 +43,10 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     npc_state.state = NPC_ABORT;
     npc_state.halt_pc = pc;
     npc_reg_display();
-    printf("%s\n",s.logbuf);
+    printf("%s\tdiffrent : %s\n",s.logbuf,regs[i]);
     printf("ref_regs info\n");
     for(int j=0;j<32;j++){
-    	printf("%s : 0x%08x\n",regs[i],ref->gpr[j]);
+    	printf("%s : 0x%08x\n",regs[j],ref->gpr[j]);
     	}
     //exit(-1);
   }
