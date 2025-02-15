@@ -174,14 +174,14 @@ for (int i=0;i<32;i++){//storage reg information
 	
 	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
 			 cout_pc_num-=1;
-	for(int i=0;i<=cout_pc_num%20;i++){
-	if(i==cout_pc_num){
+	for(int i=0;i<20;i++){
+	if(i==cout_pc_num%20){
 
  log_write("\n\n\n\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
  log_write("%s\n", *(iringbuf+i)); 
-	if(i==cout_pc_num){
+	if(i==(cout_pc_num%20 )+1){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
  log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
 	}	
