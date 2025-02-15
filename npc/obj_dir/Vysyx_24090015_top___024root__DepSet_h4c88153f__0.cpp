@@ -8,35 +8,12 @@
 #include "Vysyx_24090015_top__Syms.h"
 #include "Vysyx_24090015_top___024root.h"
 
-void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__read_wire_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ sec, IData/*31:0*/ &read_wire__Vfuncrtn) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__read_wire_TOP\n"); );
+void Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_wire_TOP(Vysyx_24090015_top__Syms* __restrict vlSymsp, IData/*31:0*/ sec, IData/*31:0*/ &read_wire__Vfuncrtn) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root____Vdpiexp_ysyx_24090015_top__DOT__reg0__DOT__read_wire_TOP\n"); );
     // Init
     // Body
-    {
-        {
-            {
-                {
-                    if ((1U == sec)) {
-                        read_wire__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__wen;
-                        goto __Vlabel4;
-                    } else if ((2U == sec)) {
-                        read_wire__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__rd;
-                        goto __Vlabel3;
-                    } else if ((3U == sec)) {
-                        read_wire__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__rd_wdata;
-                        goto __Vlabel2;
-                    } else {
-                        read_wire__Vfuncrtn = 0U;
-                        goto __Vlabel1;
-                    }
-                    __Vlabel4: ;
-                }
-                __Vlabel3: ;
-            }
-            __Vlabel2: ;
-        }
-        __Vlabel1: ;
-    }
+    read_wire__Vfuncrtn = vlSymsp->TOP.ysyx_24090015_top__DOT__reg0__DOT__rf
+        [(0x1fU & sec)];
 }
 
 #ifdef VL_DEBUG
