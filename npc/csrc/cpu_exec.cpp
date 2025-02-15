@@ -172,7 +172,7 @@ for (int i=0;i<32;i++){//storage reg information
 	}
 	
 	
-	if (npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
+	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
 			 cout_pc_num-=1;
 	for(int i=0;i<=cout_pc_num%20;i++){
 	if(i==cout_pc_num){
