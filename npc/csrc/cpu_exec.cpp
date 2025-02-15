@@ -176,7 +176,7 @@ for (int i=0;i<32;i++){//storage reg information
 			 cout_pc_num-=1;
 	for(int i=0;i<20;i++){
 	if(i==cout_pc_num%20){
-if (strcmp(iringbuf_reg_state[0]==iringbuf_reg_state[1])==0){
+if (strcmp(iringbuf_reg_state[0],iringbuf_reg_state[1])==0){
 log_write("REGS INFO SAME\n");
 }else{
 	log_write("REGS INFO DIFFERENT\n");
