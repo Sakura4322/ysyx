@@ -181,7 +181,7 @@ for (int i=0;i<32;i++){//storage reg information
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
 	}	
  log_write("%s\n", *(iringbuf+i)); 
-	if(i==(cout_pc_num%20 )+1){
+	if(i==cout_pc_num%20){
  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
  log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
 	}	
