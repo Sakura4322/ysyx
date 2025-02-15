@@ -272,6 +272,17 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							imm=0;							
 							
 				end
+                default : begin
+							rs1=0;
+							rs2=0;
+							ren1=0;
+							ren2=0;
+							valid=0;
+							rd=0;
+							wen=0;
+							pwen=0;
+							imm=0;	
+                end
 				
 				endcase
 		end
