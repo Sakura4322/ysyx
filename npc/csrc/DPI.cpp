@@ -41,7 +41,7 @@ void read_regs() {
 */
 
 void read_regs() {
-	scope = svGetScopeFromName("ysyx_24090015_top.ysyx_24090015_RegisterFile") ;
+	scope = svGetScopeFromName("TOP.ysyx_24090015_top.ysyx_24090015_RegisterFile");
 	svSetScope(scope);
 	if (scope == NULL) {
         printf("Failed to get scope\n");
