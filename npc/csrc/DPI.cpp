@@ -41,7 +41,7 @@ void read_regs() {
 */
 
 void read_regs() {
-	scope = svGetScopeFromName("TOP.ysyx_24090015_RegisterFile") ;
+	scope = svGetScopeFromName("TOP.ysyx_24090015_top") ;
 	svSetScope(scope);
 	for(int i=0;i<32;i++){
 		cpu.gpr[i]=read_wire(i);
