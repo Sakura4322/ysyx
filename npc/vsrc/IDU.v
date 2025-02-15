@@ -108,6 +108,7 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
         opcode = inst[6:0];
         case (opcode)
 						7'b0010111: inst_type = `U;
+                        7'b0110111: inst_type = `U;
 						7'b1101111: inst_type = `J;
                         7'b1100111: inst_type = `IJ;//jalr
 						7'b1100011: inst_type = `B;
