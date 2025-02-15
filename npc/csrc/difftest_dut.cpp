@@ -48,6 +48,7 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     for(int j=0;j<32;j++){
     	printf("%s : 0x%08x\n",regs[j],ref->gpr[j]);
     	}
+      printf("pc : %08x\n",ref->pc);
     //exit(-1);
   }
   	}

@@ -42,7 +42,7 @@ void read_regs() {
 
 void npc_reg_display(){
 printf("reg\tvalue\n");
-	for(int i=0;i<31;i++){
+	for(int i=0;i<32;i++){
 		printf("%s\t0x%08x\n",regs[i],cpu.gpr[i]);
 		}
 		
