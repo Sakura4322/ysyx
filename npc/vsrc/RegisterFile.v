@@ -18,6 +18,13 @@ function automatic int read_gpr(input int idx);
   return rf[idx];  // 返回寄存器数组的地址
 endfunction
  */
+
+ 		export "DPI-C" function read_wire;
+
+		function automatic int read_wire(input int sec);
+			return rf[sec];
+		endfunction
+    
  
   always @(posedge clk) begin
     if (wen && (waddr!=0)) rf[waddr] <= wdata;

@@ -130,16 +130,17 @@ assign hit_good_or_bad=src1;
         .rdata1(src1),
         .rdata2(src2)
     );
-
+/*
 		export "DPI-C" function read_wire;
 
 		function automatic int read_wire(input int sec);
-			if(sec==1)return wen;
+			if(sec==1)return wen_control;
 			else if (sec==2)return rd;
 			else if (sec==3)return rd_wdata;
 			else return 0;
 		endfunction
-		
+	*/	
+
 		
 	ysyx_24090015_pmem #(
 	.WIDTH(32)

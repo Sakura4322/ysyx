@@ -26,7 +26,7 @@ uint32_t sram[MAX_SRAM_SIZE]={0};
 extern int read_wire(int sec);
 
 	svScope scope;
-
+/*
 void read_regs() {
 	scope = svGetScopeFromName("TOP.ysyx_24090015_top") ;
 	svSetScope(scope);
@@ -38,7 +38,15 @@ void read_regs() {
 			cpu.gpr[waddr]=wdata;	
 			}
 }
+*/
 
+void read_regs() {
+	scope = svGetScopeFromName("TOP.ysyx_24090015_RegisterFile") ;
+	svSetScope(scope);
+	for(int i=0;i<32;i++){
+		cpu.gpr[i]=read_wire(i);
+	}
+}
 
 void npc_reg_display(){
 printf("reg\tvalue\n");
