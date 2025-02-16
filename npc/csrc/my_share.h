@@ -39,6 +39,7 @@ extern char *img_file;
 extern char *log_file;
 extern char *elf_file;
 extern char *diff_so_file;
+extern bool diff_on;
 extern int difftest_port;
 
 
