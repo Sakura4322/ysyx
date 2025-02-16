@@ -52,6 +52,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$
 			if (strcmp(names,"pc")==0){
 			//printf("successfilly output the value of pc\n ");
 			//printf("%x\n",cpu.pc);
+			free(names);
 				return cpu.pc;
 				}
 			*success = false ;
