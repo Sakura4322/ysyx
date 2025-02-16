@@ -35,7 +35,8 @@ sim:
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 	 gtkwave ./*.vcd
-
+gdb : verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
+	valgrind ./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 run : sim
 
 include ../Makefile
