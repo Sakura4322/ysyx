@@ -16,7 +16,7 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 int cnt_func_num;  //the num of funcs
 Addr_Imfo *read_sym_func(){//all func info in func_addr
 
-	Elf32_Ehdr *ehdr_globle
+	Elf32_Ehdr *ehdr_globle;
 	endr_globle=parse_elf(elf_file);
 	Elf32_Shdr *shdr=parse_shdr(ehdr_globle,elf_file);
 	char *strtab =parse_strtab(shdr,elf_file);
