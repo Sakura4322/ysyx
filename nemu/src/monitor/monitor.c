@@ -68,10 +68,10 @@ static long load_img() {
 }
 
 
-Elf32_Ehdr *ehdr_globle;
-Elf32_Shdr *shdr_globle;
-Elf32_Sym  *sym_globle;
-char *str_globle;
+// Elf32_Ehdr *ehdr_globle;
+// Elf32_Shdr *shdr_globle;
+// Elf32_Sym  *sym_globle;
+// char *str_globle;
 int sym_globle_indx;
 int str_globle_indx;
 
@@ -99,7 +99,7 @@ static void ehdr_printf(Elf32_Ehdr *ehdr){
 }
 
 
-static Elf32_Ehdr* parse_elf(char *elf_file){
+Elf32_Ehdr* parse_elf(char *elf_file){
 	static Elf32_Ehdr ehdr;                //generate ELF header
   FILE *fp=fopen(elf_file,"rb");
   Assert(fp, "Can not open '%s'", elf_file);
@@ -164,7 +164,7 @@ void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
 }
 
 
-static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
+ Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     FILE *fp = fopen(elf_file, "rb");
     Assert(fp, "Cannot open '%s'", elf_file);
 
@@ -341,10 +341,10 @@ printf("OK IM COMMING\n");
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
 			case 'e': elf_file=optarg;
-              ehdr_globle=parse_elf(elf_file);
-						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
-						  str_globle =parse_strtab(shdr_globle,elf_file);
-							sym_globle =parse_sym(shdr_globle,elf_file);
+              // ehdr_globle=parse_elf(elf_file);
+						  // shdr_globle=parse_shdr(ehdr_globle,elf_file);
+						  // str_globle =parse_strtab(shdr_globle,elf_file);
+							// sym_globle =parse_sym(shdr_globle,elf_file);
 							 	break;
       case 1:
       printf("HERE IS NEME_1 : %s\n",optarg);

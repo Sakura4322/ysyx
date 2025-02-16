@@ -109,10 +109,10 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 #endif
 
 #ifdef CONFIG_FTRACE
-extern Elf32_Ehdr *ehdr_globle;
-extern Elf32_Shdr *shdr_globle;
-extern Elf32_Sym  *sym_globle;
-extern char *str_globle;
+Elf32_Ehdr* parse_elf(char *elf_file);
+Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file);
+char *parse_strtab(Elf32_Shdr *shdr,char *elf_file);
+Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf);
 extern int cnt_globle;         //real num of sym(the num of str_char)
 extern int sym_globle_indx;
 
@@ -123,8 +123,13 @@ typedef struct{
 }Addr_Imfo;
 
 int cnt_func_num;  //the num of funcs
-Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){//all func info in func_addr
-	        size_t sym_size = shdr[sym_globle_indx].sh_size;
+Addr_Imfo *read_sym_func(){//all func info in func_addr
+	Elf32_Ehdr *ehdr_globle;
+	ehdr_globle=parse_elf(elf_file);
+	Elf32_Shdr *shdr=parse_shdr(ehdr_globle,elf_file);
+	char *strtab =parse_strtab(shdr,elf_file);
+	Elf32_Sym* sym =parse_sym(shdr,elf_file);
+					size_t sym_size = shdr[sym_globle_indx].sh_size;
 					int sym_num  = sym_size/sizeof(Elf32_Sym);
 					cnt_func_num=0;
 
@@ -170,6 +175,12 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 					//start
 					func_addr[0].end=func_addr[1].start;
+
+					free(shdr);
+					free(sym);
+					free(strtab);
+
+
 					return func_addr;
 
 }
@@ -299,7 +310,7 @@ static void execute(uint64_t n) {
 
   	
 #ifdef CONFIG_FTRACE
-Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
+Addr_Imfo *func_addr = read_sym_func();
 for(int i=0;i<cnt_func_num;i++){
 printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 }
@@ -345,7 +356,12 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 #ifdef CONFIG_FTRACE
     ftrace(func_addr,&s);
 #endif
-    if (nemu_state.state != NEMU_RUNNING) break;
+    if (nemu_state.state != NEMU_RUNNING) {
+	#ifdef CONFIG_FTRACE
+		free(func_addr);
+	#endif		
+		break;
+	}
     IFDEF(CONFIG_DEVICE, device_update());
   }
 }
