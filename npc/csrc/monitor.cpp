@@ -46,10 +46,10 @@ long load_img() {
 }
 
 
-Elf32_Ehdr *ehdr_globle;
-Elf32_Shdr *shdr_globle;
-Elf32_Sym  *sym_globle;
-char *str_globle;
+// Elf32_Ehdr *ehdr_globle;
+// Elf32_Shdr *shdr_globle;
+// Elf32_Sym  *sym_globle;
+// char *str_globle;
 int sym_globle_indx;
 int str_globle_indx;
 

@@ -128,14 +128,15 @@ char *p = s->logbuf;
     
  }
 
-void free_alloc(){
-	free(ehdr_globle);
-	free(shdr_globle);
-	free(sym_globle);
-	free(str_globle);
-}
+// void free_alloc(){
+// 	free(ehdr_globle);
+// 	free(shdr_globle);
+// 	free(sym_globle);
+// 	free(str_globle);
+// }
+
 void sim_exit(){
-	free_alloc();
+	//free_alloc();
 	tfp->close();
 	
 	delete tfp;
