@@ -148,7 +148,7 @@ void shdr_printf(Elf32_Shdr *shdr, int sections_num) {
 }
 
 
-static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
+Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file) {
     FILE *fp = fopen(elf_file, "rb");
     //Assert(fp, "Cannot open '%s'", elf_file);
       if(fp==NULL){
