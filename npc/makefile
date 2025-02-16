@@ -17,7 +17,7 @@ CSRC +=$(abspath ./csrc/difftest_dut.cpp)
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
 LDFLAGS= -lreadline 
 LDFLAGS += $(shell llvm-config --libs)
-LDFLAGS += $(NEMU_LIB)
+#LDFLAGS += $(NEMU_LIB)
 #LDFLAGS += -lgetopt
 #LDFLAGS += -l$(VERILATOR_ROOT)/verilator/include/vltstd
 
