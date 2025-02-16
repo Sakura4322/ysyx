@@ -69,7 +69,7 @@ Addr_Imfo *read_sym_func(){//all func info in func_addr
 					//start
 					func_addr[0].end=func_addr[1].start;
 
-					free(ehdr_globle);
+					//free(ehdr_globle);
 					free(shdr);
 					free(sym);
 					free(strtab);
