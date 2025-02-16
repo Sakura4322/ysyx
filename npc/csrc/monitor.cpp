@@ -78,7 +78,7 @@ static void ehdr_printf(Elf32_Ehdr *ehdr){
 }
 
 
-static Elf32_Ehdr* parse_elf(char *elf_file){
+Elf32_Ehdr* parse_elf(char *elf_file){
 	static Elf32_Ehdr ehdr;                //generate ELF header
   FILE *fp=fopen(elf_file,"rb");
   //Assert(fp, "Can not open '%s'", elf_file);
