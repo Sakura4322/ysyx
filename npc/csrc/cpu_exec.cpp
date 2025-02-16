@@ -14,8 +14,14 @@ static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 
 
 int cnt_func_num;  //the num of funcs
-Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_globle){//all func info in func_addr
-	        size_t sym_size = shdr[sym_globle_indx].sh_size;
+Addr_Imfo *read_sym_func(){//all func info in func_addr
+
+	Elf32_Ehdr*	ehdr_globle=parse_elf(elf_file);
+	Elf32_Shdr *shdr=parse_shdr(ehdr_globle,elf_file);
+	char *strtab =parse_strtab(shdr,elf_file);
+	Elf32_Sym* sym =parse_sym(shdr,elf_file);
+					
+					size_t sym_size = shdr[sym_globle_indx].sh_size;
 					int sym_num  = sym_size/sizeof(Elf32_Sym);
 					cnt_func_num=0;
 
@@ -61,6 +67,12 @@ Addr_Imfo *read_sym_func(Elf32_Shdr *shdr,Elf32_Sym *sym,char *strtab,int cnt_gl
 
 					//start
 					func_addr[0].end=func_addr[1].start;
+
+					free(ehdr_globle);
+					free(shdr);
+					free(sym);
+					free(strtab);
+
 					return func_addr;
 
 }
@@ -132,7 +144,7 @@ static void execute(uint64_t n) {
 //init disasm before step_and_dump_wave
 //init_disasm("riscv32");
 
-Addr_Imfo *func_addr = read_sym_func(shdr_globle,sym_globle,str_globle,cnt_globle);
+Addr_Imfo *func_addr = read_sym_func();
 for(int i=0;i<cnt_func_num;i++){
 printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 }
@@ -196,7 +208,10 @@ log_write("REGS INFO SAME\n");
 		
 
 
-    if (npc_state.state != NPC_RUNNING) break;
+    if (npc_state.state != NPC_RUNNING){
+		free(func_addr);
+		break;
+	} 
     
   }
 }

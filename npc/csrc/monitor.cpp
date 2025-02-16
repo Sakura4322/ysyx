@@ -339,12 +339,13 @@ int parse_args(int argc, char *argv[]) {
       case 'd': diff_so_file = optarg; 
       break;
 			case 'e': elf_file=optarg;
-							
+				/*
               ehdr_globle=parse_elf(elf_file);
 						  shdr_globle=parse_shdr(ehdr_globle,elf_file);
 						  //find_shdr_type(ehdr_globle,shdr_globle);
 						  str_globle =parse_strtab(shdr_globle,elf_file);
 							sym_globle =parse_sym(shdr_globle,elf_file);
+              */
 							 	break;
 								
 							

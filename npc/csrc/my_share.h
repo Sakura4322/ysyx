@@ -47,11 +47,17 @@ extern long load_img();
 
 extern void init_disasm(const char *triple);
 
-
+static Elf32_Ehdr* parse_elf(char *elf_file);
+static Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file);
+char *parse_strtab(Elf32_Shdr *shdr,char *elf_file);
+Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf);
+/*
 extern Elf32_Ehdr *ehdr_globle;
 extern Elf32_Shdr *shdr_globle;
 extern Elf32_Sym  *sym_globle;
 extern char *str_globle;
+*/
+
 extern int cnt_globle;         //real num of sym(the num of str_char)
 extern int sym_globle_indx;
 
