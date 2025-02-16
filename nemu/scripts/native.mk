@@ -28,7 +28,7 @@ override ARGS ?= --log=$(BUILD_DIR)/nemu-log.txt
 override ARGS += $(ARGS_DIFF)
 override ARGS += --port=6666
 #override ARGS += --elf=$(ELF)
-#override ARGS += -b
+override ARGS += -b
 
 # Command to execute NEMU
 IMG ?=
