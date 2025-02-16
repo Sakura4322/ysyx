@@ -45,7 +45,7 @@ std::srand(time(NULL));
 init_disasm("riscv32");			//init disasm 
 parse_args(argc,argv);			//parse args
 long img_size=load_img();		
-	
+if(diff_on)
 init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
 /*
 printf("Inst\n");

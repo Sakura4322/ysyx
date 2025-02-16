@@ -8,6 +8,7 @@ char *log_file=NULL;
 char *elf_file=NULL;
 FILE *log_fp=NULL;
 char *diff_so_file =NULL;
+bool diff_on;
 int difftest_port=6666;
 
 long load_img() {
@@ -337,6 +338,7 @@ int parse_args(int argc, char *argv[]) {
 								else printf("FAIL OPEN LOG_FILE");
 								break;
       case 'd': diff_so_file = optarg; 
+                diff_on=1;
       break;
 			case 'e': elf_file=optarg;
 				/*

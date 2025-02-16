@@ -153,9 +153,11 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
   for (;n > 0; n --) {
 	char buf[512]={0};
     step_and_dump_wave(&s);
-    static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
+   if(diff_on){
+	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
     cnt_fuck++;
     if(cnt_fuck%2==1&&cnt_fuck>2)difftest_step(s.pc,s.dnpc);
+   }
     if (top->flag)npc_state.state=NPC_END;
     
 
