@@ -1,4 +1,4 @@
-all: sim
+all: sim gdb
 	@echo "Write this Makefile by your self."
 
 TOP_NAME=ysyx_24090015_top
@@ -38,6 +38,7 @@ sim:
 
 gdb : 
 	@echo "DEBUG MODE"
+	@echo "./obj_dir/V$(TOP_NAME)"
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	valgrind ./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
 

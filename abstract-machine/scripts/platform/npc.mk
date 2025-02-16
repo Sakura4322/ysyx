@@ -22,9 +22,9 @@ image: $(IMAGE).elf
 
 
 run : image 
-	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf  # 用Tab缩进
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf  
 
 gdb : image
-	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) run IMG=$(IMAGE).bin ELF=$(IMAGE).elf gdb  # 用Tab缩进
+	$(MAKE) -C $(NPC_HOME) ISA=$(ISA) gdb IMG=$(IMAGE).bin ELF=$(IMAGE).elf  
 
 
