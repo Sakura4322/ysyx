@@ -657,5 +657,8 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
             ((0x80000000U & vlSelf->ysyx_24090015_top__DOT__src1) 
              | (0x7fffffffU & (vlSelf->ysyx_24090015_top__DOT__src1 
                                << (0x1fU & vlSelf->ysyx_24090015_top__DOT__src2))));
+    } else if ((0x3033U == (0xfe00707fU & vlSelf->inst))) {
+        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
+            (vlSelf->ysyx_24090015_top__DOT__src1 < vlSelf->ysyx_24090015_top__DOT__src2);
     }
 }
