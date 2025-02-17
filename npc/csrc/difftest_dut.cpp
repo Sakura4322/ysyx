@@ -47,7 +47,7 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     npc_state.halt_pc = pc;
     npc_reg_display();
     if(ref->pc!=cpu.pc){
-      printf("%s\tdiffrent : %s\n",s.logbuf,pc);
+      printf("%s\tdiffrent : %s\n",s.logbuf,cpu.pc);
     }else{
     printf("%s\tdiffrent : %s\n",s.logbuf,regs[i]);
     }
