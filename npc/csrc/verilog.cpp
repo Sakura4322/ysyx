@@ -137,6 +137,7 @@ char *p = s->logbuf;
 
 void sim_exit(){
 	//free_alloc();
+	free(vaddr);
 	tfp->close();
 	
 	delete tfp;

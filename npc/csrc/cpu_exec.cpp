@@ -2,7 +2,7 @@
 #include "my_share.h"
 
 NPCState npc_state;
-CPU_state cpu;
+CPU_state cpu={};
 
 static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
 	char (*p)[128]=a;
@@ -134,7 +134,7 @@ if(((s->inst & 0b00000000000000000000000001111111) == 0b000000000000000000000000
 return ;
 }
 
-Decode s;
+Decode s={};
 static void execute(uint64_t n) {
 	static char iringbuf[20][128];
 	static char iringbuf_reg_state[2][512];
