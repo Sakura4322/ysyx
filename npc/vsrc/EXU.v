@@ -28,7 +28,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					rd_wdata = (src1 < imm);
 					end
 					32'b0100000_?????_?????_101_?????_00100_11: begin //srai II
-					rd_wdata = {{{imm[4:0]{src1[31]}},{(32-imm[4:0]){0}}}|{src1[31],src1[30:0]>>imm[4:0]}};
+					rd_wdata = (src1[31]==1'b1) ? ((32'hffffffff<<(31-imm[4:0]) | src1>>imm[4:0])) : src1>>imm[4:0];
 					end
 					32'b???????_?????_?????_100_?????_00100_11: begin //xori II
 					rd_wdata = src1 ^ imm;
