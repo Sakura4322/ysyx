@@ -23,7 +23,7 @@ LDFLAGS += $(NEMU_LIB)
 
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
-#override ARGS+= -b
+override ARGS+= -b
 override ARGS+= --elf=$(ELF)
 override ARGS+= --diff=$(NEMU_LIB)
 
