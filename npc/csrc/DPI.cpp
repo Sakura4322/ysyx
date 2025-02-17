@@ -58,7 +58,8 @@ printf("reg\tvalue\n");
 	for(int i=0;i<32;i++){
 		printf("%s\t0x%08x\n",regs[i],cpu.gpr[i]);
 		}
-		
+	
+		printf("pc\t0x%08x\n",cpu.gpr[i]);
 	return;
 }
 
