@@ -341,6 +341,7 @@ printf("OK IM COMMING\n");
       case 'l': log_file = optarg; break;
       case 'd': diff_so_file = optarg; break;
 			case 'e': elf_file=optarg;
+      printf("ELF : %s\n",elf_file);
               // ehdr_globle=parse_elf(elf_file);
 						  // shdr_globle=parse_shdr(ehdr_globle,elf_file);
 						  // str_globle =parse_strtab(shdr_globle,elf_file);
