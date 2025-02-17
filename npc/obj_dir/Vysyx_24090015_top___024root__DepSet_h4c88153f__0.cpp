@@ -589,12 +589,29 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                                  < vlSelf->ysyx_24090015_top__DOT__imm)
                               : ((0x40005013U == (0xfe00707fU 
                                                   & vlSelf->inst))
-                                  ? ((0x80000000U & vlSelf->ysyx_24090015_top__DOT__src1) 
-                                     | (0x7fffffffU 
-                                        & ((0x7fffffffU 
-                                            & vlSelf->ysyx_24090015_top__DOT__src1) 
-                                           >> (0x1fU 
-                                               & vlSelf->ysyx_24090015_top__DOT__imm))))
+                                  ? ((vlSelf->ysyx_24090015_top__DOT__src1 
+                                      >> 0x1fU) ? (
+                                                   ((0x1fU 
+                                                     >= 
+                                                     ((IData)(0x1fU) 
+                                                      - 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                                     ? 
+                                                    ((IData)(0xffffffffU) 
+                                                     << 
+                                                     ((IData)(0x1fU) 
+                                                      - 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                                     : 0U) 
+                                                   | (vlSelf->ysyx_24090015_top__DOT__src1 
+                                                      >> 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                      : (vlSelf->ysyx_24090015_top__DOT__src1 
+                                         >> (0x1fU 
+                                             & vlSelf->ysyx_24090015_top__DOT__imm)))
                                   : ((0x4013U == (0x707fU 
                                                   & vlSelf->inst))
                                       ? (vlSelf->ysyx_24090015_top__DOT__src1 
@@ -967,12 +984,29 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                                  < vlSelf->ysyx_24090015_top__DOT__imm)
                               : ((0x40005013U == (0xfe00707fU 
                                                   & vlSelf->inst))
-                                  ? ((0x80000000U & vlSelf->ysyx_24090015_top__DOT__src1) 
-                                     | (0x7fffffffU 
-                                        & ((0x7fffffffU 
-                                            & vlSelf->ysyx_24090015_top__DOT__src1) 
-                                           >> (0x1fU 
-                                               & vlSelf->ysyx_24090015_top__DOT__imm))))
+                                  ? ((vlSelf->ysyx_24090015_top__DOT__src1 
+                                      >> 0x1fU) ? (
+                                                   ((0x1fU 
+                                                     >= 
+                                                     ((IData)(0x1fU) 
+                                                      - 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                                     ? 
+                                                    ((IData)(0xffffffffU) 
+                                                     << 
+                                                     ((IData)(0x1fU) 
+                                                      - 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                                     : 0U) 
+                                                   | (vlSelf->ysyx_24090015_top__DOT__src1 
+                                                      >> 
+                                                      (0x1fU 
+                                                       & vlSelf->ysyx_24090015_top__DOT__imm)))
+                                      : (vlSelf->ysyx_24090015_top__DOT__src1 
+                                         >> (0x1fU 
+                                             & vlSelf->ysyx_24090015_top__DOT__imm)))
                                   : ((0x4013U == (0x707fU 
                                                   & vlSelf->inst))
                                       ? (vlSelf->ysyx_24090015_top__DOT__src1 
