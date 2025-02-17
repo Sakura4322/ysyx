@@ -69,7 +69,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					if(src1==src2)dnpc=pc+imm;
 					end
                     32'b???????_?????_?????_101_?????_11000_11: begin //bge B
-                    if(src1>=src2)dnpc = pc + imm;
+                    if((src1[31]==0&&src2[31]==0)&&(src1>=src2)||(src1[31]==1&&src2[31]==1)&&(src1<src2)||(src1[31]==0&&src2[31]==1))dnpc = pc + imm;
                     end
                     32'b???????_?????_?????_111_?????_11000_11: begin //bgeu B
                     if(src1>=src2)dnpc = pc + imm;
