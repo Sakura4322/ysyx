@@ -657,6 +657,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
     } else if ((0x6033U == (0xfe00707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
             (vlSelf->ysyx_24090015_top__DOT__src1 | vlSelf->ysyx_24090015_top__DOT__src2);
+    } else if ((0x7033U == (0xfe00707fU & vlSelf->inst))) {
+        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
+            (vlSelf->ysyx_24090015_top__DOT__src1 & vlSelf->ysyx_24090015_top__DOT__src2);
     } else if ((0x1033U == (0xfe00707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
             ((0x80000000U & vlSelf->ysyx_24090015_top__DOT__src1) 
@@ -1018,6 +1021,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
     } else if ((0x6033U == (0xfe00707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
             (vlSelf->ysyx_24090015_top__DOT__src1 | vlSelf->ysyx_24090015_top__DOT__src2);
+    } else if ((0x7033U == (0xfe00707fU & vlSelf->inst))) {
+        vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
+            (vlSelf->ysyx_24090015_top__DOT__src1 & vlSelf->ysyx_24090015_top__DOT__src2);
     } else if ((0x1033U == (0xfe00707fU & vlSelf->inst))) {
         vlSelf->ysyx_24090015_top__DOT__rd_wdata = 
             ((0x80000000U & vlSelf->ysyx_24090015_top__DOT__src1) 
