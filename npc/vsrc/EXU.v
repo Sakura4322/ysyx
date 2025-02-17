@@ -114,6 +114,9 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					32'b0000000_?????_?????_001_?????_01100_11: begin //sll R
 					rd_wdata = {src1[31],src1[30:0]<<src2[4:0]};
 					end
+					32'b0000000_?????_?????_011_?????_01100_11: begin //sltu R
+                    rd_wdata = (src1<src2);
+                    end
 
 				default begin 
 
