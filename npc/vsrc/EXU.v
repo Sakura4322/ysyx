@@ -121,8 +121,7 @@ module ysyx_24090015_EXU#(WIDTH=32) (
                     rd_wdata = (src1<src2);
                     end
 					32'b0000000_?????_?????_011_?????_01100_11: begin //slt R
-                    if(((src1[31]==0&&src2[31]==0)&&(src1<src2))||((src1[31]==1&&src2[31]==1)&&(src1<src2))||(src1[31]==1&&src2[31]==0)) rd_wdata=1;
-					else rd_wdata=0;
+                    if(rd_wdata=((src1[31]==0&&src2[31]==0)&&(src1<src2))||((src1[31]==1&&src2[31]==1)&&(src1<src2))||(src1[31]==1&&src2[31]==0));
                     end
 
 				default begin 
