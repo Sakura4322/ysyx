@@ -54,6 +54,7 @@ static void checkregs(CPU_state *ref, uint32_t pc) {
     	}
       printf("pc : 0x%08x\n",ref->pc);
     //exit(-1);
+    return ;
   }
   	}
 }
