@@ -179,7 +179,7 @@ Addr_Imfo *read_sym_func(){//all func info in func_addr
 
 					free(shdr);
 					free(sym);
-					free(strtab);
+					//free(strtab);
 
 
 					return func_addr;
