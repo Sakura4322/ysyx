@@ -114,6 +114,7 @@ Elf32_Shdr *parse_shdr(Elf32_Ehdr *ehdr, char *elf_file);
 char *parse_strtab(Elf32_Shdr *shdr,char *elf_file);
 Elf32_Sym* parse_sym(Elf32_Shdr *shdr,char *elf);
 extern int cnt_globle;         //real num of sym(the num of str_char)
+extern char *elf_file;
 extern int sym_globle_indx;
 
 typedef struct{
@@ -403,17 +404,6 @@ if (n == 0){
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
-#ifdef CONFIG_FTRACE
-	if(func_addr!=NULL)
-free(func_addr);	
-	if(shdr_globle!=NULL)
-free(shdr_globle);
-	if(sym_globle!=NULL)
-free(sym_globle);
-	if(str_globle!=NULL)
-free(str_globle);
-
-#endif
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
