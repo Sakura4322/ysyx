@@ -30,6 +30,7 @@ long load_img() {
 	
 
   vaddr =(uint8_t*)malloc(CONFIG_MSIZE);
+  memset(vaddr,rand(),CONFIG_MSIZE);
 	if(vaddr==NULL){
 	printf("Memory allocation faile\n");
 	exit(-1);
