@@ -14,7 +14,7 @@ CSRC = $(abspath ./csrc/verilog.cpp) $(abspath ./csrc/DPI.cpp) $(abspath ./csrc/
 CSRC +=$(abspath ./csrc/disasm.cc)
 CSRC +=$(abspath ./csrc/difftest_dut.cpp)
 
-CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal
+CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal -fsanitize=address
 LDFLAGS= -lreadline 
 LDFLAGS += $(shell llvm-config --libs)
 LDFLAGS += $(NEMU_LIB)
