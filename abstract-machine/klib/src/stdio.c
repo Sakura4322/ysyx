@@ -5,18 +5,10 @@
 
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
-int printf(const char *fmt, ...) {
-
-  panic("Not implemented");
-}
 
 
-int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
-}
 
-
-char *to_string(char *out,int a){
+static char *to_string(char *out,int a){
  char temp[20]="";
  int i=0;
  while (a>0){
@@ -29,6 +21,45 @@ for(int j=0;j<i;j++){
 out[i]='\0';
 return out;
 }
+
+
+
+
+
+int printf(const char *fmt, ...) {
+va_list args;
+va_start(args,fmt);
+for(int i =0 ;i<strlen(fmt);i++){
+	if(fmt[i]=='%'){
+		if(fmt[i+1]=='s'){
+			char *temp=va_arg(args,char *);
+			for(int j=0;j<strlen(temp);j++){
+				putch(temp[j]);
+			}
+			
+		}else if(fmt[i+1]=='d'){
+				int temp = va_arg(args,int);
+				char out[20];
+				to_string(out,temp);
+				for(int j=0;j<strlen(out);j++){
+					putch(out[j]);
+				}
+		}
+		i++;
+	}
+	putch(fmt[i]);
+}
+	va_end(args);
+	return 0;
+}
+
+
+int vsprintf(char *out, const char *fmt, va_list ap) {
+  panic("Not implemented");
+}
+
+
+
 
 
 int sprintf(char *out, const char *fmt, ...) {
