@@ -29,11 +29,13 @@ return out;
 int printf(const char *fmt, ...) {
 va_list args;
 va_start(args,fmt);
-for(int i =0 ;i<strlen(fmt);i++){
+int len_fmt=strlen(fmt);
+for(int i =0 ;i<len_fmt;i++){
 	if(fmt[i]=='%'){
 		if(fmt[i+1]=='s'){
 			char *temp=va_arg(args,char *);
-			for(int j=0;j<strlen(temp);j++){
+			int len_out = strlen(temp);
+			for(int j=0;j<len_out;j++){
 				putch(temp[j]);
 			}
 			
@@ -41,7 +43,8 @@ for(int i =0 ;i<strlen(fmt);i++){
 				int temp = va_arg(args,int);
 				char out[20];
 				to_string(out,temp);
-				for(int j=0;j<strlen(out);j++){
+			int	len_out = strlen(out);
+				for(int j=0;j<len_out;j++){
 					putch(out[j]);
 				}
 		}
