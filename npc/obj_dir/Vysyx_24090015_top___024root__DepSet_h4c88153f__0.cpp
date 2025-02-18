@@ -60,8 +60,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                  | (0x37U == (0x7fU & vlSelf->inst))) 
                 | (0x6fU == (0x7fU & vlSelf->inst))) 
                | (0x2023U == (0x707fU & vlSelf->inst))) 
-              | (0x1023U == (0x707fU & vlSelf->inst))) 
-             | (0x23U == (0x707fU & vlSelf->inst)))) {
+              | (0x23U == (0x707fU & vlSelf->inst))) 
+             | (0x1023U == (0x707fU & vlSelf->inst)))) {
             if ((0x2003U != (0x707fU & vlSelf->inst))) {
                 if ((0x4003U != (0x707fU & vlSelf->inst))) {
                     if ((0x17U != (0x7fU & vlSelf->inst))) {
@@ -70,7 +70,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                                 vlSelf->ysyx_24090015_top__DOT__wmask 
                                     = ((0x2023U == 
                                         (0x707fU & vlSelf->inst))
-                                        ? 0xfU : ((0x1023U 
+                                        ? 0xfU : ((0x23U 
                                                    == 
                                                    (0x707fU 
                                                     & vlSelf->inst))
@@ -391,8 +391,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                  | (0x37U == (0x7fU & vlSelf->inst))) 
                 | (0x6fU == (0x7fU & vlSelf->inst))) 
                | (0x2023U == (0x707fU & vlSelf->inst))) 
-              | (0x1023U == (0x707fU & vlSelf->inst))) 
-             | (0x23U == (0x707fU & vlSelf->inst)))) {
+              | (0x23U == (0x707fU & vlSelf->inst))) 
+             | (0x1023U == (0x707fU & vlSelf->inst)))) {
             if ((0x2003U != (0x707fU & vlSelf->inst))) {
                 if ((0x4003U != (0x707fU & vlSelf->inst))) {
                     if ((0x17U != (0x7fU & vlSelf->inst))) {
@@ -405,9 +405,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                                     vlSelf->ysyx_24090015_top__DOT__pmem_waddr 
                                         = (vlSelf->ysyx_24090015_top__DOT__src1 
                                            + vlSelf->ysyx_24090015_top__DOT__imm);
-                                } else if ((0x1023U 
-                                            == (0x707fU 
-                                                & vlSelf->inst))) {
+                                } else if ((0x23U == 
+                                            (0x707fU 
+                                             & vlSelf->inst))) {
                                     vlSelf->ysyx_24090015_top__DOT__pmem_wdata 
                                         = (0xffU & vlSelf->ysyx_24090015_top__DOT__src2);
                                     vlSelf->ysyx_24090015_top__DOT__pmem_waddr 
@@ -442,8 +442,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                                             & vlSelf->inst))
                                 ? (vlSelf->ysyx_24090015_top__DOT__src1 
                                    + vlSelf->ysyx_24090015_top__DOT__imm)
-                                : ((0x1023U == (0x707fU 
-                                                & vlSelf->inst))
+                                : ((0x23U == (0x707fU 
+                                              & vlSelf->inst))
                                     ? (vlSelf->ysyx_24090015_top__DOT__src1 
                                        + vlSelf->ysyx_24090015_top__DOT__imm)
                                     : (vlSelf->ysyx_24090015_top__DOT__src1 
@@ -488,8 +488,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                     | (0x37U == (0x7fU & vlSelf->inst))) 
                    | (0x6fU == (0x7fU & vlSelf->inst))) 
                   | (0x2023U == (0x707fU & vlSelf->inst))) 
-                 | (0x1023U == (0x707fU & vlSelf->inst))) 
-                | (0x23U == (0x707fU & vlSelf->inst)))) {
+                 | (0x23U == (0x707fU & vlSelf->inst))) 
+                | (0x1023U == (0x707fU & vlSelf->inst)))) {
         if ((0x2003U != (0x707fU & vlSelf->inst))) {
             if ((0x4003U != (0x707fU & vlSelf->inst))) {
                 if ((0x17U != (0x7fU & vlSelf->inst))) {
@@ -633,8 +633,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_sequent__TOP__0(Vysyx_2409
                     | (0x37U == (0x7fU & vlSelf->inst))) 
                    | (0x6fU == (0x7fU & vlSelf->inst))) 
                   | (0x2023U == (0x707fU & vlSelf->inst))) 
-                 | (0x1023U == (0x707fU & vlSelf->inst))) 
-                | (0x23U == (0x707fU & vlSelf->inst)))) {
+                 | (0x23U == (0x707fU & vlSelf->inst))) 
+                | (0x1023U == (0x707fU & vlSelf->inst)))) {
         if ((0x2003U == (0x707fU & vlSelf->inst))) {
             vlSelf->ysyx_24090015_top__DOT__rd_wdata 
                 = vlSelf->ysyx_24090015_top__DOT__pmem_rdata;
@@ -839,8 +839,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                  | (0x37U == (0x7fU & vlSelf->inst))) 
                 | (0x6fU == (0x7fU & vlSelf->inst))) 
                | (0x2023U == (0x707fU & vlSelf->inst))) 
-              | (0x1023U == (0x707fU & vlSelf->inst))) 
-             | (0x23U == (0x707fU & vlSelf->inst)))) {
+              | (0x23U == (0x707fU & vlSelf->inst))) 
+             | (0x1023U == (0x707fU & vlSelf->inst)))) {
             if ((0x2003U != (0x707fU & vlSelf->inst))) {
                 if ((0x4003U != (0x707fU & vlSelf->inst))) {
                     if ((0x17U != (0x7fU & vlSelf->inst))) {
@@ -853,9 +853,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                                     vlSelf->ysyx_24090015_top__DOT__pmem_waddr 
                                         = (vlSelf->ysyx_24090015_top__DOT__src1 
                                            + vlSelf->ysyx_24090015_top__DOT__imm);
-                                } else if ((0x1023U 
-                                            == (0x707fU 
-                                                & vlSelf->inst))) {
+                                } else if ((0x23U == 
+                                            (0x707fU 
+                                             & vlSelf->inst))) {
                                     vlSelf->ysyx_24090015_top__DOT__pmem_wdata 
                                         = (0xffU & vlSelf->ysyx_24090015_top__DOT__src2);
                                     vlSelf->ysyx_24090015_top__DOT__pmem_waddr 
@@ -890,8 +890,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                                             & vlSelf->inst))
                                 ? (vlSelf->ysyx_24090015_top__DOT__src1 
                                    + vlSelf->ysyx_24090015_top__DOT__imm)
-                                : ((0x1023U == (0x707fU 
-                                                & vlSelf->inst))
+                                : ((0x23U == (0x707fU 
+                                              & vlSelf->inst))
                                     ? (vlSelf->ysyx_24090015_top__DOT__src1 
                                        + vlSelf->ysyx_24090015_top__DOT__imm)
                                     : (vlSelf->ysyx_24090015_top__DOT__src1 
@@ -936,8 +936,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                     | (0x37U == (0x7fU & vlSelf->inst))) 
                    | (0x6fU == (0x7fU & vlSelf->inst))) 
                   | (0x2023U == (0x707fU & vlSelf->inst))) 
-                 | (0x1023U == (0x707fU & vlSelf->inst))) 
-                | (0x23U == (0x707fU & vlSelf->inst)))) {
+                 | (0x23U == (0x707fU & vlSelf->inst))) 
+                | (0x1023U == (0x707fU & vlSelf->inst)))) {
         if ((0x2003U != (0x707fU & vlSelf->inst))) {
             if ((0x4003U != (0x707fU & vlSelf->inst))) {
                 if ((0x17U != (0x7fU & vlSelf->inst))) {
@@ -1081,8 +1081,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                     | (0x37U == (0x7fU & vlSelf->inst))) 
                    | (0x6fU == (0x7fU & vlSelf->inst))) 
                   | (0x2023U == (0x707fU & vlSelf->inst))) 
-                 | (0x1023U == (0x707fU & vlSelf->inst))) 
-                | (0x23U == (0x707fU & vlSelf->inst)))) {
+                 | (0x23U == (0x707fU & vlSelf->inst))) 
+                | (0x1023U == (0x707fU & vlSelf->inst)))) {
         if ((0x2003U == (0x707fU & vlSelf->inst))) {
             vlSelf->ysyx_24090015_top__DOT__rd_wdata 
                 = vlSelf->ysyx_24090015_top__DOT__pmem_rdata;
