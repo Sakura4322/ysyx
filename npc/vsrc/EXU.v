@@ -42,6 +42,10 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					pmem_raddr = src1+imm;
                     rd_wdata = pmem_rdata;
 					end
+					32'b???????_?????_?????_001_?????_00000_11: begin //lh IS					
+					pmem_raddr = src1+imm;
+                    rd_wdata = pmem_rdata[15:0];
+					end
 					32'b???????_?????_?????_100_?????_00000_11: begin //lbu IS
 					pmem_raddr = src1+imm;
                     rd_wdata = pmem_rdata[7:0];
