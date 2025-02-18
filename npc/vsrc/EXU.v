@@ -72,13 +72,13 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					wmask = 8'b00000001;
 					pmem_raddr = src1+imm;
 					pmem_waddr = src1+imm;
-					pmem_wdata = src2;
+					pmem_wdata = src2[7:0];
 					end
 					32'b???????_?????_?????_000_?????_01000_11: begin //sb S
 					wmask = 8'b00000011;
 					pmem_raddr = src1+imm;
 					pmem_waddr = src1+imm;
-					pmem_wdata = src2;
+					pmem_wdata = src2[15:0];
 					end
 					32'b???????_?????_?????_001_?????_11000_11: begin //bne B
 					
