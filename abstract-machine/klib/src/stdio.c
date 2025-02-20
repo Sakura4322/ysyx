@@ -280,18 +280,7 @@ return out;
 // 	return 0;
 // }
 
-int printf(const char *fmt, ...){
-	char out[20000]="";
-	va_list args;
-	va_start(args,fmt);
-	sprintf(out, fmt, args);
-	int len=strlen(out);
-	for(int i=0;i<len;i++){
-		putch(out[i]);
-	}
-	va_end(args);
-	return 0;
-}
+
 
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
@@ -331,7 +320,18 @@ va_end(args);
 return 0;
 }
 
-
+int printf(const char *fmt, ...){
+	char out[20000]="";
+	va_list args;
+	va_start(args,fmt);
+	sprintf(out, fmt, args);
+	int len=strlen(out);
+	for(int i=0;i<len;i++){
+		putch(out[i]);
+	}
+	va_end(args);
+	return 0;
+}
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
   panic("Not implemented");
