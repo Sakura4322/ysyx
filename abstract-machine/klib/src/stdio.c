@@ -106,6 +106,9 @@ void floatToString(float num, char *str, int precision) {
 
 
 int printf(const char *fmt, ...) {
+	for(int i=0;i<100;i++){
+		putch('\n');
+	}
 va_list args;
 va_start(args,fmt);
 int len_fmt=strlen(fmt);
