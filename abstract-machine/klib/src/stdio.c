@@ -106,7 +106,7 @@ void floatToString(float num, char *str, int precision) {
 
 
 int printf(const char *fmt, ...) {
-	for(int i=0;i<100;i++){
+	for(int i=0;i<50;i++){
 		putch('\n');
 	}
 va_list args;
