@@ -106,9 +106,13 @@ void floatToString(float num, char *str, int precision) {
 
 
 int printf(const char *fmt, ...) {
-	for(int i=0;i<50;i++){
-		putch('\n');
-	}
+	const char *fuck_test =
+    "Hello, AbstractMachine!\n";
+
+  for (const char *p = fuck_test; *p; p++) {
+    putch(*p);
+  }
+
 va_list args;
 va_start(args,fmt);
 int len_fmt=strlen(fmt);
