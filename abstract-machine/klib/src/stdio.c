@@ -28,7 +28,7 @@ for(int j=0;j<i;j++){
 		*(out+negetive+j)=*(temp+i-j-1);
 	}
 
-out[i+5]='\0';
+out[i+negetive]='\0';
 return out;
 }
 
