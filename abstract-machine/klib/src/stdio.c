@@ -281,7 +281,7 @@ return out;
 // }
 
 int printf(const char *fmt, ...){
-	char out[256]="";
+	char out[20000]="";
 	va_list args;
 	va_start(args,fmt);
 	sprintf(out, fmt, args);
@@ -303,7 +303,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 
 int sprintf(char *out, const char *fmt, ...) {
-	memset(out,'\0',strlen(out));
 va_list args;
 va_start(args,fmt);
 int i=0;
