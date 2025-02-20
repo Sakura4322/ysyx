@@ -284,7 +284,30 @@ return out;
 
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
-  panic("Not implemented");
+
+	int i=0;
+	int end=strlen(fmt);
+	for( i=0; i<end;  i++){
+	if (*(fmt+i)=='%') {
+			char temp=*(fmt+i+1);
+			if(temp=='s'){ 
+				strcat(out,va_arg(ap,char *));
+			}else if(temp=='d'){
+				int num=va_arg(ap,int);
+				char temp_str[20]="";
+				to_string(temp_str,num);
+				strcat(out,temp_str);
+			}
+			i++;
+	}	else{
+		int ind_out=strlen(out);
+	*(out+ind_out)=*(fmt+i);	
+	}
+	}
+
+	int ind_out=strlen(out);
+	out[ind_out]='\0';
+	return 0;
 }
 
 
@@ -324,7 +347,7 @@ int printf(const char *fmt, ...){
 	char out[20000]="";
 	va_list args;
 	va_start(args,fmt);
-	sprintf(out, fmt, args);
+	vsprintf(out, fmt, args);
 	int len=strlen(out);
 	for(int i=0;i<len;i++){
 		putch(out[i]);
