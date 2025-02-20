@@ -26,9 +26,11 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 		}else{
 			printf("ref_r.pc : %08x\tcpu.pc : %08x",ref_r->pc,cpu.pc);
 		}
+	printf("difftest fail\n");
 	return false;
 	}	
 	}
+	printf("difftest success\n");
   return true;
 }
 
