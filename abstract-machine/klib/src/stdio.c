@@ -297,6 +297,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				char temp_str[20]="";
 				to_string(temp_str,num);
 				strcat(out,temp_str);
+			}else if(temp=='c'){
+				char ch =va_arg(ap,int);
+				putch(ch);
 			}
 			i++;
 	}	else{
@@ -329,6 +332,9 @@ if (*(fmt+i)=='%') {
 			char temp_str[20]="";
 			to_string(temp_str,num);
 			strcat(out,temp_str);
+		}else if(temp=='c'){
+			char ch =va_arg(args,int);
+			putch(ch);
 		}
 		i++;
 }	else{
