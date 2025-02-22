@@ -28,7 +28,7 @@ for(int j=0;j<i;j++){
 		*(out+negetive+j)=*(temp+i-j-1);
 	}
 
-out[i+1]='\0';
+out[i+negetive]='\0';
 return out;
 }
 
@@ -301,7 +301,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			}else if(temp=='d'){
 				int num=va_arg(ap,int);
 				char temp_str[20]="";
-				to_string(temp_str,num+1);
+				to_string(temp_str,num);
 				strcat(out,temp_str);
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
