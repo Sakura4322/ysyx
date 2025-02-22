@@ -328,6 +328,7 @@ int end=strlen(fmt);
 for( i=0; i<end;  i++){
 if (*(fmt+i)=='%') {
 		char temp=*(fmt+i+1);
+		putch(temp);
 		if(temp=='s'){ 
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
@@ -342,7 +343,7 @@ if (*(fmt+i)=='%') {
 			temp[1]='\0';
 			strcat(out,temp);
 		}else if(temp=='x'){
-			printf("HEllo\n");
+			printf("Hello\n");
 			int num=va_arg(args,int);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
