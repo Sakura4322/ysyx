@@ -343,6 +343,7 @@ if (*(fmt+i)=='%') {
 			strcat(out,temp);
 		}else if(temp=='x'){
 			int num=va_arg(args,int);
+			printf("%d\n",num);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
 			strcat(out,temp_str);
