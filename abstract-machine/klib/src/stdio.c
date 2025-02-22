@@ -342,7 +342,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			}
 
 			if(precision=='.'){
-				int k =0;
+				int k =1;
 				while(ptr[k]>='0'&&ptr[k]<='9'){
 					lenth=lenth*10+(ptr[k]-'0');
 					k++;
@@ -350,7 +350,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			}
 
 			putch(flags);
-			
 			char test_width[10];
 			to_string(test_width,width);
 			char test_len[10];
