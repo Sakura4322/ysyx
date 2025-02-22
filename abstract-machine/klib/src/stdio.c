@@ -310,7 +310,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				temp[1]='\0';
 				strcat(out,temp);
 			}else if(temp=='x'){
-				int num=va_arg(ap,int);
+				int num=va_arg(ap,unsigned int);
 				char temp_str[20]="";
 				decimalToHex(num,temp_str);
 				strcat(out,temp_str);
@@ -357,7 +357,7 @@ if (*(fmt+i)=='%') {
 			strcat(out,temp);
 		}else if(temp=='x'){
 			printf("Hello\n");
-			int num=va_arg(args,int);
+			int num=va_arg(args,uint32_t);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
 			strcat(out,temp_str);
