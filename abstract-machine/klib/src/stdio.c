@@ -342,8 +342,8 @@ if (*(fmt+i)=='%') {
 			temp[1]='\0';
 			strcat(out,temp);
 		}else if(temp=='x'){
+			printf("HEllo\n");
 			int num=va_arg(args,int);
-			printf("%d\n",num);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
 			strcat(out,temp_str);
