@@ -299,7 +299,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				strcat(out,temp_str);
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
-				putch(ch);
+				char temp[2];
+				temp[0]=ch;
+				temp[1]='\0';
+				strcat(out,temp);
 			}
 			i++;
 	}	else{
@@ -334,7 +337,10 @@ if (*(fmt+i)=='%') {
 			strcat(out,temp_str);
 		}else if(temp=='c'){
 			char ch =va_arg(args,int);
-			putch(ch);
+			char temp[2];
+			temp[0]=ch;
+			temp[1]='\0';
+			strcat(out,temp);
 		}
 		i++;
 }	else{
