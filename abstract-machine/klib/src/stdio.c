@@ -343,7 +343,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			if(precision=='.'){
 				int k =0;
-				while(*ptr>='0'&&*ptr<='9'){
+				while(ptr[k]>='0'&&ptr[k]<='9'){
 					lenth=lenth*10+(ptr[k]-'0');
 					k++;
 				}
