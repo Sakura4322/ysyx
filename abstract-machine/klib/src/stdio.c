@@ -320,6 +320,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				j++;
 			}
 			i+=j;
+			temp=*(fmt+i+1);
+			putch(temp);
 			symbols[j]='\0';
 			char *ptr = symbols;
 			char flags='\0',precision='\0';
