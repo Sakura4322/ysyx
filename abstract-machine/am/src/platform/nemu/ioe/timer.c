@@ -4,10 +4,11 @@
 void __am_timer_init() {
 }
 
+extern int printf(const char *fmt, ...);
 void __am_timer_uptime(AM_TIMER_UPTIME_T *uptime) {
-
+  printf("%08x\n",RTC_ADDR);
   uptime->us = inl(RTC_ADDR);
-  
+
 }
 
 void __am_timer_rtc(AM_TIMER_RTC_T *rtc) {
