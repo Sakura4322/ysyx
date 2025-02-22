@@ -303,6 +303,15 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				temp[0]=ch;
 				temp[1]='\0';
 				strcat(out,temp);
+			}else if(temp=='x'){
+				printf("Hello\n");
+				int num=va_arg(ap,int);
+				char temp_str[20]="";
+				decimalToHex(num,temp_str);
+				strcat(out,temp_str);
+			}else{
+				out = "PRINT ERROR !";
+				return 0 ;
 			}
 			i++;
 	}	else{
