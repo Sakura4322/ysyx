@@ -377,7 +377,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						//strcat(out,temp_str);
 
 						if(precision=='.'){
-							for(int k=0;k<min(len_out,lenth);k++){
+							int fuck=min(len_out,lenth);
+							for(int k=0;k<fuck;k++){
 								char trans[2];
 								trans[0]=temp_str[k];
 								strcat(out,trans);
