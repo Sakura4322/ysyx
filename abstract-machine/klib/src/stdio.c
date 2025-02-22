@@ -312,6 +312,46 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				strcat(out,temp_str);
 			}else {
 
+			int j =0;
+			char symbols[10]="";
+			while(fmt[i+j+1]=='s'||fmt[i+j+1]=='d'||fmt[i+j+1]=='x'||fmt[i+j+1]=='f'||fmt[i+j+i]=='c'){
+				symbols[j]=fmt[i+j+1];
+				j++;
+			}
+			i+=j;
+			symbols[j]='\0';
+			char *ptr = symbols;
+			char flags,precision;
+			int width,lenth;
+
+			if(*ptr>'0'&&*ptr<='9'){
+				flags=' ';
+			}else{
+				flags=*ptr;
+				ptr++;
+			}
+
+			for(int k=0;k<j-1;k++){		//pd precision and parse width
+				if(ptr[k]=='.'){
+					precision='.';
+					ptr+=k;
+					break;
+				}else{
+					width=width*10+(ptr[k]-'0');
+				}
+			}
+
+			if(precision=='.'){
+				int k =0;
+				while(*ptr>='0'&&*ptr<=9){
+					lenth=lenth*10+(ptr[k]-'0');
+					k++;
+				}
+			}
+
+			putch(flags);
+			putch(precision);
+
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
 			}else if(temp=='d'){
