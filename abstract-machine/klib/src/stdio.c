@@ -351,6 +351,13 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			putch(flags);
 			putch(precision);
+			char test_width[10];
+			to_string(test_width,width);
+			char test_len[10];
+			to_string(test_len,lenth);
+			putch(test_width[0]);
+			putch(test_len[0]);
+
 
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
