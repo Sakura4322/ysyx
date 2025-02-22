@@ -321,8 +321,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			i+=j;
 			symbols[j]='\0';
 			char *ptr = symbols;
-			char flags,precision;
-			int width,lenth;
+			char flags='\0',precision='\0';
+			int width=0,lenth=0;
 
 			if(*ptr>'0'&&*ptr<='9'){
 				flags=' ';
