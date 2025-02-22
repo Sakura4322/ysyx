@@ -363,33 +363,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
-				char *temp_str=va_arg(ap,char *);
-				int len_out = strlen(temp_str);
-				if(flags==' '||flags=='0'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2];
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
-
-				if(precision=='.'){
-					for(int k=0;k<min(len_out,lenth);k++){
-						char trans[2];
-						trans[0]=temp_str[k];
-						strcat(out,trans);
-					}
-				}else {
-					strcat(out,va_arg(ap,char *));
-				}
-
-				if(flags=='-'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2];
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
 			}else if(temp=='d'){
 				int num=va_arg(ap,int);
 				char temp_str[20]="";
