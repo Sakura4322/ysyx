@@ -384,7 +384,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 								strcat(out,trans);
 							}
 						}else {
-							strcat(out,va_arg(ap,char *));
+							strcat(out,temp_str);
 						}
 		
 
