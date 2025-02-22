@@ -362,7 +362,6 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 
 			if(temp=='s'){ 
-				strcat(out,va_arg(ap,char *));
 				char *temp_str=va_arg(ap,char *);
 				int len_out = strlen(temp_str);
 				if(flags==' '||flags=='0'){
