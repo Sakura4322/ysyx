@@ -9,7 +9,7 @@
 extern int min(int a ,int b ); 
 extern void putch(char ch);
 
-static char *to_string(char *out,int a){
+static char *to_string(char *out,long a){
  char temp[20]="";
  int i=0;
 int negetive=(a<0);
@@ -301,7 +301,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			}else if(temp=='d'){
 				int num=va_arg(ap,int);
 				char temp_str[20]="";
-				to_string(temp_str,num);
+				to_string(temp_str,(long)num);
 				strcat(out,temp_str);
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
