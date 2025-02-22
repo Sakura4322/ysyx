@@ -347,6 +347,9 @@ if (*(fmt+i)=='%') {
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
 			strcat(out,temp_str);
+		}else{
+			out = "PRINT ERROR !";
+			return 0 ;
 		}
 		i++;
 }	else{
