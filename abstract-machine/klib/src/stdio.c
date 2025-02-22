@@ -290,7 +290,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	for( i=0; i<end;  i++){
 	if (*(fmt+i)=='%') {
 			char temp=*(fmt+i+1);
-			putch(temp);
+			if(temp=='%'){
+				putch('%');
+			}else {
+
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
 			}else if(temp=='d'){
@@ -313,6 +316,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				out = "PRINT ERROR !";
 				return 0 ;
 			}
+		}
 			i++;
 	}	else{
 		int ind_out=strlen(out);
@@ -336,7 +340,6 @@ int end=strlen(fmt);
 for( i=0; i<end;  i++){
 if (*(fmt+i)=='%') {
 		char temp=*(fmt+i+1);
-		putch(temp);
 		if(temp=='s'){ 
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
