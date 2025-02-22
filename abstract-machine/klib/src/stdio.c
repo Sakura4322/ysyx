@@ -374,7 +374,18 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 					}
 				}
 
-						strcat(out,temp_str);
+						//strcat(out,temp_str);
+
+						if(precision=='.'){
+							for(int k=0;k<min(len_out,lenth);k++){
+								char trans[2];
+								trans[0]=temp_str[k];
+								strcat(out,trans);
+							}
+						}else {
+							strcat(out,va_arg(ap,char *));
+						}
+		
 
 
 				if(flags=='-'){
