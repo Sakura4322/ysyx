@@ -34,34 +34,34 @@ return out;
 
 
 
-// void decimalToHex(int decimal, char *hexString) {
-//     char hexDigits[] = "0123456789ABCDEF";  // 十六进制数字表
-//     int index = 0;
+void decimalToHex(int decimal, char *hexString) {
+    char hexDigits[] = "0123456789ABCDEF";  // 十六进制数字表
+    int index = 0;
 
-//     // 处理负数
-//     if (decimal < 0) {
-//         hexString[index++] = '-';
-//         decimal = -decimal;
-//     }
+    // 处理负数
+    if (decimal < 0) {
+        hexString[index++] = '-';
+        decimal = -decimal;
+    }
 
-//     // 将十进制数转换为十六进制
-//     int remainder;
-//     char hexResult[10] = {0};  // 临时存储十六进制结果
-//     int pos = 0;
+    // 将十进制数转换为十六进制
+    int remainder;
+    char hexResult[10] = {0};  // 临时存储十六进制结果
+    int pos = 0;
 
-//     do {
-//         remainder = decimal % 16;
-//         hexResult[pos++] = hexDigits[remainder];
-//         decimal /= 16;
-//     } while (decimal > 0);
+    do {
+        remainder = decimal % 16;
+        hexResult[pos++] = hexDigits[remainder];
+        decimal /= 16;
+    } while (decimal > 0);
 
-//     // 反转字符串
-//     for (int i = 0; i < pos; i++) {
-//         hexString[index++] = hexResult[pos - i - 1];
-//     }
+    // 反转字符串
+    for (int i = 0; i < pos; i++) {
+        hexString[index++] = hexResult[pos - i - 1];
+    }
 
-//     hexString[index] = '\0';  // 添加字符串结束符
-// }
+    hexString[index] = '\0';  // 添加字符串结束符
+}
 
 // void floatToString(float num, char *str, int precision) {
 //     // 处理负数
@@ -341,6 +341,11 @@ if (*(fmt+i)=='%') {
 			temp[0]=ch;
 			temp[1]='\0';
 			strcat(out,temp);
+		}else if(temp=='x'){
+			int num=va_arg(args,int);
+			char temp_str[20]="";
+			decimalToHex(num,temp_str);
+			strcat(out,temp_str);
 		}
 		i++;
 }	else{
