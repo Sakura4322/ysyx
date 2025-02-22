@@ -306,6 +306,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	for( i=0; i<end;  i++){
 	if (*(fmt+i)=='%') {
 			char temp=*(fmt+i+1);
+			putch(temp);
 			if(temp=='%'){
 				char temp_str[2];
 				temp_str[0]='%';
