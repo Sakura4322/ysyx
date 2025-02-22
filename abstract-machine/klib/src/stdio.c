@@ -320,7 +320,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			}
 			i+=j;
 			temp=*(fmt+i+1);
-			//putch(temp);
+			putch(temp);
 			symbols[j]='\0';
 			char *ptr = symbols;
 			char flags='\0',precision='\0';
@@ -425,9 +425,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
-				char temp_str[2];
-				temp_str[0]=ch;
-				strcat(out,temp_str);
+				char trans[2];
+				trans[0]=ch;
+				strcat(out,trans);
 			}else if(temp=='x'){
 				int num=va_arg(ap,unsigned int);
 				char temp_str[20]="";
