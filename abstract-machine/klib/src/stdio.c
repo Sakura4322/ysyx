@@ -425,10 +425,10 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
-				char temp[2];
-				temp[0]=ch;
-				temp[1]='\0';
-				strcat(out,temp);
+				char temp_str[2];
+				temp_str[0]=ch;
+				temp_str[1]='\0';
+				strcat(out,temp_str);
 			}else if(temp=='x'){
 				int num=va_arg(ap,unsigned int);
 				char temp_str[20]="";
