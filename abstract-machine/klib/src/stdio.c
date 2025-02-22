@@ -369,7 +369,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags==' '||flags=='0'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
@@ -380,7 +380,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 						if(precision=='.'){
 							int fuck=min(len_out,lenth);
 							for(int k=0;k<fuck;k++){
-								char trans[2];
+								char trans[2]="";
 								trans[0]=temp_str[k];
 								strcat(out,trans);
 							}
@@ -392,7 +392,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags=='-'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
@@ -405,7 +405,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags==' '||flags=='0'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
@@ -418,7 +418,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags=='-'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
@@ -426,9 +426,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
-				char trans[2];
+				char trans[2]="";
 				trans[0]=ch;
-				trans[1]='\0';
 				strcat(out,trans);
 			}else if(temp=='x'){
 				int num=va_arg(ap,unsigned int);
@@ -439,7 +438,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags==' '||flags=='0'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
@@ -452,7 +451,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 				if(flags=='-'){
 					for(int k=0;k<width-len_out;k++){
-						char trans[2];
+						char trans[2]="";
 						trans[0]=flags;
 						strcat(out,trans);
 					}
