@@ -299,7 +299,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
 			}else if(temp=='d'){
-				int num=va_arg(ap,unsigned int);
+				int num=va_arg(ap,int);
 				char temp_str[20]="";
 				to_string(temp_str,num);
 				strcat(out,temp_str);
