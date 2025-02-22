@@ -314,7 +314,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			int j =0;
 			char symbols[10]="";
-			while(fmt[i+j+1]=='s'||fmt[i+j+1]=='d'||fmt[i+j+1]=='x'||fmt[i+j+1]=='f'||fmt[i+j+i]=='c'){
+			while(fmt[i+j+1]!='s'&&fmt[i+j+1]!='d'&&fmt[i+j+1]!='x'&&fmt[i+j+1]!='f'&&fmt[i+j+i]!='c'){
 				symbols[j]=fmt[i+j+1];
 				j++;
 			}
