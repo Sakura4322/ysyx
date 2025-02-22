@@ -349,14 +349,14 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				}
 			}
 
-			putch(flags);
-			char test_width[10];
-			to_string(test_width,width);
-			char test_len[10];
-			to_string(test_len,lenth);
-			putch(test_width[0]);
-			putch(precision);
-			putch(test_len[0]);
+			// putch(flags);						test bench
+			// char test_width[10];
+			// to_string(test_width,width);
+			// char test_len[10];
+			// to_string(test_len,lenth);
+			// putch(test_width[0]);
+			// putch(precision);
+			// putch(test_len[0]);
 
 
 			if(temp=='s'){ 
@@ -366,6 +366,25 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				char temp_str[20]="";
 				to_string(temp_str,num);
 				strcat(out,temp_str);
+
+// 				if(flags==' '||flags=='0'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						putch(flags);
+// 					}
+// 				}
+
+
+// 					for(int k=0;k<len_out;k++){
+// 						putch(out[k]);
+// 					}
+
+
+// 				if(flags=='-'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						putch(flags);
+// 					}
+// 				}
+
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
 				char temp[2];
@@ -376,7 +395,31 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				int num=va_arg(ap,unsigned int);
 				char temp_str[20]="";
 				decimalToHex(num,temp_str);
-				strcat(out,temp_str);
+				int len_out=strlen(temp_str);
+				
+
+				if(flags==' '||flags=='0'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
+
+
+					for(int k=0;k<len_out;k++){
+						strcat(out,temp_str);
+					}
+
+
+				if(flags=='-'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
+
 			}else{
 				out = "PRINT ERROR !";
 				return 0 ;
