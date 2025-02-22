@@ -428,6 +428,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				char ch =va_arg(ap,int);
 				char trans[2];
 				trans[0]=ch;
+				trans[1]='\0';
 				strcat(out,trans);
 			}else if(temp=='x'){
 				int num=va_arg(ap,unsigned int);
