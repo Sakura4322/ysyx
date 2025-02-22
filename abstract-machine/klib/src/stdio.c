@@ -363,29 +363,59 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
+				char *temp_str=va_arg(ap,char *);
+				int len_out = strlen(temp_str);
+				if(flags==' '||flags=='0'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
+
+				if(precision=='.'){
+					for(int k=0;k<min(len_out,lenth);k++){
+						char trans[2];
+						trans[0]=temp_str[k];
+						strcat(out,trans);
+					}
+				}else {
+					strcat(out,va_arg(ap,char *));
+				}
+
+				if(flags=='-'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
 			}else if(temp=='d'){
 				int num=va_arg(ap,int);
 				char temp_str[20]="";
 				to_string(temp_str,num);
-				strcat(out,temp_str);
+				int len_out=strlen(temp_str);
 
-// 				if(flags==' '||flags=='0'){
-// 					for(int k=0;k<width-len_out;k++){
-// 						putch(flags);
-// 					}
-// 				}
-
-
-// 					for(int k=0;k<len_out;k++){
-// 						putch(out[k]);
-// 					}
+				if(flags==' '||flags=='0'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
 
 
-// 				if(flags=='-'){
-// 					for(int k=0;k<width-len_out;k++){
-// 						putch(flags);
-// 					}
-// 				}
+						strcat(out,temp_str);
+
+
+
+				if(flags=='-'){
+					for(int k=0;k<width-len_out;k++){
+						char trans[2];
+						trans[0]=flags;
+						strcat(out,trans);
+					}
+				}
 
 			}else if(temp=='c'){
 				char ch =va_arg(ap,int);
@@ -422,7 +452,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 				}
 
 			}else{
-				out = "PRINT ERROR !";
+				strcpy(out,"PRINT ERROR !");
 				return 0 ;
 			}
 		}
