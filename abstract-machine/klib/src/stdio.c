@@ -299,7 +299,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
 			}else if(temp=='d'){
-				int num=va_arg(ap,int);
+				int num=va_arg(ap,unsigned int);
 				char temp_str[20]="";
 				to_string(temp_str,num);
 				strcat(out,temp_str);
@@ -357,7 +357,7 @@ if (*(fmt+i)=='%') {
 			strcat(out,temp);
 		}else if(temp=='x'){
 			printf("Hello\n");
-			int num=va_arg(args,uint32_t);
+			int num=va_arg(args,unsigned int);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
 			strcat(out,temp_str);
