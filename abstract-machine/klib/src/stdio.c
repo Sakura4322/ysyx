@@ -290,6 +290,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	for( i=0; i<end;  i++){
 	if (*(fmt+i)=='%') {
 			char temp=*(fmt+i+1);
+			putch(temp);
 			if(temp=='s'){ 
 				strcat(out,va_arg(ap,char *));
 			}else if(temp=='d'){
