@@ -34,7 +34,7 @@ return out;
 
 
 
-void decimalToHex(int decimal, char *hexString) {
+void decimalToHex(unsigned int decimal, char *hexString) {
     char hexDigits[] = "0123456789ABCDEF";  // 十六进制数字表
     int index = 0;
 
