@@ -361,8 +361,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 			// putch(test_len[0]);
 
 
-			if(temp=='s'){ 
-				strcat(out,va_arg(ap,char *));
+			if(temp=='s'){
+				char *temp_str = va_arg(ap,char *);
+				strcat(out,temp_str);
 			}else if(temp=='d'){
 				int num=va_arg(ap,int);
 				char temp_str[20]="";
