@@ -291,7 +291,9 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 	if (*(fmt+i)=='%') {
 			char temp=*(fmt+i+1);
 			if(temp=='%'){
-				putch('%');
+				char temp_str[2];
+				temp_str[0]='%';
+				strcat(out,temp_str);
 			}else {
 
 			if(temp=='s'){ 
