@@ -24,7 +24,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
 		if(ref_r->gpr[i]!=cpu.gpr[i]){
 			printf("ref[%d] : %08x\tcpu[%d] : %08x\n",i,ref_r->gpr[i],i,cpu.gpr[i]);
 		}else{
-			printf("ref_r.pc : %08x\tcpu.pc : %08x",ref_r->pc,cpu.pc);
+			printf("ref_r.pc : %08x\tcpu.pc : %08x\n",ref_r->pc,cpu.pc);
 		}
 	printf("difftest fail\n");
 	return false;
