@@ -499,7 +499,6 @@ if (*(fmt+i)=='%') {
 			temp[1]='\0';
 			strcat(out,temp);
 		}else if(temp=='x'){
-			printf("Hello\n");
 			int num=va_arg(args,unsigned int);
 			char temp_str[20]="";
 			decimalToHex(num,temp_str);
