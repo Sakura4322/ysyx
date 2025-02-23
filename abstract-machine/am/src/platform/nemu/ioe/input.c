@@ -5,7 +5,7 @@
 
 extern int printf(const char *fmt, ...);
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
-  printf("%08x\n",KBD_ADDR);
+  // printf("%08x\n",KBD_ADDR);
   // kbd->keydown = 0;
 //kbd->keycode = AM_KEY_NONE;
   kbd->keydown = 0;
