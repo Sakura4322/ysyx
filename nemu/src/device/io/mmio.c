@@ -55,8 +55,9 @@ void add_mmio_map(const char *name, paddr_t addr, void *space, uint32_t len, io_
 
 /* bus interface */
 word_t mmio_read(paddr_t addr, int len) {
-  // IOMap *test= fetch_mmio_map(addr);
-  // printf("mmio_read fetch mapio name : %s\n",test->name);
+  IOMap *test= fetch_mmio_map(addr);
+  if(test!=NULL)
+  printf("mmio_read fetch mapio name : %s\n",test->name);
   return map_read(addr, len, fetch_mmio_map(addr));
 }
 
