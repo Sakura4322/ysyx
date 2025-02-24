@@ -16,5 +16,5 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   uint16_t status = inw(KBD_ADDR);  // 读取键盘状态寄存器
   printf("%08x\n",status);
   kbd->keydown = (status & KEYDOWN_MASK) ? true : false;  // 检查第15位是否为1
-  kbd->keycode = inl(KBD_ADDR+4);
+  kbd->keycode = inl(KBD_ADDR);
 }
