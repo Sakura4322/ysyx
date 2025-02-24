@@ -11,6 +11,6 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
 
 uint32_t status = (inl(KBD_ADDR)&KEYDOWN_MASK)>>31;
 printf("%08x\n",status);
-  kbd->keydown = 0;
+  kbd->keydown = 1;
   kbd->keycode = inl(KBD_ADDR+4);
 }
