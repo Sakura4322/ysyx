@@ -364,7 +364,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 		break;
 	}
 	static int t=1;
-	if(t<=30000)
+	if(t<=100000)
 	printf("cpu exec : %d\n",t++);
     IFDEF(CONFIG_DEVICE, device_update());
   }
