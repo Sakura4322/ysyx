@@ -11,5 +11,5 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
 // printf("input\n");
   uint32_t data = inl(KBD_ADDR);
   kbd->keydown = ((data & KEYDOWN_MASK)!=0);  // 检查第15位是否为1
-kbd->keycode = kbd->keydown ? data : AM_KEY_NONE;
+  kbd->keycode = data & ~KEYDOWN_MASK;
 }
