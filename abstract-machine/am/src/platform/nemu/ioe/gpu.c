@@ -25,6 +25,7 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
+  printf("HERE IS GPU_FBDRAW\n");
   if (ctl->sync) {
     // printf("sync : true\n");
     outl(SYNC_ADDR, 1);
