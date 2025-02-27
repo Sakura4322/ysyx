@@ -20,7 +20,7 @@
 #define SCREEN_H (MUXDEF(CONFIG_VGA_SIZE_800x600, 600, 300))
 
 static uint32_t screen_width() {
-  printf("%d\n",MUXDEF(CONFIG_VGA_SHOW_SCREEN,1, 2));
+  printf("%d\n",MUXDEF(CONFIG_TARGET_AM,1, 2));
   return MUXDEF(CONFIG_TARGET_AM, io_read(AM_GPU_CONFIG).width, SCREEN_W);
 }
 
@@ -36,7 +36,7 @@ static void *vmem = NULL;
 static uint32_t *vgactl_port_base = NULL;
 
 #ifdef CONFIG_VGA_SHOW_SCREEN
-#ifndef CONFIG_TARGET_AM
+#ifndef c
 #include <SDL2/SDL.h>
 
 static SDL_Renderer *renderer = NULL;
