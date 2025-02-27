@@ -33,7 +33,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   int cnt=0;
   for(int i=0;i<ctl->h;i++){
     for(int j=0;j<ctl->w;j++){
-      int addr=(get_width*(ctl->y+i)+ctl->x+j)*sizeof(uint32_t);
+      int addr=FB_ADDR+(get_width*(ctl->y+i)+ctl->x+j)*sizeof(uint32_t);
       printf("%d\taddr : %08x\n",cnt,addr);
       outl(addr,pixels_ptr[cnt]);
       cnt++;
