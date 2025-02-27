@@ -6,7 +6,12 @@
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 
 
-extern int min(int a ,int b ); 
+// extern int min(int a ,int b ); 
+static int min(int a ,int b){
+	if (a>b) return b ;
+	return a;
+	}
+
 extern void putch(char ch);
 
 static char *to_string(char *out,int a){
