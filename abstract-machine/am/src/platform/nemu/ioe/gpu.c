@@ -28,9 +28,9 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
     // printf("sync : true\n");
     outl(SYNC_ADDR, 1);
   }
-printf("1\n");
+// printf("1\n");
   uint32_t get_width = (uint32_t)inw(VGACTL_ADDR+2);
-  printf("2\n");
+  // printf("2\n");
   // uint32_t get_height = (uint32_t)inw(VGACTL_ADDR);
   uint32_t *pixels_ptr =(uint32_t *)ctl->pixels;
   int cnt=0;
