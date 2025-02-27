@@ -13,6 +13,7 @@ void __am_gpu_init() {
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
+  printf("HERE IS CONFIG\n");
   uint32_t get_width = (uint32_t)inw(VGACTL_ADDR+2);
   uint32_t get_height = (uint32_t)inw(VGACTL_ADDR);
 
