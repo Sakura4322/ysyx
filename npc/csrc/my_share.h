@@ -74,5 +74,6 @@ extern "C" int pmem_read(int raddr);
 
 
 
+uint64_t get_time();
 
 

@@ -1,6 +1,3 @@
-#include "my_share.h"
-#include "common.h"
-
 # define DEVICE_BASE 0xa0000000
 
 #define MMIO_BASE 0xa0000000
@@ -13,10 +10,4 @@
 #define DISK_ADDR       (DEVICE_BASE + 0x0000300)
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
-
-
-
-uint64_t get_time();
-
-
 
