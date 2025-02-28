@@ -77,12 +77,12 @@ if(raddr<0x80000000||raddr>0xffffffff){
 }
 
 if(raddr==RTC_ADDR){
-	raddr=get_time();
+	// raddr=get_time();
 	// log_write("dtrace_serial\taddr : %08x\tdata : %02x\n",raddr,temp[0]);
-	return 0;
+	return get_time();
 }else if(raddr==RTC_ADDR+4){
-	raddr=get_time()>>32;
-	return 0;
+	// raddr=get_time()>>32;
+	return get_time()>>32;
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
