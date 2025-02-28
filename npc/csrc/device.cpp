@@ -1,6 +1,4 @@
 #include "common.h"
-#include "my_share.h"
-
 
 
 uint64_t get_time(){
