@@ -3,6 +3,7 @@
 #define MAX_SRAM_SIZE 1024
 #include "cpu.h"
 #include "disasm.h"
+#include "device.h"
 #include <elf.h>
 
 extern uint8_t *vaddr;
