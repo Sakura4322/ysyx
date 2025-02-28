@@ -78,6 +78,7 @@ if(raddr<0x80000000||raddr>0xffffffff){
 
 if(raddr==RTC_ADDR){
 	
+	log_write("dtrace_serial\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
 	return 0;
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
@@ -101,6 +102,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	if(waddr==SERIAL_PORT){
 		
 		putchar(temp[0]);
+		log_write("dtrace_serial\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
 		return;
 	}
 
