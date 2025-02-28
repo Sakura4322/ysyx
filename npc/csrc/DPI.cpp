@@ -102,7 +102,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	if(waddr==SERIAL_PORT){
 		
 		putchar(temp[0]);
-		log_write("dtrace_serial\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
+		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 		return;
 	}
 
