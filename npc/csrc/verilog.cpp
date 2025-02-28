@@ -147,7 +147,7 @@ void sim_exit(){
 }
 
 int main(int argc,char **argv){
-	printf("I'M OK NOW\n"); 
+	// printf("I'M OK NOW\n"); 
 	
   sim_init(argc,argv);
 

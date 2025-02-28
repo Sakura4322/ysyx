@@ -91,13 +91,13 @@ if(rsp>=2000){
 if(((s->inst & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->inst & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
 	if(s->inst == 0b00000000000000001000000001100111){
         for(int i = 0; i < cnt_func_num; i++){
-					printf("0x%08x : ",s->pc);
+					// printf("0x%08x : ",s->pc);
             if(s->pc >= func_addr[i].start && s->pc < func_addr[i].end){
 							for(int i=0;i<rsp;i++){
 							printf(" ");	
 							}
-                printf("ret %s\trsp : %d \n",  func_addr[i].func_name, rsp-1);	
-			          printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
+                // printf("ret %s\trsp : %d \n",  func_addr[i].func_name, rsp-1);	
+			    //       printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
                 log_write("0x%08x: ret [%s @ 0x%08x]\n", s->pc, func_addr[i].func_name, s->dnpc);
                 rsp--;
                 return;
@@ -112,12 +112,12 @@ if(((s->inst & 0b00000000000000000000000001111111) == 0b000000000000000000000000
 		if(s->dnpc>=func_addr[i].start&&s->dnpc<func_addr[i].end){
 		  rsp++;
 			addr[rsp]=s->pc+4;
-			printf("0x%08x : ",s->pc);
+			// printf("0x%08x : ",s->pc);
 			for(int i=0;i<rsp;i++){
 							printf(" ");	
 							}
-			printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
-			printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
+			// printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
+			// printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
 		  //printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
 		  //printf("ARE YOU OK??\n");
