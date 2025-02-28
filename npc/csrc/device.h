@@ -1,3 +1,6 @@
+#include "my_share.h"
+#include "common.h"
+
 # define DEVICE_BASE 0xa0000000
 
 #define MMIO_BASE 0xa0000000
