@@ -83,7 +83,7 @@ static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static uint32_t addr[20000];	
 static int rsp=0;
 //Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
-if(rsp>=2000){
+if(rsp>=20000){
 	printf("\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");
 	return ;
 	}
