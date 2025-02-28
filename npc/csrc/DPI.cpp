@@ -93,6 +93,11 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		//exit(-1);
 	}
 
+	if(waddr==SERIAL_PORT){
+		putc(wdata);
+		return;
+	}
+
 	if(wmask==0b0001){
 
 		log_write("pmem_write\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
