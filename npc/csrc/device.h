@@ -11,3 +11,9 @@
 #define FB_ADDR         (MMIO_BASE   + 0x1000000)
 #define AUDIO_SBUF_ADDR (MMIO_BASE   + 0x1200000)
 
+
+
+uint64_t get_time();
+
+
+
