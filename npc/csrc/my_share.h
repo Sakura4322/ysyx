@@ -69,11 +69,11 @@ typedef struct{
 		int end;	
 }Addr_Imfo;
 
-
+uint64_t get_time();
 extern "C" int pmem_read(int raddr);
 
 
 
-uint64_t get_time();
+
 
 
