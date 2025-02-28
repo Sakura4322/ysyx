@@ -77,8 +77,8 @@ if(raddr<0x80000000||raddr>0xffffffff){
 }
 
 if(raddr==RTC_ADDR){
-
-	log_write("dtrace_serial\taddr : %08x\tdata\n",raddr);
+	
+	// log_write("dtrace_serial\taddr : %08x\tdata : %02x\n",raddr,temp[0]);
 	return 0;
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
