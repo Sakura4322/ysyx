@@ -42,7 +42,8 @@ char  *strcat(char *dst, const char *src) {
 int strcmp(const char *s1, const char *s2) {
 	int temp1=strlen(s1);
 	int temp2=strlen(s2);
-	for (int i=0;i<(temp1<temp2) ? temp1 : temp2;i++){	
+	int min=(temp1<temp2) ? temp1 : temp2;
+	for (int i=0;i<min;i++){	
 		if(*(s1+i)>*(s2+i)){
 		return 1;
 		}
@@ -52,7 +53,9 @@ int strcmp(const char *s1, const char *s2) {
 	}
 
 	}
-		return 0;
+	if(min==temp1)return -1;
+	else if(min==temp2)return 1;
+	else 				return 0;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
