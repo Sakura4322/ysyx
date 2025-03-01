@@ -145,7 +145,7 @@ static void execute(uint64_t n) {
 //init disasm before step_and_dump_wave
 //init_disasm("riscv32");
 
-Addr_Imfo *func_addr = read_sym_func();
+// Addr_Imfo *func_addr = read_sym_func();
 for(int i=0;i<cnt_func_num;i++){
 printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 }
@@ -164,16 +164,16 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
     //trace_and_difftest(&s, cpu.pc);
 
 
-if(n%2==0){
-for (int i=0;i<32;i++){//storage reg information
-		char buf_temp[16]={0};
-		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
-		strcat(buf,buf_temp);
- 	}
+// if(n%2==0){
+// for (int i=0;i<32;i++){//storage reg information
+// 		char buf_temp[16]={0};
+// 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
+// 		strcat(buf,buf_temp);
+//  	}
  	
  	
-		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
-	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
+// 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
+// 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 //ftrace
 
@@ -187,25 +187,25 @@ for (int i=0;i<32;i++){//storage reg information
 	}
 	
 	
-	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
-			 cout_pc_num-=1;
-	for(int i=0;i<20;i++){
-	if(i==cout_pc_num%20){
-if (strcmp(iringbuf_reg_state[0],iringbuf_reg_state[1])==0){
-log_write("REGS INFO SAME\n");
-}else{
-	log_write("REGS INFO DIFFERENT\n");
-}
- log_write("\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
- log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
-	}	
- log_write("%s\n", *(iringbuf+i)); 
-	if(i==cout_pc_num%20){
- log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
- log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
-	}	
-	}	
-		}
+// 	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
+// 			 cout_pc_num-=1;
+// 	for(int i=0;i<20;i++){
+// 	if(i==cout_pc_num%20){
+// if (strcmp(iringbuf_reg_state[0],iringbuf_reg_state[1])==0){
+// log_write("REGS INFO SAME\n");
+// }else{
+// 	log_write("REGS INFO DIFFERENT\n");
+// }
+//  log_write("\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
+//  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
+// 	}	
+//  log_write("%s\n", *(iringbuf+i)); 
+// 	if(i==cout_pc_num%20){
+//  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
+//  log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
+// 	}	
+// 	}	
+// 		}
 		
 		
 		
