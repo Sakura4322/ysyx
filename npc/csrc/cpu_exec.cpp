@@ -212,7 +212,7 @@ printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr
 
 
     if (npc_state.state != NPC_RUNNING){
-		free(func_addr);
+		// free(func_addr);
 		break;
 	} 
     
