@@ -77,7 +77,7 @@ if(raddr<0x80000000||raddr>0xffffffff){
 }
 
 if(raddr==RTC_ADDR){
-	log_write("dtrace_rtc\taddr : %08x\tdata : %lld\n",raddr,get_time());
+	log_write("dtrace_rtc\taddr : %08x\tdata : %ld\n",raddr,get_time());
 	return get_time();
 }else if(raddr==RTC_ADDR+4){
 	// raddr=get_time()>>32;
