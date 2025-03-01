@@ -175,16 +175,16 @@ static void execute(uint64_t n) {
 // 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 // 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
-//ftrace
+// ftrace
 
-    // ftrace(func_addr,&s);
+//     ftrace(func_addr,&s);
 
 
 
-//itrace
-		//ret == 0 is good trap  or bad trap
+// itrace
+// 		ret == 0 is good trap  or bad trap
 			
-	}
+// 	}
 	
 	
 // 	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
