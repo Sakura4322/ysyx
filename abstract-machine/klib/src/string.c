@@ -53,8 +53,8 @@ int strcmp(const char *s1, const char *s2) {
 	}
 
 	}
-	if(min==temp1)return -1;
-	else if(min==temp2)return 1;
+	if(temp1<temp2)return -1;
+	else if(temp1>temp2)return 1;
 	else 				return 0;
 }
 
