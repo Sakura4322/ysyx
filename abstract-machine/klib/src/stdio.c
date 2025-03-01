@@ -7,10 +7,10 @@
 
 
 // extern int min(int a ,int b ); 
-static int min(int a ,int b){
-	if (a>b) return b ;
-	return a;
-	}
+// static int min(int a ,int b){
+// 	if (a>b) return b ;
+// 	return a;
+// 	}
 
 extern void putch(char ch);
 
@@ -304,182 +304,220 @@ void decimalToHex(unsigned int decimal, char *hexString) {
 
 
 
-int vsprintf(char *out, const char *fmt, va_list ap) {
+// int vsprintf(char *out, const char *fmt, va_list ap) {
 
-	int i=0;
-	int end=strlen(fmt);
-	for( i=0; i<end;  i++){
-	if (*(fmt+i)=='%') {
-			char temp=*(fmt+i+1);
-			// putch(temp);
-			if(temp=='%'){
-				char temp_str[2];
-				temp_str[0]='%';
-				strcat(out,temp_str);
-			}else {
+// 	int i=0;
+// 	int end=strlen(fmt);
+// 	for( i=0; i<end;  i++){
+// 	if (*(fmt+i)=='%') {
+// 			char temp=*(fmt+i+1);
+// 			// putch(temp);
+// 			if(temp=='%'){
+// 				char temp_str[2];
+// 				temp_str[0]='%';
+// 				strcat(out,temp_str);
+// 			}else {
 
-			int j =0;
-			char symbols[10]="";	//record data after %
-			while(fmt[i+j+1]!='s'&&fmt[i+j+1]!='d'&&fmt[i+j+1]!='x'&&fmt[i+j+1]!='f'&&fmt[i+j+1]!='c'){
-				symbols[j]=fmt[i+j+1];
-				j++;
-			}
-			i+=j;
-			temp=*(fmt+i+1);
-			// putch(temp);
-			symbols[j]='\0';
-			char *ptr = symbols;
-			char flags='\0',precision='\0';
-			int width=0,lenth=0;
+// 			int j =0;
+// 			char symbols[10]="";	//record data after %
+// 			while(fmt[i+j+1]!='s'&&fmt[i+j+1]!='d'&&fmt[i+j+1]!='x'&&fmt[i+j+1]!='f'&&fmt[i+j+1]!='c'){
+// 				symbols[j]=fmt[i+j+1];
+// 				j++;
+// 			}
+// 			i+=j;
+// 			temp=*(fmt+i+1);
+// 			// putch(temp);
+// 			symbols[j]='\0';
+// 			char *ptr = symbols;
+// 			char flags='\0',precision='\0';
+// 			int width=0,lenth=0;
 
-			if(*ptr>'0'&&*ptr<='9'){
-				flags=' ';
-			}else{
-				flags=*ptr;
-				ptr++;
-			}
+// 			if(*ptr>'0'&&*ptr<='9'){
+// 				flags=' ';
+// 			}else{
+// 				flags=*ptr;
+// 				ptr++;
+// 			}
 
-			for(int k=0;k<j-1;k++){		//pd precision and parse width
-				if(ptr[k]=='.'){
-					precision='.';
-					ptr+=k;
-					break;
-				}else{
-					width=width*10+(ptr[k]-'0');
-				}
-			}
+// 			for(int k=0;k<j-1;k++){		//pd precision and parse width
+// 				if(ptr[k]=='.'){
+// 					precision='.';
+// 					ptr+=k;
+// 					break;
+// 				}else{
+// 					width=width*10+(ptr[k]-'0');
+// 				}
+// 			}
 
-			if(precision=='.'){
-				int k =1;
-				while(ptr[k]>='0'&&ptr[k]<='9'){
-					lenth=lenth*10+(ptr[k]-'0');
-					k++;
-				}
-			}
-//test bench
-			// putch(flags);						
-			// char test_width[10];
-			// to_string(test_width,width);
-			// char test_len[10];
-			// to_string(test_len,lenth);
-			// putch(test_width[0]);
-			// putch(precision);
-			// putch(test_len[0]);
-
-
-			if(temp=='s'){
-				char *temp_str = va_arg(ap,char *);
-				int len_out=strlen(temp_str);
+// 			if(precision=='.'){
+// 				int k =1;
+// 				while(ptr[k]>='0'&&ptr[k]<='9'){
+// 					lenth=lenth*10+(ptr[k]-'0');
+// 					k++;
+// 				}
+// 			}
+// //test bench
+// 			// putch(flags);						
+// 			// char test_width[10];
+// 			// to_string(test_width,width);
+// 			// char test_len[10];
+// 			// to_string(test_len,lenth);
+// 			// putch(test_width[0]);
+// 			// putch(precision);
+// 			// putch(test_len[0]);
 
 
-				if(flags==' '||flags=='0'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
+// 			if(temp=='s'){
+// 				char *temp_str = va_arg(ap,char *);
+// 				int len_out=strlen(temp_str);
 
-						//strcat(out,temp_str);
 
-						if(precision=='.'){
-							int fuck=min(len_out,lenth);
-							for(int k=0;k<fuck;k++){
-								char trans[2]="";
-								trans[0]=temp_str[k];
-								strcat(out,trans);
-							}
-						}else {
-							strcat(out,temp_str);
-						}
+// 				if(flags==' '||flags=='0'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
+
+// 						//strcat(out,temp_str);
+
+// 						if(precision=='.'){
+// 							int fuck=min(len_out,lenth);
+// 							for(int k=0;k<fuck;k++){
+// 								char trans[2]="";
+// 								trans[0]=temp_str[k];
+// 								strcat(out,trans);
+// 							}
+// 						}else {
+// 							strcat(out,temp_str);
+// 						}
 		
 
 
-				if(flags=='-'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
-			}else if(temp=='d'){
-				int num=va_arg(ap,int);
-				char temp_str[20]="";
-				to_string(temp_str,num);
-				int len_out=strlen(temp_str);
+// 				if(flags=='-'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
+// 			}else if(temp=='d'){
+// 				int num=va_arg(ap,int);
+// 				char temp_str[20]="";
+// 				to_string(temp_str,num);
+// 				int len_out=strlen(temp_str);
 
-				if(flags==' '||flags=='0'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
-
-
-						strcat(out,temp_str);
+// 				if(flags==' '||flags=='0'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
 
 
+// 						strcat(out,temp_str);
 
-				if(flags=='-'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
 
-			}else if(temp=='c'){
-				char ch =va_arg(ap,int);
-				char trans[2]="";
-				trans[0]=ch;
-				strcat(out,trans);
-			}else if(temp=='x'){
-				int num=va_arg(ap,unsigned int);
-				char temp_str[20]="";
-				decimalToHex(num,temp_str);
-				int len_out=strlen(temp_str);
+
+// 				if(flags=='-'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
+
+// 			}else if(temp=='c'){
+// 				char ch =va_arg(ap,int);
+// 				char trans[2]="";
+// 				trans[0]=ch;
+// 				strcat(out,trans);
+// 			}else if(temp=='x'){
+// 				int num=va_arg(ap,unsigned int);
+// 				char temp_str[20]="";
+// 				decimalToHex(num,temp_str);
+// 				int len_out=strlen(temp_str);
 				
 
-				if(flags==' '||flags=='0'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
+// 				if(flags==' '||flags=='0'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
 
 
-						strcat(out,temp_str);
+// 						strcat(out,temp_str);
 
 
 
-				if(flags=='-'){
-					for(int k=0;k<width-len_out;k++){
-						char trans[2]="";
-						trans[0]=flags;
-						strcat(out,trans);
-					}
-				}
+// 				if(flags=='-'){
+// 					for(int k=0;k<width-len_out;k++){
+// 						char trans[2]="";
+// 						trans[0]=flags;
+// 						strcat(out,trans);
+// 					}
+// 				}
 
-			}else{
-				out = "PRINT ERROR !";
-				return 0 ;
-			}
+// 			}else{
+// 				out = "PRINT ERROR !";
+// 				return 0 ;
+// 			}
+// 		}
+// 			i++;
+// 	}	else{
+// 		int ind_out=strlen(out);
+// 	*(out+ind_out)=*(fmt+i);	
+// 	}
+// 	}
+
+// 	int ind_out=strlen(out);
+// 	out[ind_out]='\0';
+// 	return 0;
+// }
+
+int vsprintf(char *out, const char *fmt, va_list ap){
+int i=0;
+int end=strlen(fmt);
+for( i=0; i<end;  i++){
+if (*(fmt+i)=='%') {
+		char temp=*(fmt+i+1);
+		if(temp=='s'){ 
+			strcat(out,va_arg(ap,char *));
+		}else if(temp=='d'){
+			int num=va_arg(ap,int);
+			char temp_str[20]="";
+			to_string(temp_str,num);
+			strcat(out,temp_str);
+		}else if(temp=='c'){
+			char ch =va_arg(ap,int);
+			char temp[2];
+			temp[0]=ch;
+			temp[1]='\0';
+			strcat(out,temp);
+		}else if(temp=='x'){
+			int num=va_arg(ap,unsigned int);
+			char temp_str[20]="";
+			decimalToHex(num,temp_str);
+			strcat(out,temp_str);
+		}else{
+			out = "PRINT ERROR !";
+			return 0 ;
 		}
-			i++;
-	}	else{
-		int ind_out=strlen(out);
-	*(out+ind_out)=*(fmt+i);	
-	}
-	}
-
+		i++;
+}	else{
 	int ind_out=strlen(out);
-	out[ind_out]='\0';
-	return 0;
+*(out+ind_out)=*(fmt+i);	
 }
+}
+int ind_out=strlen(out);
+out[ind_out]='\0';
 
-
+return 0;
+}
 
 
 int sprintf(char *out, const char *fmt, ...) {
