@@ -11,7 +11,7 @@ Context* __am_irq_handle(Context *c) {
       case -1: ev.event = EVENT_YIELD;break;
       default: ev.event = EVENT_ERROR; break;
     }
-
+    assert(ev.event != EVENT_ERROR);
     c = user_handler(ev, c);
     assert(c != NULL);
   }
