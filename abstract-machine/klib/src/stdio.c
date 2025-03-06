@@ -564,7 +564,7 @@ return 0;
 }
 
 int printf(const char *fmt, ...){
-	char out[20000]="";
+	char out[200]="";
 	va_list args;
 	va_start(args,fmt);
 	vsprintf(out, fmt, args);
