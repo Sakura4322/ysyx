@@ -145,7 +145,7 @@ INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, word_t t=CSR(imm) 
 // INSTPAT("??????? ????? ????? 101 ????? 11100 11", csrrwi , I, );
 
 INSTPAT("0011000 00010 00000 000 00000 11100 11", mret , R, s->dnpc = cpu.csrs.mepc);
-INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, cpu.csrs.mepc=s->dnpc;cpu.csrs.mcause = R(17);printf("%08x : 写入异常号 ： %08x,dnpc : %08x \n",s->pc,R(17),cpu.csrs.mtvec);s->dnpc = cpu.csrs.mtvec);
+INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, cpu.csrs.mepc=s->dnpc;cpu.csrs.mcause = R(17);printf("%08x : 写入异常号 ： %08x,dnpc : %08x \n",s->pc,cpu.csrs.mcause,cpu.csrs.mtvec);s->dnpc = cpu.csrs.mtvec);
 INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
 INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
 INSTPAT_END();
