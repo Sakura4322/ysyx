@@ -81,7 +81,7 @@ static int decode_exec(Decode *s) {
   s->dnpc = s->snpc;
 
 
-if(s->isa.inst.val == 0b00000000000000000000000001110011){
+if(s->isa.inst.val == 0x73){
   log_write("%08x : 写入异常号 : %08x,dnpc : %08x \n",s->pc,R(17),cpu.csrs.mtvec);
 }
 
