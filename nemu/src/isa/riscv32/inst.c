@@ -73,6 +73,7 @@ static word_t *read_csrs(uint32_t imm){
 }
 
 #define CSR(i) *read_csrs(i)
+// #define ECALL isa_raise_intr(word_t NO, vaddr_t epc)
 
 static int decode_exec(Decode *s) {
   int rd = 0;
