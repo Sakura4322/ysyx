@@ -19,10 +19,10 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   /* TODO: Trigger an interrupt/exception with ``NO''.
    * Then return the address of the interrupt/exception vector.
    */
-#ifdef CONFIG_ETRACE
+// #ifdef CONFIG_ETRACE
 // log_write("inst : %08x\n",s->isa.inst.val);
 log_write("%08x : 写入异常号 : %08x,dnpc : %08x \n",epc,NO,cpu.csrs.mtvec);
-#endif
+// #endif
 
   cpu.csrs.mepc=epc;
   cpu.csrs.mcause = NO;
