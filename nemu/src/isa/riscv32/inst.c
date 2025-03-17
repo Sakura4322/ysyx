@@ -80,7 +80,7 @@ static int decode_exec(Decode *s) {
   word_t src1 = 0, src2 = 0, imm = 0;
   s->dnpc = s->snpc;
 
-
+log_write("inst : %08x\n",s->isa.inst.val);
 if(s->isa.inst.val == 0x73){
   log_write("%08x : 写入异常号 : %08x,dnpc : %08x \n",s->pc,R(17),cpu.csrs.mtvec);
 }
