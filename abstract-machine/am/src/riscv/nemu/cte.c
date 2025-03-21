@@ -35,6 +35,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
   Context *c = kstack.start;
   asm volatile("mv sp, %0" : : "r"((uintptr_t)kstack.start));
+  printf("%x",entry);
   asm volatile("jalr %0" : : "r"(entry));
   
   return c;
