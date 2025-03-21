@@ -38,9 +38,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
   // printf("enrty : %x\n",entry);
   asm volatile("mv sp, %0" : : "r"(kstack.end-sizeof(Context)));
   
-  int offset_epc = 4 * 18; // 偏移量
-
-  asm volatile("sw %1, %0(sp)" : : "i"(offset_epc), "r"(entry));
+  c->mepc = (uintptr_t)entry - 4;
 
   
   return c;
