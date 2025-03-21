@@ -67,7 +67,7 @@ __am_asm_trap:
 
   MAP(REGS, POP)
 
- STORE sp,OFFSET_EPC(sp)
+;  STORE sp,OFFSET_EPC(sp)
 
   addi sp, sp, CONTEXT_SIZE
   mret

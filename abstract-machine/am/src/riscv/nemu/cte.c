@@ -33,8 +33,9 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 }
 
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
-  Context *c = malloc(sizeof(Context));
-  c-> mepc = (uintptr_t)entry;
+  Context *c = malloc(kstack.start - kstack.end);
+  asm volatile("mv sp, %0" : : "r"((uintptr_t)kstack.start));
+  asm volatile("jalr %0" : : "r"(entry));
   
   return c;
 }
