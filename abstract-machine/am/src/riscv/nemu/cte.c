@@ -38,7 +38,11 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
   // printf("enrty : %x\n",entry);
   asm volatile("mv sp, %0" : : "r"((kstack.start)+sizeof(Context)));
   
-  asm volatile("jalr %0" : : "r"(entry));
+  int offset_epc = 4 * 18; // 偏移量
+
+  // 使用寄存器 t0 作为偏移量
+  asm volatile("sw %1, %0(sp)" : : "i"(offset_epc), "r"(entry));
+
   
   return c;
 }
