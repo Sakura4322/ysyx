@@ -33,17 +33,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 }
 
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
-  Context *c = kstack.start;
-  // printf("start : %x\n",kstack.start);
-  // printf("enrty : %x\n",entry);
-  asm volatile("mv sp, %0" : : "r"(kstack.end-sizeof(Context)));
-  
-  int offset_epc = 4 * 18; // 偏移量
-
-  asm volatile("sw %1, %0(sp)" : : "i"(offset_epc), "r"(entry));
-
-  
-  return c;
+  return NULL;
 }
 
 void yield() {
