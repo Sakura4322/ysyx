@@ -558,6 +558,10 @@ for( i=0; i<end;  i++){
 		}
 	}
 	int ind_out=strlen(out);
+	for(int i=0;i<ind_out;i++){
+		putch(out[ind_out]);
+	}
+	putch('\n');
 	out[ind_out]='\0';
 	va_end(args);
 
