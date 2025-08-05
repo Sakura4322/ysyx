@@ -513,7 +513,8 @@ if (*(fmt+i)=='%') {
 *(out+ind_out)=*(fmt+i);	
 }
 }
-int ind_out=strlen(out);
+int ind_out = strlen(out);
+
 out[ind_out]='\0';
 
 return 0;
@@ -525,21 +526,35 @@ va_list args;
 va_start(args,fmt);
 int i=0;
 int end=strlen(fmt);
+int len_out = strlen(out);
 for( i=0; i<end;  i++){
 if (*(fmt+i)=='%') {
 		char temp=*(fmt+i+1);
-		if(temp=='s'){ 
+		if(temp=='s'){
+		  char *temp_arg = va_arg(args,char *);
+			if(strlen(temp_arg)+strlen(out) > len_out) {
+				printf("SPRINTF SPACE OVERFLOW!!");	
+				return 0;
+			}
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
 			int num=va_arg(args,int);
 			char temp_str[20]="";
 			to_string(temp_str,num);
+		 if(strlen(temp_str)+strlen(out) > len_out) { 
+			 printf("SPRINTF SPACE OVERFLOW!!"); 
+			 return 0;
+		 }
 			strcat(out,temp_str);
 		}else if(temp=='c'){
 			char ch =va_arg(args,int);
 			char temp[2];
 			temp[0]=ch;
 			temp[1]='\0';
+			if(strlen(out)+2 > len_out){
+			printf("SPRINTF SPACE OVERFLOW!!"); 
+			return 0;	
+			}
 			strcat(out,temp);
 		}else if(temp=='x'){
 			int num=va_arg(args,unsigned int);
