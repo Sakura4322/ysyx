@@ -533,8 +533,13 @@ if (*(fmt+i)=='%') {
 		if(temp=='s'){
 		  char *temp_arg = va_arg(args,char *);
 			if(strlen(temp_arg)+strlen(out) > len_out) {
-				//printf("SPRINTF SPACE OVERFLOW!!");	
-				return 0;
+				char *error_info = "SPRINTF SPACE OVERFLOW!!";	
+				int len_info = strlen(error_info);
+				for(int j = 0;j<len_info ;j++){
+					putch(error_info[j]);
+				}
+				putch('\n');
+					return 0;
 			}
 			strcat(out,va_arg(args,char *));
 		}else if(temp=='d'){
