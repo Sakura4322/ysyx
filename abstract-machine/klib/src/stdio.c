@@ -14,14 +14,6 @@
 
 extern void putch(char ch);
 
-// static void error_info_push(char *string){
-// 	int len = strlen(string);
-// 	for(int i =0;i<len;i++){
-// 		putch(string[i]);
-// 	}
-// 	putch('\n');
-// }
-
 static char *to_string(char *out,int a){
  char temp[20]="";
  int i=0;
@@ -488,7 +480,6 @@ void decimalToHex(unsigned int decimal, char *hexString) {
 // }
 
 int vsprintf(char *out, const char *fmt, va_list ap){
-memset(out,'\0',strlen(out));
 int i=0;
 int end=strlen(fmt);
 for( i=0; i<end;  i++){
@@ -522,93 +513,52 @@ if (*(fmt+i)=='%') {
 *(out+ind_out)=*(fmt+i);	
 }
 }
-int ind_out = strlen(out);
-
+int ind_out=strlen(out);
 out[ind_out]='\0';
 
 return 0;
 }
 
+
 int sprintf(char *out, const char *fmt, ...) {
-	int size_buf = strlen(out);
-	memset(out,'\0',size_buf);
-	// char *error_info = "ERROR SPRINTF SPACE OVERFLOW!";
-
-	va_list args;
-	va_start(args,fmt);
-	int i=0;
-	int end=strlen(fmt);
-
-	// int out_ind=0;
-	for( i=0; i<end;  i++){
-		if (*(fmt+i)=='%') {
-			char next_letter=*(fmt+i+1);
-			if(next_letter=='s'){ 
-				char *string_arg = va_arg(args,char *);
-				// int string_size= strlen(string_arg);
-				// out_ind += string_size;
-				// if(out_ind> size_buf){
-				// 	error_info_push(error_info);
-				// 	return 0;
-				// } else {
-					strcat(out,string_arg);
-				// }
-			}else if(next_letter=='d'){
-				int num=va_arg(args,int);
-				char num_to_string[20]="";
-				to_string(num_to_string,num);
-				// int string_size =strlen(num_to_string);
-				// out_ind += string_size;
-				// if(out_ind > size_buf){
-					// error_info_push(error_info);
-					// return 0;
-				// } else {
-				strcat(out,num_to_string);
-				// }
-			}else if(next_letter=='c'){
-				char ch =va_arg(args,int);
-				char temp[2];
-				temp[0]=ch;
-				temp[1]='\0';
-				// int string_size =2;
-				// out_ind += string_size;
-				// if(out_ind > size_buf){
-				// 	error_info_push(error_info);
-				// 	return 0;
-				// } else {
-					strcat(out,temp);
-				// }
-			}else if(next_letter=='x'){
-				int num=va_arg(args,unsigned int);
-				char num_to_string[20]="";
-				decimalToHex(num,num_to_string);
-				// int string_size =strlen(num_to_string);
-				// out_ind += string_size;
-				// if(out_ind > size_buf){
-				// 	error_info_push(error_info);
-				// 	return 0;
-				// } else {
-					strcat(out,num_to_string);
-				// }
-			}else{
-				out = "PRINT ERROR !";
-				return 0 ;
-			}
-			// out_ind ++;
-			i++;
-	}	else{
-		// out_ind ++;
-		int ind_out=strlen(out);
-		*(out+ind_out)=*(fmt+i);	
+va_list args;
+va_start(args,fmt);
+int i=0;
+int end=strlen(fmt);
+for( i=0; i<end;  i++){
+if (*(fmt+i)=='%') {
+		char temp=*(fmt+i+1);
+		if(temp=='s'){ 
+			strcat(out,va_arg(args,char *));
+		}else if(temp=='d'){
+			int num=va_arg(args,int);
+			char temp_str[20]="";
+			to_string(temp_str,num);
+			strcat(out,temp_str);
+		}else if(temp=='c'){
+			char ch =va_arg(args,int);
+			char temp[2];
+			temp[0]=ch;
+			temp[1]='\0';
+			strcat(out,temp);
+		}else if(temp=='x'){
+			int num=va_arg(args,unsigned int);
+			char temp_str[20]="";
+			decimalToHex(num,temp_str);
+			strcat(out,temp_str);
+		}else{
+			out = "PRINT ERROR !";
+			return 0 ;
 		}
-	}
+		i++;
+}	else{
 	int ind_out=strlen(out);
-	for(int i=0;i<ind_out;i++){
-		putch(out[ind_out]);
-	}
-	putch('\n');
-	out[ind_out]='\0';
-	va_end(args);
+*(out+ind_out)=*(fmt+i);	
+}
+}
+int ind_out=strlen(out);
+out[ind_out]='\0';
+va_end(args);
 
 return 0;
 }
