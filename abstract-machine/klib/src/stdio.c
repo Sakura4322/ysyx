@@ -540,6 +540,7 @@ for( i=0; i<end;  i++){
 				for(int j=0;j<len_out;j++){
 					putch(out[j]);
 				}
+				putch('a');
 				putch('\n');
 				strcat(out,string_arg);
 			}else if(next_letter=='d'){
