@@ -480,8 +480,6 @@ void decimalToHex(unsigned int decimal, char *hexString) {
 // }
 
 int vsprintf(char *out, const char *fmt, va_list ap){
-	int size_buf = strlen(out);
-memset(out,'\0',size_buf);
 int i=0;
 int end=strlen(fmt);
 for( i=0; i<end;  i++){
@@ -523,8 +521,6 @@ return 0;
 
 
 int sprintf(char *out, const char *fmt, ...) {
-int size_buf = strlen(out);
-memset(out,'\0',size_buf);
 va_list args;
 va_start(args,fmt);
 int i=0;
