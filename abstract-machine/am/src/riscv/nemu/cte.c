@@ -5,7 +5,7 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
-  // printf("irq_handle : \n\tmcause : %08x\n\tmstatus : %08x\n\tmepc : %08x\n",c->mcause,c->mstatus,c->mepc);
+   printf("irq_handle : \n\tmcause : %08x\n\tmstatus : %08x\n\tmepc : %08x\n",c->mcause,c->mstatus,c->mepc);
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
@@ -33,6 +33,10 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 }
 
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
+	struct Context *context = (struct Context*)kstack.start;
+	memset(context,0,sizeof(struct Context));
+	context->mepc = (uintptr_t)entry;
+	context->gpr[2] = (uintptr_t)kstack.start;
   return NULL;
 }
 

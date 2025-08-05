@@ -9,7 +9,11 @@
 
 struct Context {
   // TODO: fix the order of these members to match trap.S
-  uintptr_t gpr[NR_REGS],mcause,mstatus,mepc;
+  uintptr_t gpr[NR_REGS];
+	uintptr_t mcause;							//用于存储异常号
+	uintptr_t mstatus;						//机器状态寄存器，用于存储特权级，中断使能等信息
+	uintptr_t mepc;								//发生异常时的地址
+//mtvec													//中断处理程序入口
   void *pdir;
 };
 
