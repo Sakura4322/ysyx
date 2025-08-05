@@ -533,7 +533,7 @@ if (*(fmt+i)=='%') {
 		if(temp=='s'){
 		  char *temp_arg = va_arg(args,char *);
 			if(strlen(temp_arg)+strlen(out) > len_out) {
-				printf("SPRINTF SPACE OVERFLOW!!");	
+				//printf("SPRINTF SPACE OVERFLOW!!");	
 				return 0;
 			}
 			strcat(out,va_arg(args,char *));
@@ -542,7 +542,7 @@ if (*(fmt+i)=='%') {
 			char temp_str[20]="";
 			to_string(temp_str,num);
 		 if(strlen(temp_str)+strlen(out) > len_out) { 
-			 printf("SPRINTF SPACE OVERFLOW!!"); 
+			 //printf("SPRINTF SPACE OVERFLOW!!"); 
 			 return 0;
 		 }
 			strcat(out,temp_str);
@@ -552,7 +552,7 @@ if (*(fmt+i)=='%') {
 			temp[0]=ch;
 			temp[1]='\0';
 			if(strlen(out)+2 > len_out){
-			printf("SPRINTF SPACE OVERFLOW!!"); 
+			//printf("SPRINTF SPACE OVERFLOW!!"); 
 			return 0;	
 			}
 			strcat(out,temp);
