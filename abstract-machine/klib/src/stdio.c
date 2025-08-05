@@ -530,7 +530,13 @@ for( i=0; i<end;  i++){
 		if (*(fmt+i)=='%') {
 			char next_letter=*(fmt+i+1);
 			if(next_letter=='s'){ 
-				strcat(out,va_arg(args,char *));
+				char *string_arg = va_arg(args,char *);
+				int len_temp = strlen(string_arg);
+				for(int j=0;j<len_temp;j++){
+					putch(string_arg[j]);
+				}
+				putch('\n');
+				strcat(out,string_arg);
 			}else if(next_letter=='d'){
 				int num=va_arg(args,int);
 				char num_to_string[20]="";
