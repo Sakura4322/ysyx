@@ -522,6 +522,8 @@ return 0;
 
 
 int sprintf(char *out, const char *fmt, ...) {
+	putch('a');
+
 va_list args;
 va_start(args,fmt);
 int i=0;
