@@ -488,6 +488,7 @@ void decimalToHex(unsigned int decimal, char *hexString) {
 // }
 
 int vsprintf(char *out, const char *fmt, va_list ap){
+memset(out,'\0',strlen(out));
 int i=0;
 int end=strlen(fmt);
 for( i=0; i<end;  i++){
