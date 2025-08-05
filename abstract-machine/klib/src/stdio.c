@@ -526,6 +526,8 @@ va_list args;
 va_start(args,fmt);
 int i=0;
 int end=strlen(fmt);
+int size_buf = strlen(out);
+memset(out,'\0',size_buf);
 for( i=0; i<end;  i++){
 		if (*(fmt+i)=='%') {
 			char next_letter=*(fmt+i+1);
