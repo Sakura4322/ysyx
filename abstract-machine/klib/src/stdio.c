@@ -536,6 +536,11 @@ for( i=0; i<end;  i++){
 					putch(string_arg[j]);
 				}
 				putch('\n');
+				int len_out = strlen(out);
+				for(int j=0;j<len_out;j++){
+					putch(out[j]);
+				}
+				putch('\n');
 				strcat(out,string_arg);
 			}else if(next_letter=='d'){
 				int num=va_arg(args,int);
