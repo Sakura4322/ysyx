@@ -16,6 +16,7 @@ Context* __am_irq_handle(Context *c) {
     assert(ev.event != EVENT_ERROR);
 		putch('q');
     assert(c != NULL);
+		printf("preav addr : %x\n",(uintptr_t)c);
     c = user_handler(ev, c);
     assert(c != NULL);
   }
