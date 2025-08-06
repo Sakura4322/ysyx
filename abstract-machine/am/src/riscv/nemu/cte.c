@@ -14,7 +14,6 @@ Context* __am_irq_handle(Context *c) {
       default: ev.event = EVENT_ERROR; printf("Unkonw event\n");break;
     }
     assert(ev.event != EVENT_ERROR);
-    assert(c != NULL);
     c = user_handler(ev, c);
     assert(c != NULL);
   }
@@ -42,6 +41,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 	context->mstatus = 0x1800;
 	context->mepc = (uintptr_t)entry;
 	context->gpr[2] = (uintptr_t)kstack.start;
+	context->gpr[1] = (uintptr_t)entry;
   return context;
 }
 
