@@ -43,6 +43,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 	context->mepc = (uintptr_t)entry;
 	context->gpr[2] = (uintptr_t)kstack.start;
 	context->gpr[1] = (uintptr_t)entry;
+	printf("context->gpr : %x\n",context->gpr[1]);
   return context;
 }
 
