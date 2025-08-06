@@ -41,7 +41,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 	context->mstatus = 0x1800;
 	printf("ret addr : %x\n",(uintptr_t)entry);
 	context->mepc = (uintptr_t)entry;
-	context->gpr[2] = (uintptr_t)kstack.start;
+	//context->gpr[2] = (uintptr_t)kstack.start;
   return context;
 }
 
