@@ -5,7 +5,7 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
-	printf("%d,%d,%d,%d,%d,%d\n",1,2,3,4,5,6);
+	// printf("%d,%d,%d,%d,%d,%d\n",1,2,3,4,5,6);
    printf("irq_handle : \nmcause : %x\n mstatus : %x\n mepc : %x\n",c->mcause,c->mstatus,c->mepc);
   if (user_handler) {
     Event ev = {0};
@@ -25,6 +25,8 @@ extern void __am_asm_trap(void);
 bool cte_init(Context*(*handler)(Event, Context*)) {
   //printf("cte_init\n");
   // initialize exception entry
+  int ini_value = 0x1800;
+  asm volatile("csrw mstatus, %0" : : "r"(ini_value));    //给mstatus 初始化为0x1800来通过difftest
   asm volatile("csrw mtvec, %0" : : "r"(__am_asm_trap));
 
   // register event handler
