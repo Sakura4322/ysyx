@@ -16,10 +16,10 @@ Context* __am_irq_handle(Context *c) {
     assert(ev.event != EVENT_ERROR);
 		putch('q');
     assert(c != NULL);
-		for(int i=0;i<30;i++){
+		//for(int i=0;i<30;i++){
 
-		printf("gpr[%d] : %x\n",i,(uintptr_t)c->gpr[i]);
-		}
+		//printf("gpr[%d] : %x\n",i,(uintptr_t)c->gpr[i]);
+		//}
     c = user_handler(ev, c);
     assert(c != NULL);
   }
