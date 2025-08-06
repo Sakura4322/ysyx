@@ -39,9 +39,10 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 	struct Context *context = (struct Context*)kstack.start;
 	memset(context,0,sizeof(struct Context));
+	context->mstatus = 0x1800;
 	context->mepc = (uintptr_t)entry;
 	context->gpr[2] = (uintptr_t)kstack.start;
-  return NULL;
+  return context;
 }
 
 void yield() {
