@@ -309,9 +309,9 @@ static void execute(uint64_t n) {
   	
 #ifdef CONFIG_FTRACE
 Addr_Imfo *func_addr = read_sym_func();
-for(int i=0;i<cnt_func_num;i++){
-printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
-}
+// for(int i=0;i<cnt_func_num;i++){
+// printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+// }
 #endif
 
   for (;n > 0; n --) {
