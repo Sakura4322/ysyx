@@ -54,8 +54,8 @@ __am_asm_trap:
 
   # set mstatus.MPRV to pass difftest
   li a0, (1 << 17)
-  or t2, t2, a0
-  csrw mstatus, t2
+  or t1, t1, a0
+  csrw mstatus, t1
 
   mv a0, sp
   jal __am_irq_handle
