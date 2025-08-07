@@ -57,7 +57,7 @@ __am_asm_trap:
   or t1, t1, a0
   csrw mstatus, t1
 
-  addi a0, sp , CONTEXT_SIZE
+  addi a0, sp , 0
   jal __am_irq_handle
   addi sp, a0, 0
 
