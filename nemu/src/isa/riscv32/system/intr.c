@@ -24,7 +24,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
 log_write("%08x : 写入异常号 : %08x,dnpc : %08x \n",epc,NO,cpu.csrs.mtvec);
 // #endif
 
-  cpu.csrs.mepc=epc;
+  cpu.csrs.mepc=epc+4;
   cpu.csrs.mcause = NO;
   return cpu.csrs.mtvec;
 }
