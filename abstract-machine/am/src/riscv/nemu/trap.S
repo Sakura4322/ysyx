@@ -59,7 +59,7 @@ __am_asm_trap:
 
   mv a0, sp
   jal __am_irq_handle
-  addi sp, a0, -CONTEXT_SIZE
+  addi sp, a0, 0
 
 
   LOAD t1, OFFSET_STATUS(sp)
