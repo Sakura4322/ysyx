@@ -42,7 +42,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
 }
 
 Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
-	struct Context *context = (struct Context*)kstack.start+sizeof(struct Context);
+	struct Context *context = (struct Context*)kstack.start - sizeof(struct Context);
 	memset(context,0,sizeof(struct Context));
 	context->mstatus = 0x1800;
 	//printf("ret addr : %x\n",(uintptr_t)entry);
