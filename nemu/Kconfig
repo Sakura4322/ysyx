@@ -222,7 +222,7 @@ config WATCHPOINT
   default y
 
 
-config MTREACE
+config MTRACE
 	bool "Enable mtrace"
 	default y
 
