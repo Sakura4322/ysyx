@@ -9,7 +9,9 @@ Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
-      case 0xd: ev.event = EVENT_YIELD;break;
+      case 0xb: ev.event = EVENT_YIELD;
+								c->mepc += 4;
+								break;
       default: ev.event = EVENT_ERROR; printf("Unkonw event\n");break;
     }
     assert(ev.event != EVENT_ERROR);
@@ -43,9 +45,9 @@ return context;
 void yield() {
   // printf("yield\n");
 #ifdef __riscv_e
-  asm volatile("li a5, 0xd; ecall");
+  asm volatile("li a5, 0xb; ecall");
 #else
-  asm volatile("li a7, 0xd; ecall");
+  asm volatile("li a7, 0xb; ecall");
 #endif
 }
 

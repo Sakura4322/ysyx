@@ -45,7 +45,7 @@ __am_asm_trap:
   MAP(REGS, PUSH)
 
   csrr t0, mcause
-  csrr t1, mstatus
+	li t1, 0x1800
   csrr t2, mepc
 
   STORE t0, OFFSET_CAUSE(sp)
