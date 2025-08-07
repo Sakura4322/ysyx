@@ -14,7 +14,6 @@ Context* __am_irq_handle(Context *c) {
       default: ev.event = EVENT_ERROR; printf("Unkonw event\n");break;
     }
     assert(ev.event != EVENT_ERROR);
-		putch('q');
     assert(c != NULL);
 		//for(int i=0;i<30;i++){
 
