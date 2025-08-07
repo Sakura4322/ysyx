@@ -30,9 +30,15 @@ void isa_reg_display() {
  bool *success = &success_ptr;
     // 遍历并输出每个寄存器名称  
     for (int i = 0; i < num_regs; i++) {  
-        printf("%s\t%x\t%u\n", regs[i],isa_reg_str2val(regs[i], success),isa_reg_str2val(regs[i], success));  
+        printf("%s\t%08x\t%u\n", regs[i],isa_reg_str2val(regs[i], success),isa_reg_str2val(regs[i], success));  
     }    
-    printf("%s\t%x\t%u\n", "pc",isa_reg_str2val("pc", success),isa_reg_str2val("pc", success));
+    printf("%s\t%08x\t%u\n", "pc",isa_reg_str2val("pc", success),isa_reg_str2val("pc", success));
+    printf("%s\t%08x\t%u\n", "mepc",cpu.csrs.mepc,cpu.csrs.mepc);
+    printf("%s\t%08x\t%u\n", "mstatus",cpu.csrs.mstatus,cpu.csrs.mstatus);
+    printf("%s\t%08x\t%u\n", "mcause",cpu.csrs.mcause,cpu.csrs.mcause);
+    printf("%s\t%08x\t%u\n", "mtvec",cpu.csrs.mtvec,cpu.csrs.mtvec);
+
+
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {//输入的含有$

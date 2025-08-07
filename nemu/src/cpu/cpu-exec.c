@@ -244,20 +244,19 @@ return ;
  */
 
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
-static vaddr_t addr[20000];	
+// static vaddr_t addr[20000];	
 static int rsp=0;
 Assert(rsp<2000,"\n\n\n\n\n\n\nStack Overflow !!!!!!!\n\n\n\n\n\n");	
-//printf("ALL IS OK\n");
 if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b00000000000000000000000001101111) || ((s->isa.inst.val & 0b00000000000000000111000001111111) == 0b00000000000000000000000001100111)){//jalr and jal
 	if(s->isa.inst.val == 0b00000000000000001000000001100111){
         for(int i = 0; i < cnt_func_num; i++){
-					printf("0x%08x : ",s->pc);
+					// printf("0x%08x : ",s->pc);
             if(s->pc >= func_addr[i].start && s->pc < func_addr[i].end){
-							for(int i=0;i<rsp;i++){
-							printf(" ");	
-							}
-                printf("ret %s\trsp : %d \n",  func_addr[i].func_name, rsp-1);	
-			          printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
+				// for(int i=0;i<rsp;i++){
+				// 	printf(" ");	
+				// }
+                // printf("ret %s\trsp : %d \n",  func_addr[i].func_name, rsp-1);	
+			    // printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
                 log_write("0x%08x: ret [%s @ 0x%08x]\n", s->pc, func_addr[i].func_name, s->dnpc);
                 rsp--;
                 return;
@@ -271,16 +270,14 @@ if(((s->isa.inst.val & 0b00000000000000000000000001111111) == 0b0000000000000000
 //printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 		if(s->dnpc>=func_addr[i].start&&s->dnpc<func_addr[i].end){
 		  rsp++;
-			addr[rsp]=s->pc+4;
-			printf("0x%08x : ",s->pc);
-			for(int i=0;i<rsp;i++){
-							printf(" ");	
-							}
-			printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
-			printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
-		  //printf("ARE YOU OK??\n");
+			// addr[rsp]=s->pc+4;
+			// printf("0x%08x : ",s->pc);
+			// for(int i=0;i<rsp;i++){
+			// 	printf(" ");	
+			// }
+			// printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
+			// printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
-		  //printf("ARE YOU OK??\n");
 		  return ;
 		}
 		
@@ -312,9 +309,9 @@ static void execute(uint64_t n) {
   	
 #ifdef CONFIG_FTRACE
 Addr_Imfo *func_addr = read_sym_func();
-for(int i=0;i<cnt_func_num;i++){
-printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
-}
+// for(int i=0;i<cnt_func_num;i++){
+// printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
+// }
 #endif
 
   for (;n > 0; n --) {
