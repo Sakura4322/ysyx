@@ -9,4 +9,5 @@
 #include <time.h>
 
 
+extern FILE* log_fp;
 
