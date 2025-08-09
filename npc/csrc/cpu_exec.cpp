@@ -149,7 +149,7 @@ Addr_Imfo *func_addr = read_sym_func();
 // }
 
   for (;n > 0; n --) {
-	char buf[512]={0};
+	char buf[1024]={0};
     step_and_dump_wave(&s);
    if(diff_on){
 	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
@@ -163,7 +163,7 @@ Addr_Imfo *func_addr = read_sym_func();
 
 
 if(n%2==0){
-	char buf_temp[16]={0};
+	char buf_temp[32]={0};
 for (int i=0;i<32;i++){//storage reg information
 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
 		strcat(buf,buf_temp);
