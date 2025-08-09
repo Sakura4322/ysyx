@@ -1,9 +1,10 @@
 module ysyx_24090015_EXU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in, imm,
-    input [WIDTH-1:0] src1, src2,pmem_rdata,
+    input [WIDTH-1:0] src1, src2,csr_rdata,pmem_rdata,
     input [WIDTH-1:0] pc,snpc,
     output reg [WIDTH-1:0] rd_wdata,pmem_wdata,pmem_waddr,pmem_raddr,
+	output reg [WIDTH-1:0] csr_wdata,
 	output [7:0] wmask,
     output reg [WIDTH-1:0]  dnpc
 );
@@ -136,7 +137,24 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					32'b0000000_?????_?????_010_?????_01100_11: begin //slt R
                     rd_wdata=(((src1[31]==0&&src2[31]==0)&&(src1<src2))||((src1[31]==1&&src2[31]==1)&&(src1<src2))||(src1[31]==1&&src2[31]==0));
                     end
-
+					32'b???????_?????_?????_011_?????_1110_011: begin //csrrc I 
+					rd_wdata  = csr_rdata; 
+					csr_wdata = csr_rdata ~& src1;
+										end
+					32'b???????_?????_?????_010_?????_1110_011: begin //csrrs I 
+					rd_wdata  = csr_rdata; 
+					csr_wdata = csr_rdata | src1;
+										end
+					32'b???????_?????_?????_001_?????_1110_011: begin //csrrw I 
+					rd_wdata  = csr_rdata; 
+					csr_wdata = src1;
+										end
+					32'b0011000_00010_00000_000_00000_11100_11: begin //mret
+					dnpc = csr_rdata;
+										end				
+				 	32'b0000000_00000_00000_000_00000_11100_11: begin //ecall
+					dnpc = csr_rdata;
+										end			
 				default begin 
 
 			end
