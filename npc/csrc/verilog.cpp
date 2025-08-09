@@ -113,7 +113,7 @@ char *p = s->logbuf;
       
       
 ///////////////////////////////////////////////////////itrace
-log_write("%s\n",p);
+log_write("%08x:\t\t%s\n",s->pc,p);
 
 	}else {
 		
