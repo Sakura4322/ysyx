@@ -28,8 +28,8 @@ module ysyx_24090015_CSR_RegFiles#(
 	input [IMM_WIDTH-1 : 0]imm, 
     input [DATAWIDTH-1 : 0]wdata,
     input                  wen,
-    output [DATAWIDTH-1 : 0]rdata,
-)
+    output [DATAWIDTH-1 : 0]rdata
+);
 wire [CSR_ADDR_WIDTH-1:0] csr_addr;
 
     csr_addr_mux #(
