@@ -168,13 +168,13 @@ for (int i=0;i<32;i++){//storage reg information
 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
 		strcat(buf,buf_temp);
  	}
-	 sprintf(buf_temp,"mstatus : %08x\n",regs[i],cpu.csr[0]);	
+	 sprintf(buf_temp,"mstatus : %08x\n",cpu.csr[0]);	
 	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"mtvec   : %08x\n",regs[i],cpu.csr[1]);	
+	 sprintf(buf_temp,"mtvec   : %08x\n",cpu.csr[1]);	
 	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"mepc    : %08x\n",regs[i],cpu.csr[2]);	
+	 sprintf(buf_temp,"mepc    : %08x\n",cpu.csr[2]);	
 	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"%mcause : %08x\n",regs[i],cpu.csr[3]);	
+	 sprintf(buf_temp,"%mcause : %08x\n",cpu.csr[3]);	
 	 strcat(buf,buf_temp);
  	
 	strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
