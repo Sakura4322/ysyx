@@ -141,9 +141,9 @@ static void execute(uint64_t n) {
 
 
 //init disasm before step_and_dump_wave
-//init_disasm("riscv32");
+init_disasm("riscv32");
 
-// Addr_Imfo *func_addr = read_sym_func();
+Addr_Imfo *func_addr = read_sym_func();
 // for(int i=0;i<cnt_func_num;i++){
 // printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 // }
@@ -159,7 +159,7 @@ static void execute(uint64_t n) {
     if (top->flag)npc_state.state=NPC_END;
     
 
-trace_and_difftest(&s, cpu.pc);
+// trace_and_difftest(&s, cpu.pc);
 
 
 if(n%2==0){
@@ -180,7 +180,7 @@ for (int i=0;i<32;i++){//storage reg information
 
 
 // itrace
-		ret == 0 is good trap  or bad trap
+// ret == 0 is good trap  or bad trap
 			
 	}
 	
