@@ -57,7 +57,7 @@ for (int i=0;i<img_size;i++){
 
 }
 
-
+extern int cout_inst_times;
 
 void step_and_dump_wave(Decode *s){
 	
@@ -113,7 +113,7 @@ char *p = s->logbuf;
       
       
 ///////////////////////////////////////////////////////itrace
-log_write("%08x:\t\t%s\n",s->pc,p);
+log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 
 	}else {
 		

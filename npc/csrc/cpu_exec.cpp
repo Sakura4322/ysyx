@@ -78,7 +78,7 @@ Addr_Imfo *read_sym_func(){//all func info in func_addr
 
 }
 
-
+int cout_inst_times=0;
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static uint32_t addr[200000];	
 static int rsp=0;
@@ -151,6 +151,7 @@ Addr_Imfo *func_addr = read_sym_func();
   for (;n > 0; n --) {
 	char buf[1024]={0};
     step_and_dump_wave(&s);
+	cout_inst_times++;
    if(diff_on){
 	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
     cnt_fuck++;
