@@ -322,8 +322,8 @@ int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:", table, NULL)) != -1) {
   //while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
-	printf("o is : %c\n",o);
-	printf("optarg : %s\n",optarg);
+	// printf("o is : %c\n",o);
+	// printf("optarg : %s\n",optarg);
     switch (o) {
       case 'b': sdb_set_batch_mode(); break;
       case 'p': sscanf(optarg, "%d", &difftest_port); break;
@@ -336,7 +336,7 @@ int parse_args(int argc, char *argv[]) {
 								}else 
 								printf("open log_file SUCCESS!!\n");	
 								}
-								else printf("FAIL OPEN LOG_FILE");
+                log_write("OPEN LOG_FILE\n");
 								break;
       case 'd': diff_so_file = optarg; 
                 diff_on=1;
@@ -353,7 +353,7 @@ int parse_args(int argc, char *argv[]) {
 								
 							
       case 1:
-						  printf("what is img_file : %s\n",optarg);
+						  // printf("what is img_file : %s\n",optarg);
 							img_file=optarg;
 							break;
 
