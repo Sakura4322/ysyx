@@ -330,7 +330,7 @@ int parse_args(int argc, char *argv[]) {
       case 'l': 
 								log_file = optarg;
 								if (log_file){
-							  log_fp=fopen(log_file,"w"); 
+							  log_fp=fopen(log_file,"ab"); 
 			 					if (log_fp==NULL){
 								printf("open log_file FAIL!!\n");	
 								}else 
