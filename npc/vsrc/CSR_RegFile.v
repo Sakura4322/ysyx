@@ -48,4 +48,11 @@ always @(posedge clk) begin
 end
         
 assign rdata = CSRS[csr_addr];
+
+ 		export "DPI-C" function read_wire;
+
+		function automatic int read_wire(input int sec);
+			return CSRS[sec];
+		endfunction
+
 endmodule
