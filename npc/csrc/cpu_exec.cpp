@@ -118,9 +118,7 @@ if(((s->inst & 0b00000000000000000000000001111111) == 0b000000000000000000000000
 			// 				}
 			// printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
 			// printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
-		  //printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
-		  //printf("ARE YOU OK??\n");
 		  return ;
 		}
 		
