@@ -7,12 +7,12 @@ module csr_addr_mux #(
 );
     always @(*) begin
         case (imm)
-            0x000:addr=1;     //ecall
-            0x300:addr=0;     //mstatus
-            0x302:addr=2;     //mret
-            0x305:addr=1;     //mtvec
-            0x341:addr=2;     //mepc
-            0x342:addr=3;     //mcause
+            12'h000:addr=1;     //ecall
+            12'h300:addr=0;     //mstatus
+            12'h302:addr=2;     //mret
+            12'h305:addr=1;     //mtvec
+            12'h341:addr=2;     //mepc
+            12'h342:addr=3;     //mcause
             default: addr =0;
         endcase
     end
