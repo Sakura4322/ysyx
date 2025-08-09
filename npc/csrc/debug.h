@@ -34,7 +34,6 @@ S#ifndef DEBUG_H
 // 日志写入宏
 // #include "my_share.h"
 #define log_write(...)  \
-    extern FILE* log_fp; \
       fprintf(log_fp, __VA_ARGS__); \
       fflush(log_fp); 
 
