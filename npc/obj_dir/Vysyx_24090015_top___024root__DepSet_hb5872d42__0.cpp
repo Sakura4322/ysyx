@@ -485,7 +485,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__1(Vysyx_2409001
                                                     (((- (IData)(
                                                                  (1U 
                                                                   & (vlSelf->ysyx_24090015_top__DOT__pmem_rdata 
-                                                                     >> 0xfU)))) 
+                                                                     >> 7U)))) 
                                                       << 8U) 
                                                      | (0xffU 
                                                         & vlSelf->ysyx_24090015_top__DOT__pmem_rdata))

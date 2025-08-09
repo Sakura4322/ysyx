@@ -799,7 +799,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
                                                     (((- (IData)(
                                                                  (1U 
                                                                   & (vlSelf->ysyx_24090015_top__DOT__pmem_rdata 
-                                                                     >> 0xfU)))) 
+                                                                     >> 7U)))) 
                                                       << 8U) 
                                                      | (0xffU 
                                                         & vlSelf->ysyx_24090015_top__DOT__pmem_rdata))
