@@ -31,12 +31,14 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*0:0*/ ysyx_24090015_top__DOT__valid;
     CData/*0:0*/ ysyx_24090015_top__DOT__pwen;
     CData/*7:0*/ ysyx_24090015_top__DOT__wmask;
+    CData/*0:0*/ ysyx_24090015_top__DOT__csr_wen;
     CData/*0:0*/ ysyx_24090015_top__DOT__ren1_control;
     CData/*0:0*/ ysyx_24090015_top__DOT__ren2_control;
     CData/*0:0*/ ysyx_24090015_top__DOT__wen_control;
     CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
     CData/*6:0*/ ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode;
     CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
+    CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_addr;
     CData/*0:0*/ ysyx_24090015_top__DOT__pmem0__DOT__clk;
     CData/*3:0*/ ysyx_24090015_top__DOT__control_unit0__DOT__cpu_state;
     CData/*3:0*/ ysyx_24090015_top__DOT__control_unit0__DOT__next_state;
@@ -58,7 +60,13 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     IData/*31:0*/ ysyx_24090015_top__DOT__pmem_waddr;
     IData/*31:0*/ ysyx_24090015_top__DOT__pmem_wdata;
     IData/*31:0*/ ysyx_24090015_top__DOT__pmem_rdata;
+    IData/*31:0*/ ysyx_24090015_top__DOT__csr_rdata;
+    IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata;
     IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
+    IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
+    IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
+    IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
+    IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
     IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
@@ -67,6 +75,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     IData/*31:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__pmem_wdata;
     IData/*31:0*/ __VactIterCount;
     VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
+    VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
