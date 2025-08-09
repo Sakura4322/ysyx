@@ -220,7 +220,7 @@ static void execute(uint64_t n) {
 }
 
 void cpu_exec(uint64_t n) {
-  
+  log_write("jinru cpu_exec\n");
    switch (npc_state.state) {
     case NPC_END: 
     case NPC_ABORT:
