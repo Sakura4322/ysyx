@@ -183,9 +183,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                                              == (0x707fU 
                                                  & vlSelf->inst))) {
                                             vlSelf->ysyx_24090015_top__DOT__csr_wdata 
-                                                = (~ 
-                                                   (vlSelf->ysyx_24090015_top__DOT__csr_rdata 
-                                                    & vlSelf->ysyx_24090015_top__DOT__src1));
+                                                = (vlSelf->ysyx_24090015_top__DOT__csr_rdata 
+                                                   & (~ vlSelf->ysyx_24090015_top__DOT__src1));
                                         } else if (
                                                    (0x2073U 
                                                     == 
