@@ -98,7 +98,7 @@ assign hit_good_or_bad=src1;
 				.pwen(pwen),
         .wen(wen),
 				.rd(rd),
-        .csr_wen(csr_wen),
+        .csr_wen(csr_wen)
 
     );
 
