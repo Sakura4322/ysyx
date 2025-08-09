@@ -336,7 +336,6 @@ int parse_args(int argc, char *argv[]) {
 								}else 
 								printf("open log_file SUCCESS!!\n");	
 								}
-                log_write("OPEN LOG_FILE\n");
 								break;
       case 'd': diff_so_file = optarg; 
                 diff_on=1;

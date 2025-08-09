@@ -69,11 +69,11 @@ void step_and_dump_wave(Decode *s){
 //	printf("vaddr index: %d\n",top->pc/4);
 
 	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
-	//if(clk) top->inst=inst[top->pc/4];
+	// if(clk) top->inst=inst[top->pc/4];
 
 
 //input instructions
-//	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
+	// printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	cpu.pc=top->pc;
 	read_regs();
@@ -109,11 +109,11 @@ char *p = s->logbuf;
   
 
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
-      
+  
       
       
 ///////////////////////////////////////////////////////itrace
-
+log_write("%s\n",p);
 
 	}else {
 		
