@@ -3,7 +3,7 @@ module csr_addr_mux #(
     parameter CSR_ADDR_WIDTH=2
 ) ( 
     input [IMM_WIDTH-1 : 0] imm,
-    output [CSR_ADDR_WIDTH-1:0] addr
+    output reg [CSR_ADDR_WIDTH-1:0] addr
 );
     always @(*) begin
         case (imm)
@@ -44,9 +44,8 @@ reg [DATAWIDTH -1 : 0] CSRS [3:0];
 always @(posedge clk) begin
     if(wen)begin
         CSRS[csr_addr] <= wdata;
-    end else begin
-        rdata <= CSRS[csr_addr];
-    end
+    end 
 end
-
+        
+assign rdata = CSRS[csr_addr];
 endmodule
