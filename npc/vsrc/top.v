@@ -75,8 +75,8 @@ end
     wire [WIDTH-1:0] rd_wdata, pmem_raddr,pmem_waddr,pmem_wdata,pmem_rdata;
 
     wire [WIDTH-1:0]csr_rdata;
-    wire [WIDTH-1:0]csr_wdata;
-    wire csr_wen;
+    wire [WIDTH-1:0]csr_wdata0;
+    wire [WIDTH-1:0]csr_wdata1;
 
 assign ren1=ebreak(inst);
 assign hit_good_or_bad=src1;
@@ -97,8 +97,7 @@ assign hit_good_or_bad=src1;
 				.valid(valid),
 				.pwen(pwen),
         .wen(wen),
-				.rd(rd),
-        .csr_wen(csr_wen)
+				.rd(rd)
 
     );
 
@@ -115,7 +114,8 @@ assign hit_good_or_bad=src1;
         .pmem_rdata(pmem_rdata),
 				.pc(pc),
         .snpc(snpc),
-        .csr_wdata(csr_wdata),
+        .csr_wdata0(csr_wdata0),
+        .csr_wdata1(csr_wdata1),
         .rd_wdata(rd_wdata),
         .pmem_raddr(pmem_raddr),
         .pmem_waddr(pmem_waddr),
@@ -148,8 +148,8 @@ assign hit_good_or_bad=src1;
     ) csr_regfiles_instance (
         .clk(clk),            // 连接时钟信号
         .imm(imm[11:0]),      // 连接 imm 输入
-        .wdata(csr_wdata),  // 连接 wdata 输入
-        .wen(csr_wen),      // 连接写使能信号
+        .wdata0(csr_wdata0),  // 连接 wdata 输入
+        .wdata1(csr_wdata1),  // 连接 wdata 输入
         .rdata(csr_rdata)  // 连接 rdata 输出
     );
 /*

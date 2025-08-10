@@ -131,8 +131,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
     output reg  ren1, ren2, wen,pwen,valid,
-		output reg [4:0] rd,rs1,rs2,
-		output reg csr_wen
+		output reg [4:0] rd,rs1,rs2
 );
 
     wire [3:0] inst_type;
@@ -193,7 +192,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
-							csr_wen =0;
 				end
 					`IJ : begin 
 							rs1=inst_in[19:15];
@@ -205,7 +203,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
-							csr_wen =0;
 
 				end
 				`IS : begin 
@@ -218,7 +215,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
-							csr_wen =0;
 
 				end
 					`IC: begin 
@@ -231,7 +227,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
-							csr_wen =1;
 
 
 				end
@@ -245,7 +240,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immU;
-							csr_wen =0;
 
 				end
 					`J : begin 
@@ -258,7 +252,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immJ;
-							csr_wen =0;
 
 				end
 					`S : begin 
@@ -271,7 +264,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=1;
 							imm=temp_immS;							
-							csr_wen =0;
 							
 				end
 				    `B : begin 
@@ -284,7 +276,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=0;
 							imm=temp_immB;							
-							csr_wen =0;
 							
 				end
 				    `R : begin 
@@ -297,7 +288,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=0;							
-							csr_wen =0;
 							
 				end
                 default : begin
@@ -310,7 +300,6 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=0;
 							imm=0;	
-							csr_wen =0;
 
                 end
 				
