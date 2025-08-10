@@ -222,7 +222,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 				end
 					`IC: begin 
-							rs1=inst[14:12]==0 ? 15:inst_in[19:15];
+							rs1=inst_in[14:12]==0 ? 15:inst_in[19:15];
 							rs2=0;
 							ren1=1;
 							ren2=0;
