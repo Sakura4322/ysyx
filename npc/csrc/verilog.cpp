@@ -124,8 +124,8 @@ log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times
 	}
 
   
-	// contextp->timeInc(1);
-	// tfp->dump(contextp->time());  // dump 波形数据
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
     
  }
 
