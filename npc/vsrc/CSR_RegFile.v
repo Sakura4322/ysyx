@@ -11,6 +11,7 @@ module csr_addr_mux #(
     output reg wen1
 );
     always @(*) begin
+        if(wen)begin
         case (imm)
             12'h000:begin          //ecall
                     raddr0=1;
@@ -46,11 +47,11 @@ module csr_addr_mux #(
                     waddr0=2;     
                     wen1  =0;
                     waddr1=0;    
-            end     
+            end                   //mcause
             12'h342:begin 
                     raddr0=3;     
                     wen0  =1;
-                    waddr0=3;     //mcause
+                    waddr0=3;     
                     wen1  =0;
                     waddr1=0;    
             end      
@@ -61,6 +62,13 @@ module csr_addr_mux #(
                     waddr1=0;    
             end
         endcase
+        end
+        else begin 
+                    wen0  =0;
+                    waddr0=0;
+                    wen1  =0;
+                    waddr1=0;  
+        end
     end
 endmodule
 
@@ -71,6 +79,7 @@ module ysyx_24090015_CSR_RegFiles#(
     parameter CSR_ADDR_WIDTH=2
 ) (
     input clk,
+    input wen,
 	input [IMM_WIDTH-1 : 0]imm, 
     input [DATAWIDTH-1 : 0]wdata0,
     input [DATAWIDTH-1 : 0]wdata1,
