@@ -36,7 +36,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     CData/*0:0*/ ysyx_24090015_top__DOT__ren2_control;
     CData/*0:0*/ ysyx_24090015_top__DOT__wen_control;
     CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
-    CData/*6:0*/ ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode;
     CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
     CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
     CData/*0:0*/ ysyx_24090015_top__DOT__pmem0__DOT__clk;

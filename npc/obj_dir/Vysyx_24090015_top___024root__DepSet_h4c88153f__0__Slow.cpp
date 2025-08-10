@@ -133,64 +133,146 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__temp_immI 
         = (((- (IData)((vlSelf->inst >> 0x1fU))) << 0xcU) 
            | (vlSelf->inst >> 0x14U));
-    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode 
-        = (0x7fU & vlSelf->inst);
     vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
-        = ((0x40U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-            ? ((0x20U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                ? ((0x10U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                    ? ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                        ? 0U : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                 ? 0U : ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                          ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                              ? 5U : 0U)
-                                          : 0U))) : 
-                   ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                     ? ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                         ? ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                             ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                 ? 9U : 0U) : 0U) : 0U)
-                     : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                         ? ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                             ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                 ? 3U : 0U) : 0U) : 
-                        ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                          ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                              ? 7U : 0U) : 0U)))) : 0U)
-            : ((0x20U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                ? ((0x10U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                    ? ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                        ? 0U : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                 ? ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                     ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                         ? 8U : 0U)
-                                     : 0U) : ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                               ? ((1U 
-                                                   & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                                   ? 1U
+        = ((0x40U & vlSelf->inst) ? ((0x20U & vlSelf->inst)
+                                      ? ((0x10U & vlSelf->inst)
+                                          ? ((8U & vlSelf->inst)
+                                              ? 0U : 
+                                             ((4U & vlSelf->inst)
+                                               ? 0U
+                                               : ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 5U
+                                                    : 0U)
+                                                   : 0U)))
+                                          : ((8U & vlSelf->inst)
+                                              ? ((4U 
+                                                  & vlSelf->inst)
+                                                  ? 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 9U
+                                                    : 0U)
                                                    : 0U)
-                                               : 0U)))
-                    : ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                        ? 0U : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                 ? 0U : ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                          ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                              ? 6U : 0U)
-                                          : 0U)))) : 
-               ((0x10U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                 ? ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                     ? 0U : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                              ? ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                  ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                      ? 8U : 0U) : 0U)
-                              : ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                  ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                      ? 2U : 0U) : 0U)))
-                 : ((8U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                     ? 0U : ((4U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                              ? 0U : ((2U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                       ? ((1U & (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__t0__DOT__opcode))
-                                           ? 4U : 0U)
-                                       : 0U))))));
+                                                  : 0U)
+                                              : ((4U 
+                                                  & vlSelf->inst)
+                                                  ? 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 3U
+                                                    : 0U)
+                                                   : 0U)
+                                                  : 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 7U
+                                                    : 0U)
+                                                   : 0U))))
+                                      : 0U) : ((0x20U 
+                                                & vlSelf->inst)
+                                                ? (
+                                                   (0x10U 
+                                                    & vlSelf->inst)
+                                                    ? 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 8U
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 1U
+                                                        : 0U)
+                                                       : 0U)))
+                                                    : 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 0U
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 6U
+                                                        : 0U)
+                                                       : 0U))))
+                                                : (
+                                                   (0x10U 
+                                                    & vlSelf->inst)
+                                                    ? 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 8U
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 2U
+                                                        : 0U)
+                                                       : 0U)))
+                                                    : 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 0U
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 4U
+                                                        : 0U)
+                                                       : 0U))))));
     if (((((((((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type)) 
                | (3U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) 
               | (4U == (IData)(vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type))) 
