@@ -177,7 +177,7 @@ sdb_mainloop();
 	if(!top->hit_good_or_bad){
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
 	}else{
-	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
+	printf("\n\n\n\n\n\nHIT BAD TRAP\n\n\n\n\n\n");		
 	}
 
 
