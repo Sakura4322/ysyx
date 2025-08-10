@@ -148,7 +148,7 @@ assign hit_good_or_bad=src1;
         .CSR_ADDR_WIDTH(2)    // 指定 CSR 地址宽度为 2 位
     ) csr_regfiles_instance (
         .clk(clk),            // 连接时钟信号
-        .wen(wen),
+        .wen(csr_wen),
         .imm(imm[11:0]),      // 连接 imm 输入
         .wdata0(csr_wdata0),  // 连接 wdata 输入
         .wdata1(csr_wdata1),  // 连接 wdata 输入
