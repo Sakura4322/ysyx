@@ -102,11 +102,9 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     input [WIDTH-1:0] inst,
     output reg [3:0] inst_type
 );
-    reg [6:0] opcode;
 
     always @(*) begin 
-        opcode = inst[6:0];
-        case (opcode)
+        case (inst[6:0])
 						7'b0010111: inst_type = `U;
                         7'b0110111: inst_type = `U;
 						7'b1101111: inst_type = `J;
