@@ -45,7 +45,7 @@ return context;
 void yield() {
   // printf("yield\n");
 #ifdef __riscv_e
-  asm volatile("li a5, 0xb; ecall");
+  asm volatile("li a5, 11; ecall");
 #else
   asm volatile("li a7, 0xb; ecall");
 #endif
