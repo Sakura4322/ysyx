@@ -156,8 +156,8 @@ module ysyx_24090015_EXU#(WIDTH=32) (
 					dnpc = csr_rdata;
 										end				
 				 	32'b0000000_00000_00000_000_00000_11100_11: begin //ecall
-					csr_wdata0 = src1;
-					csr_wdata1 = pc;
+					csr_wdata0 = pc;
+					csr_wdata1 = src1;
 					dnpc = csr_rdata;
 										end			
 				default begin 

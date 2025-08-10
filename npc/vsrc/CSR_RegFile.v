@@ -47,8 +47,8 @@ module csr_addr_mux #(
                     waddr0=2;     
                     wen1  =0;
                     waddr1=0;    
-            end                   //mcause
-            12'h342:begin 
+            end                  
+            12'h342:begin         //mcause
                     raddr0=3;     
                     wen0  =1;
                     waddr0=3;     
