@@ -157,6 +157,30 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                                               & vlSelf->inst))) 
                               | (0x1033U == (0xfe00707fU 
                                              & vlSelf->inst)))))) {
+                    if ((1U & (~ ((((((((0x5033U == 
+                                         (0xfe00707fU 
+                                          & vlSelf->inst)) 
+                                        | (0x40005033U 
+                                           == (0xfe00707fU 
+                                               & vlSelf->inst))) 
+                                       | (0x3033U == 
+                                          (0xfe00707fU 
+                                           & vlSelf->inst))) 
+                                      | (0x2033U == 
+                                         (0xfe00707fU 
+                                          & vlSelf->inst))) 
+                                     | (0x3073U == 
+                                        (0x707fU & vlSelf->inst))) 
+                                    | (0x2073U == (0x707fU 
+                                                   & vlSelf->inst))) 
+                                   | (0x1073U == (0x707fU 
+                                                  & vlSelf->inst))) 
+                                  | (0x30200073U == vlSelf->inst))))) {
+                        if ((0x73U == vlSelf->inst)) {
+                            vlSelf->ysyx_24090015_top__DOT__csr_wdata1 
+                                = vlSelf->ysyx_24090015_top__DOT__src1;
+                        }
+                    }
                     if (((((((((0x5033U == (0xfe00707fU 
                                             & vlSelf->inst)) 
                                | (0x40005033U == (0xfe00707fU 
@@ -207,7 +231,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                         }
                     } else if ((0x73U == vlSelf->inst)) {
                         vlSelf->ysyx_24090015_top__DOT__csr_wdata0 
-                            = vlSelf->ysyx_24090015_top__DOT__src1;
+                            = vlSelf->pc;
                     }
                 }
             }
