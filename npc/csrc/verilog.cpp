@@ -57,7 +57,7 @@ for (int i=0;i<img_size;i++){
 
 }
 
-
+extern int cout_inst_times;
 
 void step_and_dump_wave(Decode *s){
 	
@@ -65,15 +65,15 @@ void step_and_dump_wave(Decode *s){
 	top->clk=clk;
 	
 	top ->eval();
-//	printf("top->pc : 0x%08x\n",top->pc);
+	//printf("top->pc : 0x%08x\n",top->pc);
 //	printf("vaddr index: %d\n",top->pc/4);
 
 	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
-	//if(clk) top->inst=inst[top->pc/4];
+	// if(clk) top->inst=inst[top->pc/4];
 
 
 //input instructions
-//	printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
+	// printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
 	cpu.pc=top->pc;
 	read_regs();
@@ -109,11 +109,11 @@ char *p = s->logbuf;
   
 
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
-      
+  
       
       
 ///////////////////////////////////////////////////////itrace
-
+log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 
 	}else {
 		
@@ -123,9 +123,10 @@ char *p = s->logbuf;
 		
 	}
 
+	top ->eval();
   
-	// contextp->timeInc(1);
-	// tfp->dump(contextp->time());  // dump 波形数据
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
     
  }
 
@@ -177,7 +178,7 @@ sdb_mainloop();
 	if(!top->hit_good_or_bad){
 	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
 	}else{
-	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");		
+	printf("\n\n\n\n\n\nHIT BAD TRAP\n\n\n\n\n\n");		
 	}
 
 

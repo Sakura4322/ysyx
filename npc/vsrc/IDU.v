@@ -102,11 +102,9 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     input [WIDTH-1:0] inst,
     output reg [3:0] inst_type
 );
-    reg [6:0] opcode;
 
     always @(*) begin 
-        opcode = inst[6:0];
-        case (opcode)
+        case (inst[6:0])
 						7'b0010111: inst_type = `U;
                         7'b0110111: inst_type = `U;
 						7'b1101111: inst_type = `J;
@@ -116,8 +114,8 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
 						7'b0100011: inst_type = `S;						
 						7'b0010011: inst_type = `II; // I=2
 						7'b0110011: inst_type = `R ;
-						7'b0001111: inst_type = `IC;
-						
+						//7'b0001111: inst_type = `IC;
+						7'b1110011: inst_type = `IC;
 						
             default: inst_type = 0;
         endcase
@@ -131,6 +129,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
     output reg  ren1, ren2, wen,pwen,valid,
+	output reg csr_wen,
 		output reg [4:0] rd,rs1,rs2
 );
 
@@ -192,6 +191,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
+							csr_wen = 0;
+
 				end
 					`IJ : begin 
 							rs1=inst_in[19:15];
@@ -203,6 +204,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
+							csr_wen = 0;
+
 				end
 				`IS : begin 
 							rs1=inst_in[19:15];
@@ -214,6 +217,22 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immI;
+							csr_wen = 0;
+
+				end
+					`IC: begin 
+							rs1=inst_in[14:12]==0 ? 15:inst_in[19:15];
+							rs2=0;
+							ren1=1;
+							ren2=0;
+							valid=0;
+							rd=inst_in[11:7];
+							wen=1;
+							pwen=0;
+							imm=temp_immI;
+							csr_wen = 1;
+
+
 				end
 					`U : begin 
 							rs1=0;
@@ -225,6 +244,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immU;
+							csr_wen = 0;
+
 				end
 					`J : begin 
 							rs1=0;
@@ -236,6 +257,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=temp_immJ;
+							csr_wen = 0;
+
 				end
 					`S : begin 
 							rs1=inst_in[19:15];
@@ -247,6 +270,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=1;
 							imm=temp_immS;							
+							csr_wen = 0;
 							
 				end
 				    `B : begin 
@@ -259,6 +283,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=0;
 							imm=temp_immB;							
+							csr_wen = 0;
 							
 				end
 				    `R : begin 
@@ -271,6 +296,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=1;
 							pwen=0;
 							imm=0;							
+							csr_wen = 0;
 							
 				end
                 default : begin
@@ -283,6 +309,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							wen=0;
 							pwen=0;
 							imm=0;	
+							csr_wen = 0;
+
                 end
 				
 				endcase

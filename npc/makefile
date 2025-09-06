@@ -24,7 +24,7 @@ LDFLAGS += $(shell llvm-config --libs)
 
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
-#override ARGS+= -b
+override ARGS+= -b
 override ARGS+= --elf=$(ELF)
 # override ARGS+= --diff=$(NEMU_LIB)
 
@@ -35,7 +35,7 @@ sim:
 	@echo "$(ARGS)"
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
 	./obj_dir/V$(TOP_NAME) $(IMG) $(ARGS)
-	 gtkwave ./*.vcd
+#gtkwave ./*.vcd
 
 gdb : 
 	@echo "DEBUG MODE"

@@ -37,6 +37,7 @@ extern void npc_reg_display();
 extern void sdb_set_batch_mode();
 
 extern char *img_file;
+extern FILE* log_fp;
 extern char *log_file;
 extern char *elf_file;
 extern char *diff_so_file;

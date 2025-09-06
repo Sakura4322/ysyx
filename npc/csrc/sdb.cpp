@@ -25,7 +25,7 @@ static char* rl_gets() {
 
 
 static int cmd_c(char *args) {
-  printf("FUCK DAMN!\n");
+  //printf("FUCK DAMN!\n");
   cpu_exec(-1);
   return 0;
 }

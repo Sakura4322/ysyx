@@ -51,6 +51,11 @@ void read_regs() {
 	for(int i=0;i<32;i++){
 		cpu.gpr[i]=read_wire(i);
 	}
+	scope = svGetScopeFromName("TOP.ysyx_24090015_top.csr_regfiles_instance");
+	svSetScope(scope);
+	for(int i=0;i<4;i++){
+		cpu.csr[i]=read_wire(i);
+	}
 }
 
 void npc_reg_display(){
@@ -60,6 +65,10 @@ printf("reg\tvalue\n");
 		}
 	
 		printf("pc\t0x%08x\n",cpu.pc);
+		printf("mstatus\t0x%08x\n",cpu.csr[0]);
+		printf("mtvec  \t0x%08x\n",cpu.csr[1]);
+		printf("mepc   \t0x%08x\n",cpu.csr[2]);
+		printf("mcause \t0x%08x\n",cpu.csr[3]);
 	return;
 }
 
@@ -83,7 +92,7 @@ if(raddr==RTC_ADDR){
 	// raddr=get_time()>>32;
 	return get_time()>>32;
 }
-// log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
+log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
@@ -101,7 +110,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		//exit(-1);
 	}
 
-	if(waddr==SERIAL_PORT){
+	if(waddr>=SERIAL_PORT){
 		
 		putchar(temp[0]);
 		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);

@@ -78,7 +78,7 @@ Addr_Imfo *read_sym_func(){//all func info in func_addr
 
 }
 
-
+int cout_inst_times=0;
 static void ftrace(Addr_Imfo *func_addr,Decode *s){
 static uint32_t addr[200000];	
 static int rsp=0;
@@ -118,9 +118,7 @@ if(((s->inst & 0b00000000000000000000000001111111) == 0b000000000000000000000000
 			// 				}
 			// printf("call %s\trsp : %d \n",func_addr[i].func_name,rsp);	
 			// printf("addr[rsp] : %08x\t s->dnpc : %08x \n",addr[i],s->dnpc);
-		  //printf("ARE YOU OK??\n");
 			log_write("0x%08x: call [%s @ 0x%08x]\n",s->pc,func_addr[i].func_name,s->dnpc);
-		  //printf("ARE YOU OK??\n");
 		  return ;
 		}
 		
@@ -137,22 +135,23 @@ return ;
 Decode s={};
 static void execute(uint64_t n) {
 	static char iringbuf[20][128];
-	static char iringbuf_reg_state[2][512];
+	static char iringbuf_reg_state[2][1024];
 	static int cout_pc_num=0;
 
 
 
 //init disasm before step_and_dump_wave
-//init_disasm("riscv32");
+init_disasm("riscv32");
 
-// Addr_Imfo *func_addr = read_sym_func();
+Addr_Imfo *func_addr = read_sym_func();
 // for(int i=0;i<cnt_func_num;i++){
 // printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 // }
 
   for (;n > 0; n --) {
-	char buf[512]={0};
+	char buf[1024]={0};
     step_and_dump_wave(&s);
+	cout_inst_times++;
    if(diff_on){
 	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
     cnt_fuck++;
@@ -161,51 +160,58 @@ static void execute(uint64_t n) {
     if (top->flag)npc_state.state=NPC_END;
     
 
-    //trace_and_difftest(&s, cpu.pc);
+// trace_and_difftest(&s, cpu.pc);
 
 
-// if(n%2==0){
-// for (int i=0;i<32;i++){//storage reg information
-// 		char buf_temp[16]={0};
-// 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
-// 		strcat(buf,buf_temp);
-//  	}
+if(n%2==0){
+	char buf_temp[32]={0};
+for (int i=0;i<32;i++){//storage reg information
+		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
+		strcat(buf,buf_temp);
+ 	}
+	 sprintf(buf_temp,"mstatus : %08x\n",cpu.csr[0]);	
+	 strcat(buf,buf_temp);
+	 sprintf(buf_temp,"mtvec   : %08x\n",cpu.csr[1]);	
+	 strcat(buf,buf_temp);
+	 sprintf(buf_temp,"mepc    : %08x\n",cpu.csr[2]);	
+	 strcat(buf,buf_temp);
+	 sprintf(buf_temp,"%mcause : %08x\n",cpu.csr[3]);	
+	 strcat(buf,buf_temp);
  	
- 	
-// 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
-// 	  iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
+	strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
+	iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 // ftrace
 
-//     ftrace(func_addr,&s);
+    ftrace(func_addr,&s);
 
 
 
 // itrace
-// 		ret == 0 is good trap  or bad trap
+// ret == 0 is good trap  or bad trap
 			
-// 	}
+	}
 	
 	
-// 	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
-// 			 cout_pc_num-=1;
-// 	for(int i=0;i<20;i++){
-// 	if(i==cout_pc_num%20){
-// if (strcmp(iringbuf_reg_state[0],iringbuf_reg_state[1])==0){
-// log_write("REGS INFO SAME\n");
-// }else{
-// 	log_write("REGS INFO DIFFERENT\n");
-// }
-//  log_write("\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
-//  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
-// 	}	
-//  log_write("%s\n", *(iringbuf+i)); 
-// 	if(i==cout_pc_num%20){
-//  log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
-//  log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
-// 	}	
-// 	}	
-// 		}
+	if (!npc_state.halt_ret&& npc_state.state!=NPC_RUNNING){
+			 cout_pc_num-=1;
+	for(int i=0;i<20;i++){
+	if(i==cout_pc_num%20){
+if (strcmp(iringbuf_reg_state[0],iringbuf_reg_state[1])==0){
+log_write("REGS INFO SAME\n");
+}else{
+	log_write("REGS INFO DIFFERENT\n");
+}
+ log_write("\nthe reg information : \n%s\n",*(iringbuf_reg_state+((cout_pc_num-1)%2)));
+ log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
+	}	
+ log_write("%s\n", *(iringbuf+i)); 
+	if(i==cout_pc_num%20){
+ log_write("//////////////////////////////////////the wrong ///////////////////////////////////\n"); 		
+ log_write("%s\n",*(iringbuf_reg_state+(cout_pc_num%2)));
+	}	
+	}	
+		}
 		
 		
 		
@@ -220,7 +226,6 @@ static void execute(uint64_t n) {
 }
 
 void cpu_exec(uint64_t n) {
-  
    switch (npc_state.state) {
     case NPC_END: 
     case NPC_ABORT:

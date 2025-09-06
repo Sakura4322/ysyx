@@ -35,6 +35,7 @@ class Vysyx_24090015_top__Syms final : public VerilatedSyms {
     Vysyx_24090015_top___024unit   TOP____024unit;
 
     // SCOPE NAMES
+    VerilatedScope __Vscope_ysyx_24090015_top__csr_regfiles_instance;
     VerilatedScope __Vscope_ysyx_24090015_top__reg0;
 
     // CONSTRUCTORS
