@@ -1,12 +1,19 @@
 #include "../common.h"
 #include "../device.h"
 
+
+#define CH_OFFSET 0
+
+static uint8_t *serial_base = NULL;
+
+
+
 static void serial_io_handler(uint32_t offset, int len, bool is_write) {
     assert(len == 1);
     switch (offset) {
       /* We bind the serial port with the host stderr in NEMU. */
       case CH_OFFSET:
-        if (is_write) putch(ch);
+        if (is_write) put(ch);
         else log_write("do not support read");
         break;
       default: log_write("do not support offset = %d", offset);
