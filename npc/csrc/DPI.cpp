@@ -3,7 +3,7 @@
 #include "my_share.h"
 #include "verilated_dpi.h"
 #include "Vysyx_24090015_top__Dpi.h"
-
+#include "device.h"
 
 extern "C" int ebreak(int a){
 		//printf("the input ebreak inst is : %08x\n",a);
@@ -123,10 +123,10 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	else if(waddr>=DEVICE_BASE){
 		int len=0;
 		if(wmask==0b0001) len =1;
-		else if(wmaks==0b0011) len==2;
-		else if(wmaks==0b1111) len=4;
+		else if(wmask==0b0011) len==2;
+		else if(wmask==0b1111) len=4;
 		else assert(0);
-		
+
 		mmio_write(waddr, len, wdata);
 		return ;
 	}
