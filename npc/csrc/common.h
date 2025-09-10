@@ -12,3 +12,4 @@
 
 extern FILE* log_fp;
 
+void init_device();
