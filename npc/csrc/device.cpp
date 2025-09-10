@@ -8,8 +8,8 @@ uint64_t get_time(){
   return (now.tv_sec * 1000000 + now.tv_nsec / 1000)-us;
 }
 
+uint8_t* io_space = (uint8_t*)malloc(IO_SPACE_MAX);
 uint8_t* p_space = io_space;
-uint8_t* io_space = malloc(IO_SPACE_MAX);
 
 
 uint8_t* new_space(int size) {
