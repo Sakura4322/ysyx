@@ -37,6 +37,8 @@ void init_map() {
 }
 
 uint32_t map_read(uint32_t addr, int len, IOMap *map) {
+  log_write("dtrace : read_name : %s addr : %08x\n",map->name,addr);
+
   assert(len >= 1 && len <= 8);
   // printf("read : %s\n",map->name);
   // printf("map read\n");
@@ -48,6 +50,7 @@ uint32_t map_read(uint32_t addr, int len, IOMap *map) {
 }
 
 void map_write(uint32_t addr, int len, uint32_t data, IOMap *map) {
+  log_write("dtrace : write_name : %s addr : %08x len : %d\n",map->name,addr,len);
   assert(len >= 1 && len <= 8);
   //printf("write : %s\n",map->name);
  // printf("map write\n");
@@ -55,4 +58,5 @@ void map_write(uint32_t addr, int len, uint32_t data, IOMap *map) {
   uint32_t offset = addr - map->low;
   host_write(map->space + offset, len, data);
   invoke_callback(map->callback, offset, len, true);
+
 }
