@@ -91,7 +91,7 @@ void init_vga() {
   memset(vmem, 0, screen_size());
 }
 
-void init_device() {
+void init_device(){
 
   init_vga();
 }
