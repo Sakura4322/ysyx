@@ -1,6 +1,7 @@
 #include "common.h"
 
 
+enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 
 extern void difftest_step(uint32_t pc, uint32_t npc);
 extern void difftest_skip_ref();

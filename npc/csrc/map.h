@@ -1,4 +1,7 @@
 
+void    difftest_skip_ref();
+
+
 typedef void(*io_callback_t)(uint32_t, int, bool);
 uint8_t* new_space(int size);
 
