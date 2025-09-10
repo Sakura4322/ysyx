@@ -8,8 +8,8 @@ uint64_t get_time(){
   return (now.tv_sec * 1000000 + now.tv_nsec / 1000)-us;
 }
 
-uint8_t p_space[1024*1024*2]={0};
-
+uint8_t* p_space = io_space;
+uint8_t* io_space = malloc(IO_SPACE_MAX);
 
 
 uint8_t* new_space(int size) {
@@ -22,12 +22,17 @@ uint8_t* new_space(int size) {
 }
 
 
-
-
-static uint32_t screen_size() {
-  return  SCREEN_W * SCREEN_H * sizeof(uint32_t);
+static uint32_t screen_width() {
+  return SCREEN_W;
 }
 
+static uint32_t screen_height() {
+  return SCREEN_H;
+}
+
+static uint32_t screen_size() {
+  return screen_width() * screen_height() * sizeof(uint32_t);
+}
 
 static void *vmem = NULL;
 static uint32_t *vgactl_port_base = NULL;
