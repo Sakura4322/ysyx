@@ -46,6 +46,7 @@ init_disasm("riscv32");			//init disasm
 parse_args(argc,argv);			//parse args
 long img_size=load_img();		
 
+printf("STARAT INIT DEVICE\n");
 init_device();
 printf("INIT DEVICE FINSIH\n");
 if(diff_on)
