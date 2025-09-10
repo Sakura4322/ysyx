@@ -15,4 +15,8 @@ void init_device(){
   init_map();
 
   init_vga();
+  init_serial();
+  nit_timer();
+
+  init_alarm();
 }
