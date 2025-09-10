@@ -91,7 +91,7 @@ if(raddr==RTC_ADDR){
 	// raddr=get_time()>>32;
 	return get_time()>>32;
 }
-log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
+// log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
@@ -114,7 +114,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 		return;
 	}else if(waddr>=VGACTL_ADDR){
-		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
+		log_write("dtrace_vga\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 	}
 
 	if(wmask==0b0001){
