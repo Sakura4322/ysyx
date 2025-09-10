@@ -41,4 +41,8 @@ void add_mmio_map(const char *name, uint32_t addr,
 uint32_t map_read(uint32_t addr, int len, IOMap *map);
 void map_write(uint32_t addr, int len, uint32_t data, IOMap *map);
 
+
+
+uint32_t mmio_read(uint32_t addr, int len);
+void mmio_write(uint32_t addr, int len, uint32_t data);
 #endif
