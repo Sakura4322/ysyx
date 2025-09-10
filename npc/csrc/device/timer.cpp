@@ -1,6 +1,12 @@
 #include "../common.h"
 #include "../device.h"
 
+uint64_t get_time(){
+  struct timespec now;
+  clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
+  static uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
+  return (now.tv_sec * 1000000 + now.tv_nsec / 1000)-us;
+}
 
 static uint32_t *rtc_port_base = NULL;
 
@@ -14,9 +20,7 @@ static void rtc_io_handler(uint32_t offset, int len, bool is_write) {
 }
 
 static void timer_intr() {
-  if (npc_state.state == NPC_RUNNING) {
-    break;
-  }
+
 }
 
 void init_timer() {
