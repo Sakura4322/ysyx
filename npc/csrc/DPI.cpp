@@ -114,7 +114,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 		return;
 	}else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
-		log_write("dtrace_vga\taddr : %08x\tdata : %c\n",waddr,temp[0]);
+		log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
 	}else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
 		log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
 	}
