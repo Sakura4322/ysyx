@@ -94,7 +94,7 @@ char *p = s->logbuf;
   
   
   int ilen = s->snpc - s->pc;
-  int ilen = 4;
+//   int ilen = 4;
   int i;
   uint8_t *inst = (uint8_t *)&s->inst;
   for (i = ilen - 1; i >= 0; i --) {
