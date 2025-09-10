@@ -1,3 +1,6 @@
+#ifndef CPU_H
+#define CPU_H
+
 #include "difftest.h"
 
 
@@ -26,3 +29,6 @@ typedef struct {
 }CPU_state;
 
 extern CPU_state cpu;
+
+
+#endif

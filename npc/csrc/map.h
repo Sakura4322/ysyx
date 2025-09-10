@@ -1,4 +1,5 @@
-
+#ifndef MAP_H
+#define MAP_H
 void    difftest_skip_ref();
 
 
@@ -36,3 +37,5 @@ void add_mmio_map(const char *name, uint32_t addr,
 
 uint32_t map_read(uint32_t addr, int len, IOMap *map);
 void map_write(uint32_t addr, int len, uint32_t data, IOMap *map);
+
+#endif
