@@ -3,19 +3,19 @@
 
 #include "common.h"
 
-static inline word_t host_read(void *addr, int len) {
+static inline unsigned int host_read(void *addr, int len) {
   switch (len) {
     case 1: return *(uint8_t  *)addr;
     case 2: return *(uint16_t *)addr;
-    case 4: return *(uint32_t *)addr;
+    case 4: return *(unsigned int *)addr;
   }
 }
 
-static inline void host_write(void *addr, int len, word_t data) {
+static inline void host_write(void *addr, int len, unsigned int data) {
   switch (len) {
     case 1: *(uint8_t  *)addr = data; return;
     case 2: *(uint16_t *)addr = data; return;
-    case 4: *(uint32_t *)addr = data; return;
+    case 4: *(unsigned int *)addr = data; return;
   }
 }
 
