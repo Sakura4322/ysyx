@@ -163,7 +163,7 @@ Addr_Imfo *func_addr = read_sym_func();
 // trace_and_difftest(&s, cpu.pc);
 
 
-// if(n%2==0){
+if(n%2==0){
 // 	char buf_temp[32]={0};
 // for (int i=0;i<32;i++){//storage reg information
 // 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
