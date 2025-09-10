@@ -15,8 +15,8 @@ static IOMap* fetch_mmio_map(uint32_t addr) {
 
 static void report_mmio_overlap(const char *name1, uint32_t l1, uint32_t r1,
     const char *name2, uint32_t l2, uint32_t r2) {
-  printf("MMIO region %s@[" %8x ", " %8x "] is overlapped "
-               "with %s@[" %8x ", " %8x "]", name1, l1, r1, name2, l2, r2);
+      printf("MMIO region %s@[ %08x, %08x ] is overlapped "
+        "with %s@[ %08x, %08x ]\n", name1, l1, r1, name2, l2, r2);
 }
 
 /* device interface */
