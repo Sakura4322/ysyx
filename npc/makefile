@@ -15,6 +15,7 @@ CSRC = $(shell find $(abspath ./csrc) -name "*.cpp" -o -name "*.cc")
 # CSRC +=$(abspath ./csrc/disasm.cc)
 # CSRC +=$(abspath ./csrc/difftest_dut.cpp)
 
+
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal 
 LDFLAGS= -lreadline 
 LDFLAGS += $(shell llvm-config --libs)
@@ -32,7 +33,7 @@ override ARGS+= --elf=$(ELF)
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by your self."
+	echo "$(CSRC)"
 	@echo "$(VERILATOR_ROOT)"
 	@echo "$(ARGS)"
 	verilator  $(CFLAGS) -LDFLAGS "$(LDFLAGS)" --trace  --top-module $(TOP_NAME) $(VSRC) $(CSRC) 
