@@ -34,7 +34,7 @@ void add_mmio_map(const char *name, uint32_t addr, void *space, uint32_t len, io
 
   maps[nr_map] = (IOMap){ .name = name, .low = addr, .high = addr + len - 1,
     .space = space, .callback = callback };
-  log_write("Add mmio map '%s' at [%08x, %08x]",
+  log_write("Add mmio map '%s' at [%08x, %08x]\n",
       maps[nr_map].name, maps[nr_map].low, maps[nr_map].high);
 
   nr_map ++;
