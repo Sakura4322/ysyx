@@ -11,6 +11,7 @@
 #include <sys/time.h>
 #include <SDL2/SDL.h>
 #include "host.h"
+#include <signal.h>
 
 
 extern FILE* log_fp;
