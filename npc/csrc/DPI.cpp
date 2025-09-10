@@ -91,7 +91,8 @@ if(raddr==RTC_ADDR){
 	// raddr=get_time()>>32;
 	return get_time()>>32;
 } else if(raddr>=DEVICE_BASE){
-	log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
+	log_write("dtrace_rtc\taddr : %08x\n",raddr);
+
 	return mmio_read(raddr, 4);
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
@@ -124,6 +125,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 	// 	log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
 	// }
 	else if(waddr>=DEVICE_BASE){
+		log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
 		int len=0;
 		if(wmask==0b0001) len =1;
 		else if(wmask==0b0011) len==2;
