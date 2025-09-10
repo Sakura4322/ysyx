@@ -1,6 +1,6 @@
 #include "common.h"
 #include "device.h"
-void init_vga() ;
+extern void init_vga();
 
 
 uint64_t get_time(){
@@ -11,6 +11,5 @@ uint64_t get_time(){
 }
 
 void init_device(){
-
   init_vga();
 }
