@@ -94,7 +94,7 @@ if(raddr<0x80000000||raddr>0xffffffff){
 // else if(raddr>=DEVICE_BASE){
 	if(raddr>=DEVICE_BASE){
 	log_write("dtrace_rtc\taddr : %08x\n",raddr);
-	if(waddr==SERIAL_PORT) return mmio_read(raddr, 1);
+	if(raddr==SERIAL_PORT) return mmio_read(raddr, 1);
 	else return mmio_read(raddr, 4);
 	
 }
