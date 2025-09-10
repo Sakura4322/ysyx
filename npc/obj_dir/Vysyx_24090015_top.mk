@@ -53,7 +53,7 @@ VM_USER_CLASSES = \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/sakura/ysyx-workbench/npc/csrc \
+	./csrc \
 
 
 ### Default rules...
@@ -65,21 +65,21 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-DPI.o: /home/sakura/ysyx-workbench/npc/csrc/DPI.cpp
+DPI.o: ./csrc/DPI.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-cpu_exec.o: /home/sakura/ysyx-workbench/npc/csrc/cpu_exec.cpp
+cpu_exec.o: ./csrc/cpu_exec.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-device.o: /home/sakura/ysyx-workbench/npc/csrc/device.cpp
+device.o: ./csrc/device.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-difftest_dut.o: /home/sakura/ysyx-workbench/npc/csrc/difftest_dut.cpp
+difftest_dut.o: ./csrc/difftest_dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-disasm.o: /home/sakura/ysyx-workbench/npc/csrc/disasm.cc
+disasm.o: ./csrc/disasm.cc
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-monitor.o: /home/sakura/ysyx-workbench/npc/csrc/monitor.cpp
+monitor.o: ./csrc/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/sakura/ysyx-workbench/npc/csrc/sdb.cpp
+sdb.o: ./csrc/sdb.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-verilog.o: /home/sakura/ysyx-workbench/npc/csrc/verilog.cpp
+verilog.o: ./csrc/verilog.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
