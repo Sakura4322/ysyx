@@ -3,6 +3,7 @@
 
 
 #define MAX_HANDLER 8
+#define TIMER_HZ 60
 
 static alarm_handler_t handler[MAX_HANDLER] = {};
 static int idx = 0;
@@ -23,7 +24,7 @@ void init_alarm() {
   struct sigaction s;
   memset(&s, 0, sizeof(s));
   s.sa_handler = alarm_sig_handler;
-  int ret = sigaction(SIGVTALRM, &s, NULL);
+  int ret = sigaction(26, &s, NULL);
   printf("Can not set signal handler");
   assert(ret == 0);
 

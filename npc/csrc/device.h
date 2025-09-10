@@ -24,6 +24,7 @@
 #define PAGE_SIZE         (1ul << PAGE_SHIFT)
 #define PAGE_MASK         (PAGE_SIZE - 1)
 
+typedef void (*alarm_handler_t) ();
 void add_alarm_handle(alarm_handler_t h);
 
 extern void init_vga();
