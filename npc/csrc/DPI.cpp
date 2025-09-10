@@ -113,6 +113,8 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		putchar(temp[0]);
 		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 		return;
+	}else if(waddr>=VGACTL_ADDR){
+		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 	}
 
 	if(wmask==0b0001){
