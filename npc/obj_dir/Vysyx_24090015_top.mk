@@ -45,11 +45,11 @@ VM_USER_CLASSES = \
 	DPI \
 	cpu_exec \
 	device \
-	difftest_dut \
-	disasm \
 	gpu \
 	map \
 	mmio \
+	difftest_dut \
+	disasm \
 	monitor \
 	sdb \
 	verilog \
@@ -57,7 +57,8 @@ VM_USER_CLASSES = \
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
 	./csrc \
-	./csrc/ioe \
+	./csrc/device \
+	./csrc/device/io \
 
 
 ### Default rules...
@@ -75,15 +76,15 @@ cpu_exec.o: ./csrc/cpu_exec.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 device.o: ./csrc/device.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+gpu.o: ./csrc/device/gpu.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+map.o: ./csrc/device/io/map.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+mmio.o: ./csrc/device/io/mmio.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 difftest_dut.o: ./csrc/difftest_dut.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 disasm.o: ./csrc/disasm.cc
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-gpu.o: ./csrc/ioe/gpu.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-map.o: ./csrc/map.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mmio.o: ./csrc/mmio.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 monitor.o: ./csrc/monitor.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<

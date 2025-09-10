@@ -1,4 +1,4 @@
-#include "./device.h"
+#include "../device.h"
 
 
 static uint32_t screen_width() {
