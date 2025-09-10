@@ -11,5 +11,8 @@ uint64_t get_time(){
 }
 
 void init_device(){
+
+  init_map();
+
   init_vga();
 }
