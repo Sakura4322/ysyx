@@ -99,7 +99,7 @@ return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 extern "C" void pmem_write(int waddr,int wdata,char wmask){
 
 	uint8_t *temp= (uint8_t *)&wdata;
-	if(waddr<0x80000000||waddr>0xffffffff){
+	if(waddr<0x80000000||waddr>0xfffffff){
 		npc_state.state = NPC_ABORT;
 		printf("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,
 		  waddr, cpu.pc);
@@ -113,10 +113,22 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		putchar(temp[0]);
 		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
 		return;
-	}else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
-		log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
-	}else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
-		log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
+	}
+	// else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
+	// 	log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
+	// }
+	// else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
+	// 	log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
+	// }
+	else if(waddr>=DEVICE_BASE){
+		int len=0;
+		if(wmask==0b0001) len =1;
+		else if(wmaks==0b0011) len==2;
+		else if(wmaks==0b1111) len=4;
+		else assert(0);
+		
+		mmio_write(waddr, len, wdata);
+		return ;
 	}
 
 	if(wmask==0b0001){
@@ -128,13 +140,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x\n",waddr,temp[0],temp[1]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
-	}else if(wmask==0b0111){
-
-		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2]);
-		vaddr[waddr-CONFIG_MBASE]=temp[0];
-		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
-		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
-	}else if(wmask==0b1111){
+	else if(wmask==0b1111){
 
 		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2],temp[3]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
