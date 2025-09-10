@@ -1,4 +1,5 @@
 #include "../../common.h"
+#include "../../map.h"
 #include "../../device.h"
 
 
@@ -7,24 +8,24 @@
 static IOMap maps[NR_MAP] = {};
 static int nr_map = 0;
 
-static IOMap* fetch_mmio_map(unsigned int addr) {
+static IOMap* fetch_mmio_map(uint32_t addr) {
   int mapid = find_mapid_by_addr(maps, nr_map, addr);
   return (mapid == -1 ? NULL : &maps[mapid]);
 }
 
-static void report_mmio_overlap(const char *name1, unsigned int l1, unsigned int r1,
-    const char *name2, unsigned int l2, unsigned int r2) {
-  panic("MMIO region %s@[" FMT_PADDR ", " FMT_PADDR "] is overlapped "
-               "with %s@[" FMT_PADDR ", " FMT_PADDR "]", name1, l1, r1, name2, l2, r2);
+static void report_mmio_overlap(const char *name1, uint32_t l1, uint32_t r1,
+    const char *name2, uint32_t l2, uint32_t r2) {
+  printf("MMIO region %s@[" %08x ", " %08x "] is overlapped "
+               "with %s@[" %08x ", " %08x "]", name1, l1, r1, name2, l2, r2);
 }
 
 /* device interface */
-void add_mmio_map(const char *name, unsigned int addr, void *space, unsigned int len, io_callback_t callback) {
+void add_mmio_map(const char *name, uint32_t addr, void *space, uint32_t len, io_callback_t callback) {
   assert(nr_map < NR_MAP);
-  unsigned int left = addr, right = addr + len - 1;
-  if (in_pmem(left) || in_pmem(right)) {
-    report_mmio_overlap(name, left, right, "pmem", PMEM_LEFT, PMEM_RIGHT);
-  }
+  uint32_t left = addr, right = addr + len - 1;
+  // if (in_pmem(left) || in_pmem(right)) {
+  //   report_mmio_overlap(name, left, right, "pmem", PMEM_LEFT, PMEM_RIGHT);
+  // }
   for (int i = 0; i < nr_map; i++) {
     if (left <= maps[i].high && right >= maps[i].low) {
       report_mmio_overlap(name, left, right, maps[i].name, maps[i].low, maps[i].high);
@@ -33,21 +34,21 @@ void add_mmio_map(const char *name, unsigned int addr, void *space, unsigned int
 
   maps[nr_map] = (IOMap){ .name = name, .low = addr, .high = addr + len - 1,
     .space = space, .callback = callback };
-  Log("Add mmio map '%s' at [" FMT_PADDR ", " FMT_PADDR "]",
-      maps[nr_map].name, maps[nr_map].low, maps[nr_map].high);
+  // log_write("Add mmio map '%s' at [" FMT_PADDR ", " FMT_PADDR "]",
+  //     maps[nr_map].name, maps[nr_map].low, maps[nr_map].high);
 
   nr_map ++;
 }
 
 /* bus interface */
-unsigned int mmio_read(unsigned int addr, int len) {
+uint32_t mmio_read(uint32_t addr, int len) {
   // IOMap *test= fetch_mmio_map(addr);
   // if(test!=NULL)
   // {printf("mmio_read fetch mapio name : %s\n",test->name);}
   return map_read(addr, len, fetch_mmio_map(addr));
 }
 
-void mmio_write(unsigned int addr, int len, unsigned int data) {
+void mmio_write(uint32_t addr, int len, uint32_t data) {
   // IOMap *test= fetch_mmio_map(addr);
   // if(test!=NULL)
   // printf("mmoi_write fetch mapio name : %s\n",test->name);
