@@ -26,3 +26,5 @@
 
 
 extern void init_vga();
+extern void init_map();
+ 
