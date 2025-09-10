@@ -8,7 +8,7 @@
 #include <getopt.h>
 #include <string>
 #include <dlfcn.h>
-#include <time.h>
+#include <sys/time.h>
 #include <SDL2/SDL.h>
 #include "host.h"
 
