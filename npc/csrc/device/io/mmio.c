@@ -1,5 +1,5 @@
-#include "common.h"
-#include "device.h"
+#include "../../common.h"
+#include "../../device.h"
 
 
 #define NR_MAP 16

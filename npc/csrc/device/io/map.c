@@ -1,5 +1,6 @@
-#include "common.h"
-#include "device.h"
+#include "../../common.h"
+#include "../../device.h"
+
 
 
 #define IO_SPACE_MAX (2 * 1024 * 1024)
@@ -29,7 +30,7 @@ static void invoke_callback(io_callback_t c, uint32_t offset, int len, bool is_w
 }
 
 void init_map() {
-  io_space = malloc(IO_SPACE_MAX);
+  io_space = (uint8_t *)malloc(IO_SPACE_MAX);
   assert(io_space);
   p_space = io_space;
 }

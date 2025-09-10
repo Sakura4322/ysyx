@@ -10,6 +10,7 @@
 #include <dlfcn.h>
 #include <time.h>
 #include <SDL2/SDL.h>
+#include "host.h"
 
 
 extern FILE* log_fp;
