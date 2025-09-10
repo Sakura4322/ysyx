@@ -93,7 +93,7 @@ if(raddr==RTC_ADDR){
 } else if(raddr>=DEVICE_BASE){
 	return mmio_read(raddr, 4);
 }
-// log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
+log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
@@ -128,23 +128,23 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		else if(wmask==0b0011) len==2;
 		else if(wmask==0b1111) len=4;
 		else assert(0);
-
+		log_write("dtrace_stest\taddr : %08x\tdata : %d\n",waddr,temp[0]);
 		mmio_write(waddr, len, wdata);
 		return ;
 	}
 
 	if(wmask==0b0001){
 
-		// log_write("pmem_write\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
+		log_write("pmem_write\taddr : %08x\tdata : %02x\n",waddr,temp[0]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 	}else if(wmask==0b0011){
 
-		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x\n",waddr,temp[0],temp[1]);
+		log_write("pmem_write\taddr : %08x\tdata : %02x %02x\n",waddr,temp[0],temp[1]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
 	}else if(wmask==0b1111){
 
-		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2],temp[3]);
+		log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2],temp[3]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
 		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
