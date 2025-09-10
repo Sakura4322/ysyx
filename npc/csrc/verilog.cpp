@@ -89,32 +89,32 @@ void step_and_dump_wave(Decode *s){
 		
 		
 ///////////////////////////////////////////////////////////itrace
-// char *p = s->logbuf;
-//   p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
+char *p = s->logbuf;
+  p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
   
   
-  //int ilen = s->snpc - s->pc;
-//   int ilen = 4;
-//   int i;
-//   uint8_t *inst = (uint8_t *)&s->inst;
-//   for (i = ilen - 1; i >= 0; i --) {
-//     p += snprintf(p, 4, " %02x", inst[i]);
-//   }
-//   //int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
-//   int ilen_max =4;
-//   int space_len = ilen_max - ilen;
-//   if (space_len < 0) space_len = 0;
-//   space_len = space_len * 3 + 1;
-//   memset(p, ' ', space_len);
-//   p += space_len;
+  int ilen = s->snpc - s->pc;
+  int ilen = 4;
+  int i;
+  uint8_t *inst = (uint8_t *)&s->inst;
+  for (i = ilen - 1; i >= 0; i --) {
+    p += snprintf(p, 4, " %02x", inst[i]);
+  }
+  //int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
+  int ilen_max =4;
+  int space_len = ilen_max - ilen;
+  if (space_len < 0) space_len = 0;
+  space_len = space_len * 3 + 1;
+  memset(p, ' ', space_len);
+  p += space_len;
   
 
-//   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
   
       
       
-///////////////////////////////////////////////////////itrace
-// log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
+/////////////////////////////////////////////////////itrace
+log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 
 	}else {
 		
