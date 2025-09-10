@@ -7,7 +7,7 @@
 #include <string>
 #include <dlfcn.h>
 #include <time.h>
-// #include <SDL2/SDL.h>
+#include <SDL2/SDL.h>
 
 
 extern FILE* log_fp;

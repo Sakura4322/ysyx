@@ -8,7 +8,9 @@ uint64_t get_time(){
   return (now.tv_sec * 1000000 + now.tv_nsec / 1000)-us;
 }
 
-uint8_t p_space[4096]={0};
+uint8_t p_space[1024*1024*2]={0};
+
+
 
 uint8_t* new_space(int size) {
   uint8_t *p = p_space;
@@ -19,6 +21,12 @@ uint8_t* new_space(int size) {
   return p;
 }
 
+
+
+
+static uint32_t screen_size() {
+  return  SCREEN_W * SCREEN_H * sizeof(uint32_t);
+}
 
 
 static void *vmem = NULL;
@@ -64,15 +72,15 @@ void vga_update_screen() {
 void init_vga() {
   vgactl_port_base = (uint32_t *)new_space(8);
   vgactl_port_base[0] = (screen_width() << 16) | screen_height();
-#ifdef CONFIG_HAS_PORT_IO
-  add_pio_map ("vgactl", CONFIG_VGA_CTL_PORT, vgactl_port_base, 8, NULL);
-#else
-  add_mmio_map("vgactl", CONFIG_VGA_CTL_MMIO, vgactl_port_base, 8, NULL);
-#endif
+// #ifdef CONFIG_HAS_PORT_IO
+//   add_pio_map ("vgactl", CONFIG_VGA_CTL_PORT, vgactl_port_base, 8, NULL);
+// #else
+//   add_mmio_map("vgactl", CONFIG_VGA_CTL_MMIO, vgactl_port_base, 8, NULL);
+// #endif
 
   vmem = new_space(screen_size());
-  add_mmio_map("vmem", CONFIG_FB_ADDR, vmem, screen_size(), NULL);
-  IFDEF(CONFIG_VGA_SHOW_SCREEN, init_screen());
-  IFDEF(CONFIG_VGA_SHOW_SCREEN, memset(vmem, 0, screen_size()));
+  // add_mmio_map("vmem", CONFIG_FB_ADDR, vmem, screen_size(), NULL);
+  init_screen();
+  memset(vmem, 0, screen_size());
 }
 
