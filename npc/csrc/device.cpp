@@ -86,6 +86,7 @@ void init_vga() {
   vmem = new_space(screen_size());
   // add_mmio_map("vmem", CONFIG_FB_ADDR, vmem, screen_size(), NULL);
   init_screen();
+  printf("INIT SCREE SUCCESSFULLY\n");
   memset(vmem, 0, screen_size());
 }
 
