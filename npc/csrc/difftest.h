@@ -1,3 +1,7 @@
+#ifndef DIFTEST_H
+#define DIFTEST_H
+
+
 #include "common.h"
 
 
