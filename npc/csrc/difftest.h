@@ -1,5 +1,5 @@
-#ifndef DIFTEST_H
-#define DIFTEST_H
+#ifndef DIFFTEST_H
+#define DIFFTEST_H
 
 
 #include "common.h"
