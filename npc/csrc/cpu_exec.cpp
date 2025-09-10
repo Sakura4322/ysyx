@@ -163,27 +163,27 @@ Addr_Imfo *func_addr = read_sym_func();
 // trace_and_difftest(&s, cpu.pc);
 
 
-if(n%2==0){
-	char buf_temp[32]={0};
-for (int i=0;i<32;i++){//storage reg information
-		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
-		strcat(buf,buf_temp);
- 	}
-	 sprintf(buf_temp,"mstatus : %08x\n",cpu.csr[0]);	
-	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"mtvec   : %08x\n",cpu.csr[1]);	
-	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"mepc    : %08x\n",cpu.csr[2]);	
-	 strcat(buf,buf_temp);
-	 sprintf(buf_temp,"%mcause : %08x\n",cpu.csr[3]);	
-	 strcat(buf,buf_temp);
+// if(n%2==0){
+// 	char buf_temp[32]={0};
+// for (int i=0;i<32;i++){//storage reg information
+// 		sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
+// 		strcat(buf,buf_temp);
+//  	}
+// 	 sprintf(buf_temp,"mstatus : %08x\n",cpu.csr[0]);	
+// 	 strcat(buf,buf_temp);
+// 	 sprintf(buf_temp,"mtvec   : %08x\n",cpu.csr[1]);	
+// 	 strcat(buf,buf_temp);
+// 	 sprintf(buf_temp,"mepc    : %08x\n",cpu.csr[2]);	
+// 	 strcat(buf,buf_temp);
+// 	 sprintf(buf_temp,"%mcause : %08x\n",cpu.csr[3]);	
+// 	 strcat(buf,buf_temp);
  	
-	strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
-	iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
+// 	strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
+// 	iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions		
 
 // ftrace
 
-    ftrace(func_addr,&s);
+    // ftrace(func_addr,&s);
 
 
 
