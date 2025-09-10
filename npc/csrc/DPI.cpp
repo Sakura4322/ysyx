@@ -84,16 +84,19 @@ if(raddr<0x80000000||raddr>0xffffffff){
 	//exit(-1);
 }
 
-if(raddr==RTC_ADDR){
-	log_write("dtrace_rtc\taddr : %08x\tdata : %ld\n",raddr,get_time());
-	return get_time();
-}else if(raddr==RTC_ADDR+4){
-	// raddr=get_time()>>32;
-	return get_time()>>32;
-} else if(raddr>=DEVICE_BASE){
+// if(raddr==RTC_ADDR){
+// 	log_write("dtrace_rtc\taddr : %08x\tdata : %ld\n",raddr,get_time());
+// 	return get_time();
+// }else if(raddr==RTC_ADDR+4){
+// 	// raddr=get_time()>>32;
+// 	return get_time()>>32;
+// } 
+// else if(raddr>=DEVICE_BASE){
+	if(raddr>=DEVICE_BASE){
 	log_write("dtrace_rtc\taddr : %08x\n",raddr);
-
-	return mmio_read(raddr, 4);
+	if(waddr==SERIAL_PORT) return mmio_read(raddr, 1);
+	else return mmio_read(raddr, 4);
+	
 }
 log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
@@ -112,19 +115,20 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		//exit(-1);
 	}
 
-	if(waddr>=SERIAL_PORT && waddr < FB_ADDR){
+	// if(waddr>=SERIAL_PORT && waddr < FB_ADDR){
 		
-		putchar(temp[0]);
-		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
-		return;
-	}
+	// 	putchar(temp[0]);
+	// 	log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
+	// 	return;
+	// }
 	// else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
 	// 	log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
 	// }
 	// else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
 	// 	log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
 	// }
-	else if(waddr>=DEVICE_BASE){
+	// else if(waddr>=DEVICE_BASE){
+		if(waddr>=DEVICE_BASE){
 		log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
 		int len=0;
 		if(wmask==0b0001) len =1;
