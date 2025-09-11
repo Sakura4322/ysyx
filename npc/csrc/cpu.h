@@ -2,7 +2,6 @@
 #define CPU_H
 
 #include "difftest.h"
-#include "device.h"
 
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };
 

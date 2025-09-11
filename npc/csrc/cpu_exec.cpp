@@ -1,5 +1,6 @@
 #include "common.h"
 #include "my_share.h"
+#include "device.h"
 
 NPCState npc_state;
 CPU_state cpu={};
