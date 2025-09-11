@@ -62,5 +62,5 @@ void init_vga() {
   vmem = new_space(screen_size());
   add_mmio_map("vmem", FB_ADDR, vmem, screen_size(), NULL);
   init_screen();
-  screen_size();
+  memset(vmem, 0, screen_size());
 }
