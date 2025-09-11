@@ -28,7 +28,7 @@ extern void vga_update_screen();
 
 typedef void (*alarm_handler_t) ();
 void add_alarm_handle(alarm_handler_t h);
-void void send_key(uint8_t scancode, bool is_keydown);
+void send_key(uint8_t scancode, bool is_keydown);
 
 extern uint64_t get_time();
 
