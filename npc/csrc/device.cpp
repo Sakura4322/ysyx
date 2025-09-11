@@ -8,10 +8,10 @@
 void init_device(){
 
   init_map();
-
-  init_vga();
+  
   init_serial();
   init_timer();
+  init_vga();
 
   init_alarm();
 }

@@ -1,5 +1,6 @@
 #include <am.h>
 #include <klib-macros.h>
+extern int printf(const char *fmt, ...);
 
 void __am_timer_init();
 void __am_gpu_init();
@@ -32,7 +33,7 @@ static void fail(void *buf) { panic("access nonexist register"); }
 
 bool ioe_init() {
   for (int i = 0; i < LENGTH(lut); i++)
-    if (!lut[i]) lut[i] = fail;
+    if (!lut[i]) {lut[i] = fail;printf("INIT FIAL : %d",i);}
   __am_gpu_init();
   __am_timer_init();
   return true;
