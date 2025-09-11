@@ -42,11 +42,11 @@ uint32_t map_read(uint32_t addr, int len, IOMap *map) {
   // printf("read : %s\n",map->name);
   // printf("map read\n");
   check_bound(map, addr);
-  log_write("dtrace : read_name : %s\taddr : %08x\n",map->name,addr);
 
   uint32_t offset = addr - map->low;
   invoke_callback(map->callback, offset, len, false); // prepare data to read
   uint32_t ret = host_read(map->space + offset, len);
+  log_write("dtrace : read_name : %s\taddr : %08x\trdata : %d\n",map->name,addr,ret);
   return ret;
 }
 
