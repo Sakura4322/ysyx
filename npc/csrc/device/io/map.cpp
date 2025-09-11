@@ -55,7 +55,7 @@ void map_write(uint32_t addr, int len, uint32_t data, IOMap *map) {
   //printf("write : %s\n",map->name);
  // printf("map write\n");
   check_bound(map, addr);
-  log_write("dtrace : write_name : %s\taddr : %08x len : %d\n",map->name,addr,len);
+  log_write("dtrace : write_name : %s\taddr : %08x len : %d\twdata : %d\n",map->name,addr,len,data);
   uint32_t offset = addr - map->low;
   host_write(map->space + offset, len, data);
   invoke_callback(map->callback, offset, len, true);
