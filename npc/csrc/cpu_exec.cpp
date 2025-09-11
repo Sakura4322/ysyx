@@ -183,7 +183,7 @@ if(n%2==0){
 
 // ftrace
 
-    // ftrace(func_addr,&s);
+    ftrace(func_addr,&s);
 
 
 
