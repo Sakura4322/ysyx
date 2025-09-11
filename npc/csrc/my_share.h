@@ -75,7 +75,7 @@ typedef struct{
 }Addr_Imfo;
 
 uint64_t get_time();
-extern "C" int pmem_read(int raddr);
+extern "C" int pmem_read(int raddr,char wmask);
 
 
 
