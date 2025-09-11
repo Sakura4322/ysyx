@@ -1,6 +1,6 @@
 #include "common.h"
 #include "my_share.h"
-#include "device.h"
+// #include "device.h"
 
 NPCState npc_state;
 CPU_state cpu={};
@@ -184,7 +184,7 @@ if(n%2==0){
 
 // ftrace
 
-    // ftrace(func_addr,&s);
+    ftrace(func_addr,&s);
 
 
 
