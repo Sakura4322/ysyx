@@ -95,6 +95,7 @@ if(raddr<0x80000000||raddr>0xffffffff){
 	if(raddr>=DEVICE_BASE){
 	// log_write("dtrace_rtc\taddr : %08x\n",raddr);
 	if(raddr==SERIAL_PORT) return mmio_read(raddr, 1);
+	else if(raddr>=VGACTL_ADDR && raddr<= VGACTL_ADDR+4)return mmio_read(raddr, 2);
 	else return mmio_read(raddr, 4);
 	
 }
