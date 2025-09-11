@@ -1,6 +1,8 @@
 #include "../common.h"
 #include "../device.h"
 
+#define MAP(c, f) c(f)
+
 #define KEYDOWN_MASK 0x8000
 
 
@@ -35,7 +37,7 @@ static int key_f = 0, key_r = 0;
 static void key_enqueue(uint32_t am_scancode) {
   key_queue[key_r] = am_scancode;
   key_r = (key_r + 1) % KEY_QUEUE_LEN;
-  Assert(key_r != key_f, "key queue overflow!");
+  assert(key_r != key_f);
 }
 
 static uint32_t key_dequeue() {
@@ -48,7 +50,7 @@ static uint32_t key_dequeue() {
 }
 
 void send_key(uint8_t scancode, bool is_keydown) {
-  if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != NEMU_KEY_NONE) {
+  if (keymap[scancode] != NEMU_KEY_NONE) {
     uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
     key_enqueue(am_scancode);
   }

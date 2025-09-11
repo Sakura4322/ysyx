@@ -49,6 +49,7 @@ VM_USER_CLASSES = \
 	gpu \
 	map \
 	mmio \
+	keyboard \
 	serial \
 	timer \
 	difftest_dut \
@@ -86,6 +87,8 @@ gpu.o: ./csrc/device/gpu.cpp
 map.o: ./csrc/device/io/map.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 mmio.o: ./csrc/device/io/mmio.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+keyboard.o: ./csrc/device/keyboard.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 serial.o: ./csrc/device/serial.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
