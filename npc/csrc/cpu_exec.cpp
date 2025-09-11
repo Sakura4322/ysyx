@@ -1,6 +1,6 @@
 #include "common.h"
 #include "my_share.h"
-// #include "device.h"
+#include "device.h"
 
 NPCState npc_state;
 CPU_state cpu={};
@@ -222,7 +222,7 @@ log_write("REGS INFO SAME\n");
 		// free(func_addr);
 		break;
 	} 
-    // device_update();
+    device_update();
   }
 }
 

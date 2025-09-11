@@ -3,7 +3,6 @@
 
 
 #define MAX_HANDLER 8
-#define TIMER_HZ 60
 
 static alarm_handler_t handler[MAX_HANDLER] = {};
 static int idx = 0;

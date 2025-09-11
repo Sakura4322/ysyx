@@ -24,7 +24,7 @@
 #define PAGE_MASK         (PAGE_SIZE - 1)
 
 #define TIMER_HZ 60
-extern vga_update_screen();
+extern void vga_update_screen();
 
 typedef void (*alarm_handler_t) ();
 void add_alarm_handle(alarm_handler_t h);
