@@ -35,6 +35,12 @@ void device_update() {
 }
 
 
+void sdl_clear_event_queue() {
+    SDL_Event event;
+    while (SDL_PollEvent(&event));
+  }
+
+
 void init_device(){
 
   init_map();
@@ -42,6 +48,7 @@ void init_device(){
   init_serial();
   init_timer();
   init_vga();
-
+  init_i8042();
+  
   init_alarm();
 }

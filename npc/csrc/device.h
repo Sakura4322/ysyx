@@ -36,6 +36,7 @@ extern uint64_t get_time();
 extern void init_vga();
 extern void init_serial();
 extern void init_timer();
+extern void init_i8042();
 extern void init_alarm();
 extern void init_map();
 extern void device_update();
