@@ -26,6 +26,10 @@
 typedef void (*alarm_handler_t) ();
 void add_alarm_handle(alarm_handler_t h);
 
+
+extern uint64_t get_time();
+
+
 extern void init_vga();
 extern void init_serial();
 extern void init_timer();

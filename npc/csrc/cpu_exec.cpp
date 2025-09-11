@@ -184,7 +184,7 @@ if(n%2==0){
 
 // ftrace
 
-    ftrace(func_addr,&s);
+    // ftrace(func_addr,&s);
 
 
 
@@ -222,7 +222,7 @@ log_write("REGS INFO SAME\n");
 		// free(func_addr);
 		break;
 	} 
-    device_update();
+    // device_update();
   }
 }
 
