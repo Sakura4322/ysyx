@@ -221,7 +221,7 @@ log_write("REGS INFO SAME\n");
 		// free(func_addr);
 		break;
 	} 
-    
+    device_update();
   }
 }
 

@@ -31,4 +31,5 @@ extern void init_serial();
 extern void init_timer();
 extern void init_alarm();
 extern void init_map();
+extern void device_update()
  
