@@ -1,4 +1,4 @@
-import "DPI-C" function int pmem_read(input int raddr);
+import "DPI-C" function int pmem_read(input int raddr,input byte wmask);
 import "DPI-C" function void pmem_write(
   input int waddr, input int wdata, input byte wmask);
 
@@ -15,7 +15,7 @@ module ysyx_24090015_pmem#(WIDTH = 32) (
 always @(valid,wen,raddr,waddr,wdata,wmask) begin
 // always @(*) begin
   if (valid) begin // 有读写请求时
-    rdata = pmem_read(raddr);
+    rdata = pmem_read(raddr,wmask);
     if (wen) begin // 有写请求时
       pmem_write(waddr, wdata, wmask);
     end

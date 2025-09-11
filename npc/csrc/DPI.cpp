@@ -73,7 +73,7 @@ printf("reg\tvalue\n");
 }
 
 
-extern "C" int pmem_read(int raddr){
+extern "C" int pmem_read(int raddr,char wmask){
 //printf("vaddr : %08x\n",raddr-CONFIG_MBASE);
 if(raddr<0x80000000||raddr>0xffffffff){
 	npc_state.state = NPC_ABORT;
@@ -94,10 +94,13 @@ if(raddr<0x80000000||raddr>0xffffffff){
 // else if(raddr>=DEVICE_BASE){
 	if(raddr>=DEVICE_BASE){
 	// log_write("dtrace_rtc\taddr : %08x\n",raddr);
-	if(raddr==SERIAL_PORT) return mmio_read(raddr, 1);
-	else if(raddr>=VGACTL_ADDR && raddr<= VGACTL_ADDR+4)return mmio_read(raddr, 2);
-	else return mmio_read(raddr, 4);
-	
+	// if(raddr==SERIAL_PORT) return mmio_read(raddr, 1);
+	// else if(raddr>=VGACTL_ADDR && raddr<= VGACTL_ADDR+4)return mmio_read(raddr, 2);
+	// else return mmio_read(raddr, 4);
+	if(wmask==0b0001) return mmio_read(raddr, 1);
+	else if(wmask==0b0011) return mmio_read(raddr, 2);
+	else if(wmask==0b1111) return mmio_read(raddr, 4);
+	else assert(0);
 }
 // log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
