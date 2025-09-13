@@ -1,5 +1,6 @@
 #include "common.h"
 #include "device.h"
+#include "cpu.h"
 // extern void init_vga();
 
 
@@ -19,7 +20,7 @@ void device_update() {
     // printf("is event : %d\n",event.type);
     switch (event.type) {
       case SDL_QUIT:
-        // nemu_state.state = NEMU_QUIT;
+        npc_state.state = NPC_QUIT;
         break;
       // If a key was pressed
       case SDL_KEYDOWN:
