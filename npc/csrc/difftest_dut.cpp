@@ -31,7 +31,12 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
-  assert(handle);
+  // assert(handle);
+  if (!handle) {
+    fprintf(stderr, "dlopen error: %s\n", dlerror());
+    exit(EXIT_FAILURE);
+}
+
   ref_difftest_memcpy = reinterpret_cast<void (*)(uint32_t, uint8_t*, size_t, bool)>(dlsym(handle, "difftest_memcpy"));
   assert(ref_difftest_memcpy);
   ref_difftest_regcpy = reinterpret_cast<void (*)(CPU_state*, bool)>(dlsym(handle, "difftest_regcpy"));
