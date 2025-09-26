@@ -6,7 +6,7 @@ TOP_NAME=ysyx_24090015_top
 
 IMG?=
 ELF?=
-NEMU_LIB=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
+NEMU_LIB=$(NEMU_HOME)/build/riscv32-nemu-interpreter
 
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 # CSRC = $(shell find $(abspath ./csrc) -name *.cpp *.cc)	
