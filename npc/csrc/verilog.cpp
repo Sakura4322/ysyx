@@ -128,8 +128,8 @@ void step_and_dump_wave(Decode *s){
 
 	top ->eval();
   
-	// contextp->timeInc(1);
-	// tfp->dump(contextp->time());  // dump 波形数据
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
     
  }
 
