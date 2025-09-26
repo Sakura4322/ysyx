@@ -166,7 +166,6 @@ Addr_Imfo *func_addr = read_sym_func();
 
 if(n%2==0){
 	if(itrace_on){
-		printf("First itrace begin\n");
 
 		char buf_temp[64]={0};
 		for (int i=0;i<32;i++){//storage reg information
@@ -186,7 +185,6 @@ if(n%2==0){
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 		iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions	
 
-		printf("First itrace successful\n");
 	}
 	
 
@@ -215,7 +213,6 @@ if(itrace_on){
 			}	
 		}	
 	}
-	printf("Second itrace successful\n");
 
 }
 
