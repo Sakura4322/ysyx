@@ -38,7 +38,7 @@ module ysyx_24090015_IFU#(
 
 
     
-    reg lfu_state;
+    reg ifu_state;
     always @(posedge clk ) begin
         if(!rst)begin
             lfu_state <= IDLE;

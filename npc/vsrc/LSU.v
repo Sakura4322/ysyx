@@ -43,7 +43,7 @@ assign ldata = lsu_rdata;
 
                   lsu_addr <= addr;
                   lsu_wdata <= (ls == STORGE) ? sdata : 0 ;
-                  lsu_mask <= (ls == STORGE) ? storge_mask : 0 ;
+                  lsu_wmask <= (ls == STORGE) ? storge_mask : 0 ;
                   lsu_wen <= (ls == STORGE);
                 end
             end
