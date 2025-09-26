@@ -48,7 +48,7 @@ long img_size=load_img();
 
 // printf("STARAT INIT DEVICE\n");
 init_device();
-printf("INIT DEVICE FINSIH\n");
+// printf("INIT DEVICE FINSIH\n");
 if(diff_on)
 init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
 /*
@@ -92,7 +92,6 @@ void step_and_dump_wave(Decode *s){
 		
 		
 
-		if(itrace_on){
 
 
 			char *p = s->logbuf;
@@ -112,6 +111,7 @@ void step_and_dump_wave(Decode *s){
 			p += space_len;
 			
 			disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+		if(itrace_on){
   
      	  log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 		}
