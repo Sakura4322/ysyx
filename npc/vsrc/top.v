@@ -140,8 +140,8 @@ ysyx_24090015_SRAM sram0(
     wire [DATAWIDTH-1:0]csr_wdata1;
     wire  csr_wen;
 
-assign ren1=ebreak(inst);
-assign hit_good_or_bad=src1;
+// assign ren1=ebreak(inst);
+// assign hit_good_or_bad=src1;
 
 
 
