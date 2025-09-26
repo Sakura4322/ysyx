@@ -9,7 +9,7 @@ module ysyx_24090015_SRAM #(
     input rst,
 
     input                   ifu_reqValid,
-    output reg [DATAWIDTH -1:0] ifu_respvalid,
+    output reg [DATAWIDTH -1:0] ifu_respValid,
     input [DATAWIDTH -1:0] ifu_raddr,
     output  reg [DATAWIDTH -1:0] ifu_rdata,
 
@@ -46,7 +46,7 @@ module ysyx_24090015_SRAM #(
       if(!rst)begin
         sram_state <= 0;
 
-        ifu_respvalid <= 0;
+        ifu_respValid <= 0;
         lsu_respValid <= 0;
         lsu_rdata <= 0;
       end else begin
@@ -63,7 +63,7 @@ module ysyx_24090015_SRAM #(
                 else if(ifu_reqValid)begin
                   sram_state <= IFU_FETCH;
                   ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
-                  ifu_respvalid <= ifu_reqValid;
+                  ifu_respValid <= ifu_reqValid;
                 end
               end
               IFU_FETCH : begin
@@ -73,7 +73,7 @@ module ysyx_24090015_SRAM #(
                 if(ifu_reqValid)begin
                   sram_state <= IFU_FETCH;
                   ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
-                  ifu_respvalid <= ifu_reqValid;
+                  ifu_respValid <= ifu_reqValid;
                   sram_state <= IFU_FETCH;
                 end
               end
