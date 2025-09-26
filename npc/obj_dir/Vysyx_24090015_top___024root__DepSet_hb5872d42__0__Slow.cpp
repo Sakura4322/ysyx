@@ -132,6 +132,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->hit_good_or_bad = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__ebreak_ret = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__snpc = VL_RAND_RESET_I(32);
+    vlSelf->ysyx_24090015_top__DOT__dnpc = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__ifu_reqvalid = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__ifu_raddr = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__ifu_rdata = VL_RAND_RESET_I(32);
@@ -163,7 +164,6 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->ysyx_24090015_top__DOT____Vcellout__idu0__rs2 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT____Vcellout__idu0__rs1 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = VL_RAND_RESET_I(4);
-    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__dnpc = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__ifu_reqValid = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__pmem_work = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__pmem_raddr = VL_RAND_RESET_I(1);

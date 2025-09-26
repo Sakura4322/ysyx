@@ -54,6 +54,7 @@ module ysyx_24090015_IFU#(
                 end
                 WAIT : begin
                   if(ifu_respValid)begin
+                    ifu_reqValid <= 0;
                     ifu_state <= IDLE;
                   end
   

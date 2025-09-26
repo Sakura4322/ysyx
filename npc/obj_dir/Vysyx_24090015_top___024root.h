@@ -61,6 +61,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         VL_OUT(inst,31,0);
         IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
         IData/*31:0*/ ysyx_24090015_top__DOT__snpc;
+        IData/*31:0*/ ysyx_24090015_top__DOT__dnpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__ifu_raddr;
         IData/*31:0*/ ysyx_24090015_top__DOT__ifu_rdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;
@@ -76,7 +77,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_rdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata0;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata1;
-        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__exu0__dnpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
