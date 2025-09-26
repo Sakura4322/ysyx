@@ -45,6 +45,10 @@ module ysyx_24090015_SRAM #(
   always @(posedge clk ) begin
       if(!rst)begin
         sram_state <= 0;
+
+        ifu_respvalid <= 0;
+        lsu_respValid <= 0;
+        lsu_rdata <= 0;
       end else begin
           case (sram_state)
               IDLE :begin

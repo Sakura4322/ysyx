@@ -35,7 +35,13 @@ assign ldata = lsu_rdata;
     always @(posedge clk ) begin
       if(!rst)begin
           lsu_state <= 0;
-      end else begin
+          lsu_reqValid <= 0;
+          lsu_addr <= 0;
+          lsu_wdata <= 0;
+          lsu_wmask <= 0;
+          lsu_wen <= 0;
+
+        end else begin
           case (lsu_state)
             IDLE : begin
                 if(LSU_work)begin
