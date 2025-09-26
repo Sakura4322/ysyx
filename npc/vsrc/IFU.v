@@ -23,7 +23,7 @@ module ysyx_24090015_IFU#(
     localparam WAIT = 1;
 
 
-    always @(*) begin 
+    always @(ifu_respValid) begin 
         if(!rst)begin
             pc = BASEADDR;
         end
