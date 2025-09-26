@@ -27,7 +27,7 @@ LDFLAGS += -lSDL2
 
 
 override ARGS?= --log=$(abspath ./npc-log.txt)
-#override ARGS+= -b
+override ARGS+= -b
 override ARGS+= -i 			#itrace
 #override ARGS+= -t 			#etrace
 #override ARGS+= -m 			#mtrace

@@ -327,7 +327,7 @@ localparam  S  = 6;
 localparam  B  = 7;
 localparam  U  = 8;
 localparam  J  = 9;
-    always @(*) begin 
+    always @(inst) begin 
         case (inst[6:0])
 						7'b0010111: inst_type = U;
                         7'b0110111: inst_type = U;
