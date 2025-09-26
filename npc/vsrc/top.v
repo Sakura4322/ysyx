@@ -116,7 +116,7 @@ ysyx_24090015_SRAM sram0(
     .lsu_wmask(lsu_wmask),
     .lsu_respValid(lsu_respValid),
     .lsu_rdata(lsu_rdata)
-)
+);
 
     // 信号声明
     // wire [ADDRWIDTH-1:0] dnpc;
