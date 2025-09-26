@@ -1,0 +1,112 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design internal header
+// See Vysyx_24090015_top.h for the primary calling header
+
+#ifndef VERILATED_VYSYX_24090015_TOP___024ROOT_H_
+#define VERILATED_VYSYX_24090015_TOP___024ROOT_H_  // guard
+
+#include "verilated.h"
+
+class Vysyx_24090015_top__Syms;
+class Vysyx_24090015_top___024unit;
+
+
+class Vysyx_24090015_top___024root final : public VerilatedModule {
+  public:
+    // CELLS
+    Vysyx_24090015_top___024unit* __PVT____024unit;
+
+    // DESIGN SPECIFIC STATE
+    // Anonymous structures to workaround compiler member-count bugs
+    struct {
+        VL_IN8(clk,0,0);
+        VL_OUT8(flag,0,0);
+        VL_OUT8(hit_good_or_bad,0,0);
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqvalid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqvalid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu_wen;
+        CData/*3:0*/ ysyx_24090015_top__DOT__lsu_wmask;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu_respvalid;
+        CData/*4:0*/ ysyx_24090015_top__DOT__rd;
+        CData/*0:0*/ ysyx_24090015_top__DOT__LSU_work;
+        CData/*0:0*/ ysyx_24090015_top__DOT__wen;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ren1;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ren2;
+        CData/*0:0*/ ysyx_24090015_top__DOT__pwen;
+        CData/*0:0*/ ysyx_24090015_top__DOT__pmem_ls;
+        CData/*0:0*/ ysyx_24090015_top__DOT__csr_wen;
+        CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs2;
+        CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs1;
+        CData/*3:0*/ ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask;
+        CData/*0:0*/ ysyx_24090015_top__DOT__rst;
+        CData/*0:0*/ ysyx_24090015_top__DOT__pmem_work;
+        CData/*0:0*/ ysyx_24090015_top__DOT__pmem_raddr;
+        CData/*0:0*/ ysyx_24090015_top__DOT__wmask;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqValid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu_respValid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqValid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__valid;
+        CData/*0:0*/ ysyx_24090015_top__DOT__wen_control;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ren1_control;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ren2_control;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu0__DOT__ifu_state;
+        CData/*0:0*/ ysyx_24090015_top__DOT__lsu0__DOT__lsu_state;
+        CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__lsu_wen;
+        CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__sram_state;
+        CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
+        CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
+        CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
+        CData/*0:0*/ __Vtrigrprev__TOP__clk;
+        CData/*0:0*/ __VactContinue;
+        VL_OUT(inst,31,0);
+        VL_OUT(pc,31,0);
+        VL_OUT(dnpc,31,0);
+        IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
+        IData/*31:0*/ ysyx_24090015_top__DOT__snpc;
+        IData/*31:0*/ ysyx_24090015_top__DOT__ifu_raddr;
+        IData/*31:0*/ ysyx_24090015_top__DOT__ifu_rdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;
+        IData/*31:0*/ ysyx_24090015_top__DOT__lsu_wdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT__lsu_rdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respvalid;
+        IData/*31:0*/ ysyx_24090015_top__DOT__imm;
+        IData/*31:0*/ ysyx_24090015_top__DOT__rd_wdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT__src1;
+        IData/*31:0*/ ysyx_24090015_top__DOT__src2;
+        IData/*31:0*/ ysyx_24090015_top__DOT__pmem_addr;
+        IData/*31:0*/ ysyx_24090015_top__DOT__pmem_wdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT__csr_rdata;
+        IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata0;
+        IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata1;
+        IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
+        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
+        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
+        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
+        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
+    };
+    struct {
+        IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
+        IData/*31:0*/ __VstlIterCount;
+        IData/*31:0*/ __VactIterCount;
+        VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
+        VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
+        VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
+    };
+    VlTriggerVec<1> __VstlTriggered;
+    VlTriggerVec<1> __VactTriggered;
+    VlTriggerVec<1> __VnbaTriggered;
+
+    // INTERNAL VARIABLES
+    Vysyx_24090015_top__Syms* const vlSymsp;
+
+    // CONSTRUCTORS
+    Vysyx_24090015_top___024root(Vysyx_24090015_top__Syms* symsp, const char* v__name);
+    ~Vysyx_24090015_top___024root();
+    VL_UNCOPYABLE(Vysyx_24090015_top___024root);
+
+    // INTERNAL METHODS
+    void __Vconfigure(bool first);
+} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+
+
+#endif  // guard
