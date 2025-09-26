@@ -51,13 +51,33 @@ init_device();
 // printf("INIT DEVICE FINSIH\n");
 if(diff_on)
 init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
-/*
-printf("Inst\n");
-for (int i=0;i<img_size;i++){
-	//printf("%08x : %08x\n",0x80000000+i*4,pmem_read(0x80000000+i*4));
-	printf("%x\n",vaddr[i]);
-}
-	*/
+
+
+
+top->rst = 0;
+top->clk = 0;
+top->eval();
+contextp->timeInc(1);
+tfp->dump(contextp->time());  // dump 波形数据
+top->clk = 1;
+top->eval();
+contextp->timeInc(1);
+tfp->dump(contextp->time());  // dump 波形数据
+top->clk = 0;
+// top->rst = 1;
+top->eval();
+contextp->timeInc(1);
+tfp->dump(contextp->time());  // dump 波形数据
+top->clk = 1;
+top->rst = 1;
+top->eval();
+contextp->timeInc(1);
+tfp->dump(contextp->time());  // dump 波形数据
+top->clk = 0;
+top ->eval();
+contextp->timeInc(1);
+tfp->dump(contextp->time());  // dump 波形数据
+
 
 }
 
@@ -92,6 +112,7 @@ void step_and_dump_wave(Decode *s){
 		
 		
 
+		if(itrace_on){
 
 
 			char *p = s->logbuf;
@@ -111,7 +132,6 @@ void step_and_dump_wave(Decode *s){
 			p += space_len;
 			
 			disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
-		if(itrace_on){
   
      	  log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 		}
