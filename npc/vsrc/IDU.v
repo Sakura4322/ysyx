@@ -318,6 +318,15 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     output reg [3:0] inst_type
 );
 
+localparam   R = 1;
+localparam  II = 2;
+localparam  IJ = 3;
+localparam  IS = 4;
+localparam  IC = 5;
+localparam  S  = 6;
+localparam  B  = 7;
+localparam  U  = 8;
+localparam  J  = 9;
     always @(*) begin 
         case (inst[6:0])
 						7'b0010111: inst_type = U;
