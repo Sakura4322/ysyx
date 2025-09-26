@@ -5,8 +5,8 @@
 NPCState npc_state;
 CPU_state cpu={};
 
-static void iring_load(char (*a)[128],Decode *b,int cout_pc_num){
-	char (*p)[128]=a;
+static void iring_load(char (*a)[1024],Decode *b,int cout_pc_num){
+	char (*p)[1024]=a;
 	char *s=b->logbuf;
 	//uint32_t inst_num=b->inst;
 	//char *s = to_string(inst_num);
@@ -135,7 +135,7 @@ return ;
 
 Decode s={};
 static void execute(uint64_t n) {
-	static char iringbuf[20][256];
+	static char iringbuf[20][1024];
 	static char iringbuf_reg_state[2][1024];
 	static int cout_pc_num=0;
 
