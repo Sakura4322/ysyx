@@ -38,7 +38,7 @@ pc=32'h80000000;
 end
 reg [31:0]ebreak_ret;
 
-//end emulation
+// end emulation
 always @(posedge clk)begin
 ebreak_ret = ebreak(inst);
 flag = ebreak_ret[0];
@@ -116,7 +116,7 @@ ysyx_24090015_SRAM sram0(
     .lsu_wmask(lsu_wmask),
     .lsu_respValid(lsu_respValid),
     .lsu_rdata(lsu_rdata)
-)
+);
 
     // 信号声明
     wire [ADDRWIDTH-1:0] dnpc;
