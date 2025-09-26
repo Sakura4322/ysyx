@@ -23,7 +23,7 @@ extern "C" {
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:2:29
     extern int ebreak(int a);
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/SRAM.v:1:29
-    extern int pmem_read(int raddr);
+    extern int pmem_read(int raddr, char wmask);
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/SRAM.v:2:30
     extern void pmem_write(int waddr, int wdata, char wmask);
 
