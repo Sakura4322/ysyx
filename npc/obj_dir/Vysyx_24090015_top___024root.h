@@ -39,19 +39,18 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs2;
         CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs1;
         CData/*3:0*/ ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask;
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__pmem_work;
         CData/*0:0*/ ysyx_24090015_top__DOT__pmem_raddr;
         CData/*0:0*/ ysyx_24090015_top__DOT__wmask;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_respValid;
-        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__valid;
         CData/*0:0*/ ysyx_24090015_top__DOT__wen_control;
         CData/*0:0*/ ysyx_24090015_top__DOT__ren1_control;
         CData/*0:0*/ ysyx_24090015_top__DOT__ren2_control;
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu0__DOT__ifu_state;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu0__DOT__lsu_state;
-        CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__lsu_wen;
         CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__sram_state;
         CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
         CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
@@ -67,7 +66,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_wdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_rdata;
-        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respvalid;
+        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respValid;
         IData/*31:0*/ ysyx_24090015_top__DOT__imm;
         IData/*31:0*/ ysyx_24090015_top__DOT__rd_wdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__src1;
@@ -83,9 +82,9 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
+        IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
     };
     struct {
-        IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;

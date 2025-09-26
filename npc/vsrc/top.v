@@ -48,6 +48,7 @@ end
 
 
 
+wire [ADDRWIDTH-1:0] dnpc;
 
 wire ifu_respValid;
 wire ifu_reqvalid;
@@ -119,7 +120,6 @@ ysyx_24090015_SRAM sram0(
 );
 
     // 信号声明
-    // wire [ADDRWIDTH-1:0] dnpc;
     // wire [DATAWIDTH-1:0] inst;
 
     wire [DATAWIDTH-1:0] imm;
