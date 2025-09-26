@@ -31,7 +31,7 @@ class Vysyx_24090015_top VL_NOT_FINAL : public VerilatedModel {
     VL_IN8(&clk,0,0);
     VL_OUT8(&flag,0,0);
     VL_OUT8(&hit_good_or_bad,0,0);
-    VL_IN(&inst,31,0);
+    VL_OUT(&inst,31,0);
     VL_OUT(&pc,31,0);
     VL_OUT(&dnpc,31,0);
 
