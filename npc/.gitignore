@@ -10,4 +10,4 @@
 !.gitignore
 !README.md
 build/
-obj_dir
+obj_dir/

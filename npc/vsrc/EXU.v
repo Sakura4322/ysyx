@@ -1,4 +1,7 @@
-module ysyx_24090015_EXU#(DATAWIDTH=32) (
+module ysyx_24090015_EXU#(
+	DATAWIDTH=32,
+	ADDRWIDTH=32
+) (
     input clk,
 	input rst,
 
@@ -107,6 +110,7 @@ module ysyx_24090015_EXU#(DATAWIDTH=32) (
 					pmem_work = 1;
 					pmem_ls   = LOAD;
 					pmem_addr = src1+imm;
+					pmem_wmask = DWORD;
                     rd_wdata = pmem_rdata;
 
         			dnpc = snpc;
@@ -117,6 +121,7 @@ module ysyx_24090015_EXU#(DATAWIDTH=32) (
 					pmem_work = 1;
 					pmem_ls   = LOAD;
 					pmem_addr = src1+imm;
+					pmem_wmask = DHALF;
 					rd_wdata = {{16{pmem_rdata[15]}},pmem_rdata[15:0]};
 
         			dnpc = snpc;
@@ -126,7 +131,8 @@ module ysyx_24090015_EXU#(DATAWIDTH=32) (
 					pmem_work = 1;
 					pmem_ls   = LOAD;
 					pmem_addr = src1+imm;
-					rd_wdata = {16'b0,pmem_rdata[15:0]};
+					pmem_wmask = DHALF;
+					rd_wdata = pmem_rdata;
 
         			dnpc = snpc;
 
@@ -135,6 +141,7 @@ module ysyx_24090015_EXU#(DATAWIDTH=32) (
 					pmem_work = 1;
 					pmem_ls   = LOAD;
 					pmem_addr = src1+imm;
+					pmem_wmask = DBYTE;
                     rd_wdata = {{24{pmem_rdata[7]}},pmem_rdata[7:0]};
 
         			dnpc = snpc;
@@ -144,7 +151,8 @@ module ysyx_24090015_EXU#(DATAWIDTH=32) (
 					pmem_work = 1;
 					pmem_ls   = LOAD;
 					pmem_addr = src1+imm;
-                    rd_wdata = {24'b0,pmem_rdata[7:0]};
+					pmem_wmask = DBYTE;
+                    rd_wdata = pmem_rdata;
 
         			dnpc = snpc;
 

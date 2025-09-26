@@ -18,11 +18,11 @@ import "DPI-C" function int ebreak(input int a);
 
 
 module ysyx_24090015_top#(
-  WIDTH=32
+  DATAWIDTH=32
   ) (
     input clk,
-    output [WIDTH-1:0] inst,
-    output reg [WIDTH-1:0] pc,dnpc,
+    output [DATAWIDTH-1:0] inst,
+    output reg [DATAWIDTH-1:0] pc,dnpc,
 		output reg flag,
 		output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
@@ -45,7 +45,7 @@ flag = ebreak_ret[0];
 end 
 		
 
-    reg [WIDTH-1:0] snpc;
+    reg [DATAWIDTH-1:0] snpc;
 
 
 
@@ -64,8 +64,8 @@ wire [31:0] lsu_rdata;
 
 
 ysyx_24090015_IFU #(
-    .DATAWIDTH(32),
-    .ADDRWIDTH(32)
+    .DATAWIDTH(DATAWIDTH),
+    .ADDRWIDTH(DATAWIDTH)
 ) ifu0(
     .clk(clk),
     .rst(rst),
@@ -81,8 +81,8 @@ ysyx_24090015_IFU #(
 );
 
 ysyx_24090015_LSU #(
-    .DATAWIDTH(32),
-    .ADDRWIDTH(32)
+    .DATAWIDTH(DATAWIDTH),
+    .ADDRWIDTH(DATAWIDTH)
 ) lsu0(
     .clk(clk),
     .rst(rst),
@@ -116,7 +116,7 @@ ysyx_24090015_SRAM sram0(
     .lsu_wmask(lsu_wmask),
     .lsu_respValid(lsu_respValid),
     .lsu_rdata(lsu_rdata)
-)
+);
 
     // 信号声明
     // wire [ADDRWIDTH-1:0] dnpc;
@@ -206,7 +206,7 @@ assign hit_good_or_bad=src1;
     // 寄存器堆实例化
     ysyx_24090015_RegisterFile #(
         .ADDR_WIDTH(5),
-        .DATA_WIDTH(WIDTH)
+        .DATA_WIDTH(DATAWIDTH)
     ) reg0(
         .clk(clk),
         .wdata(rd_wdata),
@@ -222,7 +222,7 @@ assign hit_good_or_bad=src1;
 
     //特殊状态寄存器组例化
     ysyx_24090015_CSR_RegFiles #(
-        .DATAWIDTH(WIDTH),       // 指定数据宽度为 32 位
+        .DATAWIDTH(DATAWIDTH),       // 指定数据宽度为 32 位
         .IMM_WIDTH(12),       // 指定立即数宽度为 12 位
         .CSR_ADDR_WIDTH(2)    // 指定 CSR 地址宽度为 2 位
     ) csr_regfiles_instance (

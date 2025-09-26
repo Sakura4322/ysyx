@@ -22,9 +22,9 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/top.v:2:29
     extern int ebreak(int a);
-    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/pmem.v:1:29
+    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/SRAM.v:1:29
     extern int pmem_read(int raddr, char wmask);
-    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/pmem.v:2:30
+    // DPI import at /home/sakura/ysyx-workbench/npc/vsrc/SRAM.v:2:30
     extern void pmem_write(int waddr, int wdata, char wmask);
 
 #ifdef __cplusplus

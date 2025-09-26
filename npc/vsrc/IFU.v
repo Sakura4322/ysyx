@@ -41,9 +41,9 @@ module ysyx_24090015_IFU#(
     reg ifu_state;
     always @(posedge clk ) begin
         if(!rst)begin
-            lfu_state <= IDLE;
+            ifu_state <= IDLE;
         end else begin
-            case (lfu_state)
+            case (ifu_state)
                 IDLE :begin
                   ifu_raddr    <= pc;
                   ifu_reqvalid <= 1;
