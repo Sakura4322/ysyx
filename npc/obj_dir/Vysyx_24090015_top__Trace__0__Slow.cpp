@@ -303,7 +303,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBus(c+112,"IDLE", false,-1, 31,0);
     tracep->declBus(c+113,"IFU_FETCH", false,-1, 31,0);
     tracep->declBus(c+111,"LSU_LS", false,-1, 31,0);
-    tracep->declBit(c+93,"sram_state", false,-1);
+    tracep->declBus(c+93,"sram_state", false,-1, 1,0);
     tracep->popNamePrefix(2);
 }
 
@@ -528,7 +528,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_full_sub_0(Vysyx_24090015_
     bufp->fullIData(oldp+90,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[30]),32);
     bufp->fullIData(oldp+91,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[31]),32);
     bufp->fullIData(oldp+92,(vlSelf->ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respValid),32);
-    bufp->fullBit(oldp+93,(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state));
+    bufp->fullCData(oldp+93,(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state),2);
     bufp->fullBit(oldp+94,(vlSelf->clk));
     bufp->fullBit(oldp+95,(vlSelf->rst));
     bufp->fullIData(oldp+96,(vlSelf->pc),32);

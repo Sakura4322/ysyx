@@ -48,7 +48,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*0:0*/ ysyx_24090015_top__DOT__valid;
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu0__DOT__ifu_state;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu0__DOT__lsu_state;
-        CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__sram_state;
+        CData/*1:0*/ ysyx_24090015_top__DOT__sram0__DOT__sram_state;
         CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
         CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
         CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;

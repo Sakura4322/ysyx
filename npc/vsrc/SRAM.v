@@ -9,16 +9,16 @@ module ysyx_24090015_SRAM #(
     input rst,
 
     input                   ifu_reqValid,
-    output reg [DATAWIDTH -1:0] ifu_respValid,
+    output reg              ifu_respValid,
     input [DATAWIDTH -1:0] ifu_raddr,
     output  reg [DATAWIDTH -1:0] ifu_rdata,
 
-    input        lsu_reqValid,
+    input                   lsu_reqValid,
     input [DATAWIDTH -1 :0] lsu_addr,
-    input        lsu_wen,
+    input                   lsu_wen,
     input [DATAWIDTH -1 :0] lsu_wdata,
-    input [ 3:0] lsu_wmask,
-    output  reg       lsu_respValid,
+    input [ 3:0]            lsu_wmask,
+    output  reg             lsu_respValid,
     output  reg [DATAWIDTH -1 :0] lsu_rdata,
 
 );
@@ -67,6 +67,7 @@ module ysyx_24090015_SRAM #(
                 end
               end
               IFU_FETCH : begin
+                ifu_respValid <= ifu_reqValid;
                 sram_state <= IDLE;
               end 
               LSU_LS :begin
@@ -80,6 +81,8 @@ module ysyx_24090015_SRAM #(
                   sram_state <= IDLE;  
                 end
               end
+              lsu_respValid <= lsu_reqValid;
+
           endcase
 
         end
