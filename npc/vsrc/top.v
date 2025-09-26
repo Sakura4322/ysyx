@@ -35,9 +35,9 @@ read_regs($sformatf("%m.reg0"));
 end
 */
 
-initial begin 
-pc=32'h80000000;
-end
+// initial begin 
+// pc=32'h80000000;
+// end
 reg [31:0]ebreak_ret;
 
 //end emulation
