@@ -80,9 +80,8 @@ module ysyx_24090015_SRAM #(
                 else begin
                   sram_state <= IDLE;  
                 end
-              end
               lsu_respValid <= lsu_reqValid;
-
+              end
           endcase
 
         end
