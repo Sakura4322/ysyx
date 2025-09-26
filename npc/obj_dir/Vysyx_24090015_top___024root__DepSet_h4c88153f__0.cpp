@@ -60,10 +60,10 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
     __Vfunc_pmem_read__4__Vfuncout = 0;
     CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__sram0__DOT__sram_state;
     __Vdly__ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0;
-    CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__lsu_respValid;
-    __Vdly__ysyx_24090015_top__DOT__lsu_respValid = 0;
     IData/*31:0*/ __Vdly__ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respvalid;
     __Vdly__ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respvalid = 0;
+    CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__lsu_respValid;
+    __Vdly__ysyx_24090015_top__DOT__lsu_respValid = 0;
     CData/*4:0*/ __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
     __Vdlyvdim0__ysyx_24090015_top__DOT__reg0__DOT__rf__v0 = 0;
     IData/*31:0*/ __Vdlyvval__ysyx_24090015_top__DOT__reg0__DOT__rf__v0;
@@ -148,6 +148,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
     }
     if (vlSelf->flag) {
         __Vdly__ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0U;
+        __Vdly__ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respvalid = 0U;
+        __Vdly__ysyx_24090015_top__DOT__lsu_respValid = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_rdata = 0U;
     } else if (vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state) {
         if (vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state) {
             __Vdly__ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0U;
@@ -230,9 +233,16 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
         }
     } else {
         vlSelf->ysyx_24090015_top__DOT__lsu0__DOT__lsu_state = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_reqValid = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_addr = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_wdata = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_wmask = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_wen = 0U;
         vlSelf->ysyx_24090015_top__DOT__lsu_respValid 
             = __Vdly__ysyx_24090015_top__DOT__lsu_respValid;
         vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state = 0U;
+        vlSelf->ysyx_24090015_top__DOT__ifu_raddr = 0U;
+        vlSelf->ysyx_24090015_top__DOT__ifu_reqvalid = 0U;
     }
     Vysyx_24090015_top___024unit____Vdpiimwrap_ebreak_TOP____024unit(vlSelf->inst, vlSelf->__Vfunc_ebreak__1__Vfuncout);
     if (vlSelf->rst) {

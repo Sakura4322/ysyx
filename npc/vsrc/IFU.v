@@ -9,7 +9,7 @@ module ysyx_24090015_IFU#(
     output reg [DATAWIDTH-1 : 0]inst,
     output                      fetch,
 
-    output reg       ifu_reqvalid,
+    output reg       ifu_reqValid,
     output reg [31:0] ifu_raddr,
     input  [31:0] ifu_rdata,
     input         ifu_respvalid,

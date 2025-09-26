@@ -49,7 +49,7 @@ end
 
 
 
-wire ifu_respvalid;
+wire ifu_respValid;
 wire ifu_reqvalid;
 wire [31:0] ifu_raddr;
 wire [31:0] ifu_rdata;
@@ -73,10 +73,10 @@ ysyx_24090015_IFU #(
     .inst(inst),
     .fetch(fetch),
 
-    .ifu_reqvalid(ifu_reqvalid),
+    .ifu_reqvalid(ifu_reqValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
-    .ifu_respvalid(ifu_respvalid)
+    .ifu_respValid(ifu_respValid)
 );
 
 ysyx_24090015_LSU #(
@@ -106,10 +106,11 @@ ysyx_24090015_SRAM sram0(
     .clk(clk),
     .rst(!flag),
     .ifu_reqValid(ifu_reqValid),
-    .ifu_respvalid(ifu_respvalid),
+    .ifu_respValid(ifu_respValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
     .lsu_reqValid(lsu_reqValid),
+    .lsu_wen(lsu_wen),
     .lsu_addr(lsu_addr),
     .lsu_wdata(lsu_wdata),
     .lsu_wmask(lsu_wmask),
