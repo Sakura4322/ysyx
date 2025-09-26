@@ -40,7 +40,7 @@ module ysyx_24090015_SRAM #(
   localparam IFU_FETCH = 1;
   localparam LSU_LS    = 2;
 
- reg sram_state;
+ reg [1:0]sram_state;
 
   always @(posedge clk ) begin
       if(!rst)begin
@@ -75,6 +75,9 @@ module ysyx_24090015_SRAM #(
                   ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
                   ifu_respValid <= ifu_reqValid;
                   sram_state <= IFU_FETCH;
+                end
+                else begin
+                  sram_state <= IDLE;  
                 end
               end
           endcase
