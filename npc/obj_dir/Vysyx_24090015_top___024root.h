@@ -86,7 +86,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     };
     struct {
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
-        IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
