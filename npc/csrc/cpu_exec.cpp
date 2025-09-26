@@ -135,7 +135,7 @@ return ;
 
 Decode s={};
 static void execute(uint64_t n) {
-	static char iringbuf[20][128];
+	static char iringbuf[20][256];
 	static char iringbuf_reg_state[2][1024];
 	static int cout_pc_num=0;
 
