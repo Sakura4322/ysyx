@@ -21,7 +21,7 @@ module ysyx_24090015_top#(
   WIDTH=32
   ) (
     input clk,
-    input [WIDTH-1:0] inst,
+    output [WIDTH-1:0] inst,
     output reg [WIDTH-1:0] pc,dnpc,
 		output reg flag,
 		output hit_good_or_bad//实现HIT GOOD/BAD的功能
@@ -119,7 +119,7 @@ ysyx_24090015_SRAM sram0(
 )
 
     // 信号声明
-    wire [ADDRWIDTH-1:0] dnpc;
+    // wire [ADDRWIDTH-1:0] dnpc;
     // wire [DATAWIDTH-1:0] inst;
 
     wire [DATAWIDTH-1:0] imm;
