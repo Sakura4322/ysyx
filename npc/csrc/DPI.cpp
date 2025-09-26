@@ -118,27 +118,13 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		  return ;
 		//exit(-1);
 	}
-
-	// if(waddr>=SERIAL_PORT && waddr < FB_ADDR){
-		
-	// 	putchar(temp[0]);
-	// 	log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
-	// 	return;
-	// }
-	// else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
-	// 	log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
-	// }
-	// else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
-	// 	log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
-	// }
-	// else if(waddr>=DEVICE_BASE){
 		if(waddr>=DEVICE_BASE){
 		int len=0;
 		if(wmask==0b0001) len =1;
 		else if(wmask==0b0011) len==2;
 		else if(wmask==0b1111) len=4;
 		else assert(0);
-		// log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
+		if(dtrace_on)	log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
 		mmio_write(waddr, len, wdata);
 		return ;
 	}
@@ -160,5 +146,7 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
 		vaddr[waddr-CONFIG_MBASE+3]=temp[3];
 	}
+	if(mtrace_on){if(mtrace_on){log_write("pmem_write\taddr : %08x\tdata : %08x\twmask : %08x\n",waddr,wdata,wmask);}}
+
 	return ;
 	}

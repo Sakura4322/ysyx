@@ -15,6 +15,13 @@
 
 
 extern FILE* log_fp;
+extern bool itrace_on;
+extern bool etrace_on;
+extern bool dtrace_on;
+extern bool mtrace_on;
+extern bool ftrace_on;
+extern bool wave_load;
+
 
 void init_device();
 

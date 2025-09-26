@@ -11,6 +11,14 @@ char *diff_so_file =NULL;
 bool diff_on;
 int difftest_port=6666;
 
+bool itrace_on = false;
+bool etrace_on = false;
+bool dtrace_on = false;
+bool mtrace_on = false;
+bool wave_load = false;
+bool ftrace_on = false;
+
+
 long load_img() {
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.\n");
@@ -351,7 +359,12 @@ int parse_args(int argc, char *argv[]) {
               */
 							 	break;
 								
-							
+			case 'i': itrace_on =true; break;//itrace
+      case 't': etrace_on =true; break;//etrace
+      case 'm': mtrace_on =true; break;//mtrace
+      case 'y': dtrace_on =true; break;//dtrace
+      case 'f': ftrace_on =true; break;//dtrace
+      case 'w': wave_load =true; break;//wave_dump	
       case 1:
 						  // printf("what is img_file : %s\n",optarg);
 							img_file=optarg;
