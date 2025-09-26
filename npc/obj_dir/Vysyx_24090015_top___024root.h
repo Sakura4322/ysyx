@@ -20,6 +20,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     // Anonymous structures to workaround compiler member-count bugs
     struct {
         VL_IN8(clk,0,0);
+        VL_IN8(rst,0,0);
         VL_OUT8(flag,0,0);
         VL_OUT8(hit_good_or_bad,0,0);
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqvalid;
@@ -38,7 +39,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs2;
         CData/*0:0*/ ysyx_24090015_top__DOT____Vcellout__idu0__rs1;
         CData/*3:0*/ ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask;
-        CData/*0:0*/ ysyx_24090015_top__DOT__rst;
         CData/*0:0*/ ysyx_24090015_top__DOT__pmem_work;
         CData/*0:0*/ ysyx_24090015_top__DOT__pmem_raddr;
         CData/*0:0*/ ysyx_24090015_top__DOT__wmask;
@@ -58,9 +58,8 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
         CData/*0:0*/ __Vtrigrprev__TOP__clk;
         CData/*0:0*/ __VactContinue;
-        VL_OUT(inst,31,0);
         VL_OUT(pc,31,0);
-        VL_OUT(dnpc,31,0);
+        VL_OUT(inst,31,0);
         IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
         IData/*31:0*/ ysyx_24090015_top__DOT__snpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__ifu_raddr;
@@ -78,6 +77,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_rdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata0;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata1;
+        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__exu0__dnpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;

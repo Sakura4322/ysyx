@@ -13,11 +13,11 @@ Vysyx_24090015_top::Vysyx_24090015_top(VerilatedContext* _vcontextp__, const cha
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new Vysyx_24090015_top__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
+    , rst{vlSymsp->TOP.rst}
     , flag{vlSymsp->TOP.flag}
     , hit_good_or_bad{vlSymsp->TOP.hit_good_or_bad}
-    , inst{vlSymsp->TOP.inst}
     , pc{vlSymsp->TOP.pc}
-    , dnpc{vlSymsp->TOP.dnpc}
+    , inst{vlSymsp->TOP.inst}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {

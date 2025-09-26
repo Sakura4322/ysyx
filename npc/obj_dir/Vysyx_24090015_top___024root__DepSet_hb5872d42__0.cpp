@@ -90,5 +90,7 @@ void Vysyx_24090015_top___024root___eval_debug_assertions(Vysyx_24090015_top___0
     // Body
     if (VL_UNLIKELY((vlSelf->clk & 0xfeU))) {
         Verilated::overWidthError("clk");}
+    if (VL_UNLIKELY((vlSelf->rst & 0xfeU))) {
+        Verilated::overWidthError("rst");}
 }
 #endif  // VL_DEBUG

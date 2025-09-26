@@ -13,23 +13,12 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_static(Vysyx_24090015_top_
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_static\n"); );
 }
 
-VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_initial__TOP(Vysyx_24090015_top___024root* vlSelf);
-
 VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_initial(Vysyx_24090015_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_initial\n"); );
     // Body
-    Vysyx_24090015_top___024root___eval_initial__TOP(vlSelf);
     vlSelf->__Vtrigrprev__TOP__clk = vlSelf->clk;
-}
-
-VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_initial__TOP(Vysyx_24090015_top___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_initial__TOP\n"); );
-    // Body
-    vlSelf->pc = 0x80000000U;
 }
 
 VL_ATTR_COLD void Vysyx_24090015_top___024root___eval_final(Vysyx_24090015_top___024root* vlSelf) {
@@ -136,9 +125,9 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___ctor_var_reset\n"); );
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
-    vlSelf->inst = VL_RAND_RESET_I(32);
+    vlSelf->rst = VL_RAND_RESET_I(1);
     vlSelf->pc = VL_RAND_RESET_I(32);
-    vlSelf->dnpc = VL_RAND_RESET_I(32);
+    vlSelf->inst = VL_RAND_RESET_I(32);
     vlSelf->flag = VL_RAND_RESET_I(1);
     vlSelf->hit_good_or_bad = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__ebreak_ret = VL_RAND_RESET_I(32);
@@ -174,7 +163,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     vlSelf->ysyx_24090015_top__DOT____Vcellout__idu0__rs2 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT____Vcellout__idu0__rs1 = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = VL_RAND_RESET_I(4);
-    vlSelf->ysyx_24090015_top__DOT__rst = VL_RAND_RESET_I(1);
+    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__dnpc = VL_RAND_RESET_I(32);
     vlSelf->ysyx_24090015_top__DOT__pmem_work = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__pmem_raddr = VL_RAND_RESET_I(1);
     vlSelf->ysyx_24090015_top__DOT__wmask = VL_RAND_RESET_I(1);

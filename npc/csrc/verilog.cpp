@@ -140,7 +140,7 @@ void step_and_dump_wave(Decode *s){
 		
 		
 		
-		s->dnpc=top->dnpc;
+		// s->dnpc=top->dnpc;
 		
 	}
 
