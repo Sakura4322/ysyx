@@ -50,7 +50,7 @@ module ysyx_24090015_SRAM #(
               IDLE :begin
                 if( lsu_reqValid)begin
                   sram_state <= LSU_LS;  
-                  lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr) : 32'b0;
+                  lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr,lsu_wmask) : 32'b0;
                   if (lsu_reqValid && lsu_wen) begin
                     pmem_write(lsu_addr, lsu_wdata, lsu_wmask);
                   end
@@ -58,7 +58,7 @@ module ysyx_24090015_SRAM #(
                 end 
                 else if(ifu_reqValid)begin
                   sram_state <= IFU_FETCH;
-                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr) : 32'b0;
+                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
                   ifu_respvalid <= ifu_reqValid;
                 end
               end
@@ -68,7 +68,7 @@ module ysyx_24090015_SRAM #(
               LSU_LS :begin
                 if(ifu_reqValid)begin
                   sram_state <= IFU_FETCH;
-                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr) : 32'b0;
+                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
                   ifu_respvalid <= ifu_reqValid;
                   sram_state <= IFU_FETCH;
                 end
