@@ -3,7 +3,7 @@
 #include "my_share.h"
 #include "verilated_dpi.h"
 #include "Vysyx_24090015_top__Dpi.h"
-
+#include "device.h"
 
 extern "C" int ebreak(int a){
 		//printf("the input ebreak inst is : %08x\n",a);
@@ -73,26 +73,36 @@ printf("reg\tvalue\n");
 }
 
 
-extern "C" int pmem_read(int raddr){
+extern "C" int pmem_read(int raddr,char wmask){
 //printf("vaddr : %08x\n",raddr-CONFIG_MBASE);
 if(raddr<0x80000000||raddr>0xffffffff){
 	npc_state.state = NPC_ABORT;
 	printf("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,
       raddr, cpu.pc);
-	  log_write("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,
-      raddr, cpu.pc);
+	//   log_write("pmem_read : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,raddr, cpu.pc);
 	  return 0;
 	//exit(-1);
 }
 
-if(raddr==RTC_ADDR){
-	log_write("dtrace_rtc\taddr : %08x\tdata : %ld\n",raddr,get_time());
-	return get_time();
-}else if(raddr==RTC_ADDR+4){
-	// raddr=get_time()>>32;
-	return get_time()>>32;
+// if(raddr==RTC_ADDR){
+// 	log_write("dtrace_rtc\taddr : %08x\tdata : %ld\n",raddr,get_time());
+// 	return get_time();
+// }else if(raddr==RTC_ADDR+4){
+// 	// raddr=get_time()>>32;
+// 	return get_time()>>32;
+// } 
+// else if(raddr>=DEVICE_BASE){
+	if(raddr>=DEVICE_BASE){
+	// log_write("dtrace_rtc\taddr : %08x\n",raddr);
+	// if(raddr==SERIAL_PORT) return mmio_read(raddr, 1);
+	// else if(raddr>=VGACTL_ADDR && raddr<= VGACTL_ADDR+4)return mmio_read(raddr, 2);
+	// else return mmio_read(raddr, 4);
+	if(wmask==0b0001) return mmio_read(raddr, 1);
+	else if(wmask==0b0011) return mmio_read(raddr, 2);
+	else if(wmask==0b1111) return mmio_read(raddr, 4);
+	else assert(0);
 }
-log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
+// log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 
@@ -100,21 +110,37 @@ return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 extern "C" void pmem_write(int waddr,int wdata,char wmask){
 
 	uint8_t *temp= (uint8_t *)&wdata;
-	if(waddr<0x80000000||waddr>0xffffffff){
+	if(waddr<0x80000000||waddr>0xfffffff){
 		npc_state.state = NPC_ABORT;
 		printf("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,
 		  waddr, cpu.pc);
-		  log_write("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,
-		  waddr, cpu.pc);
+		//   log_write("pmem_write : address =  %08x  is out of bound of pmem [ 0x80000000 ,  0xffffffff ] at pc = %08x\n" ,waddr, cpu.pc);
 		  return ;
 		//exit(-1);
 	}
 
-	if(waddr>=SERIAL_PORT){
+	// if(waddr>=SERIAL_PORT && waddr < FB_ADDR){
 		
-		putchar(temp[0]);
-		log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
-		return;
+	// 	putchar(temp[0]);
+	// 	log_write("dtrace_serial\taddr : %08x\tdata : %c\n",waddr,temp[0]);
+	// 	return;
+	// }
+	// else if(waddr>=VGACTL_ADDR && waddr < AUDIO_ADDR ){
+	// 	log_write("dtrace_vga\taddr : %08x\tdata : %x\n",waddr,temp[0]);
+	// }
+	// else if(waddr>=FB_ADDR && waddr < AUDIO_SBUF_ADDR ){
+	// 	log_write("dtrace_fb \taddr : %08x\tdata : %c\n",waddr,temp[0]);
+	// }
+	// else if(waddr>=DEVICE_BASE){
+		if(waddr>=DEVICE_BASE){
+		int len=0;
+		if(wmask==0b0001) len =1;
+		else if(wmask==0b0011) len==2;
+		else if(wmask==0b1111) len=4;
+		else assert(0);
+		// log_write("dtrace_test\taddr : %08x\tdata : %d\n",waddr,temp[0]);
+		mmio_write(waddr, len, wdata);
+		return ;
 	}
 
 	if(wmask==0b0001){
@@ -126,12 +152,6 @@ extern "C" void pmem_write(int waddr,int wdata,char wmask){
 		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x\n",waddr,temp[0],temp[1]);
 		vaddr[waddr-CONFIG_MBASE]=temp[0];
 		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
-	}else if(wmask==0b0111){
-
-		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2]);
-		vaddr[waddr-CONFIG_MBASE]=temp[0];
-		vaddr[waddr-CONFIG_MBASE+1]=temp[1];
-		vaddr[waddr-CONFIG_MBASE+2]=temp[2];
 	}else if(wmask==0b1111){
 
 		// log_write("pmem_write\taddr : %08x\tdata : %02x %02x %02x %02x\n",waddr,temp[0],temp[1],temp[2],temp[3]);

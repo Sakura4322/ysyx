@@ -45,6 +45,10 @@ std::srand(time(NULL));
 init_disasm("riscv32");			//init disasm 
 parse_args(argc,argv);			//parse args
 long img_size=load_img();		
+
+// printf("STARAT INIT DEVICE\n");
+init_device();
+// printf("INIT DEVICE FINSIH\n");
 if(diff_on)
 init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
 /*
@@ -77,7 +81,7 @@ void step_and_dump_wave(Decode *s){
 	if(clk){
 	cpu.pc=top->pc;
 	read_regs();
-	uint32_t temp_inst = pmem_read(top->pc);
+	uint32_t temp_inst = pmem_read(top->pc,0x0F);
 	// printf("get inst successful top->pc : %08x \n",top->pc);
 	// printf("inst : %08x\n",temp_inst);
 	 	top->inst=temp_inst;
@@ -88,32 +92,31 @@ void step_and_dump_wave(Decode *s){
 		
 		
 ///////////////////////////////////////////////////////////itrace
-char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
+// char *p = s->logbuf;
+//   p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
   
-  
-  //int ilen = s->snpc - s->pc;
-  int ilen = 4;
-  int i;
-  uint8_t *inst = (uint8_t *)&s->inst;
-  for (i = ilen - 1; i >= 0; i --) {
-    p += snprintf(p, 4, " %02x", inst[i]);
-  }
-  //int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
-  int ilen_max =4;
-  int space_len = ilen_max - ilen;
-  if (space_len < 0) space_len = 0;
-  space_len = space_len * 3 + 1;
-  memset(p, ' ', space_len);
-  p += space_len;
+// //int ilen = s->snpc - s->pc;
+//   int ilen = 4;
+//   int i;
+//   uint8_t *inst = (uint8_t *)&s->inst;
+//   for (i = ilen - 1; i >= 0; i --) {
+//     p += snprintf(p, 4, " %02x", inst[i]);
+//   }
+//   //int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
+//   int ilen_max =4;
+//   int space_len = ilen_max - ilen;
+//   if (space_len < 0) space_len = 0;
+//   space_len = space_len * 3 + 1;
+//   memset(p, ' ', space_len);
+//   p += space_len;
   
 
-  disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+//   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
   
       
       
-///////////////////////////////////////////////////////itrace
-log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
+/////////////////////////////////////////////////////itrace
+// log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 
 	}else {
 		

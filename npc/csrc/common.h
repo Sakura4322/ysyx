@@ -1,3 +1,5 @@
+#ifndef COMMON_H
+#define COMMON_H
 #include <stdio.h>
 #include "verilated.h"
 #include "Vysyx_24090015_top.h"
@@ -6,8 +8,14 @@
 #include <getopt.h>
 #include <string>
 #include <dlfcn.h>
-#include <time.h>
+#include <sys/time.h>
+#include <SDL2/SDL.h>
+#include "host.h"
+#include <signal.h>
 
 
 extern FILE* log_fp;
 
+void init_device();
+
+#endif

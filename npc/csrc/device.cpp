@@ -1,9 +1,55 @@
 #include "common.h"
+#include "device.h"
+#include "cpu.h"
+// extern void init_vga();
 
 
-uint64_t get_time(){
-  struct timespec now;
-  clock_gettime(CLOCK_MONOTONIC_COARSE, &now);
-  static uint64_t us = now.tv_sec * 1000000 + now.tv_nsec / 1000;
-  return (now.tv_sec * 1000000 + now.tv_nsec / 1000)-us;
+
+void device_update() {
+  static uint64_t last = 0;
+  uint64_t now = get_time();
+  if (now - last < 1000000 / TIMER_HZ) {
+    return;
+  }
+  last = now;
+
+  vga_update_screen();
+  // printf("is update \n");
+  SDL_Event event;
+  while (SDL_PollEvent(&event)) {
+    // printf("is event : %d\n",event.type);
+    switch (event.type) {
+      case SDL_QUIT:
+        npc_state.state = NPC_QUIT;
+        break;
+      // If a key was pressed
+      case SDL_KEYDOWN:
+      case SDL_KEYUP: {
+        uint8_t k = event.key.keysym.scancode;
+        bool is_keydown = (event.key.type == SDL_KEYDOWN);
+        send_key(k, is_keydown);
+        break;
+      }
+      default: break;
+    }
+  }
+}
+
+
+void sdl_clear_event_queue() {
+    SDL_Event event;
+    while (SDL_PollEvent(&event));
+  }
+
+
+void init_device(){
+
+  init_map();
+
+  init_serial();
+  init_timer();
+  init_vga();
+  init_i8042();
+
+  init_alarm();
 }

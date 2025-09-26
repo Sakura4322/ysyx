@@ -1,3 +1,7 @@
+#ifndef MY_SHARE_H
+#define MY_SHARE_H
+
+
 #define CONFIG_MBASE 0x80000000
 #define CONFIG_MSIZE 0x80000000
 #define MAX_SRAM_SIZE 1024
@@ -71,9 +75,11 @@ typedef struct{
 }Addr_Imfo;
 
 uint64_t get_time();
-extern "C" int pmem_read(int raddr);
+extern "C" int pmem_read(int raddr,char wmask);
 
 
+
+#endif
 
 
 

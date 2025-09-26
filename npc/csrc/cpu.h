@@ -1,5 +1,7 @@
-#include "difftest.h"
+#ifndef CPU_H
+#define CPU_H
 
+#include "difftest.h"
 
 enum { NPC_RUNNING, NPC_STOP, NPC_END, NPC_ABORT, NPC_QUIT };
 
@@ -26,3 +28,6 @@ typedef struct {
 }CPU_state;
 
 extern CPU_state cpu;
+
+
+#endif

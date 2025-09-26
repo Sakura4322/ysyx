@@ -338,6 +338,7 @@ int parse_args(int argc, char *argv[]) {
 								}
 								break;
       case 'd': diff_so_file = optarg; 
+                printf("open diff_file : %s SUCCESS!!\n",diff_so_file);	
                 diff_on=1;
       break;
 			case 'e': elf_file=optarg;
