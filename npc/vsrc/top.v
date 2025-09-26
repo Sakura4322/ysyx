@@ -21,10 +21,11 @@ module ysyx_24090015_top#(
   DATAWIDTH=32
   ) (
     input clk,
-    output [DATAWIDTH-1:0] inst,
-    output reg [DATAWIDTH-1:0] pc,dnpc,
-		output reg flag,
-		output hit_good_or_bad//实现HIT GOOD/BAD的功能
+    input rst,
+    output [ADDRWIDTH-1:0] pc,
+    output [DATAWIDTH-1 : 0]inst,
+	  output reg flag,
+	  output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
 /*
 import "DPI-C" context function void read_regs(input string scope);
