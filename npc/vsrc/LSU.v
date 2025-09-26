@@ -1,33 +1,59 @@
-// import "DPI-C" function int pmem_read(input int raddr);
-// import "DPI-C" function void pmem_write(input int waddr, input int wdata, input byte wmask);
+module ysyx_24090015_LSU #(
+    parameter DATAWIDTH =32,
+    parameter ADDRWIDTH =32
+) (
+  input clk,
+  input rst,
 
-// module ysyx_24090015_LSU #(
-//     parameter DATAWIDTH =32,
-//     parameter ADDRWIDTH =32
-// ) (
-//     output        lsu_reqValid,
-//     output [DATAWIDTH -1 :0] lsu_addr,
-//     output        lsu_wen,
-//     output [DATAWIDTH -1 :0] lsu_wdata,
-//     output [ 3:0] lsu_wmask,
-//     input         lsu_respValid,
-//     input  [DATAWIDTH -1 :0] lsu_rdata,
-// );
+  input LSU_work,
+  input ls,        
+  input [ADDRWIDTH-1 : 0] addr,
+  input [DATAWIDTH-1 : 0] sdata,
+  output [DATAWIDTH-1 : 0] ldata,
+  input [3:0] storge_mask,
 
 
-//     localparam STORGE =0;
-//     localparam LOAD   =1;
+    output reg       lsu_reqValid,
+    output reg[DATAWIDTH -1 :0] lsu_addr,
+    output reg       lsu_wen,
+    output reg[DATAWIDTH -1 :0] lsu_wdata,
+    output reg[ 3:0] lsu_wmask,
+    input         lsu_respValid,
+    input  [DATAWIDTH -1 :0] lsu_rdata,
+);
 
-//     localparam IDLE = 0;
-//     localparam ADDR = 1;
-//     localparam DATA = 2;
 
+    localparam STORGE =0;
+    localparam LOAD   =1;
 
-// always @(posedge clock) begin
-//   lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr) : 32'b0;
-//   if (lsu_reqValid && lsu_wen) begin
-//     pmem_write(lsu_addr, lsu_wdata, lsu_wmask);
-//   end
-//   lsu_respValid <= lsu_reqValid;
-// end
-// endmodule
+    localparam IDLE = 0;
+    localparam WAIT = 1;
+
+assign ldata = lsu_rdata;
+
+    reg lsu_state;
+    always @(posedge clk ) begin
+      if(!rst)begin
+          lsu_state <= 0;
+      end else begin
+          case (lsu_state)
+            IDLE : begin
+                if(LSU_work)begin
+                  lsu_reqValid <= 1;
+
+                  lsu_addr <= addr;
+                  lsu_wdata <= (ls == STORGE) ? sdata : 0 ;
+                  lsu_mask <= (ls == STORGE) ? storge_mask : 0 ;
+                  lsu_wen <= (ls == STORGE);
+                end
+            end
+            WAIT : begin
+              if(lsu_respValid)begin
+                lsu_state <= IDLE;
+                lsu_reqValid <= 0;
+              end
+            end 
+          endcase
+        end
+  end
+endmodule
