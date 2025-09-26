@@ -20,10 +20,10 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
     // Anonymous structures to workaround compiler member-count bugs
     struct {
         VL_IN8(clk,0,0);
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_respValid;
         VL_IN8(rst,0,0);
         VL_OUT8(flag,0,0);
         VL_OUT8(hit_good_or_bad,0,0);
-        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqvalid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqvalid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_wen;
@@ -53,8 +53,9 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
         CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
         CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
-        CData/*0:0*/ __VstlDidInit;
+        CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ __Vtrigrprev__TOP__clk;
+        CData/*0:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ __VactDidInit;
         CData/*0:0*/ __VactContinue;
         VL_OUT(pc,31,0);
@@ -82,18 +83,15 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
         IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
-        IData/*31:0*/ __Vtrigrprev__TOP__pc;
     };
     struct {
         IData/*31:0*/ __VstlIterCount;
-        IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
-        VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
+        VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
     };
-    VlTriggerVec<2> __VstlTriggered;
-    VlTriggerVec<1> __VicoTriggered;
+    VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<2> __VactTriggered;
     VlTriggerVec<2> __VnbaTriggered;
 

@@ -48,12 +48,12 @@ module ysyx_24090015_IFU#(
         else begin
             case (ifu_state)
                 IDLE :begin
-                  ifu_raddr    <= pc;
                   ifu_reqValid <= 1;
                   ifu_state    <= WAIT;
                 end
                 WAIT : begin
                   if(ifu_respValid)begin
+                    ifu_raddr    <= pc;
                     ifu_reqValid <= 0;
                     ifu_state <= IDLE;
                   end
