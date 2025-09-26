@@ -1,14 +1,6 @@
 `timescale 1ns/1ns
 import "DPI-C" function int ebreak(input int a);
-`define R 1
-`define II 2
-`define IJ 3
-`define IS 4
-`define IC 5
-`define S 6
-`define B 7
-`define U 8
-`define J 9
+
 
 
 `define Fetch 1

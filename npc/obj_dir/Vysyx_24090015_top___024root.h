@@ -46,9 +46,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_respValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__valid;
-        CData/*0:0*/ ysyx_24090015_top__DOT__wen_control;
-        CData/*0:0*/ ysyx_24090015_top__DOT__ren1_control;
-        CData/*0:0*/ ysyx_24090015_top__DOT__ren2_control;
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu0__DOT__ifu_state;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu0__DOT__lsu_state;
         CData/*0:0*/ ysyx_24090015_top__DOT__sram0__DOT__sram_state;
@@ -83,11 +80,11 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
         IData/*31:0*/ __Vfunc_ebreak__1__Vfuncout;
-    };
-    struct {
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
+    };
+    struct {
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
         VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     };
