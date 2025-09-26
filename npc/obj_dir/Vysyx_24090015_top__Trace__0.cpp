@@ -26,7 +26,7 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
         bufp->chgIData(oldp+0,(vlSelf->ysyx_24090015_top__DOT__ebreak_ret),32);
         bufp->chgIData(oldp+1,(vlSelf->ysyx_24090015_top__DOT__dnpc),32);
-        bufp->chgBit(oldp+2,((1U & vlSelf->ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respValid)));
+        bufp->chgBit(oldp+2,(vlSelf->ysyx_24090015_top__DOT__ifu_respValid));
         bufp->chgIData(oldp+3,(vlSelf->ysyx_24090015_top__DOT__ifu_raddr),32);
         bufp->chgIData(oldp+4,(vlSelf->ysyx_24090015_top__DOT__ifu_rdata),32);
         bufp->chgIData(oldp+5,(vlSelf->ysyx_24090015_top__DOT__lsu_addr),32);
@@ -215,17 +215,16 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
         bufp->chgIData(oldp+88,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[29]),32);
         bufp->chgIData(oldp+89,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[30]),32);
         bufp->chgIData(oldp+90,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[31]),32);
-        bufp->chgIData(oldp+91,(vlSelf->ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respValid),32);
-        bufp->chgCData(oldp+92,(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state),2);
+        bufp->chgCData(oldp+91,(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state),2);
     }
-    bufp->chgBit(oldp+93,(vlSelf->clk));
-    bufp->chgBit(oldp+94,(vlSelf->rst));
-    bufp->chgIData(oldp+95,(vlSelf->pc),32);
-    bufp->chgIData(oldp+96,(vlSelf->inst),32);
-    bufp->chgBit(oldp+97,(vlSelf->flag));
-    bufp->chgBit(oldp+98,(vlSelf->hit_good_or_bad));
-    bufp->chgIData(oldp+99,(((IData)(4U) + vlSelf->pc)),32);
-    bufp->chgBit(oldp+100,((1U & (~ (IData)(vlSelf->flag)))));
+    bufp->chgBit(oldp+92,(vlSelf->clk));
+    bufp->chgBit(oldp+93,(vlSelf->rst));
+    bufp->chgIData(oldp+94,(vlSelf->pc),32);
+    bufp->chgIData(oldp+95,(vlSelf->inst),32);
+    bufp->chgBit(oldp+96,(vlSelf->flag));
+    bufp->chgBit(oldp+97,(vlSelf->hit_good_or_bad));
+    bufp->chgIData(oldp+98,(((IData)(4U) + vlSelf->pc)),32);
+    bufp->chgBit(oldp+99,((1U & (~ (IData)(vlSelf->flag)))));
 }
 
 void Vysyx_24090015_top___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

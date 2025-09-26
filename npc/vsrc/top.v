@@ -97,7 +97,7 @@ ysyx_24090015_LSU #(
 
 ysyx_24090015_SRAM sram0(
     .clk(clk),
-    .rst(!flag),
+    .rst(rst),
     .ifu_reqValid(ifu_reqValid),
     .ifu_respValid(ifu_respValid),
     .ifu_raddr(ifu_raddr),

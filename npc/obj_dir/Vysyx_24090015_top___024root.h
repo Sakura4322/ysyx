@@ -23,6 +23,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         VL_IN8(rst,0,0);
         VL_OUT8(flag,0,0);
         VL_OUT8(hit_good_or_bad,0,0);
+        CData/*0:0*/ ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ ysyx_24090015_top__DOT__ifu_reqvalid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_reqvalid;
         CData/*0:0*/ ysyx_24090015_top__DOT__lsu_wen;
@@ -64,7 +65,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_wdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_rdata;
-        IData/*31:0*/ ysyx_24090015_top__DOT____Vcellout__sram0__ifu_respValid;
         IData/*31:0*/ ysyx_24090015_top__DOT__imm;
         IData/*31:0*/ ysyx_24090015_top__DOT__rd_wdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__src1;
