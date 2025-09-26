@@ -104,7 +104,7 @@ void step_and_dump_wave(Decode *s){
 	uint32_t temp_inst = pmem_read(top->pc,0x0F);
 	// printf("get inst successful top->pc : %08x \n",top->pc);
 	// printf("inst : %08x\n",temp_inst);
-	 	top->inst=temp_inst;
+	 	// top->inst=temp_inst;
 		s->pc=top->pc;
 		cpu.pc=s->pc;
 		s->inst = temp_inst;
