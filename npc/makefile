@@ -35,7 +35,7 @@ override ARGS+= -i 			#itrace
 #override ARGS+= -f 			#ftrace
 override ARGS+= -w 			#wave_load
 override ARGS+= --elf=$(ELF)
-override ARGS+= --diff=$(NEMU_LIB)
+#override ARGS+= --diff=$(NEMU_LIB)
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
