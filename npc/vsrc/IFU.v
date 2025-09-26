@@ -6,7 +6,7 @@ module ysyx_24090015_IFU#(
     input rst,
     input [ADDRWIDTH-1:0] dnpc,
     output reg[ADDRWIDTH-1:0] pc,
-    output reg [DATAWIDTH-1 : 0]inst,
+    output [DATAWIDTH-1 : 0]inst,
     output                      fetch,
 
     output reg       ifu_reqValid,
@@ -23,13 +23,13 @@ module ysyx_24090015_IFU#(
     localparam WAIT = 1;
 
 
-    always @(posedge clk) begin 
+    always @(*) begin 
         if(!rst)begin
-            pc <= BASEADDR;
+            pc = BASEADDR;
         end
 		else 
         if(ifu_respValid)begin
-            pc <= dnpc;
+            pc = dnpc;
         end
 	end
 

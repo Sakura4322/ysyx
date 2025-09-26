@@ -224,7 +224,6 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     bufp->chgBit(oldp+96,(vlSelf->flag));
     bufp->chgBit(oldp+97,(vlSelf->hit_good_or_bad));
     bufp->chgIData(oldp+98,(((IData)(4U) + vlSelf->pc)),32);
-    bufp->chgBit(oldp+99,((1U & (~ (IData)(vlSelf->flag)))));
 }
 
 void Vysyx_24090015_top___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {
