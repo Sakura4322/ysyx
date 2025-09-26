@@ -67,7 +67,7 @@ module ysyx_24090015_SRAM #(
                 end
               end
               IFU_FETCH : begin
-                ifu_respValid <= ifu_reqValid;
+                ifu_respValid <= 0;
                 sram_state <= IDLE;
               end 
               LSU_LS :begin
@@ -80,7 +80,7 @@ module ysyx_24090015_SRAM #(
                 else begin
                   sram_state <= IDLE;  
                 end
-              lsu_respValid <= lsu_reqValid;
+              lsu_respValid <= 0;
               end
           endcase
 
