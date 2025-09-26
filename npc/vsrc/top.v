@@ -18,7 +18,8 @@ import "DPI-C" function int ebreak(input int a);
 
 
 module ysyx_24090015_top#(
-  DATAWIDTH=32
+  DATAWIDTH=32,
+  ADDRWIDTH=32
   ) (
     input clk,
     input rst,
