@@ -1,4 +1,7 @@
-module ysyx_24090015_EXU#(DATAWIDTH=32) (
+module ysyx_24090015_EXU#(
+	DATAWIDTH=32,
+	ADDRWIDTH=32
+) (
     input clk,
 	input rst,
 
