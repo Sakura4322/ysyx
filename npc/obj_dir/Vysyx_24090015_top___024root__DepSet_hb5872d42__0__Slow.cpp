@@ -198,6 +198,8 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___ctor_var_reset(Vysyx_24090015_t
     for (int __Vi0 = 0; __Vi0 < 4; ++__Vi0) {
         vlSelf->ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS[__Vi0] = VL_RAND_RESET_I(32);
     }
+    vlSelf->__VdfgTmp_h7246bf09__0 = 0;
+    vlSelf->__VdfgTmp_h872a8a4a__0 = 0;
     vlSelf->__Vfunc_ebreak__1__Vfuncout = 0;
     vlSelf->__Vdly__ysyx_24090015_top__DOT__ifu_respValid = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigrprev__TOP__clk = VL_RAND_RESET_I(1);
