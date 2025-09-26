@@ -12,7 +12,7 @@ module ysyx_24090015_IFU#(
     output reg       ifu_reqValid,
     output reg [31:0] ifu_raddr,
     input  [31:0] ifu_rdata,
-    input         ifu_respvalid,
+    input         ifu_respValid,
 
     );
 
@@ -28,12 +28,12 @@ module ysyx_24090015_IFU#(
             pc <= BASEADDR;
         end
 		else 
-        if(ifu_respvalid)begin
+        if(ifu_respValid)begin
             pc <= dnpc;
         end
 	end
 
-    assign fetch = ifu_respvalid;
+    assign fetch = ifu_respValid;
     assign inst  = ifu_rdata;
 
 
@@ -43,17 +43,17 @@ module ysyx_24090015_IFU#(
         if(!rst)begin
             ifu_state <= IDLE;
             ifu_raddr <= 0;
-            ifu_reqvalid <= 0;
+            ifu_reqValid <= 0;
         end 
         else begin
             case (ifu_state)
                 IDLE :begin
                   ifu_raddr    <= pc;
-                  ifu_reqvalid <= 1;
+                  ifu_reqValid <= 1;
                   ifu_state    <= WAIT;
                 end
                 WAIT : begin
-                  if(ifu_respvalid)begin
+                  if(ifu_respValid)begin
                     ifu_state <= IDLE;
                   end
   

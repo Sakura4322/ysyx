@@ -73,7 +73,7 @@ ysyx_24090015_IFU #(
     .inst(inst),
     .fetch(fetch),
 
-    .ifu_reqvalid(ifu_reqValid),
+    .ifu_reqValid(ifu_reqValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
     .ifu_respValid(ifu_respValid)
