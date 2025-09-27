@@ -84,7 +84,7 @@ module ysyx_24090015_SRAM #(
                 lsu_respValid <= 0;
               end
               IFU_FETCH : begin
-                ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
+                ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : ifu_rdata;
                 ifu_respValid <= ifu_reqValid;
                 lsu_respValid <= 0;
               end 
