@@ -36,7 +36,7 @@ assign ldata = lsu_rdata;
 
     always @(posedge clk) begin
       if(!rst)begin
-        lsu_state <= IDLE
+        lsu_state <= IDLE;
       end
       else begin
         case (lsu_state)
