@@ -53,7 +53,7 @@ module ysyx_24090015_SRAM #(
             if( lsu_reqValid && !lsu_respValid)begin
               sram_state = LSU_LS;
             end 
-            else if(ifu_reqValid)begin
+            else if(ifu_reqValid && !ifu_respValid )begin
               sram_state = IFU_FETCH;
             end
           // end
