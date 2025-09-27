@@ -87,7 +87,7 @@ typedef struct{
 	uint32_t inst;
 }fifo;
 
-static void fifo_work(){
+static void fifo_work(Decode *s){
 	static fifo fifo_inst[2] = {};
 	static uint32_t fifo_ind = 0 ;
 
@@ -128,7 +128,7 @@ void step_and_dump_wave(Decode *s){
 
 	if(clk){
 		read_regs();
-		fifo_work();
+		fifo_work(Decode *s);
 		
 		
 
