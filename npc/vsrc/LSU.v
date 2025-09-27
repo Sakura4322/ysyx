@@ -31,7 +31,7 @@ module ysyx_24090015_LSU #(
     localparam WAIT = 1;
 
 assign ldata = lsu_rdata;
-assign lsu_reqValid = LSU_work;
+assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
     reg lsu_state;
     always @(posedge clk ) begin
       if(!rst)begin
