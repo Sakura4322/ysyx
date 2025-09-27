@@ -149,14 +149,15 @@ Addr_Imfo *func_addr = read_sym_func();
 // printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 // }
 
+// extern bool cpu_work;
   for (;n > 0; n --) {
 	char buf[1024]={0};
     step_and_dump_wave(&s);
 	cout_inst_times++;
    if(diff_on){
-	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
-    cnt_fuck++;
-    if(cnt_fuck%2==1&&cnt_fuck>2)difftest_step(s.pc,s.dnpc);
+	// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
+    // cnt_fuck++;
+    if(top->fetch)difftest_step(s.pc,s.dnpc);
    }
     if (top->flag)npc_state.state=NPC_END;
     

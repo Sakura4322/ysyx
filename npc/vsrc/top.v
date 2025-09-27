@@ -15,8 +15,9 @@ module ysyx_24090015_top#(
   ) (
     input clk,
     input rst,
-    output [ADDRWIDTH-1:0] pc,
+    output [ADDRWIDTH-1:0] ifu_raddr,
     output [DATAWIDTH-1 : 0]inst,
+    output fetch,
 	  output reg flag,
 	  output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
@@ -36,15 +37,12 @@ flag = ebreak_ret[0];
 end 
 		
 
-    reg [DATAWIDTH-1:0] snpc;
-
-
-
+wire [ADDRWIDTH-1:0] pc;
 wire [ADDRWIDTH-1:0] dnpc;
 
 wire ifu_respValid;
 wire ifu_reqvalid;
-wire [31:0] ifu_raddr;
+// wire [31:0] ifu_raddr;
 wire [31:0] ifu_rdata;
 wire lsu_reqvalid;
 wire [31:0] lsu_addr;

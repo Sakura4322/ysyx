@@ -1118,6 +1118,9 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root___stl_sequent__TOP__0(Vysyx_24090
             vlSelf->ysyx_24090015_top__DOT__dnpc = 
                 ((IData)(4U) + vlSelf->pc);
         }
+    } else {
+        vlSelf->ysyx_24090015_top__DOT__dnpc = ((IData)(4U) 
+                                                + vlSelf->pc);
     }
 }
 

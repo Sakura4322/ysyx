@@ -1188,6 +1188,9 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_comb__TOP__0(Vysyx_2409001
                 ((0x73U == vlSelf->inst) ? vlSelf->ysyx_24090015_top__DOT__csr_rdata
                   : ((IData)(4U) + vlSelf->pc));
         }
+    } else {
+        vlSelf->ysyx_24090015_top__DOT__dnpc = ((IData)(4U) 
+                                                + vlSelf->pc);
     }
 }
 
