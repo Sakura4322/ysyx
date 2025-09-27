@@ -7,10 +7,50 @@
 
 #include "Vysyx_24090015_top___024root.h"
 
+VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_comb__TOP__0(Vysyx_24090015_top___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___ico_comb__TOP__0\n"); );
+    // Body
+    if (vlSelf->rst) {
+        if ((0U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
+            if (vlSelf->ysyx_24090015_top__DOT__pmem_work) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 2U;
+            } else if (vlSelf->ysyx_24090015_top__DOT__ifu_reqValid) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 1U;
+            }
+        } else if ((1U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
+            if (vlSelf->ysyx_24090015_top__DOT__ifu_respValid) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0U;
+            }
+        } else if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
+            if (vlSelf->ysyx_24090015_top__DOT__lsu_respValid) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0U;
+            }
+        }
+    } else {
+        vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 0U;
+    }
+}
+
+void Vysyx_24090015_top___024root___eval_ico(Vysyx_24090015_top___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_ico\n"); );
+    // Body
+    if ((vlSelf->__VicoTriggered.at(0U) | vlSelf->__VicoTriggered.at(1U))) {
+        Vysyx_24090015_top___024root___ico_comb__TOP__0(vlSelf);
+    }
+}
+
 void Vysyx_24090015_top___024root___eval_act(Vysyx_24090015_top___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_act\n"); );
+    // Body
+    if (vlSelf->__VactTriggered.at(0U)) {
+        Vysyx_24090015_top___024root___ico_comb__TOP__0(vlSelf);
+    }
 }
 
 VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_24090015_top___024root* vlSelf) {
@@ -1111,19 +1151,26 @@ void Vysyx_24090015_top___024root___eval_nba(Vysyx_24090015_top___024root* vlSel
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval_nba\n"); );
     // Body
-    if (vlSelf->__VnbaTriggered.at(0U)) {
+    if (vlSelf->__VnbaTriggered.at(1U)) {
         Vysyx_24090015_top___024root___nba_sequent__TOP__0(vlSelf);
         vlSelf->__Vm_traceActivity[1U] = 1U;
     }
-    if (vlSelf->__VnbaTriggered.at(1U)) {
+    if (vlSelf->__VnbaTriggered.at(2U)) {
         Vysyx_24090015_top___024root___nba_sequent__TOP__1(vlSelf);
     }
-    if (vlSelf->__VnbaTriggered.at(0U)) {
+    if (vlSelf->__VnbaTriggered.at(1U)) {
         Vysyx_24090015_top___024root___nba_sequent__TOP__2(vlSelf);
         vlSelf->__Vm_traceActivity[2U] = 1U;
     }
+    if ((vlSelf->__VnbaTriggered.at(0U) | vlSelf->__VnbaTriggered.at(1U))) {
+        Vysyx_24090015_top___024root___ico_comb__TOP__0(vlSelf);
+    }
 }
 
+void Vysyx_24090015_top___024root___eval_triggers__ico(Vysyx_24090015_top___024root* vlSelf);
+#ifdef VL_DEBUG
+VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__ico(Vysyx_24090015_top___024root* vlSelf);
+#endif  // VL_DEBUG
 void Vysyx_24090015_top___024root___eval_triggers__act(Vysyx_24090015_top___024root* vlSelf);
 #ifdef VL_DEBUG
 VL_ATTR_COLD void Vysyx_24090015_top___024root___dump_triggers__act(Vysyx_24090015_top___024root* vlSelf);
@@ -1137,10 +1184,29 @@ void Vysyx_24090015_top___024root___eval(Vysyx_24090015_top___024root* vlSelf) {
     Vysyx_24090015_top__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vysyx_24090015_top___024root___eval\n"); );
     // Init
-    VlTriggerVec<2> __VpreTriggered;
+    CData/*0:0*/ __VicoContinue;
+    VlTriggerVec<3> __VpreTriggered;
     IData/*31:0*/ __VnbaIterCount;
     CData/*0:0*/ __VnbaContinue;
     // Body
+    vlSelf->__VicoIterCount = 0U;
+    __VicoContinue = 1U;
+    while (__VicoContinue) {
+        __VicoContinue = 0U;
+        Vysyx_24090015_top___024root___eval_triggers__ico(vlSelf);
+        if (vlSelf->__VicoTriggered.any()) {
+            __VicoContinue = 1U;
+            if (VL_UNLIKELY((0x64U < vlSelf->__VicoIterCount))) {
+#ifdef VL_DEBUG
+                Vysyx_24090015_top___024root___dump_triggers__ico(vlSelf);
+#endif
+                VL_FATAL_MT("/home/sakura/ysyx-workbench/npc/vsrc/top.v", 12, "", "Input combinational region did not converge.");
+            }
+            vlSelf->__VicoIterCount = ((IData)(1U) 
+                                       + vlSelf->__VicoIterCount);
+            Vysyx_24090015_top___024root___eval_ico(vlSelf);
+        }
+    }
     __VnbaIterCount = 0U;
     __VnbaContinue = 1U;
     while (__VnbaContinue) {
