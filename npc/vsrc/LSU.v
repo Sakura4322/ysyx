@@ -34,7 +34,7 @@ assign ldata = lsu_rdata;
 // assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
     reg lsu_state;
 
-    always @(*) begin
+    always @(posedge clk) begin
       if(!rst)begin
         lsu_state <= IDLE
       end
@@ -56,22 +56,22 @@ assign ldata = lsu_rdata;
       end
     end
 
-    always @(posedge clk ) begin
+    always @(*) begin
       if(!rst)begin
           // lsu_reqValid <= 0;
-          lsu_addr <= 0;
-          lsu_wdata <= 0;
-          lsu_wmask <= 0;
-          lsu_wen <= 0;
+          lsu_addr = 0;
+          lsu_wdata = 0;
+          lsu_wmask = 0;
+          lsu_wen = 0;
 
         end else begin
           case (lsu_state)
             IDLE : begin
                   // lsu_reqValid <= 1;
-                  lsu_addr <= addr;
-                  lsu_wdata <= (ls == STORGE) ? sdata : 0 ;
-                  lsu_wmask <= (ls == STORGE) ? storge_mask : 0 ;
-                  lsu_wen <= (ls == STORGE);
+                  lsu_addr = addr;
+                  lsu_wdata = (ls == STORGE) ? sdata : 0 ;
+                  lsu_wmask = (ls == STORGE) ? storge_mask : 0 ;
+                  lsu_wen = (ls == STORGE);
             end
             WAIT : begin
               if(lsu_respValid)begin
