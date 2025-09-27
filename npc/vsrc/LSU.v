@@ -13,8 +13,8 @@ module ysyx_24090015_LSU #(
   input [3:0] storge_mask,
 
 
-    // output reg       lsu_reqValid,
-    output        lsu_reqValid,
+    output reg       lsu_reqValid,
+    // output        lsu_reqValid,
     output reg[DATAWIDTH -1 :0] lsu_addr,
     output reg       lsu_wen,
     output reg[DATAWIDTH -1 :0] lsu_wdata,
@@ -31,8 +31,32 @@ module ysyx_24090015_LSU #(
     localparam WAIT = 1;
 
 assign ldata = lsu_rdata;
-assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
+// assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
     reg lsu_state;
+
+    always @(*) begin
+      if(!rst)begin
+        lsu_state <= IDLE
+      end
+      else begin
+        case (lsu_state)
+          IDLE : begin
+            if(LSU_work)begin
+              lsu_state  <= WAIT;
+              lsu_reqValid = 1;
+            end
+          end
+          WAIT : begin
+            if(lsu_respValid)begin
+              lsu_state <= IDLE;
+              lsu_reqValid = 0;
+            end
+          end 
+          default: 
+        endcase
+      end
+    end
+
     always @(posedge clk ) begin
       if(!rst)begin
           lsu_state <= 0;
@@ -45,18 +69,15 @@ assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
         end else begin
           case (lsu_state)
             IDLE : begin
-                if(LSU_work)begin
                   // lsu_reqValid <= 1;
-
                   lsu_addr <= addr;
                   lsu_wdata <= (ls == STORGE) ? sdata : 0 ;
                   lsu_wmask <= (ls == STORGE) ? storge_mask : 0 ;
                   lsu_wen <= (ls == STORGE);
-                end
             end
             WAIT : begin
               if(lsu_respValid)begin
-                lsu_state <= IDLE;
+                // lsu_state <= IDLE;
                 // lsu_reqValid <= 0;
               end
             end 

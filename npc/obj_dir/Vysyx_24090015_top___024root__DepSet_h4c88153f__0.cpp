@@ -193,17 +193,17 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
                 vlSelf->__Vdly__ysyx_24090015_top__DOT__ifu_respValid = 0U;
             }
             __Vdly__ysyx_24090015_top__DOT__lsu_respValid 
-                = vlSelf->ysyx_24090015_top__DOT__pmem_work;
+                = vlSelf->ysyx_24090015_top__DOT__lsu_reqValid;
         } else if ((2U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
             Vysyx_24090015_top___024unit____Vdpiimwrap_pmem_read_TOP____024unit(vlSelf->ysyx_24090015_top__DOT__lsu_addr, (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_wmask), __Vfunc_pmem_read__2__Vfuncout);
             vlSelf->ysyx_24090015_top__DOT__lsu_rdata 
-                = (((IData)(vlSelf->ysyx_24090015_top__DOT__pmem_work) 
+                = (((IData)(vlSelf->ysyx_24090015_top__DOT__lsu_reqValid) 
                     & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_wen)))
                     ? __Vfunc_pmem_read__2__Vfuncout
                     : 0U);
             __Vdly__ysyx_24090015_top__DOT__lsu_respValid 
-                = vlSelf->ysyx_24090015_top__DOT__pmem_work;
-            if (((IData)(vlSelf->ysyx_24090015_top__DOT__pmem_work) 
+                = vlSelf->ysyx_24090015_top__DOT__lsu_reqValid;
+            if (((IData)(vlSelf->ysyx_24090015_top__DOT__lsu_reqValid) 
                  & (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_wen))) {
                 Vysyx_24090015_top___024unit____Vdpiimwrap_pmem_write_TOP____024unit(vlSelf->ysyx_24090015_top__DOT__lsu_addr, vlSelf->ysyx_24090015_top__DOT__lsu_wdata, (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_wmask));
             }
