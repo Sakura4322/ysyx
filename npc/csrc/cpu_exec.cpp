@@ -156,7 +156,7 @@ Addr_Imfo *func_addr = read_sym_func();
 	if(diff_on){
 		// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
 		// cnt_fuck++;
-		if(top->fetch && cout_inst_times >= 4){
+		if(top->fetch && cout_inst_times >= 4 && cout_inst_times%2==0){
 			printf("DIFFTEST : STEP %d\n",cout_inst_times);
 			difftest_step(s.pc,s.dnpc);
 		}
