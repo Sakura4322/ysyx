@@ -53,7 +53,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
         CData/*0:0*/ __VdfgTmp_h7246bf09__0;
         CData/*0:0*/ __VdfgTmp_h872a8a4a__0;
-        CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__lsu0__DOT__lsu_state;
         CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*1:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__sram0__DOT__sram_state;
         CData/*0:0*/ __VstlDidInit;
@@ -83,17 +82,16 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;
+        IData/*31:0*/ __VactIterCount;
     };
     struct {
-        IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
-        VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
+        VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
     };
     VlTriggerVec<2> __VstlTriggered;
     VlTriggerVec<2> __VicoTriggered;
     VlTriggerVec<3> __VactTriggered;
-    VlTriggerVec<3> __VpreTriggered;
     VlTriggerVec<3> __VnbaTriggered;
 
     // INTERNAL VARIABLES

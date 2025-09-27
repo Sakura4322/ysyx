@@ -29,10 +29,11 @@ module ysyx_24090015_LSU #(
 
     localparam IDLE = 0;
     localparam WAIT = 1;
+    localparam FINISH = 2;
 
 assign ldata = lsu_rdata;
 // assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
-    reg lsu_state;
+    reg [1: 0] lsu_state;
 
     always @(posedge clk) begin
       if(!rst)begin
@@ -48,17 +49,20 @@ assign ldata = lsu_rdata;
           end
           WAIT : begin
             if(lsu_respValid)begin
-              lsu_state <= IDLE;
+              lsu_state <= FINISH;
               // lsu_reqValid = 0;
             end
           end 
+          FINISH : begin
+            lsu_state <= IDLE;
+          end
         endcase
       end
     end
 
     always @(*) begin
       if(!rst)begin
-          // lsu_reqValid <= 0;
+          lsu_reqValid = 0;
           lsu_addr = 0;
           lsu_wdata = 0;
           lsu_wmask = 0;
