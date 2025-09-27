@@ -15,10 +15,10 @@ module ysyx_24090015_LSU #(
 
     output reg       lsu_reqValid,
     // output        lsu_reqValid,
-    output reg[DATAWIDTH -1 :0] lsu_addr,
-    output reg       lsu_wen,
-    output reg[DATAWIDTH -1 :0] lsu_wdata,
-    output reg[ 3:0] lsu_wmask,
+    output [DATAWIDTH -1 :0] lsu_addr,
+    output        lsu_wen,
+    output [DATAWIDTH -1 :0] lsu_wdata,
+    output [ 3:0] lsu_wmask,
     input         lsu_respValid,
     input  [DATAWIDTH -1 :0] lsu_rdata,
 );
@@ -63,19 +63,16 @@ assign ldata = lsu_rdata;
     always @(*) begin
       if(!rst)begin
           lsu_reqValid = 0;
-          lsu_addr = 0;
-          lsu_wdata = 0;
-          lsu_wmask = 0;
+          // lsu_addr = 0;
+          // lsu_wdata = 0;
+          // lsu_wmask = 0;
           lsu_wen = 0;
 
         end else begin
           case (lsu_state)
             IDLE : begin
                   lsu_reqValid = LSU_work;
-                  lsu_addr = addr;
-                  lsu_wdata = (ls == STORGE) ? sdata : 0 ;
-                  lsu_wmask = (ls == STORGE) ? storge_mask : 0 ;
-                  lsu_wen = (ls == STORGE);
+
             end
             WAIT : begin
               if(lsu_respValid)begin
@@ -86,4 +83,10 @@ assign ldata = lsu_rdata;
           endcase
         end
   end
+
+
+assign  lsu_addr = addr;
+assign  lsu_wdata = (ls == STORGE) ? sdata : 0 ;
+assign  lsu_wmask = (ls == STORGE) ? storge_mask : 0 ;
+assign  lsu_wen = (ls == STORGE);
 endmodule
