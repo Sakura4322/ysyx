@@ -52,14 +52,12 @@ assign ldata = lsu_rdata;
               lsu_reqValid = 0;
             end
           end 
-          default: 
         endcase
       end
     end
 
     always @(posedge clk ) begin
       if(!rst)begin
-          lsu_state <= 0;
           // lsu_reqValid <= 0;
           lsu_addr <= 0;
           lsu_wdata <= 0;
