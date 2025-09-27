@@ -71,6 +71,16 @@ ysyx_24090015_IFU #(
     .ifu_respValid(ifu_respValid)
 );
 
+
+wire pmem_work;
+wire pmem_ls;
+wire [7:0] pmem_wmask;
+wire [DATAWIDTH-1:0]pmem_addr;
+wire [DATAWIDTH-1:0]pmem_wdata;
+wire [DATAWIDTH-1:0]pmem_rdata;
+
+
+
 ysyx_24090015_LSU #(
     .DATAWIDTH(DATAWIDTH),
     .ADDRWIDTH(DATAWIDTH)
@@ -79,10 +89,10 @@ ysyx_24090015_LSU #(
     .rst(rst),
     .LSU_work(pmem_work),
     .ls(pmem_ls),
-    .addr(pmem_raddr),
+    .addr(pmem_addr),
     .sdata(pmem_wdata),
     .ldata(pmem_rdata),
-    .storge_mask(wmask),
+    .storge_mask(pmem_wmask),
 
 
     .lsu_reqValid(lsu_reqValid),
@@ -122,17 +132,12 @@ ysyx_24090015_SRAM sram0(
     wire [4:0] rs1;
     wire [4:0] rs2;
    
-    wire LSU_work;
     wire wen;
     wire ren1;
     wire ren2;
     wire pwen;
-    
-    wire pmem_ls;
-  	wire [7:0] pmem_wmask;
-    wire [DATAWIDTH-1:0]pmem_addr;
-    wire [DATAWIDTH-1:0]pmem_wdata;
-    wire [DATAWIDTH-1:0]pmem_rdata;
+
+
 
     wire [DATAWIDTH-1:0]csr_rdata;
     wire [DATAWIDTH-1:0]csr_wdata0;
