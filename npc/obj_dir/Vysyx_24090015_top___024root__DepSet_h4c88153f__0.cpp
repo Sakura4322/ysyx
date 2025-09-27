@@ -234,7 +234,7 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
             if (vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state) {
                 if (vlSelf->ysyx_24090015_top__DOT__ifu_respValid) {
                     vlSelf->ysyx_24090015_top__DOT__ifu_raddr 
-                        = vlSelf->pc;
+                        = vlSelf->ysyx_24090015_top__DOT__dnpc;
                     vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state = 0U;
                 }
             }
