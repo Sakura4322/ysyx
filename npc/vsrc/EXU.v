@@ -41,7 +41,7 @@ module ysyx_24090015_EXU#(
 	end
 	
     always @(*) begin
-		if(fetch)begin
+		// if(fetch)begin
 			
 			casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi II
@@ -359,7 +359,7 @@ module ysyx_24090015_EXU#(
 			end
         
 		endcase     
-		end
+		// end
 		else dnpc = snpc;
 
 	end

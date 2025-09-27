@@ -129,6 +129,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBus(c+98,"WIDTH", false,-1, 31,0);
     tracep->declBit(c+84,"clk", false,-1);
     tracep->declBus(c+88,"inst_in", false,-1, 31,0);
+    tracep->declBit(c+89,"fetch", false,-1);
     tracep->declBus(c+59,"imm", false,-1, 31,0);
     tracep->declBit(c+67,"ren1", false,-1);
     tracep->declBit(c+68,"ren2", false,-1);
