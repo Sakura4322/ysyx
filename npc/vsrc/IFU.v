@@ -35,7 +35,8 @@ module ysyx_24090015_IFU#(
 
     assign fetch = ifu_respValid;
     // assign inst  = 0;
-    assign inst  = (ifu_reqValid && ifu_respValid) ? ifu_rdata : 0;
+    // assign inst  = (ifu_reqValid && ifu_respValid) ? ifu_rdata : 0;
+    assign inst  = ifu_rdata;
 
 
     

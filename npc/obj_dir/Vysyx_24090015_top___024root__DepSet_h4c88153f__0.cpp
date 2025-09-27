@@ -212,7 +212,8 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
                     = __Vfunc_pmem_read__1__Vfuncout;
                 vlSelf->__Vdly__ysyx_24090015_top__DOT__ifu_respValid = 1U;
             } else {
-                vlSelf->ysyx_24090015_top__DOT__ifu_rdata = 0U;
+                vlSelf->ysyx_24090015_top__DOT__ifu_rdata 
+                    = vlSelf->ysyx_24090015_top__DOT__ifu_rdata;
                 vlSelf->__Vdly__ysyx_24090015_top__DOT__ifu_respValid = 0U;
             }
             vlSelf->ysyx_24090015_top__DOT__lsu_respValid = 0U;
