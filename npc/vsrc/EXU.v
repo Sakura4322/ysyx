@@ -360,7 +360,7 @@ module ysyx_24090015_EXU#(
         
 		endcase     
 		// end
-		else dnpc = snpc;
+		// else dnpc = snpc;
 
 	end
 endmodule
