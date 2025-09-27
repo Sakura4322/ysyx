@@ -25,11 +25,11 @@ module ysyx_24090015_IFU#(
 
     always @(ifu_respValid) begin 
         if(!rst)begin
-            pc = BASEADDR;
+            pc <= BASEADDR;
         end
 		else 
         if(ifu_respValid)begin
-            pc = dnpc;
+            pc <= dnpc;
         end
 	end
 

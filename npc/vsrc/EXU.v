@@ -35,7 +35,7 @@ module ysyx_24090015_EXU#(
 	localparam DWORD = 4'b1111;
 	localparam DHALF = 4'b0011;
 	localparam DBYTE = 4'b0001;
-       reg [ADDRWIDTH-1:0] snpc;
+    reg [ADDRWIDTH-1:0] snpc;
 	always @(*) begin
 		snpc = pc+4;
 	end
@@ -359,6 +359,7 @@ module ysyx_24090015_EXU#(
 			end
         
 		endcase     
+		else dnpc = snpc;
 		end
 
 	end
