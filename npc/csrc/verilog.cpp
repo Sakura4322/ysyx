@@ -99,20 +99,20 @@ static void fifo_work(Decode *s){
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].dnpc = top->pc;
 			fifo_inst[fifo_ind].inst = top->inst;
-			printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
+			// printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
 			fifo_ind++;
 			assert(fifo_ind==1);
 		}
 	}else{
 		if(top->fetch){
 			assert(fifo_ind<=1);
-			printf("fifo_ind : %d\n\n",fifo_ind);
+			// printf("fifo_ind : %d\n\n",fifo_ind);
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].dnpc = top->pc;
 			fifo_inst[fifo_ind].inst = top->inst;
 			fifo_ind = (fifo_ind+1) %2;
 
-			printf("fifo_ind : %d\n\n",fifo_ind);
+			// printf("fifo_ind : %d\n\n",fifo_ind);
 			s->pc = fifo_inst[fifo_ind].pc;
 			s->dnpc = fifo_inst[fifo_ind].dnpc;
 			printf("s->dnpc : %08x\n\n",s->dnpc);
