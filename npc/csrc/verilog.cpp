@@ -84,17 +84,17 @@ typedef struct{
 	bool start;
 	uint32_t pc;
 	uint32_t dnpc;
-	uint34_t inst;
+	uint32_t inst;
 }fifo;
 
 static void fifo_work(){
 	static fifo fifo_inst[2] = {};
 	static uint32_t fifo_ind = 0 ;
 
-	if(!fifo[0].start){
-		if(start){
-			fifo_inst[0].start = start;
-			fifo_inst[1].start = start;
+	if(!fifo_inst[0].start){
+		if(top->fetch){
+			fifo_inst[0].start = top->fetch;
+			fifo_inst[1].start = top->fetch;
 
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].inst = top->inst;
@@ -102,7 +102,7 @@ static void fifo_work(){
 			assert(fifo_ind==1);
 		}
 	}else{
-		if(start){
+		if(top->fetch){
 			assert(fifo_ind<=1);
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].inst = top->inst;
