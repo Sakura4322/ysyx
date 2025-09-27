@@ -240,6 +240,136 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
         vlSelf->ysyx_24090015_top__DOT__lsu_respValid = 0U;
         vlSelf->ysyx_24090015_top__DOT__lsu_rdata = 0U;
     }
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__temp_immI 
+        = (((- (IData)((vlSelf->ysyx_24090015_top__DOT__ifu_rdata 
+                        >> 0x1fU))) << 0xcU) | (vlSelf->ysyx_24090015_top__DOT__ifu_rdata 
+                                                >> 0x14U));
+    vlSelf->inst = vlSelf->ysyx_24090015_top__DOT__ifu_rdata;
+    if ((1U & (~ ((((((((0x13U == (0x707fU & vlSelf->inst)) 
+                        | (0x7013U == (0x707fU & vlSelf->inst))) 
+                       | (0x5013U == (0xfe00707fU & vlSelf->inst))) 
+                      | (0x1013U == (0xfe00707fU & vlSelf->inst))) 
+                     | (0x3013U == (0x707fU & vlSelf->inst))) 
+                    | (0x40005013U == (0xfe00707fU 
+                                       & vlSelf->inst))) 
+                   | (0x4013U == (0x707fU & vlSelf->inst))) 
+                  | (0x6013U == (0x707fU & vlSelf->inst)))))) {
+        if (((((((((0x67U == (0x707fU & vlSelf->inst)) 
+                   | (0x2003U == (0x707fU & vlSelf->inst))) 
+                  | (0x1003U == (0x707fU & vlSelf->inst))) 
+                 | (0x5003U == (0x707fU & vlSelf->inst))) 
+                | (3U == (0x707fU & vlSelf->inst))) 
+               | (0x4003U == (0x707fU & vlSelf->inst))) 
+              | (0x17U == (0x7fU & vlSelf->inst))) 
+             | (0x37U == (0x7fU & vlSelf->inst)))) {
+            if ((0x67U != (0x707fU & vlSelf->inst))) {
+                if ((0x2003U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 0xfU;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 1U;
+                } else if ((0x1003U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 3U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 1U;
+                } else if ((0x5003U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 3U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 1U;
+                } else if ((3U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 1U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 1U;
+                } else if ((0x4003U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 1U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 1U;
+                }
+            }
+        } else if (((((((((0x6fU == (0x7fU & vlSelf->inst)) 
+                          | (0x2023U == (0x707fU & vlSelf->inst))) 
+                         | (0x23U == (0x707fU & vlSelf->inst))) 
+                        | (0x1023U == (0x707fU & vlSelf->inst))) 
+                       | (0x1063U == (0x707fU & vlSelf->inst))) 
+                      | (0x63U == (0x707fU & vlSelf->inst))) 
+                     | (0x5063U == (0x707fU & vlSelf->inst))) 
+                    | (0x7063U == (0x707fU & vlSelf->inst)))) {
+            if ((0x6fU != (0x7fU & vlSelf->inst))) {
+                if ((0x2023U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 0xfU;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 0U;
+                } else if ((0x23U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 1U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 0U;
+                } else if ((0x1023U == (0x707fU & vlSelf->inst))) {
+                    vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask = 3U;
+                    vlSelf->ysyx_24090015_top__DOT__pmem_ls = 0U;
+                }
+            }
+        }
+    }
+    if (((((((((0x13U == (0x707fU & vlSelf->inst)) 
+               | (0x7013U == (0x707fU & vlSelf->inst))) 
+              | (0x5013U == (0xfe00707fU & vlSelf->inst))) 
+             | (0x1013U == (0xfe00707fU & vlSelf->inst))) 
+            | (0x3013U == (0x707fU & vlSelf->inst))) 
+           | (0x40005013U == (0xfe00707fU & vlSelf->inst))) 
+          | (0x4013U == (0x707fU & vlSelf->inst))) 
+         | (0x6013U == (0x707fU & vlSelf->inst)))) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 0U;
+    } else if (((((((((0x67U == (0x707fU & vlSelf->inst)) 
+                      | (0x2003U == (0x707fU & vlSelf->inst))) 
+                     | (0x1003U == (0x707fU & vlSelf->inst))) 
+                    | (0x5003U == (0x707fU & vlSelf->inst))) 
+                   | (3U == (0x707fU & vlSelf->inst))) 
+                  | (0x4003U == (0x707fU & vlSelf->inst))) 
+                 | (0x17U == (0x7fU & vlSelf->inst))) 
+                | (0x37U == (0x7fU & vlSelf->inst)))) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 
+            ((0x67U != (0x707fU & vlSelf->inst)) & 
+             ((0x2003U == (0x707fU & vlSelf->inst)) 
+              | ((0x1003U == (0x707fU & vlSelf->inst)) 
+                 | ((0x5003U == (0x707fU & vlSelf->inst)) 
+                    | ((3U == (0x707fU & vlSelf->inst)) 
+                       | (0x4003U == (0x707fU & vlSelf->inst)))))));
+    } else if (((((((((0x6fU == (0x7fU & vlSelf->inst)) 
+                      | (0x2023U == (0x707fU & vlSelf->inst))) 
+                     | (0x23U == (0x707fU & vlSelf->inst))) 
+                    | (0x1023U == (0x707fU & vlSelf->inst))) 
+                   | (0x1063U == (0x707fU & vlSelf->inst))) 
+                  | (0x63U == (0x707fU & vlSelf->inst))) 
+                 | (0x5063U == (0x707fU & vlSelf->inst))) 
+                | (0x7063U == (0x707fU & vlSelf->inst)))) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 
+            ((0x6fU != (0x7fU & vlSelf->inst)) & ((0x2023U 
+                                                   == 
+                                                   (0x707fU 
+                                                    & vlSelf->inst)) 
+                                                  | ((0x23U 
+                                                      == 
+                                                      (0x707fU 
+                                                       & vlSelf->inst)) 
+                                                     | (0x1023U 
+                                                        == 
+                                                        (0x707fU 
+                                                         & vlSelf->inst)))));
+    } else if (((((((((0x4063U == (0x707fU & vlSelf->inst)) 
+                      | (0x6063U == (0x707fU & vlSelf->inst))) 
+                     | (0x40000033U == (0xfe00707fU 
+                                        & vlSelf->inst))) 
+                    | (0x33U == (0xfe00707fU & vlSelf->inst))) 
+                   | (0x6033U == (0xfe00707fU & vlSelf->inst))) 
+                  | (0x7033U == (0xfe00707fU & vlSelf->inst))) 
+                 | (0x4033U == (0xfe00707fU & vlSelf->inst))) 
+                | (0x1033U == (0xfe00707fU & vlSelf->inst)))) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 0U;
+    } else if (((((((((0x5033U == (0xfe00707fU & vlSelf->inst)) 
+                      | (0x40005033U == (0xfe00707fU 
+                                         & vlSelf->inst))) 
+                     | (0x3033U == (0xfe00707fU & vlSelf->inst))) 
+                    | (0x2033U == (0xfe00707fU & vlSelf->inst))) 
+                   | (0x3073U == (0x707fU & vlSelf->inst))) 
+                  | (0x2073U == (0x707fU & vlSelf->inst))) 
+                 | (0x1073U == (0x707fU & vlSelf->inst))) 
+                | (0x30200073U == vlSelf->inst))) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 0U;
+    } else if ((0x73U == vlSelf->inst)) {
+        vlSelf->ysyx_24090015_top__DOT__pmem_work = 0U;
+    }
     if (vlSelf->rst) {
         if (vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state) {
             if (vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state) {
@@ -252,9 +382,160 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
             vlSelf->ysyx_24090015_top__DOT__ifu_reqValid = 1U;
             vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state = 1U;
         }
+        if ((0U == (IData)(vlSelf->ysyx_24090015_top__DOT__lsu0__DOT__lsu_state))) {
+            vlSelf->ysyx_24090015_top__DOT__lsu_reqValid 
+                = vlSelf->ysyx_24090015_top__DOT__pmem_work;
+        } else if ((1U == (IData)(vlSelf->ysyx_24090015_top__DOT__lsu0__DOT__lsu_state))) {
+            if (vlSelf->ysyx_24090015_top__DOT__lsu_respValid) {
+                vlSelf->ysyx_24090015_top__DOT__lsu_reqValid = 0U;
+            }
+        }
     } else {
         vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state = 0U;
         vlSelf->ifu_raddr = vlSelf->pc;
         vlSelf->ysyx_24090015_top__DOT__ifu_reqValid = 0U;
+        vlSelf->ysyx_24090015_top__DOT__lsu_reqValid = 0U;
     }
+    vlSelf->ysyx_24090015_top__DOT__idu0__DOT__inst_type 
+        = ((0x40U & vlSelf->inst) ? ((0x20U & vlSelf->inst)
+                                      ? ((0x10U & vlSelf->inst)
+                                          ? ((8U & vlSelf->inst)
+                                              ? 0U : 
+                                             ((4U & vlSelf->inst)
+                                               ? 0U
+                                               : ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 5U
+                                                    : 0U)
+                                                   : 0U)))
+                                          : ((8U & vlSelf->inst)
+                                              ? ((4U 
+                                                  & vlSelf->inst)
+                                                  ? 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 9U
+                                                    : 0U)
+                                                   : 0U)
+                                                  : 0U)
+                                              : ((4U 
+                                                  & vlSelf->inst)
+                                                  ? 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 3U
+                                                    : 0U)
+                                                   : 0U)
+                                                  : 
+                                                 ((2U 
+                                                   & vlSelf->inst)
+                                                   ? 
+                                                  ((1U 
+                                                    & vlSelf->inst)
+                                                    ? 7U
+                                                    : 0U)
+                                                   : 0U))))
+                                      : 0U) : ((0x20U 
+                                                & vlSelf->inst)
+                                                ? (
+                                                   (0x10U 
+                                                    & vlSelf->inst)
+                                                    ? 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 8U
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 1U
+                                                        : 0U)
+                                                       : 0U)))
+                                                    : 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 0U
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 6U
+                                                        : 0U)
+                                                       : 0U))))
+                                                : (
+                                                   (0x10U 
+                                                    & vlSelf->inst)
+                                                    ? 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 8U
+                                                        : 0U)
+                                                       : 0U)
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 2U
+                                                        : 0U)
+                                                       : 0U)))
+                                                    : 
+                                                   ((8U 
+                                                     & vlSelf->inst)
+                                                     ? 0U
+                                                     : 
+                                                    ((4U 
+                                                      & vlSelf->inst)
+                                                      ? 0U
+                                                      : 
+                                                     ((2U 
+                                                       & vlSelf->inst)
+                                                       ? 
+                                                      ((1U 
+                                                        & vlSelf->inst)
+                                                        ? 4U
+                                                        : 0U)
+                                                       : 0U))))));
+    vlSelf->ysyx_24090015_top__DOT__lsu_wen = (1U & 
+                                               (~ (IData)(vlSelf->ysyx_24090015_top__DOT__pmem_ls)));
 }
