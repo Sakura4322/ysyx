@@ -104,12 +104,12 @@ static void fifo_work(Decode *s){
 	}else{
 		if(top->fetch){
 			assert(fifo_ind<=1);
-			print("fifo_ind : %d\n\n",fifo_ind);
+			printf("fifo_ind : %d\n\n",fifo_ind);
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].inst = top->inst;
 			fifo_ind = (fifo_ind+1) %2;
 
-			print("fifo_ind : %d\n\n",fifo_ind);
+			printf("fifo_ind : %d\n\n",fifo_ind);
 			s->pc = fifo_inst[fifo_ind].pc;
 			s->inst = fifo_inst[fifo_ind].inst;
 			cpu.pc = fifo_inst[fifo_ind].pc;
