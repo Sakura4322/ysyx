@@ -100,11 +100,11 @@ void step_and_dump_wave(Decode *s){
 //input instructions
 	// printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
-		cpu.pc=top->ifu_addr;
+		cpu.pc=top->ifu_raddr;
 		read_regs();
-		uint32_t temp_inst = top->fetch ? pmem_read(top->ifu_addr,0x0F) : 0;
+		uint32_t temp_inst = top->fetch ? pmem_read(top->ifu_raddr,0x0F) : 0;
 		cpu_work = top->fetch ;
-		s->pc=top->ifu_addr;
+		s->pc=top->ifu_raddr;
 		cpu.pc=s->pc;
 		s->inst = temp_inst;
 		
