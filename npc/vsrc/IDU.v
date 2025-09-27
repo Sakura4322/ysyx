@@ -12,8 +12,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 
 	output reg [4:0] rd,
-	output reg  rs1,
-	output reg  rs2
+	output reg  [4:0] rs1,
+	output reg  [4:0] rs2
 );
 
 localparam   R = 1;
