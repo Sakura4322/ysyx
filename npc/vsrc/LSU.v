@@ -14,10 +14,11 @@ module ysyx_24090015_LSU #(
 
 
     output reg       lsu_reqValid,
-    output reg[DATAWIDTH -1 :0] lsu_addr,
-    output reg       lsu_wen,
-    output reg[DATAWIDTH -1 :0] lsu_wdata,
-    output reg[ 3:0] lsu_wmask,
+    // output        lsu_reqValid,
+    output [DATAWIDTH -1 :0] lsu_addr,
+    output        lsu_wen,
+    output [DATAWIDTH -1 :0] lsu_wdata,
+    output [ 3:0] lsu_wmask,
     input         lsu_respValid,
     input  [DATAWIDTH -1 :0] lsu_rdata,
 );
@@ -28,32 +29,64 @@ module ysyx_24090015_LSU #(
 
     localparam IDLE = 0;
     localparam WAIT = 1;
+    localparam FINISH = 2;
 
 assign ldata = lsu_rdata;
+// assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
+    reg [1: 0] lsu_state;
 
-    reg lsu_state;
-    always @(posedge clk ) begin
+    always @(posedge clk) begin
       if(!rst)begin
-          lsu_state <= 0;
-      end else begin
+        lsu_state <= IDLE;
+      end
+      else begin
+        case (lsu_state)
+          IDLE : begin
+            if(LSU_work)begin
+              lsu_state  <= WAIT;
+              // lsu_reqValid = 1;
+            end
+          end
+          WAIT : begin
+            if(lsu_respValid)begin
+              lsu_state <= FINISH;
+              // lsu_reqValid = 0;
+            end
+          end 
+          FINISH : begin
+            lsu_state <= IDLE;
+          end
+        endcase
+      end
+    end
+
+    always @(*) begin
+      if(!rst)begin
+          lsu_reqValid = 0;
+          // lsu_addr = 0;
+          // lsu_wdata = 0;
+          // lsu_wmask = 0;
+          lsu_wen = 0;
+
+        end else begin
           case (lsu_state)
             IDLE : begin
-                if(LSU_work)begin
-                  lsu_reqValid <= 1;
+                  lsu_reqValid = LSU_work;
 
-                  lsu_addr <= addr;
-                  lsu_wdata <= (ls == STORGE) ? sdata : 0 ;
-                  lsu_wmask <= (ls == STORGE) ? storge_mask : 0 ;
-                  lsu_wen <= (ls == STORGE);
-                end
             end
             WAIT : begin
               if(lsu_respValid)begin
-                lsu_state <= IDLE;
-                lsu_reqValid <= 0;
+                // lsu_state <= IDLE;
+                lsu_reqValid = 0;
               end
             end 
           endcase
         end
   end
+
+
+assign  lsu_addr = addr;
+assign  lsu_wdata = (ls == STORGE) ? sdata : 0 ;
+assign  lsu_wmask = (ls == STORGE) ? storge_mask : 0 ;
+assign  lsu_wen = (ls == STORGE);
 endmodule

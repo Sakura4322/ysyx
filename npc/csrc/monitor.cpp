@@ -324,11 +324,18 @@ int parse_args(int argc, char *argv[]) {
     {"diff"     , required_argument, NULL, 'd'},
     {"port"     , required_argument, NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
-	{"elf"      , required_argument, NULL, 'e'},
+	  {"elf"      , required_argument, NULL, 'e'},
+    {"mtrace"   , no_argument      , NULL, 'm'},
+    {"wave_load", no_argument      , NULL, 'w'},
+    {"itrace"   , no_argument      , NULL, 'i'},
+    {"dtrace"   , no_argument      , NULL, 'y'},
+    {"etrace"   , no_argument      , NULL, 't'},
+    {"ftrace"   , no_argument      , NULL, 'f'},
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "-bhmiytfwl:", table, NULL)) != -1) {
+
   //while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
 	// printf("o is : %c\n",o);
 	// printf("optarg : %s\n",optarg);

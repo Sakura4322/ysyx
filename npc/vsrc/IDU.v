@@ -1,6 +1,7 @@
 module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
+	input fetch,
     output reg [WIDTH-1:0] imm,
 
     output reg  ren1, 
@@ -12,9 +13,20 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 
 	output reg [4:0] rd,
-	output reg  rs1,
-	output reg  rs2
+	output reg  [4:0] rs1,
+	output reg  [4:0] rs2
 );
+
+localparam   R = 1;
+localparam  II = 2;
+localparam  IJ = 3;
+localparam  IS = 4;
+localparam  IC = 5;
+localparam  S  = 6;
+localparam  B  = 7;
+localparam  U  = 8;
+localparam  J  = 9;
+
 
     wire [3:0] inst_type;
     ysyx_24090015_TYPE#(
@@ -63,8 +75,9 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 		);
 
 		always @(*)begin
+			if(fetch)begin
 				case(inst_type)
-					`II : begin 
+					II : begin 
 							rs1=inst_in[19:15];
 							rs2=0;
 							ren1=1;
@@ -77,7 +90,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 
 				end
-					`IJ : begin 
+					IJ : begin 
 							rs1=inst_in[19:15];
 							rs2=0;
 							ren1=1;
@@ -90,7 +103,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 
 				end
-				`IS : begin 
+				IS : begin 
 							rs1=inst_in[19:15];
 							rs2=0;
 							ren1=1;
@@ -103,7 +116,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 
 				end
-					`IC: begin 
+					IC: begin 
 							rs1=inst_in[14:12]==0 ? 15:inst_in[19:15];
 							rs2=0;
 							ren1=1;
@@ -117,7 +130,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 
 
 				end
-					`U : begin 
+					U : begin 
 							rs1=0;
 							rs2=0;
 							ren1=0;
@@ -130,7 +143,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 
 				end
-					`J : begin 
+					J : begin 
 							rs1=0;
 							rs2=0;
 							ren1=0;
@@ -143,7 +156,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 
 				end
-					`S : begin 
+					S : begin 
 							rs1=inst_in[19:15];
 							rs2=inst_in[24:20];
 							ren1=1;
@@ -156,7 +169,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 							
 				end
-				    `B : begin 
+				    B : begin 
 							rs1=inst_in[19:15];
 							rs2=inst_in[24:20];
 							ren1=1;
@@ -169,7 +182,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							csr_wen = 0;
 							
 				end
-				    `R : begin 
+				    R : begin 
 							rs1=inst_in[19:15];
 							rs2=inst_in[24:20];
 							ren1=1;
@@ -183,7 +196,7 @@ module ysyx_24090015_IDU#(WIDTH=32) (
 							
 				end
                 default : begin
-							rs1=0;
+							rs1=5;
 							rs2=0;
 							ren1=0;
 							ren2=0;
@@ -197,6 +210,8 @@ module ysyx_24090015_IDU#(WIDTH=32) (
                 end
 				
 				endcase
+			end
+
 		end
 		
 endmodule
@@ -307,19 +322,28 @@ module ysyx_24090015_TYPE#(WIDTH=32) (
     output reg [3:0] inst_type
 );
 
-    always @(*) begin 
+localparam   R = 1;
+localparam  II = 2;
+localparam  IJ = 3;
+localparam  IS = 4;
+localparam  IC = 5;
+localparam  S  = 6;
+localparam  B  = 7;
+localparam  U  = 8;
+localparam  J  = 9;
+    always @(inst) begin 
         case (inst[6:0])
-						7'b0010111: inst_type = `U;
-                        7'b0110111: inst_type = `U;
-						7'b1101111: inst_type = `J;
-                        7'b1100111: inst_type = `IJ;//jalr
-						7'b1100011: inst_type = `B;
-						7'b0000011: inst_type = `IS;//lb,lh,lw,lbu,lhu
-						7'b0100011: inst_type = `S;						
-						7'b0010011: inst_type = `II; // I=2
-						7'b0110011: inst_type = `R ;
-						//7'b0001111: inst_type = `IC;
-						7'b1110011: inst_type = `IC;
+						7'b0010111: inst_type = U;
+                        7'b0110111: inst_type = U;
+						7'b1101111: inst_type = J;
+                        7'b1100111: inst_type = IJ;//jalr
+						7'b1100011: inst_type = B;
+						7'b0000011: inst_type = IS;//lb,lh,lw,lbu,lhu
+						7'b0100011: inst_type = S;						
+						7'b0010011: inst_type = II; // I=2
+						7'b0110011: inst_type = R ;
+						//7'b0001111: inst_type = IC;
+						7'b1110011: inst_type = IC;
 						
             default: inst_type = 0;
         endcase

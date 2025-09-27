@@ -1,14 +1,6 @@
 `timescale 1ns/1ns
 import "DPI-C" function int ebreak(input int a);
-`define R 1
-`define II 2
-`define IJ 3
-`define IS 4
-`define IC 5
-`define S 6
-`define B 7
-`define U 8
-`define J 9
+
 
 
 `define Fetch 1
@@ -18,13 +10,17 @@ import "DPI-C" function int ebreak(input int a);
 
 
 module ysyx_24090015_top#(
-  DATAWIDTH=32
+  DATAWIDTH=32,
+  ADDRWIDTH=32
   ) (
     input clk,
-    output [DATAWIDTH-1:0] inst,
-    output reg [DATAWIDTH-1:0] pc,dnpc,
-		output reg flag,
-		output hit_good_or_bad//实现HIT GOOD/BAD的功能
+    input rst,
+    output [ADDRWIDTH-1:0] pc,
+    output [ADDRWIDTH-1:0] ifu_raddr,
+    output [DATAWIDTH-1 : 0]inst,
+    output fetch,
+	  output reg flag,
+	  output hit_good_or_bad//实现HIT GOOD/BAD的功能
 );
 /*
 import "DPI-C" context function void read_regs(input string scope);
@@ -33,9 +29,6 @@ read_regs($sformatf("%m.reg0"));
 end
 */
 
-initial begin 
-pc=32'h80000000;
-end
 reg [31:0]ebreak_ret;
 
 //end emulation
@@ -45,14 +38,12 @@ flag = ebreak_ret[0];
 end 
 		
 
-    reg [DATAWIDTH-1:0] snpc;
+// wire [ADDRWIDTH-1:0] pc;
+wire [ADDRWIDTH-1:0] dnpc;
 
-
-
-
-wire ifu_respvalid;
+wire ifu_respValid;
 wire ifu_reqvalid;
-wire [31:0] ifu_raddr;
+// wire [31:0] ifu_raddr;
 wire [31:0] ifu_rdata;
 wire lsu_reqvalid;
 wire [31:0] lsu_addr;
@@ -74,11 +65,21 @@ ysyx_24090015_IFU #(
     .inst(inst),
     .fetch(fetch),
 
-    .ifu_reqvalid(ifu_reqvalid),
+    .ifu_reqValid(ifu_reqValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
-    .ifu_respvalid(ifu_respvalid)
+    .ifu_respValid(ifu_respValid)
 );
+
+
+wire pmem_work;
+wire pmem_ls;
+wire [7:0] pmem_wmask;
+wire [DATAWIDTH-1:0]pmem_addr;
+wire [DATAWIDTH-1:0]pmem_wdata;
+wire [DATAWIDTH-1:0]pmem_rdata;
+
+
 
 ysyx_24090015_LSU #(
     .DATAWIDTH(DATAWIDTH),
@@ -88,10 +89,10 @@ ysyx_24090015_LSU #(
     .rst(rst),
     .LSU_work(pmem_work),
     .ls(pmem_ls),
-    .addr(pmem_raddr),
+    .addr(pmem_addr),
     .sdata(pmem_wdata),
     .ldata(pmem_rdata),
-    .storge_mask(wmask),
+    .storge_mask(pmem_wmask),
 
 
     .lsu_reqValid(lsu_reqValid),
@@ -105,12 +106,13 @@ ysyx_24090015_LSU #(
 
 ysyx_24090015_SRAM sram0(
     .clk(clk),
-    .rst(!flag),
+    .rst(rst),
     .ifu_reqValid(ifu_reqValid),
-    .ifu_respvalid(ifu_respvalid),
+    .ifu_respValid(ifu_respValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
     .lsu_reqValid(lsu_reqValid),
+    .lsu_wen(lsu_wen),
     .lsu_addr(lsu_addr),
     .lsu_wdata(lsu_wdata),
     .lsu_wmask(lsu_wmask),
@@ -119,7 +121,6 @@ ysyx_24090015_SRAM sram0(
 );
 
     // 信号声明
-    // wire [ADDRWIDTH-1:0] dnpc;
     // wire [DATAWIDTH-1:0] inst;
 
     wire [DATAWIDTH-1:0] imm;
@@ -131,25 +132,20 @@ ysyx_24090015_SRAM sram0(
     wire [4:0] rs1;
     wire [4:0] rs2;
    
-    wire LSU_work;
     wire wen;
     wire ren1;
     wire ren2;
     wire pwen;
-    
-    wire pmem_ls;
-  	wire [7:0] pmem_wmask;
-    wire [DATAWIDTH-1:0]pmem_addr;
-    wire [DATAWIDTH-1:0]pmem_wdata;
-    wire [DATAWIDTH-1:0]pmem_rdata;
+
+
 
     wire [DATAWIDTH-1:0]csr_rdata;
     wire [DATAWIDTH-1:0]csr_wdata0;
     wire [DATAWIDTH-1:0]csr_wdata1;
     wire  csr_wen;
 
-assign ren1=ebreak(inst);
-assign hit_good_or_bad=src1;
+// assign ren1=ebreak(inst);
+// assign hit_good_or_bad=src1;
 
 
 
@@ -159,6 +155,7 @@ assign hit_good_or_bad=src1;
     ) idu0(    
         .clk(clk),
         .inst_in(inst),
+        .fetch(fetch),
         .imm(imm),
         .ren1(ren1),
 				.rs1(rs1),
@@ -187,10 +184,10 @@ assign hit_good_or_bad=src1;
         .src2(src2),
         .rd_wdata(rd_wdata),
 
-		    .pc(pc),
+		    .pc(ifu_raddr),
         .dnpc(dnpc),
 
-        .pmem_work(LSU_work),
+        .pmem_work(pmem_work),
         .pmem_ls(pmem_ls),
         .pmem_rdata(pmem_rdata),
         .pmem_addr(pmem_addr),
@@ -211,9 +208,9 @@ assign hit_good_or_bad=src1;
         .clk(clk),
         .wdata(rd_wdata),
         .waddr(rd),
-        .wen(wen_control),
-        .ren1(ren1_control),
-        .ren2(ren2_control),
+        .wen(wen),
+        .ren1(ren1),
+        .ren2(ren2),
         .raddr1(rs1),
         .raddr2(rs2),
         .rdata1(src1),

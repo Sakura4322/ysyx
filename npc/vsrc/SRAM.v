@@ -9,18 +9,26 @@ module ysyx_24090015_SRAM #(
     input rst,
 
     input                   ifu_reqValid,
-    output reg [DATAWIDTH -1:0] ifu_respvalid,
+    output reg              ifu_respValid,
     input [DATAWIDTH -1:0] ifu_raddr,
     output  reg [DATAWIDTH -1:0] ifu_rdata,
 
-    input        lsu_reqValid,
+    input                   lsu_reqValid,
     input [DATAWIDTH -1 :0] lsu_addr,
-    input        lsu_wen,
+    input                   lsu_wen,
     input [DATAWIDTH -1 :0] lsu_wdata,
-    input [ 3:0] lsu_wmask,
-    output  reg       lsu_respValid,
+    input [ 3:0]            lsu_wmask,
+    output  reg             lsu_respValid,
     output  reg [DATAWIDTH -1 :0] lsu_rdata,
 
+
+    output reqValid,
+    output [ADDRWIDTH -1  :0]addr,
+    output wen,
+    output wdata,
+    output [3:0] wmask,
+    input  respValid,
+    input [DATAWIDTH -1 ; 0] rdata
 );
 
   // always @(posedge clk) begin
@@ -40,38 +48,61 @@ module ysyx_24090015_SRAM #(
   localparam IFU_FETCH = 1;
   localparam LSU_LS    = 2;
 
- reg sram_state;
+ reg [1:0]sram_state;
+
+ always @(*) begin
+    if(!rst)begin
+      sram_state = IDLE;
+    end
+    else begin
+      case (sram_state)
+        IDLE :begin
+          // if(!ifu_respValid )begin
+            if( lsu_reqValid && !lsu_respValid)begin
+              sram_state = LSU_LS;
+            end 
+            else if(ifu_reqValid && !ifu_respValid )begin
+              sram_state = IFU_FETCH;
+            end
+          // end
+        end
+        IFU_FETCH : begin
+          if(ifu_respValid)begin
+            sram_state = IDLE;
+          end
+        end 
+        LSU_LS :begin
+          if(lsu_respValid)begin
+            sram_state = IDLE;
+          end
+        end
+      endcase
+    end
+ end
 
   always @(posedge clk ) begin
       if(!rst)begin
-        sram_state <= 0;
+        ifu_respValid <= 0;
+        lsu_respValid <= 0;
+        lsu_rdata <= 0;
       end else begin
           case (sram_state)
               IDLE :begin
-                if( lsu_reqValid)begin
-                  sram_state <= LSU_LS;  
-                  lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr,lsu_wmask) : 32'b0;
-                  if (lsu_reqValid && lsu_wen) begin
-                    pmem_write(lsu_addr, lsu_wdata, lsu_wmask);
-                  end
-                  lsu_respValid <= lsu_reqValid;
-                end 
-                else if(ifu_reqValid)begin
-                  sram_state <= IFU_FETCH;
-                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
-                  ifu_respvalid <= ifu_reqValid;
-                end
+                ifu_respValid <= 0;
+                lsu_respValid <= 0;
               end
               IFU_FETCH : begin
-                sram_state <= IDLE;
+                ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : ifu_rdata;
+                ifu_respValid <= ifu_reqValid;
+                lsu_respValid <= 0;
               end 
               LSU_LS :begin
-                if(ifu_reqValid)begin
-                  sram_state <= IFU_FETCH;
-                  ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
-                  ifu_respvalid <= ifu_reqValid;
-                  sram_state <= IFU_FETCH;
+                lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr,lsu_wmask) : 32'b0;
+                if (lsu_reqValid && lsu_wen) begin
+                  pmem_write(lsu_addr, lsu_wdata, lsu_wmask);
                 end
+                lsu_respValid <= lsu_reqValid;
+                ifu_respValid <= 0;
               end
           endcase
 

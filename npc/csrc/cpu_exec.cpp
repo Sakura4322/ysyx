@@ -150,14 +150,17 @@ Addr_Imfo *func_addr = read_sym_func();
 // }
 
   for (;n > 0; n --) {
-	char buf[1024]={0};
-    step_and_dump_wave(&s);
-	cout_inst_times++;
-   if(diff_on){
-	static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
-    cnt_fuck++;
-    if(cnt_fuck%2==1&&cnt_fuck>2)difftest_step(s.pc,s.dnpc);
-   }
+		char buf[1024]={0};
+		step_and_dump_wave(&s);
+		cout_inst_times++;
+	if(diff_on){
+		// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
+		// cnt_fuck++;
+		if(top->fetch && cout_inst_times >= 4 && cout_inst_times%2==0){
+			// printf("DIFFTEST : STEP %d\n",cout_inst_times);
+			difftest_step(s.pc,s.dnpc);
+		}
+	}
     if (top->flag)npc_state.state=NPC_END;
     
 
@@ -166,7 +169,8 @@ Addr_Imfo *func_addr = read_sym_func();
 
 if(n%2==0){
 	if(itrace_on){
-		char buf_temp[32]={0};
+
+		char buf_temp[64]={0};
 		for (int i=0;i<32;i++){//storage reg information
 				sprintf(buf_temp,"%s : %08x\n",regs[i],cpu.gpr[i]);	
 				strcat(buf,buf_temp);
@@ -183,6 +187,7 @@ if(n%2==0){
 		
 		strcpy(*(iringbuf_reg_state+cout_pc_num%2),buf);//use iringbuf storage the reg information
 		iring_load(iringbuf,&s,cout_pc_num++);//storage the information of instructions	
+
 	}
 	
 
@@ -211,6 +216,7 @@ if(itrace_on){
 			}	
 		}	
 	}
+
 }
 
 		
@@ -246,7 +252,7 @@ void cpu_exec(uint64_t n) {
 
     case NPC_END: case NPC_ABORT:
     	npc_state.halt_ret=top->hit_good_or_bad;
-    	npc_state.halt_pc=top->pc;
+    	npc_state.halt_pc=top->ifu_raddr;
     	/*
       Log("npc: %s at pc = " FMT_WORD,
           (npc_state.state == NPC_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :

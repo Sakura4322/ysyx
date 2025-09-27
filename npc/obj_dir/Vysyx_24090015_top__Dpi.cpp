@@ -17,7 +17,7 @@
 #ifndef VL_DPIDECL_read_wire_
 #define VL_DPIDECL_read_wire_
 int read_wire(int sec) {
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:29:26
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:30:26
     return Vysyx_24090015_top::read_wire(sec);
 }
 #endif

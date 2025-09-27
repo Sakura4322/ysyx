@@ -32,34 +32,96 @@ unsigned int inst[11] = {
 */
 
 void sim_init(int argc,char **argv){
-contextp = new VerilatedContext;
-contextp->commandArgs(argc,argv);
-top= new Vysyx_24090015_top;
+	contextp = new VerilatedContext;
+	contextp->commandArgs(argc,argv);
+	top= new Vysyx_24090015_top;
 
-contextp->traceEverOn(true);
-tfp = new VerilatedVcdC;
-top->trace(tfp,99); 
-tfp->open("wave.vcd");
-cpu.pc=CONFIG_MBASE;
-std::srand(time(NULL));
-init_disasm("riscv32");			//init disasm 
-parse_args(argc,argv);			//parse args
-long img_size=load_img();		
+	contextp->traceEverOn(true);
+	tfp = new VerilatedVcdC;
+	top->trace(tfp,99); 
+	tfp->open("wave.vcd");
+	cpu.pc=CONFIG_MBASE;
+	std::srand(time(NULL));
+	init_disasm("riscv32");			//init disasm 
+	parse_args(argc,argv);			//parse args
+	long img_size=load_img();		
 
-// printf("STARAT INIT DEVICE\n");
-init_device();
-// printf("INIT DEVICE FINSIH\n");
-if(diff_on)
-init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
-/*
-printf("Inst\n");
-for (int i=0;i<img_size;i++){
-	//printf("%08x : %08x\n",0x80000000+i*4,pmem_read(0x80000000+i*4));
-	printf("%x\n",vaddr[i]);
+	// printf("STARAT INIT DEVICE\n");
+	init_device();
+	// printf("INIT DEVICE FINSIH\n");
+	if(diff_on)
+		init_difftest(diff_so_file, img_size, difftest_port);	//init difftest port
+
+
+
+	top->rst = 0;
+	top->clk = 0;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+	top->clk = 1;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+	top->clk = 0;
+	// top->rst = 1;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+	top->clk = 1;
+	top->rst = 1;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+	top->clk = 0;
+	top ->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+
 }
-	*/
 
+typedef struct{
+	bool start;
+	uint32_t pc;
+	uint32_t dnpc;
+	uint32_t inst;
+}fifo;
+
+static void fifo_work(Decode *s){
+	static fifo fifo_inst[2] = {};
+	static uint32_t fifo_ind = 0 ;
+
+	if(!fifo_inst[0].start){
+		if(top->fetch){
+			fifo_inst[0].start = top->fetch;
+			fifo_inst[1].start = top->fetch;
+
+			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+			fifo_inst[fifo_ind].dnpc = top->pc;
+			fifo_inst[fifo_ind].inst = top->inst;
+			// printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
+			fifo_ind++;
+			assert(fifo_ind==1);
+		}
+	}else{
+		if(top->fetch){
+			assert(fifo_ind<=1);
+			// printf("fifo_ind : %d\n\n",fifo_ind);
+			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+			fifo_inst[fifo_ind].dnpc = top->pc;
+			fifo_inst[fifo_ind].inst = top->inst;
+			fifo_ind = (fifo_ind+1) %2;
+
+			// printf("fifo_ind : %d\n\n",fifo_ind);
+			s->pc = fifo_inst[fifo_ind].pc;
+			s->dnpc = fifo_inst[fifo_ind].dnpc;
+			// printf("s->dnpc : %08x\n\n",s->dnpc);
+			s->inst = fifo_inst[fifo_ind].inst;
+			cpu.pc = fifo_inst[fifo_ind].dnpc;
+		}
+	}
 }
+
 
 extern int cout_inst_times;
 
@@ -69,26 +131,11 @@ void step_and_dump_wave(Decode *s){
 	top->clk=clk;
 	
 	top ->eval();
-	//printf("top->pc : 0x%08x\n",top->pc);
-//	printf("vaddr index: %d\n",top->pc/4);
-
-	//printf("inst :  : 0x%08x\n",inst[top->pc/4]);
-	// if(clk) top->inst=inst[top->pc/4];
 
 
-//input instructions
-	// printf("inst :  : 0x%08x\n",vaddr[top->pc/4]);
 	if(clk){
-	cpu.pc=top->pc;
-	read_regs();
-	uint32_t temp_inst = pmem_read(top->pc,0x0F);
-	// printf("get inst successful top->pc : %08x \n",top->pc);
-	// printf("inst : %08x\n",temp_inst);
-	 	top->inst=temp_inst;
-		s->pc=top->pc;
-		cpu.pc=s->pc;
-		s->inst = temp_inst;
-		
+		read_regs();
+		fifo_work(s);
 		
 		
 
@@ -116,14 +163,7 @@ void step_and_dump_wave(Decode *s){
      	  log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 		}
 
-	}else {
-		
-		
-		
-		s->dnpc=top->dnpc;
-		
 	}
-
 	top ->eval();
   
 	if(wave_load){
@@ -134,15 +174,7 @@ void step_and_dump_wave(Decode *s){
     
  }
 
-// void free_alloc(){
-// 	free(ehdr_globle);
-// 	free(shdr_globle);
-// 	free(sym_globle);
-// 	free(str_globle);
-// }
-
 void sim_exit(){
-	//free_alloc();
 	free(vaddr);
 	tfp->close();
 	
@@ -152,20 +184,11 @@ void sim_exit(){
 }
 
 int main(int argc,char **argv){
-	// printf("I'M OK NOW\n"); 
 	
   sim_init(argc,argv);
 
 	int simTime=0;
 
-//get bin
-	 //argv++;
-/*
-   img_file=*argv;
-	 printf("\n\n\n\n\n\n\nimg_file : %s\n\n\n\n\n",img_file);
-*/
-
-	
 	int a=20;
 
 sdb_mainloop();

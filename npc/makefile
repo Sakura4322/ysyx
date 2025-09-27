@@ -32,7 +32,7 @@ override ARGS+= -i 			#itrace
 #override ARGS+= -t 			#etrace
 #override ARGS+= -m 			#mtrace
 #override ARGS+= -y 			#dtrace
-#override ARGS+= -f 			#ftrace
+override ARGS+= -f 			#ftrace
 override ARGS+= -w 			#wave_load
 override ARGS+= --elf=$(ELF)
 override ARGS+= --diff=$(NEMU_LIB)

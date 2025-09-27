@@ -16,7 +16,7 @@ extern "C" {
 
 
     // DPI EXPORTS
-    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:29:26
+    // DPI export at /home/sakura/ysyx-workbench/npc/vsrc/RegisterFile.v:30:26
     extern int read_wire(int sec);
 
     // DPI IMPORTS
