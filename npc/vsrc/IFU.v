@@ -43,7 +43,7 @@ module ysyx_24090015_IFU#(
     always @(posedge clk ) begin
         if(!rst)begin
             ifu_state <= IDLE;
-            ifu_raddr <= dnpc;
+            ifu_raddr <= pc;
             ifu_reqValid <= 0;
         end 
         else begin
