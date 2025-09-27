@@ -6,7 +6,6 @@
 //#include <getopt.h> 
 //#include <memory/paddr.h>
 //#include <nvboard.h>
-bool cpu_work = false;
 
  extern  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
  
@@ -103,7 +102,6 @@ void step_and_dump_wave(Decode *s){
 		cpu.pc=top->ifu_raddr;
 		read_regs();
 		uint32_t temp_inst = top->fetch ? pmem_read(top->ifu_raddr,0x0F) : 0;
-		cpu_work = top->fetch ;
 		s->pc=top->ifu_raddr;
 		cpu.pc=s->pc;
 		s->inst = temp_inst;

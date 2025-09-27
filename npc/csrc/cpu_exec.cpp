@@ -149,7 +149,6 @@ Addr_Imfo *func_addr = read_sym_func();
 // printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 // }
 
-// extern bool cpu_work;
   for (;n > 0; n --) {
 	char buf[1024]={0};
     step_and_dump_wave(&s);
@@ -250,7 +249,7 @@ void cpu_exec(uint64_t n) {
 
     case NPC_END: case NPC_ABORT:
     	npc_state.halt_ret=top->hit_good_or_bad;
-    	npc_state.halt_pc=top->pc;
+    	npc_state.halt_pc=top->ifu_raddr;
     	/*
       Log("npc: %s at pc = " FMT_WORD,
           (npc_state.state == NPC_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
