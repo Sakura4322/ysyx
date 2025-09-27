@@ -21,6 +21,14 @@ module ysyx_24090015_SRAM #(
     output  reg             lsu_respValid,
     output  reg [DATAWIDTH -1 :0] lsu_rdata,
 
+
+    output reqValid,
+    output [ADDRWIDTH -1  :0]addr,
+    output wen,
+    output wdata,
+    output [3:0] wmask,
+    input  respValid,
+    input [DATAWIDTH -1 ; 0] rdata
 );
 
   // always @(posedge clk) begin
