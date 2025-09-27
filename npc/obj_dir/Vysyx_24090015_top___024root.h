@@ -90,7 +90,7 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
-        VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+        VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
     };
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<2> __VactTriggered;

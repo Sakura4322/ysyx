@@ -88,29 +88,29 @@ typedef struct{
 }fifo;
 
 static void fifo_work(){
-	static fifo[2] = {};
-	uint32_t fifo_ind = 0 ;
+	static fifo fifo_inst[2] = {};
+	static uint32_t fifo_ind = 0 ;
 
 	if(!fifo[0].start){
 		if(start){
-			fifo[0].start = start;
-			fifo[1].start = start;
+			fifo_inst[0].start = start;
+			fifo_inst[1].start = start;
 
-			fifo[fifo_ind].pc = top->ifu_raddr;
-			fifo[fifo_ind].inst = top->inst;
+			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+			fifo_inst[fifo_ind].inst = top->inst;
 			fifo_ind++;
 			assert(fifo_ind==1);
 		}
 	}else{
 		if(start){
 			assert(fifo_ind<=1);
-			fifo[fifo_ind].pc = top->ifu_raddr;
-			fifo[fifo_ind].inst = top->inst;
+			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+			fifo_inst[fifo_ind].inst = top->inst;
 			fifo_ind = (fifo_ind+1) %2;
 
-			s->pc = fifo[fifo_ind].pc;
-			s->inst = fifo[fifo_ind].inst;
-			cpu.pc = fifo[fifo_ind].pc;
+			s->pc = fifo_inst[fifo_ind].pc;
+			s->inst = fifo_inst[fifo_ind].inst;
+			cpu.pc = fifo_inst[fifo_ind].pc;
 		}
 	}
 }
