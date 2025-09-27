@@ -33,6 +33,7 @@ class Vysyx_24090015_top VL_NOT_FINAL : public VerilatedModel {
     VL_OUT8(&fetch,0,0);
     VL_OUT8(&flag,0,0);
     VL_OUT8(&hit_good_or_bad,0,0);
+    VL_OUT(&pc,31,0);
     VL_OUT(&ifu_raddr,31,0);
     VL_OUT(&inst,31,0);
 

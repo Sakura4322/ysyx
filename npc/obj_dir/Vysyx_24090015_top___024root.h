@@ -61,10 +61,10 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*0:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ __VactDidInit;
         CData/*0:0*/ __VactContinue;
+        VL_OUT(pc,31,0);
         VL_OUT(ifu_raddr,31,0);
         VL_OUT(inst,31,0);
         IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
-        IData/*31:0*/ ysyx_24090015_top__DOT__pc;
         IData/*31:0*/ ysyx_24090015_top__DOT__dnpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__ifu_rdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;

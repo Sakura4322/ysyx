@@ -17,6 +17,7 @@ Vysyx_24090015_top::Vysyx_24090015_top(VerilatedContext* _vcontextp__, const cha
     , fetch{vlSymsp->TOP.fetch}
     , flag{vlSymsp->TOP.flag}
     , hit_good_or_bad{vlSymsp->TOP.hit_good_or_bad}
+    , pc{vlSymsp->TOP.pc}
     , ifu_raddr{vlSymsp->TOP.ifu_raddr}
     , inst{vlSymsp->TOP.inst}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}

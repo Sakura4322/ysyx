@@ -99,6 +99,7 @@ static void fifo_work(Decode *s){
 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
 			fifo_inst[fifo_ind].dnpc = top->pc;
 			fifo_inst[fifo_ind].inst = top->inst;
+			printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
 			fifo_ind++;
 			assert(fifo_ind==1);
 		}

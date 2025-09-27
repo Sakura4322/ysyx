@@ -20,10 +20,10 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__1(Vysyx_2409
     // Body
     if (vlSelf->rst) {
         if (vlSelf->ysyx_24090015_top__DOT__ifu_respValid) {
-            vlSelf->ysyx_24090015_top__DOT__pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
+            vlSelf->pc = vlSelf->ysyx_24090015_top__DOT__dnpc;
         }
     } else {
-        vlSelf->ysyx_24090015_top__DOT__pc = 0x80000000U;
+        vlSelf->pc = 0x80000000U;
     }
 }
 

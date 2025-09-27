@@ -277,12 +277,12 @@ void Vysyx_24090015_top___024root__trace_chg_sub_0(Vysyx_24090015_top___024root*
     }
     bufp->chgBit(oldp+91,(vlSelf->clk));
     bufp->chgBit(oldp+92,(vlSelf->rst));
-    bufp->chgIData(oldp+93,(vlSelf->ifu_raddr),32);
-    bufp->chgIData(oldp+94,(vlSelf->inst),32);
-    bufp->chgBit(oldp+95,(vlSelf->fetch));
-    bufp->chgBit(oldp+96,(vlSelf->flag));
-    bufp->chgBit(oldp+97,(vlSelf->hit_good_or_bad));
-    bufp->chgIData(oldp+98,(vlSelf->ysyx_24090015_top__DOT__pc),32);
+    bufp->chgIData(oldp+93,(vlSelf->pc),32);
+    bufp->chgIData(oldp+94,(vlSelf->ifu_raddr),32);
+    bufp->chgIData(oldp+95,(vlSelf->inst),32);
+    bufp->chgBit(oldp+96,(vlSelf->fetch));
+    bufp->chgBit(oldp+97,(vlSelf->flag));
+    bufp->chgBit(oldp+98,(vlSelf->hit_good_or_bad));
     bufp->chgIData(oldp+99,(((IData)(4U) + vlSelf->ifu_raddr)),32);
 }
 
