@@ -194,7 +194,7 @@ localparam  J  = 9;
 							
 				end
                 default : begin
-							rs1=0;
+							rs1=5;
 							rs2=0;
 							ren1=0;
 							ren2=0;

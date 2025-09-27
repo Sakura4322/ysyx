@@ -280,10 +280,6 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     for (int i = 0; i < 32; ++i) {
         tracep->declBus(c+17+i*1,"rf", true,(i+0), 31,0);
     }
-    tracep->declBus(c+128,"mcause", false,-1, 31,0);
-    tracep->declBus(c+129,"mstatus", false,-1, 31,0);
-    tracep->declBus(c+130,"mepc", false,-1, 31,0);
-    tracep->declBus(c+131,"mtvc", false,-1, 31,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("sram0 ");
     tracep->declBus(c+101,"DATAWIDTH", false,-1, 31,0);
@@ -615,8 +611,4 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_full_sub_0(Vysyx_24090015_
     bufp->fullIData(oldp+125,(0x80000000U),32);
     bufp->fullIData(oldp+126,(vlSelf->ysyx_24090015_top__DOT__pmem_raddr),32);
     bufp->fullCData(oldp+127,(vlSelf->ysyx_24090015_top__DOT__wmask),4);
-    bufp->fullIData(oldp+128,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__mcause),32);
-    bufp->fullIData(oldp+129,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__mstatus),32);
-    bufp->fullIData(oldp+130,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__mepc),32);
-    bufp->fullIData(oldp+131,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__mtvc),32);
 }

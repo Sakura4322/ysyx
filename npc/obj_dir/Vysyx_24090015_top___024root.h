@@ -80,15 +80,11 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata0;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata1;
         IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
-        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
-        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
-        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;
-    };
-    struct {
-        IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mtvc;
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VactIterCount;
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
+    };
+    struct {
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
         VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
     };

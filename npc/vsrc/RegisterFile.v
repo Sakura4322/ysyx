@@ -1,4 +1,7 @@
-module ysyx_24090015_RegisterFile #(ADDR_WIDTH = 4, DATA_WIDTH = 32) (
+module ysyx_24090015_RegisterFile #(
+  ADDR_WIDTH = 4, 
+  DATA_WIDTH = 32
+  ) (
   input clk,
   input [DATA_WIDTH-1:0] wdata,
   input [ADDR_WIDTH-1:0] waddr,
