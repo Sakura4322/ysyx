@@ -177,7 +177,7 @@ ysyx_24090015_SRAM sram0(
         .src2(src2),
         .rd_wdata(rd_wdata),
 
-		    .pc(pc),
+		    .pc(ifu_raddr),
         .dnpc(dnpc),
 
         .pmem_work(LSU_work),
