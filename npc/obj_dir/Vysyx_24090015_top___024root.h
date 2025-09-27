@@ -67,8 +67,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
         IData/*31:0*/ ysyx_24090015_top__DOT__dnpc;
         IData/*31:0*/ ysyx_24090015_top__DOT__ifu_rdata;
-        IData/*31:0*/ ysyx_24090015_top__DOT__lsu_addr;
-        IData/*31:0*/ ysyx_24090015_top__DOT__lsu_wdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__lsu_rdata;
         IData/*31:0*/ ysyx_24090015_top__DOT__pmem_addr;
         IData/*31:0*/ ysyx_24090015_top__DOT__pmem_wdata;
@@ -83,11 +81,11 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ __VstlIterCount;
         IData/*31:0*/ __VicoIterCount;
         IData/*31:0*/ __VactIterCount;
-    };
-    struct {
         VlUnpacked<IData/*31:0*/, 32> ysyx_24090015_top__DOT__reg0__DOT__rf;
         VlUnpacked<IData/*31:0*/, 4> ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS;
-        VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+    };
+    struct {
+        VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
     };
     VlTriggerVec<2> __VstlTriggered;
     VlTriggerVec<2> __VicoTriggered;

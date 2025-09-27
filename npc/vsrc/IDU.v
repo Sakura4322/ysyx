@@ -1,6 +1,7 @@
 module ysyx_24090015_IDU#(WIDTH=32) (
     input clk,
     input [WIDTH-1:0] inst_in,
+	input fetch,
     output reg [WIDTH-1:0] imm,
 
     output reg  ren1, 
@@ -74,6 +75,7 @@ localparam  J  = 9;
 		);
 
 		always @(*)begin
+			if(fetch)begin
 				case(inst_type)
 					II : begin 
 							rs1=inst_in[19:15];
@@ -208,6 +210,8 @@ localparam  J  = 9;
                 end
 				
 				endcase
+			end
+
 		end
 		
 endmodule

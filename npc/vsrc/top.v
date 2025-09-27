@@ -155,6 +155,7 @@ ysyx_24090015_SRAM sram0(
     ) idu0(    
         .clk(clk),
         .inst_in(inst),
+        .fetch(fetch),
         .imm(imm),
         .ren1(ren1),
 				.rs1(rs1),
