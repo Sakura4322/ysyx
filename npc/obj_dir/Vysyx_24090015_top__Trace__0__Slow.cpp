@@ -259,7 +259,8 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_init_sub__TOP__0(Vysyx_240
     tracep->declBus(c+106,"LOAD", false,-1, 31,0);
     tracep->declBus(c+105,"IDLE", false,-1, 31,0);
     tracep->declBus(c+106,"WAIT", false,-1, 31,0);
-    tracep->declBit(c+16,"lsu_state", false,-1);
+    tracep->declBus(c+104,"FINISH", false,-1, 31,0);
+    tracep->declBus(c+16,"lsu_state", false,-1, 1,0);
     tracep->popNamePrefix(1);
     tracep->pushNamePrefix("reg0 ");
     tracep->declBus(c+112,"ADDR_WIDTH", false,-1, 31,0);
@@ -356,7 +357,7 @@ VL_ATTR_COLD void Vysyx_24090015_top___024root__trace_full_sub_0(Vysyx_24090015_
     bufp->fullIData(oldp+13,(vlSelf->ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS[2]),32);
     bufp->fullIData(oldp+14,(vlSelf->ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__CSRS[3]),32);
     bufp->fullBit(oldp+15,(vlSelf->ysyx_24090015_top__DOT__ifu0__DOT__ifu_state));
-    bufp->fullBit(oldp+16,(vlSelf->ysyx_24090015_top__DOT__lsu0__DOT__lsu_state));
+    bufp->fullCData(oldp+16,(vlSelf->ysyx_24090015_top__DOT__lsu0__DOT__lsu_state),2);
     bufp->fullIData(oldp+17,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[0]),32);
     bufp->fullIData(oldp+18,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[1]),32);
     bufp->fullIData(oldp+19,(vlSelf->ysyx_24090015_top__DOT__reg0__DOT__rf[2]),32);

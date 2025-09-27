@@ -49,14 +49,12 @@ module ysyx_24090015_SRAM #(
     else begin
       case (sram_state)
         IDLE :begin
-          if(!ifu_respValid && !lsu_respValid)begin
-            if( lsu_reqValid)begin
+            if( lsu_reqValid && !lsu_respValid)begin
               sram_state = LSU_LS;
             end 
-            else if(ifu_reqValid)begin
+            else if(ifu_reqValid && !ifu_respValid)begin
               sram_state = IFU_FETCH;
             end
-          end
         end
         IFU_FETCH : begin
           if(ifu_respValid)begin
@@ -86,7 +84,7 @@ module ysyx_24090015_SRAM #(
               IFU_FETCH : begin
                 ifu_rdata <= (ifu_reqValid) ? pmem_read(ifu_raddr,4'b1111) : 32'b0;
                 ifu_respValid <= ifu_reqValid;
-                lsu_respValid <= lsu_reqValid;
+                lsu_respValid <= 0;
               end 
               LSU_LS :begin
                 lsu_rdata <= (lsu_reqValid && !lsu_wen) ? pmem_read(lsu_addr,lsu_wmask) : 32'b0;
@@ -94,6 +92,7 @@ module ysyx_24090015_SRAM #(
                   pmem_write(lsu_addr, lsu_wdata, lsu_wmask);
                 end
                 lsu_respValid <= lsu_reqValid;
+                ifu_respValid <= 0;
               end
           endcase
 
