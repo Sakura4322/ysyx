@@ -43,13 +43,13 @@ assign ldata = lsu_rdata;
           IDLE : begin
             if(LSU_work)begin
               lsu_state  <= WAIT;
-              lsu_reqValid = 1;
+              // lsu_reqValid = 1;
             end
           end
           WAIT : begin
             if(lsu_respValid)begin
               lsu_state <= IDLE;
-              lsu_reqValid = 0;
+              // lsu_reqValid = 0;
             end
           end 
         endcase
@@ -67,7 +67,7 @@ assign ldata = lsu_rdata;
         end else begin
           case (lsu_state)
             IDLE : begin
-                  // lsu_reqValid <= 1;
+                  lsu_reqValid = LSU_work;
                   lsu_addr = addr;
                   lsu_wdata = (ls == STORGE) ? sdata : 0 ;
                   lsu_wmask = (ls == STORGE) ? storge_mask : 0 ;
@@ -76,7 +76,7 @@ assign ldata = lsu_rdata;
             WAIT : begin
               if(lsu_respValid)begin
                 // lsu_state <= IDLE;
-                // lsu_reqValid <= 0;
+                lsu_reqValid = 0;
               end
             end 
           endcase
