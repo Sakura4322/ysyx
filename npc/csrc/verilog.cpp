@@ -128,7 +128,7 @@ void step_and_dump_wave(Decode *s){
 
 	if(clk){
 		read_regs();
-		fifo_work(Decode *s);
+		fifo_work(s);
 		
 		
 
