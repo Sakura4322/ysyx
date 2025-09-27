@@ -150,14 +150,14 @@ Addr_Imfo *func_addr = read_sym_func();
 // }
 
   for (;n > 0; n --) {
-	char buf[1024]={0};
-    step_and_dump_wave(&s);
-	cout_inst_times++;
-   if(diff_on){
-	// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
-    // cnt_fuck++;
-    if(top->fetch)difftest_step(s.pc,s.dnpc);
-   }
+		char buf[1024]={0};
+		step_and_dump_wave(&s);
+		cout_inst_times++;
+	if(diff_on){
+		// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
+		// cnt_fuck++;
+		if(top->fetch && cout_inst_times >= 2)difftest_step(s.pc,s.dnpc);
+	}
     if (top->flag)npc_state.state=NPC_END;
     
 
