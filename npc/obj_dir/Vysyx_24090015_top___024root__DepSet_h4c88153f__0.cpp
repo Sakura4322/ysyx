@@ -222,13 +222,13 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___nba_sequent__TOP__0(Vysyx_2409
             }
         } else if (vlSelf->ysyx_24090015_top__DOT__pmem_work) {
             vlSelf->ysyx_24090015_top__DOT__lsu_addr 
-                = vlSelf->ysyx_24090015_top__DOT__pmem_raddr;
+                = vlSelf->ysyx_24090015_top__DOT__pmem_addr;
             vlSelf->ysyx_24090015_top__DOT__lsu_wdata 
                 = ((IData)(vlSelf->ysyx_24090015_top__DOT__pmem_ls)
                     ? 0U : vlSelf->ysyx_24090015_top__DOT__pmem_wdata);
             vlSelf->ysyx_24090015_top__DOT__lsu_wmask 
                 = ((IData)(vlSelf->ysyx_24090015_top__DOT__pmem_ls)
-                    ? 0U : (0xfU & (IData)(vlSelf->ysyx_24090015_top__DOT__wmask)));
+                    ? 0U : (0xfU & (IData)(vlSelf->ysyx_24090015_top__DOT____Vcellout__exu0__pmem_wmask)));
             vlSelf->ysyx_24090015_top__DOT__lsu_wen 
                 = (1U & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__pmem_ls)));
         }
