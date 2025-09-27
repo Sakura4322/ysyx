@@ -50,13 +50,12 @@ VL_INLINE_OPT void Vysyx_24090015_top___024root___ico_comb__TOP__0(Vysyx_2409001
     // Body
     if (vlSelf->rst) {
         if ((0U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
-            if ((1U & ((~ (IData)(vlSelf->ysyx_24090015_top__DOT__ifu_respValid)) 
-                       & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_respValid))))) {
-                if (vlSelf->ysyx_24090015_top__DOT__lsu_reqValid) {
-                    vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 2U;
-                } else if (vlSelf->ysyx_24090015_top__DOT__ifu_reqValid) {
-                    vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 1U;
-                }
+            if (((IData)(vlSelf->ysyx_24090015_top__DOT__lsu_reqValid) 
+                 & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__lsu_respValid)))) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 2U;
+            } else if (((IData)(vlSelf->ysyx_24090015_top__DOT__ifu_reqValid) 
+                        & (~ (IData)(vlSelf->ysyx_24090015_top__DOT__ifu_respValid)))) {
+                vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state = 1U;
             }
         } else if ((1U == (IData)(vlSelf->ysyx_24090015_top__DOT__sram0__DOT__sram_state))) {
             if (vlSelf->ysyx_24090015_top__DOT__ifu_respValid) {

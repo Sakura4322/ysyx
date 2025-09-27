@@ -49,12 +49,14 @@ module ysyx_24090015_SRAM #(
     else begin
       case (sram_state)
         IDLE :begin
-            if( lsu_reqValid && !lsu_respValid)begin
+          if(!ifu_respValid && !lsu_respValid)begin
+            if( lsu_reqValid)begin
               sram_state = LSU_LS;
             end 
-            else if(ifu_reqValid && !ifu_respValid)begin
+            else if(ifu_reqValid)begin
               sram_state = IFU_FETCH;
             end
+          end
         end
         IFU_FETCH : begin
           if(ifu_respValid)begin
