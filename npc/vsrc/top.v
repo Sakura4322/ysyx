@@ -15,6 +15,7 @@ module ysyx_24090015_top#(
   ) (
     input clk,
     input rst,
+    output [ADDRWIDTH-1:0] pc,
     output [ADDRWIDTH-1:0] ifu_raddr,
     output [DATAWIDTH-1 : 0]inst,
     output fetch,
@@ -37,7 +38,7 @@ flag = ebreak_ret[0];
 end 
 		
 
-wire [ADDRWIDTH-1:0] pc;
+// wire [ADDRWIDTH-1:0] pc;
 wire [ADDRWIDTH-1:0] dnpc;
 
 wire ifu_respValid;
