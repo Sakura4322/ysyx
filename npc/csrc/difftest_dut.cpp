@@ -108,5 +108,5 @@ void difftest_step(uint32_t pc, uint32_t npc) {
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, 0);
 
-  checkregs(&ref_r, npc);
+  checkregs(&ref_r, pc);
 }

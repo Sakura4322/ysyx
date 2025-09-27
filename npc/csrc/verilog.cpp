@@ -117,7 +117,7 @@ static void fifo_work(Decode *s){
 			s->dnpc = fifo_inst[fifo_ind].dnpc;
 			printf("s->dnpc : %08x\n\n",s->dnpc);
 			s->inst = fifo_inst[fifo_ind].inst;
-			cpu.pc = fifo_inst[fifo_ind].pc;
+			cpu.pc = fifo_inst[fifo_ind].dnpc;
 		}
 	}
 }
