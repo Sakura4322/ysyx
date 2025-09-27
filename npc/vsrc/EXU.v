@@ -302,7 +302,7 @@ module ysyx_24090015_EXU#(
 				default: begin
 					pmem_work = 0;
 					pmem_ls   = 0;
-					pmem_addr = 0
+					pmem_addr = 0;
 					pmem_wmask = 0;
 					pmem_wdata = 0;
 				end
