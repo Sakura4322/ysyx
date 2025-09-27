@@ -53,12 +53,13 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         CData/*3:0*/ ysyx_24090015_top__DOT__idu0__DOT__inst_type;
         CData/*0:0*/ ysyx_24090015_top__DOT__idu0__DOT__i0__DOT__clk;
         CData/*1:0*/ ysyx_24090015_top__DOT__csr_regfiles_instance__DOT__csr_raddr0;
+        CData/*0:0*/ __VdfgTmp_h7246bf09__0;
+        CData/*0:0*/ __VdfgTmp_h872a8a4a__0;
         CData/*0:0*/ __Vdly__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ __Vtrigrprev__TOP__clk;
         CData/*0:0*/ __Vtrigrprev__TOP__ysyx_24090015_top__DOT__ifu_respValid;
         CData/*0:0*/ __VactDidInit;
         CData/*0:0*/ __VactContinue;
-        SData/*12:0*/ ysyx_24090015_top__DOT__idu0__DOT__i4__DOT__init;
         VL_OUT(pc,31,0);
         VL_OUT(inst,31,0);
         IData/*31:0*/ ysyx_24090015_top__DOT__ebreak_ret;
@@ -79,7 +80,6 @@ class Vysyx_24090015_top___024root final : public VerilatedModule {
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata0;
         IData/*31:0*/ ysyx_24090015_top__DOT__csr_wdata1;
         IData/*31:0*/ ysyx_24090015_top__DOT__idu0__DOT__temp_immI;
-        IData/*20:0*/ ysyx_24090015_top__DOT__idu0__DOT__i2__DOT__init;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mcause;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mstatus;
         IData/*31:0*/ ysyx_24090015_top__DOT__reg0__DOT__mepc;

@@ -25,11 +25,11 @@ module ysyx_24090015_IFU#(
 
     always @(ifu_respValid) begin 
         if(!rst)begin
-            pc = BASEADDR;
+            pc <= BASEADDR;
         end
 		else 
         if(ifu_respValid)begin
-            pc = dnpc;
+            pc <= dnpc;
         end
 	end
 
@@ -54,7 +54,7 @@ module ysyx_24090015_IFU#(
                 end
                 WAIT : begin
                   if(ifu_respValid)begin
-                    ifu_raddr    <= pc;
+                    ifu_raddr    <= dnpc;
                     ifu_state <= IDLE;
                   end
   
