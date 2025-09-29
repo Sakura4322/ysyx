@@ -2,8 +2,8 @@
 #define COMMON_H
 #include <stdio.h>
 #include "verilated.h"
-#include "Vysyx_24090015_top.h"
-#include <verilated_vcd_c.h>
+#include "VysyxSoCFull.h"
+#include <verilated_fst_c.h>
 #include "debug.h"
 #include <getopt.h>
 #include <string>

@@ -2,8 +2,8 @@ module ysyx_24090015_LSU #(
     parameter DATAWIDTH =32,
     parameter ADDRWIDTH =32
 ) (
-  input clk,
-  input rst,
+  input clock,
+  input reset,
 
   input LSU_work,
   input ls,        
@@ -11,6 +11,7 @@ module ysyx_24090015_LSU #(
   input [DATAWIDTH-1 : 0] sdata,
   output [DATAWIDTH-1 : 0] ldata,
   input [3:0] storge_mask,
+  output wvalid,
 
 
     output reg       lsu_reqValid,
@@ -30,13 +31,13 @@ module ysyx_24090015_LSU #(
     localparam IDLE = 0;
     localparam WAIT = 1;
     localparam FINISH = 2;
-
+assign wvalid = lsu_respValid;
 assign ldata = lsu_rdata;
 // assign lsu_reqValid = lsu_respValid ? 0 : LSU_work;
     reg [1: 0] lsu_state;
 
-    always @(posedge clk) begin
-      if(!rst)begin
+    always @(posedge clock) begin
+      if(reset)begin
         lsu_state <= IDLE;
       end
       else begin
@@ -54,6 +55,9 @@ assign ldata = lsu_rdata;
             end
           end 
           FINISH : begin
+            if(LSU_work)begin
+              lsu_state  <= WAIT;
+            end
             lsu_state <= IDLE;
           end
         endcase
@@ -61,12 +65,11 @@ assign ldata = lsu_rdata;
     end
 
     always @(*) begin
-      if(!rst)begin
+      if(reset)begin
           lsu_reqValid = 0;
           // lsu_addr = 0;
           // lsu_wdata = 0;
           // lsu_wmask = 0;
-          lsu_wen = 0;
 
         end else begin
           case (lsu_state)
@@ -75,10 +78,11 @@ assign ldata = lsu_rdata;
 
             end
             WAIT : begin
-              if(lsu_respValid)begin
-                // lsu_state <= IDLE;
-                lsu_reqValid = 0;
-              end
+              lsu_reqValid = 0;
+              // if(lsu_respValid)begin
+              //   // lsu_state <= IDLE;
+              //   lsu_reqValid = 0;
+              // end
             end 
           endcase
         end

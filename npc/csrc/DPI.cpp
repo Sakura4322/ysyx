@@ -2,7 +2,7 @@
 #include "svdpi.h"
 #include "my_share.h"
 #include "verilated_dpi.h"
-#include "Vysyx_24090015_top__Dpi.h"
+#include "VysyxSoCFull__Dpi.h"
 #include "device.h"
 
 extern "C" int ebreak(int a){
@@ -11,6 +11,14 @@ extern "C" int ebreak(int a){
 		return 1;	
 		}	
 		else return 0;
+}
+
+
+extern "C" void flash_read(int32_t addr, int32_t *data) {
+	*data = *(int32_t *)(vaddr + addr);
+	// if(mtrace_on){log_write("flash_read\taddr : %08x\n",addr);}
+	if(mtrace_on){log_write("flash_read\taddr : %08x\tdata : %08x\n",addr,*(int32_t *)(vaddr + addr));}
+
 }
 
 const char *regs[] = {                                                
@@ -41,7 +49,8 @@ void read_regs() {
 */
 
 void read_regs() {
-	scope = svGetScopeFromName("TOP.ysyx_24090015_top.reg0");
+	// scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.reg0");
+	scope = svGetScopeFromName("TOP.ysyxSoCFull.reg0");
 	svSetScope(scope);
 	if (scope == NULL) {
         printf("Failed to get scope\n");
@@ -51,7 +60,8 @@ void read_regs() {
 	for(int i=0;i<32;i++){
 		cpu.gpr[i]=read_wire(i);
 	}
-	scope = svGetScopeFromName("TOP.ysyx_24090015_top.csr_regfiles_instance");
+	// scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.csr_regfiles_instance");
+	scope = svGetScopeFromName("TOP.ysyxSoCFull.csr_regfiles_instance");
 	svSetScope(scope);
 	for(int i=0;i<4;i++){
 		cpu.csr[i]=read_wire(i);
@@ -102,7 +112,7 @@ if(raddr<0x80000000||raddr>0xffffffff){
 	else if(wmask==0b1111) return mmio_read(raddr, 4);
 	else assert(0);
 }
-// log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
+if(mtrace_on)log_write("pmem_read\taddr : %08x\tdata : %08x\n",raddr,*(uint32_t *)(vaddr + (raddr -CONFIG_MBASE)));
 return *(uint32_t *)(vaddr + (raddr -CONFIG_MBASE));
 }
 

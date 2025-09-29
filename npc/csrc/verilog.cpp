@@ -12,8 +12,8 @@
  
 unsigned int clk=0;
 VerilatedContext *contextp = NULL;
-Vysyx_24090015_top* top=NULL;
-VerilatedVcdC *tfp=NULL;
+VysyxSoCFull* top=NULL;
+VerilatedFstC *tfp=NULL;
 
 /*
 unsigned int inst[11] = {
@@ -30,16 +30,46 @@ unsigned int inst[11] = {
     0x00100073 //ebreak
 };
 */
+void top_reset(int delay,bool reset_value){
+	top->reset = reset_value;
+	top->clock = 0;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+
+	for(int i=0;i<delay;i++){
+		top->clock = 1;
+		top->eval();
+		contextp->timeInc(1);
+		tfp->dump(contextp->time());  // dump 波形数据
+		top->clock = 0;
+		top->eval();
+		contextp->timeInc(1);
+		tfp->dump(contextp->time());  // dump 波形数据
+	}
+	top->clock = 1;
+	top->reset = 0;
+	top->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+	top->clock = 0;
+	top ->eval();
+	contextp->timeInc(1);
+	tfp->dump(contextp->time());  // dump 波形数据
+
+	printf("\n\n\n\nfinish reset\n");
+}
+
 
 void sim_init(int argc,char **argv){
 	contextp = new VerilatedContext;
 	contextp->commandArgs(argc,argv);
-	top= new Vysyx_24090015_top;
+	top= new VysyxSoCFull;
 
 	contextp->traceEverOn(true);
-	tfp = new VerilatedVcdC;
+	tfp = new VerilatedFstC;
 	top->trace(tfp,99); 
-	tfp->open("wave.vcd");
+	tfp->open("wave.fst");
 	cpu.pc=CONFIG_MBASE;
 	std::srand(time(NULL));
 	init_disasm("riscv32");			//init disasm 
@@ -54,29 +84,7 @@ void sim_init(int argc,char **argv){
 
 
 
-	top->rst = 0;
-	top->clk = 0;
-	top->eval();
-	contextp->timeInc(1);
-	tfp->dump(contextp->time());  // dump 波形数据
-	top->clk = 1;
-	top->eval();
-	contextp->timeInc(1);
-	tfp->dump(contextp->time());  // dump 波形数据
-	top->clk = 0;
-	// top->rst = 1;
-	top->eval();
-	contextp->timeInc(1);
-	tfp->dump(contextp->time());  // dump 波形数据
-	top->clk = 1;
-	top->rst = 1;
-	top->eval();
-	contextp->timeInc(1);
-	tfp->dump(contextp->time());  // dump 波形数据
-	top->clk = 0;
-	top ->eval();
-	contextp->timeInc(1);
-	tfp->dump(contextp->time());  // dump 波形数据
+		top_reset(30,1);
 
 }
 
@@ -125,15 +133,20 @@ static void fifo_work(Decode *s){
 
 extern int cout_inst_times;
 
+// int RUN_TIME = 400000000;
 void step_and_dump_wave(Decode *s){
 	
 	clk = clk ^ 1;
-	top->clk=clk;
+	top->clock=clk;
 	
 	top ->eval();
 
-
-	if(clk){
+	// static int times=0;
+	// times ++;
+	// if(times==RUN_TIME){
+	// 	exit(-1);
+	// }
+	// if(clk){
 		read_regs();
 		fifo_work(s);
 		
@@ -141,29 +154,30 @@ void step_and_dump_wave(Decode *s){
 
 		if(itrace_on){
 
-
-			char *p = s->logbuf;
-			p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
-			
-			int ilen = 4;
-			int i;
-			uint8_t *inst = (uint8_t *)&s->inst;
-			for (i = ilen - 1; i >= 0; i --) {
-				p += snprintf(p, 4, " %02x", inst[i]);
+			if(top->fetch){
+				char *p = s->logbuf;
+				p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
+				
+				int ilen = 4;
+				int i;
+				uint8_t *inst = (uint8_t *)&s->inst;
+				for (i = ilen - 1; i >= 0; i --) {
+					p += snprintf(p, 4, " %02x", inst[i]);
+				}
+				int ilen_max =4;
+				int space_len = ilen_max - ilen;
+				if (space_len < 0) space_len = 0;
+				space_len = space_len * 3 + 1;
+				memset(p, ' ', space_len);
+				p += space_len;
+				
+				disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+	
+				log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
 			}
-			int ilen_max =4;
-			int space_len = ilen_max - ilen;
-			if (space_len < 0) space_len = 0;
-			space_len = space_len * 3 + 1;
-			memset(p, ' ', space_len);
-			p += space_len;
-			
-			disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
-  
-     	  log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
+
 		}
 
-	}
 	top ->eval();
   
 	if(wave_load){
@@ -202,11 +216,11 @@ sdb_mainloop();
 
 */
 	//checking pragram ending
-	if(!top->hit_good_or_bad){
-	printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
-	}else{
-	printf("\n\n\n\n\n\nHIT BAD TRAP\n\n\n\n\n\n");		
-	}
+	// if(!top->hit_good_or_bad){
+	// printf("\n\n\n\n\n\nHIT GOOD TRAP\n\n\n\n\n\n");	
+	// }else{
+	// printf("\n\n\n\n\n\nHIT BAD TRAP\n\n\n\n\n\n");		
+	// }
 
 
 sim_exit();

@@ -9,12 +9,12 @@ import "DPI-C" function int ebreak(input int a);
 
 
 
-module ysyx_24090015_top#(
+module ysyxSoCFull#(
   DATAWIDTH=32,
   ADDRWIDTH=32
   ) (
-    input clk,
-    input rst,
+    input clock,
+    input reset,
     output [ADDRWIDTH-1:0] pc,
     output [ADDRWIDTH-1:0] ifu_raddr,
     output [DATAWIDTH-1 : 0]inst,
@@ -32,7 +32,7 @@ end
 reg [31:0]ebreak_ret;
 
 //end emulation
-always @(posedge clk)begin
+always @(posedge clock)begin
 ebreak_ret = ebreak(inst);
 flag = ebreak_ret[0];
 end 
@@ -50,16 +50,23 @@ wire [31:0] lsu_addr;
 wire lsu_wen;
 wire [31:0] lsu_wdata;
 wire [3:0] lsu_wmask;
-wire lsu_respvalid;
+wire lsu_respValid;
 wire [31:0] lsu_rdata;
 
+wire pmem_work;
+wire pmem_ls;
+wire [7:0] pmem_wmask;
+wire [DATAWIDTH-1:0]pmem_addr;
+wire [DATAWIDTH-1:0]pmem_wdata;
+wire [DATAWIDTH-1:0]pmem_rdata;
+wire lsu_wvalid;
 
 ysyx_24090015_IFU #(
     .DATAWIDTH(DATAWIDTH),
     .ADDRWIDTH(DATAWIDTH)
 ) ifu0(
-    .clk(clk),
-    .rst(rst),
+    .clock(clock),
+    .reset(reset),
     .dnpc(dnpc),
     .pc(pc),
     .inst(inst),
@@ -68,16 +75,13 @@ ysyx_24090015_IFU #(
     .ifu_reqValid(ifu_reqValid),
     .ifu_raddr(ifu_raddr),
     .ifu_rdata(ifu_rdata),
-    .ifu_respValid(ifu_respValid)
+    .ifu_respValid(ifu_respValid),
+
+    .lsu_work(pmem_work),
+    .lsu_respValid(lsu_respValid)
 );
 
 
-wire pmem_work;
-wire pmem_ls;
-wire [7:0] pmem_wmask;
-wire [DATAWIDTH-1:0]pmem_addr;
-wire [DATAWIDTH-1:0]pmem_wdata;
-wire [DATAWIDTH-1:0]pmem_rdata;
 
 
 
@@ -85,14 +89,15 @@ ysyx_24090015_LSU #(
     .DATAWIDTH(DATAWIDTH),
     .ADDRWIDTH(DATAWIDTH)
 ) lsu0(
-    .clk(clk),
-    .rst(rst),
+    .clock(clock),
+    .reset(reset),
     .LSU_work(pmem_work),
     .ls(pmem_ls),
     .addr(pmem_addr),
     .sdata(pmem_wdata),
     .ldata(pmem_rdata),
     .storge_mask(pmem_wmask),
+    .wvalid(lsu_wvalid),
 
 
     .lsu_reqValid(lsu_reqValid),
@@ -105,8 +110,8 @@ ysyx_24090015_LSU #(
 );
 
 ysyx_24090015_SRAM sram0(
-    .clk(clk),
-    .rst(rst),
+    .clock(clock),
+    .reset(reset),
     .ifu_reqValid(ifu_reqValid),
     .ifu_respValid(ifu_respValid),
     .ifu_raddr(ifu_raddr),
@@ -153,7 +158,7 @@ ysyx_24090015_SRAM sram0(
     ysyx_24090015_IDU #(
         .WIDTH(32)
     ) idu0(    
-        .clk(clk),
+        .clock(clock),
         .inst_in(inst),
         .fetch(fetch),
         .imm(imm),
@@ -173,10 +178,11 @@ ysyx_24090015_SRAM sram0(
     ysyx_24090015_EXU#(
         .DATAWIDTH(DATAWIDTH)
     ) exu0(
-        .clk(clk),
-        .rst(rst),
+        .clock(clock),
+        .reset(reset),
 
         .inst_in(inst),
+        .lsu_wvalid(lsu_wvalid),
         .fetch(fetch),
         .imm(imm),
 
@@ -205,7 +211,7 @@ ysyx_24090015_SRAM sram0(
         .ADDR_WIDTH(5),
         .DATA_WIDTH(DATAWIDTH)
     ) reg0(
-        .clk(clk),
+        .clock(clock),
         .wdata(rd_wdata),
         .waddr(rd),
         .wen(wen),
@@ -223,7 +229,7 @@ ysyx_24090015_SRAM sram0(
         .IMM_WIDTH(12),       // 指定立即数宽度为 12 位
         .CSR_ADDR_WIDTH(2)    // 指定 CSR 地址宽度为 2 位
     ) csr_regfiles_instance (
-        .clk(clk),            // 连接时钟信号
+        .clock(clock),            // 连接时钟信号
         .wen(csr_wen),
         .imm(imm[11:0]),      // 连接 imm 输入
         .wdata0(csr_wdata0),  // 连接 wdata 输入
@@ -245,7 +251,7 @@ ysyx_24090015_SRAM sram0(
 	// ysyx_24090015_pmem #(
 	// .WIDTH(WIDTH)
 	// ) pmem0(
-	// 	//.clk(clk),
+	// 	//.clock(clock),
 	// 	.valid(valid_control),
 	// 	.wen(pwen_control),
 	// 	.wmask(wmask),
@@ -261,7 +267,7 @@ ysyx_24090015_SRAM sram0(
 
 
   //   ysyx_24090015_control_unit control_unit0(
-	// 	.clk(clk),
+	// 	.clock(clock),
 
   //   .ren1(ren1),
 	// 	.ren2(ren2),

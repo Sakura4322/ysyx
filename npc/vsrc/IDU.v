@@ -1,5 +1,5 @@
 module ysyx_24090015_IDU#(WIDTH=32) (
-    input clk,
+    input clock,
     input [WIDTH-1:0] inst_in,
 	input fetch,
     output reg [WIDTH-1:0] imm,
@@ -32,7 +32,7 @@ localparam  J  = 9;
     ysyx_24090015_TYPE#(
         .WIDTH(32)
     ) t0(
-        .clk(clk),
+        .clock(clock),
         .inst(inst_in),
         .inst_type(inst_type)
     );
@@ -229,7 +229,7 @@ endmodule
 
 module ysyx_24090015_immI#(WIDTH=32) (
     input [WIDTH-1:0] inst,
-		input clk,
+		input clock,
     output [WIDTH-1:0] immI
 );
 
@@ -317,7 +317,7 @@ output [WIDTH-1 : 0] immB
 	
 
 module ysyx_24090015_TYPE#(WIDTH=32) (
-    input clk,
+    input clock,
     input [WIDTH-1:0] inst,
     output reg [3:0] inst_type
 );

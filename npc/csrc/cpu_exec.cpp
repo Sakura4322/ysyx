@@ -143,8 +143,12 @@ static void execute(uint64_t n) {
 
 //init disasm before step_and_dump_wave
 init_disasm("riscv32");
+Addr_Imfo *func_addr = NULL;
 
-Addr_Imfo *func_addr = read_sym_func();
+if(ftrace_on){
+	func_addr = read_sym_func();
+
+}
 // for(int i=0;i<cnt_func_num;i++){
 // printf("funcs is : %s start : %08x end: %08x\n",func_addr[i].func_name,func_addr[i].start,func_addr[i].end);
 // }
@@ -156,10 +160,12 @@ Addr_Imfo *func_addr = read_sym_func();
 	if(diff_on){
 		// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
 		// cnt_fuck++;
-		if(top->fetch && cout_inst_times >= 4 && cout_inst_times%2==0){
+		static bool start_signal=false;
+		if(top->fetch && start_signal && cout_inst_times%2==1){
 			// printf("DIFFTEST : STEP %d\n",cout_inst_times);
 			difftest_step(s.pc,s.dnpc);
 		}
+		if(top->fetch == 1) start_signal = true;
 	}
     if (top->flag)npc_state.state=NPC_END;
     

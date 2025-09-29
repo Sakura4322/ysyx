@@ -78,7 +78,7 @@ module ysyx_24090015_CSR_RegFiles#(
     parameter IMM_WIDTH=12,
     parameter CSR_ADDR_WIDTH=2
 ) (
-    input clk,
+    input clock,
     input wen,
 	input [IMM_WIDTH-1 : 0]imm, 
     input [DATAWIDTH-1 : 0]wdata0,
@@ -104,7 +104,7 @@ wire wen0,wen1;
     );
 
 reg [DATAWIDTH -1 : 0] CSRS [3:0];
-always @(posedge clk) begin
+always @(posedge clock) begin
     if(wen0)begin
         CSRS[csr_waddr0] <= wdata0;
     end 

@@ -17,8 +17,8 @@ extern void sdb_mainloop();
 extern void step_and_dump_wave(Decode *s);
 extern void cpu_exec(uint64_t n);
 extern VerilatedContext *contextp;
-extern Vysyx_24090015_top* top;
-extern VerilatedVcdC *tfp;
+extern VysyxSoCFull* top;
+extern VerilatedFstC *tfp;
 
 /*
 const char *regs[] = {

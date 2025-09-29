@@ -2,11 +2,12 @@ module ysyx_24090015_EXU#(
 	DATAWIDTH=32,
 	ADDRWIDTH=32
 ) (
-    input clk,
-	input rst,
+    input clock,
+	input reset,
 
 	input [DATAWIDTH-1:0] inst_in,
 	input fetch,
+	input lsu_wvalid,
 	
     input [DATAWIDTH-1:0] imm,
 	input [DATAWIDTH-1:0] src1,
@@ -32,6 +33,9 @@ module ysyx_24090015_EXU#(
     localparam STORGE =0;
     localparam LOAD   =1;
 
+	localparam UINT = 0;
+	localparam INT  = 1;
+
 	localparam DWORD = 4'b1111;
 	localparam DHALF = 4'b0011;
 	localparam DBYTE = 4'b0001;
@@ -39,27 +43,37 @@ module ysyx_24090015_EXU#(
 	always @(*) begin
 		snpc = pc+4;
 	end
-	
+	reg data_type;
+	reg [3:0]pmem_rmask;
     always @(*) begin
 		if(fetch)begin
 			
 			casez (inst_in)
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi II
+					pmem_work = 0 ;
+
 					rd_wdata = src1 + imm;
         			dnpc = snpc;
 
                     end
                     32'b???????_?????_?????_111_?????_00100_11: begin //andi II
+					pmem_work = 0 ;
+
 					rd_wdata = src1 & imm;
         			dnpc = snpc;
 
                     end
                     32'b0000000_?????_?????_101_?????_00100_11: begin  //stli II
+					pmem_work = 0 ;
+
 					rd_wdata = src1 >> imm[4:0];
         			dnpc = snpc;
 
                     end
                     32'b0000000_?????_?????_001_?????_00100_11: begin //strlli II
+					pmem_work = 0 ;
+
+
 					rd_wdata = src1 << imm[4:0];
         			dnpc = snpc;
 
@@ -100,6 +114,8 @@ module ysyx_24090015_EXU#(
 					end
 
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
+					pmem_work = 0 ;
+
 					rd_wdata  = pc + imm;				
         			dnpc      = snpc;
 
@@ -119,11 +135,17 @@ module ysyx_24090015_EXU#(
 				    end
 
 					32'b???????_?????_?????_001_?????_11000_11: begin //bne B
+					pmem_work = 0 ;
+
+
 					if(src1!=src2)dnpc=pc+imm;
 					else dnpc = snpc;
 
 					end
 					32'b???????_?????_?????_000_?????_11000_11: begin //beq B
+					pmem_work = 0 ;
+
+
 					if(src1==src2)dnpc=pc+imm;
 					else dnpc = snpc;
 
@@ -156,11 +178,15 @@ module ysyx_24090015_EXU#(
 
                     end
 					32'b0100000_?????_?????_000_?????_01100_11: begin //sub R
+					pmem_work = 0 ;
+
 					rd_wdata = src1 - src2;
         			dnpc = snpc;
 
 					end
 					32'b0000000_?????_?????_000_?????_01100_11: begin //add R
+					pmem_work = 0 ;
+
                     rd_wdata = src1 + src2;
         			dnpc = snpc;
 
@@ -256,104 +282,123 @@ module ysyx_24090015_EXU#(
 					csr_wdata0 = pc;
 					csr_wdata1 = src1;
 					dnpc = csr_rdata;
+										end
+										32'b???????_?????_?????_010_?????_00000_11: begin //lw IS					
+											pmem_work = 1;
+											pmem_ls   = LOAD;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_rmask = DWORD;
+											rd_wdata = pmem_rdata;
+											data_type = INT;
+											dnpc = snpc;
+						
+						
+										end
+										32'b???????_?????_?????_001_?????_00000_11: begin //lh IS					
+											pmem_work = 1;
+											pmem_ls   = LOAD;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_rmask = DHALF;
+											data_type = INT;
+						
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_101_?????_00000_11: begin //lhu IS					
+											pmem_work = 1;
+											pmem_ls   = LOAD;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_rmask = DHALF;
+											data_type = UINT;
+						
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_000_?????_00000_11: begin //lb IS
+											pmem_work = 1;
+											pmem_ls   = LOAD;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_rmask = DBYTE;
+											data_type = INT;
+						
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_100_?????_00000_11: begin //lbu IS
+											pmem_work = 1;
+											pmem_ls   = LOAD;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_rmask = DBYTE;
+											data_type = UINT;
+						
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_010_?????_01000_11: begin //sw S
+											pmem_work = 1;
+											pmem_ls   = STORGE;
+											pmem_addr = src1+imm;
+											pmem_wmask = DWORD;
+											pmem_wdata = src2;
+						
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_000_?????_01000_11: begin //sb S
+											pmem_work = 1;
+											pmem_ls   = STORGE;
+											pmem_addr = src1+imm;
+											pmem_wmask = DBYTE;
+											pmem_wdata = src2[7:0];
+											
+											dnpc = snpc;
+						
+										end
+										32'b???????_?????_?????_001_?????_01000_11: begin //sh S
+											pmem_work = 1;
+											pmem_ls   = STORGE;
+											pmem_addr = src1+imm;
+											pmem_wmask = DHALF;
+											pmem_wdata = src2[15:0];
+						
+											dnpc = snpc;
+						
 										end			
 				default begin 
 					dnpc = snpc ;
-			end
-        
-		endcase     
-		end
-		else dnpc = snpc;
-
-			casez (inst_in)
-				32'b???????_?????_?????_010_?????_00000_11: begin //lw IS					
-					pmem_work = 1;
-					pmem_ls   = LOAD;
-					pmem_addr = src1+imm;
-					pmem_wmask = DWORD;
-					rd_wdata = pmem_rdata;
-
-					dnpc = snpc;
-
-
-				end
-				32'b???????_?????_?????_001_?????_00000_11: begin //lh IS					
-					pmem_work = 1;
-					pmem_ls   = LOAD;
-					pmem_addr = src1+imm;
-					pmem_wmask = DHALF;
-					rd_wdata = {{16{pmem_rdata[15]}},pmem_rdata[15:0]};
-
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_101_?????_00000_11: begin //lhu IS					
-					pmem_work = 1;
-					pmem_ls   = LOAD;
-					pmem_addr = src1+imm;
-					pmem_wmask = DHALF;
-					rd_wdata = pmem_rdata;
-
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_000_?????_00000_11: begin //lb IS
-					pmem_work = 1;
-					pmem_ls   = LOAD;
-					pmem_addr = src1+imm;
-					pmem_wmask = DBYTE;
-					rd_wdata = {{24{pmem_rdata[7]}},pmem_rdata[7:0]};
-
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_100_?????_00000_11: begin //lbu IS
-					pmem_work = 1;
-					pmem_ls   = LOAD;
-					pmem_addr = src1+imm;
-					pmem_wmask = DBYTE;
-					rd_wdata = pmem_rdata;
-
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_010_?????_01000_11: begin //sw S
-					pmem_work = 1;
-					pmem_ls   = STORGE;
-					pmem_addr = src1+imm;
-					pmem_wmask = DWORD;
-					pmem_wdata = src2;
-
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_000_?????_01000_11: begin //sb S
-					pmem_work = 1;
-					pmem_ls   = STORGE;
-					pmem_addr = src1+imm;
-					pmem_wmask = DBYTE;
-					pmem_wdata = src2[7:0];
-					
-					dnpc = snpc;
-
-				end
-				32'b???????_?????_?????_001_?????_01000_11: begin //sh S
-					pmem_work = 1;
-					pmem_ls   = STORGE;
-					pmem_addr = src1+imm;
-					pmem_wmask = DHALF;
-					pmem_wdata = src2[15:0];
-
-					dnpc = snpc;
-
-				end
-				default: begin
 					pmem_work = 0;
 					pmem_ls   = 0;
 					pmem_addr = 0;
 					pmem_wmask = 0;
+					pmem_rmask = 0;
 					pmem_wdata = 0;
-				end
-			endcase
+			end
+        
+		endcase     
+		end
+		else if(lsu_wvalid)begin
+			pmem_work = 0;
+
+			if(pmem_ls == LOAD)begin
+				case (pmem_rmask)
+					DBYTE: begin
+						if(data_type == INT) rd_wdata = {{24{pmem_rdata[7]}},pmem_rdata[7:0]};
+						else rd_wdata = {{24'b0},pmem_rdata[7:0]};
+					end
+					DHALF:begin
+						if(data_type == INT) rd_wdata = {{16{pmem_rdata[15]}},pmem_rdata[15:0]};
+						else rd_wdata = {{16'b0},pmem_rdata[15:0]};
+					end
+					DWORD: rd_wdata = pmem_rdata;
+					default : rd_wdata = 0;
+				endcase
+			end
+		end
+		else dnpc = snpc;
 	end
 endmodule

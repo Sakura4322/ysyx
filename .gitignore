@@ -14,4 +14,4 @@
 /am-kernels
 /nvboard
 /npc/wave.vcd
-/npc/obj-dir
+/npc/obj-dir/*
