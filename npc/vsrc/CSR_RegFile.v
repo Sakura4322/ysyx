@@ -156,7 +156,7 @@ always @(posedge clock) begin
 
         if(cnt == FACTOR -1)begin
             cnt <= 0;
-            CSRS[4] <= CSRS[4] + 4;
+            CSRS[4] <= CSRS[4] + 5;
         end
         else begin
             cnt <= cnt +1 ;
