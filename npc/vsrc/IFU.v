@@ -19,7 +19,7 @@ module ysyx_24090015_IFU#(
     );
 
 
-    localparam BASEADDR = 32'h80000000;
+    localparam BASEADDR = 32'h30000000;
 
     localparam IDLE = 0;
     localparam FETCH = 1;

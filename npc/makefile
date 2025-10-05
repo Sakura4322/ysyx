@@ -10,8 +10,8 @@ ELF?=
 NEMU_LIB=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
-# VSRC += $(shell find $(abspath ../ysyxSoC/perip) -name *.v)
-# VSRC += $(YSYXSOC)/ready-to-run/D-stage/ysyxSoCFull.v
+VSRC += $(shell find $(abspath ../ysyxSoC/perip) -name *.v)
+VSRC += $(YSYXSOC)/ready-to-run/D-stage/ysyxSoCFull.v
 
 # CSRC = $(shell find $(abspath ./csrc) -name *.cpp *.cc)	
 CSRC = $(shell find ./csrc -name "*.cpp" -o -name "*.cc" -o -name "*.c")
@@ -19,7 +19,7 @@ CSRC = $(shell find ./csrc -name "*.cpp" -o -name "*.cc" -o -name "*.c")
 # CSRC +=$(abspath ./csrc/disasm.cc)
 # CSRC +=$(abspath ./csrc/difftest_dut.cpp)
 INCLUDE_PATH ?=
-# INCLUDE_PATH += -I$(YSYXSOC)/perip/uart16550/rtl -I$(YSYXSOC)/perip/spi/rtl
+INCLUDE_PATH += -I$(YSYXSOC)/perip/uart16550/rtl -I$(YSYXSOC)/perip/spi/rtl
 CFLAGS= --cc --build --exe -j 0 -Wall --Wno-fatal 
 LDFLAGS= -lreadline 
 LDFLAGS += $(shell llvm-config --libs)
@@ -37,9 +37,9 @@ override ARGS+= -b
 # override ARGS+= -m 			#mtrace
 #override ARGS+= -y 			#dtrace
 # override ARGS+= -f 			#ftrace
-override ARGS+= -w 			#wave_load
+# override ARGS+= -w 			#wave_load
 #override ARGS+= --elf=$(ELF)
-override ARGS+= --diff=$(NEMU_LIB)
+# override ARGS+= --diff=$(NEMU_LIB)
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!

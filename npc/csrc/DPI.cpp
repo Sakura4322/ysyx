@@ -5,12 +5,9 @@
 #include "VysyxSoCFull__Dpi.h"
 #include "device.h"
 
-extern "C" int ebreak(int a){
-		//printf("the input ebreak inst is : %08x\n",a);
-		if(a ==  0x00100073){
-		return 1;	
-		}	
-		else return 0;
+extern "C" void ebreak(){
+		npc_state.state=NPC_END;
+		return ;
 }
 
 
@@ -31,9 +28,9 @@ const char *regs[] = {
 													 
 uint32_t sram[MAX_SRAM_SIZE]={0};
 
-extern int read_wire(int sec);
+// extern int read_wire(int sec);
 
-	svScope scope;
+// 	svScope scope;
 /*
 void read_regs() {
 	scope = svGetScopeFromName("TOP.ysyx_24090015_top") ;
@@ -48,25 +45,25 @@ void read_regs() {
 }
 */
 
-void read_regs() {
-	// scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.reg0");
-	scope = svGetScopeFromName("TOP.ysyxSoCFull.reg0");
-	svSetScope(scope);
-	if (scope == NULL) {
-        printf("Failed to get scope\n");
-		exit(-1);
-        return;
-    }
-	for(int i=0;i<32;i++){
-		cpu.gpr[i]=read_wire(i);
-	}
-	// scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.csr_regfiles_instance");
-	scope = svGetScopeFromName("TOP.ysyxSoCFull.csr_regfiles_instance");
-	svSetScope(scope);
-	for(int i=0;i<4;i++){
-		cpu.csr[i]=read_wire(i);
-	}
-}
+// void read_regs() {
+// 	scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.reg0");
+// 	// scope = svGetScopeFromName("TOP.ysyxSoCFull.reg0");
+// 	svSetScope(scope);
+// 	if (scope == NULL) {
+//         printf("Failed to get scope\n");
+// 		exit(-1);
+//         return;
+//     }
+// 	for(int i=0;i<32;i++){
+// 		cpu.gpr[i]=read_wire(i);
+// 	}
+// 	scope = svGetScopeFromName("TOP.ysyxSoCFull.asic.cpu.cpu.csr_regfiles_instance");
+// 	// scope = svGetScopeFromName("TOP.ysyxSoCFull.csr_regfiles_instance");
+// 	svSetScope(scope);
+// 	for(int i=0;i<4;i++){
+// 		cpu.csr[i]=read_wire(i);
+// 	}
+// }
 
 void npc_reg_display(){
 printf("reg\tvalue\n");

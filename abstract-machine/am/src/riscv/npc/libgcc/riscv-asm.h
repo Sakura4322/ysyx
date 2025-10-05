@@ -41,4 +41,3 @@ X:
 				.hidden HIDDEN_JUMPTARGET(X)
 
 
-#define nemu_trap(code) asm volatile("mv a0, %0; ebreak" : :"r"(code));

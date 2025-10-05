@@ -157,17 +157,23 @@ if(ftrace_on){
 		char buf[1024]={0};
 		step_and_dump_wave(&s);
 		cout_inst_times++;
-	if(diff_on){
-		// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
-		// cnt_fuck++;
-		static bool start_signal=false;
-		if(top->fetch && start_signal && cout_inst_times%2==1){
-			// printf("DIFFTEST : STEP %d\n",cout_inst_times);
-			difftest_step(s.pc,s.dnpc);
-		}
-		if(top->fetch == 1) start_signal = true;
-	}
-    if (top->flag)npc_state.state=NPC_END;
+	// if(diff_on){
+	// 	// static int cnt_fuck=0;			//nemu 运行也和npc 一样clk=1时等待，clk=0时运行 
+	// 	// cnt_fuck++;
+	// 	static bool start_signal=false;
+	// 	if(top->fetch && start_signal && cout_inst_times%2==1){
+	// 		// printf("DIFFTEST : STEP %d\n",cout_inst_times);
+	// 		difftest_step(s.pc,s.dnpc);
+	// 	}
+	// 	if(top->fetch == 1) start_signal = true;
+	// }
+    // if (top->flag)npc_state.state=NPC_END;
+	// int RUN_TIME = 100000000;
+	// static int static_times=0;
+	// static_times ++;
+	// if(static_times==RUN_TIME){
+	// 	npc_state.state=NPC_END;
+	// }
     
 
 // trace_and_difftest(&s, cpu.pc);
@@ -257,8 +263,8 @@ void cpu_exec(uint64_t n) {
     case NPC_RUNNING: npc_state.state = NPC_STOP; break;
 
     case NPC_END: case NPC_ABORT:
-    	npc_state.halt_ret=top->hit_good_or_bad;
-    	npc_state.halt_pc=top->ifu_raddr;
+    	// npc_state.halt_ret=top->hit_good_or_bad;
+    	// npc_state.halt_pc=top->ifu_raddr;
     	/*
       Log("npc: %s at pc = " FMT_WORD,
           (npc_state.state == NPC_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :

@@ -95,45 +95,45 @@ typedef struct{
 	uint32_t inst;
 }fifo;
 
-static void fifo_work(Decode *s){
-	static fifo fifo_inst[2] = {};
-	static uint32_t fifo_ind = 0 ;
+// static void fifo_work(Decode *s){
+// 	static fifo fifo_inst[2] = {};
+// 	static uint32_t fifo_ind = 0 ;
 
-	if(!fifo_inst[0].start){
-		if(top->fetch){
-			fifo_inst[0].start = top->fetch;
-			fifo_inst[1].start = top->fetch;
+// 	if(!fifo_inst[0].start){
+// 		if(top->fetch){
+// 			fifo_inst[0].start = top->fetch;
+// 			fifo_inst[1].start = top->fetch;
 
-			fifo_inst[fifo_ind].pc = top->ifu_raddr;
-			fifo_inst[fifo_ind].dnpc = top->pc;
-			fifo_inst[fifo_ind].inst = top->inst;
-			// printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
-			fifo_ind++;
-			assert(fifo_ind==1);
-		}
-	}else{
-		if(top->fetch){
-			assert(fifo_ind<=1);
-			// printf("fifo_ind : %d\n\n",fifo_ind);
-			fifo_inst[fifo_ind].pc = top->ifu_raddr;
-			fifo_inst[fifo_ind].dnpc = top->pc;
-			fifo_inst[fifo_ind].inst = top->inst;
-			fifo_ind = (fifo_ind+1) %2;
+// 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+// 			fifo_inst[fifo_ind].dnpc = top->pc;
+// 			fifo_inst[fifo_ind].inst = top->inst;
+// 			// printf("fifo_inst[fifo_ind].dnpc : %08x\n\n",fifo_inst[fifo_ind].dnpc);
+// 			fifo_ind++;
+// 			assert(fifo_ind==1);
+// 		}
+// 	}else{
+// 		if(top->fetch){
+// 			assert(fifo_ind<=1);
+// 			// printf("fifo_ind : %d\n\n",fifo_ind);
+// 			fifo_inst[fifo_ind].pc = top->ifu_raddr;
+// 			fifo_inst[fifo_ind].dnpc = top->pc;
+// 			fifo_inst[fifo_ind].inst = top->inst;
+// 			fifo_ind = (fifo_ind+1) %2;
 
-			// printf("fifo_ind : %d\n\n",fifo_ind);
-			s->pc = fifo_inst[fifo_ind].pc;
-			s->dnpc = fifo_inst[fifo_ind].dnpc;
-			// printf("s->dnpc : %08x\n\n",s->dnpc);
-			s->inst = fifo_inst[fifo_ind].inst;
-			cpu.pc = fifo_inst[fifo_ind].dnpc;
-		}
-	}
-}
+// 			// printf("fifo_ind : %d\n\n",fifo_ind);
+// 			s->pc = fifo_inst[fifo_ind].pc;
+// 			s->dnpc = fifo_inst[fifo_ind].dnpc;
+// 			// printf("s->dnpc : %08x\n\n",s->dnpc);
+// 			s->inst = fifo_inst[fifo_ind].inst;
+// 			cpu.pc = fifo_inst[fifo_ind].dnpc;
+// 		}
+// 	}
+// }
 
 
 extern int cout_inst_times;
 
-// int RUN_TIME = 400000000;
+
 void step_and_dump_wave(Decode *s){
 	
 	clk = clk ^ 1;
@@ -141,42 +141,37 @@ void step_and_dump_wave(Decode *s){
 	
 	top ->eval();
 
-	// static int times=0;
-	// times ++;
-	// if(times==RUN_TIME){
-	// 	exit(-1);
-	// }
 	// if(clk){
-		read_regs();
-		fifo_work(s);
+		// read_regs();
+		// fifo_work(s);
 		
 		
 
-		if(itrace_on){
+		// if(itrace_on){
 
-			if(top->fetch){
-				char *p = s->logbuf;
-				p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
+		// 	if(top->fetch){
+		// 		char *p = s->logbuf;
+		// 		p += snprintf(p, sizeof(s->logbuf), "0x%08x:", s->pc);
 				
-				int ilen = 4;
-				int i;
-				uint8_t *inst = (uint8_t *)&s->inst;
-				for (i = ilen - 1; i >= 0; i --) {
-					p += snprintf(p, 4, " %02x", inst[i]);
-				}
-				int ilen_max =4;
-				int space_len = ilen_max - ilen;
-				if (space_len < 0) space_len = 0;
-				space_len = space_len * 3 + 1;
-				memset(p, ' ', space_len);
-				p += space_len;
+		// 		int ilen = 4;
+		// 		int i;
+		// 		uint8_t *inst = (uint8_t *)&s->inst;
+		// 		for (i = ilen - 1; i >= 0; i --) {
+		// 			p += snprintf(p, 4, " %02x", inst[i]);
+		// 		}
+		// 		int ilen_max =4;
+		// 		int space_len = ilen_max - ilen;
+		// 		if (space_len < 0) space_len = 0;
+		// 		space_len = space_len * 3 + 1;
+		// 		memset(p, ' ', space_len);
+		// 		p += space_len;
 				
-				disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
+		// 		disassemble(p, s->logbuf + sizeof(s->logbuf) - p,s->pc, (uint8_t *)&s->inst, ilen);
 	
-				log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
-			}
+		// 		log_write("%08x:%08x\t\t%s\t\tinst_times : %d\n",s->pc,s->inst,p,cout_inst_times);
+		// 	}
 
-		}
+		// }
 
 	top ->eval();
   

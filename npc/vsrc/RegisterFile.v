@@ -25,11 +25,11 @@ function automatic int read_gpr(input int idx);
 endfunction
  */
 
- 		export "DPI-C" function read_wire;
+ 		// export "DPI-C" function read_wire;
 
-		function automatic int read_wire(input int sec);
-			return rf[sec];
-		endfunction
+		// function automatic int read_wire(input int sec);
+		// 	return rf[sec];
+		// endfunction
     
  
   always @(posedge clock) begin
