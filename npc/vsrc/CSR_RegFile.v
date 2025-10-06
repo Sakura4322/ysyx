@@ -176,10 +176,10 @@ end
         
 assign rdata = CSRS[csr_raddr0];
 
-export "DPI-C" function read_wire;
+// export "DPI-C" function read_wire;
 
-function automatic int read_wire(input int sec);
-	return CSRS[sec];
-endfunction
+// function automatic int read_wire(input int sec);
+// 	return CSRS[sec];
+// endfunction
 
 endmodule

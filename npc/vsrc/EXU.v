@@ -1,4 +1,4 @@
-import "DPI-C" function void ebreak();
+// import "DPI-C" function void ebreak();
 
 module ysyx_24090015_EXU#(
 	DATAWIDTH=32,
@@ -63,7 +63,7 @@ module ysyx_24090015_EXU#(
 			
 			casez (inst_in)
 					32'h00100073:begin
-						ebreak();
+						// ebreak();
 					end
 					32'b???????_?????_?????_000_?????_00100_11: begin //addi II
 					pmem_size= 0;

@@ -197,7 +197,7 @@ ysyx_24090015_LSU #(
 
     // 寄存器堆实例化
     ysyx_24090015_RegisterFile #(
-        .ADDR_WIDTH(5),
+        .ADDR_WIDTH(4),
         .DATA_WIDTH(DATAWIDTH)
     ) reg0(
         .clock(clock),
