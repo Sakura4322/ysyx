@@ -1,17 +1,20 @@
 all: sim gdb
 	@echo "Write this Makefile by your self."
 
-TOP_NAME=ysyx_24090015
-# TOP_NAME=ysyxSoCFull
+# TOP_NAME=ysyx_24090015
+TOP_NAME=ysyxSoCFull
 # TOP_NOME_PATH=$(shell find $(abspath ./vsrc) -name ysyx_24090015)
 
 IMG?=
 ELF?=
 NEMU_LIB=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 
+SDC_FILES = $(shell find $(abspath ./vsrc) -name *.sdc)
+
+
 VSRC = $(shell find $(abspath ./vsrc) -name *.v)
-# VSRC += $(shell find $(abspath ../ysyxSoC/perip) -name *.v)
-# VSRC += $(YSYXSOC)/ready-to-run/D-stage/ysyxSoCFull.v
+VSRC += $(shell find $(abspath ../ysyxSoC/perip) -name *.v)
+VSRC += $(YSYXSOC)/ready-to-run/D-stage/ysyxSoCFull.v
 
 # CSRC = $(shell find $(abspath ./csrc) -name *.cpp *.cc)	
 CSRC = $(shell find ./csrc -name "*.cpp" -o -name "*.cc" -o -name "*.c")
@@ -61,7 +64,7 @@ run : sim
 include ../Makefile
 
 sta : 
-	$(MAKE) -C $(YOSYS) sta DESIGN=$(TOP_NAME) RTL_FILES="$(VSRC)" CLK_FREQ_MHZ=100
+	$(MAKE) -C $(YOSYS) sta DESIGN=$(TOP_NAME) SDC_FILE=$(SDC_FILES) RTL_FILES="$(VSRC)" CLK_FREQ_MHZ=100
 
 clean:
 	rm -rf ./obj_dir *.vcd

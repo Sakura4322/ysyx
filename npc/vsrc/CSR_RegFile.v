@@ -132,41 +132,28 @@ wire wen0,wen1;
         .waddr1(csr_waddr1)       
     );
 
-parameter FACTOR = 1;
 reg [DATAWIDTH -1 : 0] CSRS [7:0];
 
-reg [31 : 0]cnt;
 always @(posedge clock) begin
     if(reset)begin
-        cnt <= 0;
-
         CSRS[6] <= 32'h16F959F;         //marchild
-        CSRS[7] <= 32'h79737978;        //mvendorid
+        CSRS[7] <= 32'd24090015;        //mvendorid
 
     end
     else begin
+    if(csr_waddr0 <= 3 || csr_waddr1<= 3)begin
         if(wen0)begin
             CSRS[csr_waddr0] <= wdata0;
         end 
         if(wen1)begin
             CSRS[csr_waddr1] <= wdata1;
         end
+    end
+    CSRS[4] <= CSRS[4] + 5;
 
-
-
-        if(cnt == FACTOR -1)begin
-            cnt <= 0;
-            CSRS[4] <= CSRS[4] + 5;
-        end
-        else begin
-            cnt <= cnt +1 ;
-        end
-
-        if(CSRS[4] ==  32'hFFFFFFFF)begin
-            CSRS[5] <= CSRS[5] + 1;
-        end
-
-
+    if(CSRS[4] ==  32'hFFFFFFFF)begin
+        CSRS[5] <= CSRS[5] + 1;
+    end
 
     end
 
