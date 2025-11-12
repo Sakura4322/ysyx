@@ -55,9 +55,6 @@ assign ldata = lsu_rdata;
             end
           end 
           FINISH : begin
-            if(LSU_work)begin
-              lsu_state  <= WAIT;
-            end
             lsu_state <= IDLE;
           end
         endcase

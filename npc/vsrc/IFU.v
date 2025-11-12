@@ -7,7 +7,6 @@ module ysyx_24090015_IFU#(
     input [ADDRWIDTH-1:0] dnpc,
     output reg[ADDRWIDTH-1:0] pc,
     output [DATAWIDTH-1 : 0]inst,
-    output                      fetch,
 
     output reg       ifu_reqValid,
     output reg [31:0] ifu_raddr,
@@ -36,7 +35,6 @@ module ysyx_24090015_IFU#(
         end
 	end
 
-    assign fetch = ifu_respValid;
     // assign inst  = 0;
     // assign inst  = (ifu_reqValid && ifu_respValid) ? ifu_rdata : 0;
     assign inst  = ifu_rdata;

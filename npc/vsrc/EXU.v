@@ -8,7 +8,6 @@ module ysyx_24090015_EXU#(
 	input reset,
 
 	input [DATAWIDTH-1:0] inst_in,
-	input fetch,
 	input lsu_wvalid,
 	
     input [DATAWIDTH-1:0] imm,
@@ -58,9 +57,13 @@ module ysyx_24090015_EXU#(
 	end
 	reg data_type;
 	reg [3:0] pmem_rmask;
+
+	reg [DATAWIDTH-1:0] exu_data, lsu_data;
+
+
+	assign rd_wdata = lsu_wvalid && pmem_ls == LOAD ? lsu_data : exu_data; 
+
     always @(*) begin
-		if(fetch)begin
-			
 			casez (inst_in)
 					32'h00100073:begin
 						// ebreak();
@@ -69,7 +72,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 					pmem_work = 0 ;
 
-					rd_wdata = src1 + imm;
+					exu_data = src1 + imm;
         			dnpc = snpc;
 
                     end
@@ -78,7 +81,7 @@ module ysyx_24090015_EXU#(
 
 					pmem_work = 0 ;
 
-					rd_wdata = src1 & imm;
+					exu_data = src1 & imm;
         			dnpc = snpc;
 
                     end
@@ -87,7 +90,7 @@ module ysyx_24090015_EXU#(
 
 					pmem_work = 0 ;
 
-					rd_wdata = src1 >> imm[4:0];
+					exu_data = src1 >> imm[4:0];
         			dnpc = snpc;
 
                     end
@@ -97,7 +100,7 @@ module ysyx_24090015_EXU#(
 					pmem_work = 0 ;
 
 
-					rd_wdata = src1 << imm[4:0];
+					exu_data = src1 << imm[4:0];
         			dnpc = snpc;
 
                     end
@@ -106,7 +109,7 @@ module ysyx_24090015_EXU#(
 
                     pmem_work = 0 ;
 
-					rd_wdata = (src1 < imm);
+					exu_data = (src1 < imm);
         			dnpc = snpc;
 
 					end
@@ -115,7 +118,7 @@ module ysyx_24090015_EXU#(
 
                     pmem_work = 0 ;
 
-					rd_wdata = (src1[31]==1'b1) ? ((32'hffffffff<<(31-imm[4:0]) | src1>>imm[4:0])) : src1>>imm[4:0];
+					exu_data = (src1[31]==1'b1) ? ((32'hffffffff<<(31-imm[4:0]) | src1>>imm[4:0])) : src1>>imm[4:0];
         			dnpc = snpc;
 
 					end
@@ -124,7 +127,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = src1 ^ imm;
+					exu_data = src1 ^ imm;
         			dnpc = snpc;
 
 					end
@@ -133,7 +136,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = src1 | imm;
+					exu_data = src1 | imm;
         			dnpc = snpc;
 
 					end
@@ -141,7 +144,7 @@ module ysyx_24090015_EXU#(
                     pmem_work = 0 ;
 
 					dnpc =src1+imm;
-					rd_wdata = pc+4;
+					exu_data = pc+4;
 					end
 
 					32'b???????_?????_?????_???_?????_00101_11: begin //auipc U
@@ -149,7 +152,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata  = pc + imm;				
+					exu_data  = pc + imm;				
         			dnpc      = snpc;
 
 					end
@@ -158,7 +161,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = imm;
+					exu_data = imm;
         			dnpc = snpc;
 
 					end
@@ -167,7 +170,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata=snpc;
+					exu_data=snpc;
 					dnpc = pc+imm;
 				    end
 
@@ -231,7 +234,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = src1 - src2;
+					exu_data = src1 - src2;
         			dnpc = snpc;
 
 					end
@@ -240,7 +243,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata = src1 + src2;
+                    exu_data = src1 + src2;
         			dnpc = snpc;
 
 					end
@@ -249,7 +252,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata = src1 |src2;
+                    exu_data = src1 |src2;
         			dnpc = snpc;
 
                     end
@@ -258,7 +261,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata = src1 & src2;
+                    exu_data = src1 & src2;
         			dnpc = snpc;
 
                     end
@@ -267,7 +270,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata = src1 ^ src2;
+                    exu_data = src1 ^ src2;
         			dnpc = snpc;
 
                     end
@@ -276,7 +279,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = src1[31:0]<<src2[4:0];
+					exu_data = src1[31:0]<<src2[4:0];
         			dnpc = snpc;
 
 					end
@@ -285,7 +288,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = src1[31:0]>>src2[4:0];
+					exu_data = src1[31:0]>>src2[4:0];
         			dnpc = snpc;
 
 					end
@@ -294,7 +297,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata = (src1[31]==1'b1) ? ((32'hffffffff<<(31-src2[4:0]) | src1>>src2[4:0])) : src1>>src2[4:0];
+					exu_data = (src1[31]==1'b1) ? ((32'hffffffff<<(31-src2[4:0]) | src1>>src2[4:0])) : src1>>src2[4:0];
         			dnpc = snpc;
 
 					end
@@ -303,7 +306,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata = (src1<src2);
+                    exu_data = (src1<src2);
         			dnpc = snpc;
 
                     end
@@ -312,7 +315,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-                    rd_wdata=(((src1[31]==0&&src2[31]==0)&&(src1<src2))||((src1[31]==1&&src2[31]==1)&&(src1<src2))||(src1[31]==1&&src2[31]==0));
+                    exu_data=(((src1[31]==0&&src2[31]==0)&&(src1<src2))||((src1[31]==1&&src2[31]==1)&&(src1<src2))||(src1[31]==1&&src2[31]==0));
         			dnpc = snpc;
 
                     end
@@ -321,7 +324,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata  = csr_rdata; 
+					exu_data  = csr_rdata; 
 					csr_wdata0 = csr_rdata &~ src1;
         			dnpc = snpc;
 
@@ -331,7 +334,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata  = csr_rdata; 
+					exu_data  = csr_rdata; 
 					csr_wdata0 = csr_rdata | src1;
         			dnpc = snpc;
 
@@ -341,7 +344,7 @@ module ysyx_24090015_EXU#(
 					pmem_size= 0;
 
 
-					rd_wdata  = csr_rdata; 
+					exu_data  = csr_rdata; 
 					csr_wdata0 = src1;
         			dnpc = snpc;
 
@@ -370,7 +373,7 @@ module ysyx_24090015_EXU#(
 											pmem_addr = src1+imm;
 											pmem_wmask = DWORD;
 											pmem_rmask = DWORD;
-											rd_wdata = pmem_rdata;
+											exu_data = pmem_rdata;
 											data_type = INT;
 											dnpc = snpc;
 						
@@ -474,48 +477,48 @@ module ysyx_24090015_EXU#(
 					pmem_wmask = 0;
 					pmem_rmask = 0;
 					pmem_wdata = 0;
+					exu_data = 0;
+					data_type = 0;
+					csr_wdata0 =0 ;
+					csr_wdata1 =0 ;
+
 			end
         
 		endcase     
-		end
-		else if(lsu_wvalid)begin
-			pmem_work = 0;
 
-			if(pmem_ls == LOAD)begin
+
 				case (pmem_rmask)
 					DBYTE: begin
-						if(data_type == INT) rd_wdata = {{24{pmem_rdata[7]}},pmem_rdata[7:0]};
-						else rd_wdata = {{24'b0},pmem_rdata[7:0]};
+						if(data_type == INT) lsu_data = {{24{pmem_rdata[7]}},pmem_rdata[7:0]};
+						else lsu_data = {{24'b0},pmem_rdata[7:0]};
 					end
 					4'b0010 : begin
-						if(data_type == INT) rd_wdata = {{24{pmem_rdata[15]}},pmem_rdata[15:8]};
-						else rd_wdata = {{24'b0},pmem_rdata[15:8]};
+						if(data_type == INT) lsu_data = {{24{pmem_rdata[15]}},pmem_rdata[15:8]};
+						else lsu_data = {{24'b0},pmem_rdata[15:8]};
 					end
 					4'b0100 : begin
-						if(data_type == INT) rd_wdata = {{24{pmem_rdata[23]}},pmem_rdata[23:16]};
-						else rd_wdata = {{24'b0},pmem_rdata[23:16]};
+						if(data_type == INT) lsu_data = {{24{pmem_rdata[23]}},pmem_rdata[23:16]};
+						else lsu_data = {{24'b0},pmem_rdata[23:16]};
 					end
 					4'b1000 : begin
-						if(data_type == INT) rd_wdata = {{24{pmem_rdata[31]}},pmem_rdata[31:24]};
-						else rd_wdata = {{24'b0},pmem_rdata[31:24]};
+						if(data_type == INT) lsu_data = {{24{pmem_rdata[31]}},pmem_rdata[31:24]};
+						else lsu_data = {{24'b0},pmem_rdata[31:24]};
 					end
 					DHALF:begin
-						if(data_type == INT) rd_wdata = {{16{pmem_rdata[15]}},pmem_rdata[15:0]};
-						else rd_wdata = {{16'b0},pmem_rdata[15:0]};
+						if(data_type == INT) lsu_data = {{16{pmem_rdata[15]}},pmem_rdata[15:0]};
+						else lsu_data = {{16'b0},pmem_rdata[15:0]};
 					end
 					4'b0110:begin
-						if(data_type == INT) rd_wdata = {{16{pmem_rdata[23]}},pmem_rdata[23:8]};
-						else rd_wdata = {{16'b0},pmem_rdata[23:8]};	
+						if(data_type == INT) lsu_data = {{16{pmem_rdata[23]}},pmem_rdata[23:8]};
+						else lsu_data = {{16'b0},pmem_rdata[23:8]};	
 					end
 					4'b1100:begin
-						if(data_type == INT) rd_wdata = {{16{pmem_rdata[31]}},pmem_rdata[31:16]};
-						else rd_wdata = {{16'b0},pmem_rdata[31:16]};	
+						if(data_type == INT) lsu_data = {{16{pmem_rdata[31]}},pmem_rdata[31:16]};
+						else lsu_data = {{16'b0},pmem_rdata[31:16]};	
 					end
-					DWORD: rd_wdata = pmem_rdata;
-					default : rd_wdata = 0;
+					DWORD: lsu_data = pmem_rdata;
+					default : lsu_data = 0;
 				endcase
-			end
-		end
-		else dnpc = snpc;
+
 	end
 endmodule

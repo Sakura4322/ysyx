@@ -57,7 +57,6 @@ ysyx_24090015_IFU #(
     .dnpc(dnpc),
     .pc(pc),
     .inst(inst),
-    .fetch(fetch),
 
     .ifu_reqValid(io_ifu_reqValid),
     .ifu_raddr(io_ifu_addr),
@@ -78,7 +77,7 @@ ysyx_24090015_LSU #(
 ) lsu0(
     .clock(clock),
     .reset(reset),
-    .LSU_work(pmem_work),
+    .LSU_work(pmem_work && io_ifu_respValid),
     .ls(pmem_ls),
     .addr(pmem_addr),
     .sdata(pmem_wdata),
@@ -147,7 +146,6 @@ ysyx_24090015_LSU #(
     ) idu0(    
         .clock(clock),
         .inst_in(inst),
-        .fetch(fetch),
         .imm(imm),
         .ren1(ren1),
 				.rs1(rs1),
@@ -169,7 +167,6 @@ ysyx_24090015_LSU #(
         .reset(reset),
 
         .inst_in(inst),
-        .fetch(fetch),
         .lsu_wvalid(lsu_wvalid),
         .imm(imm),
 
@@ -203,7 +200,7 @@ ysyx_24090015_LSU #(
         .clock(clock),
         .wdata(rd_wdata),
         .waddr(rd),
-        .wen(wen),
+        .wen(wen && ((io_ifu_respValid && !io_lsu_reqValid) || (io_lsu_respValid && pmem_ls == 1))) ,
         .ren1(ren1),
         .ren2(ren2),
         .raddr1(rs1),

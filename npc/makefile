@@ -40,7 +40,7 @@ override ARGS+= -b
 # override ARGS+= -m 			#mtrace
 #override ARGS+= -y 			#dtrace
 # override ARGS+= -f 			#ftrace
-# override ARGS+= -w 			#wave_load
+override ARGS+= -w 			#wave_load
 #override ARGS+= --elf=$(ELF)
 # override ARGS+= --diff=$(NEMU_LIB)
 
