@@ -84,6 +84,7 @@ module csr_addr_mux #(
                     waddr1=0;    
             end
             default:begin 
+                    raddr0 = 0;
                     wen0  =0;
                     waddr0=0;
                     wen1  =0;
@@ -92,6 +93,7 @@ module csr_addr_mux #(
         endcase
         end
         else begin 
+                    raddr0 = 0;
                     wen0  =0;
                     waddr0=0;
                     wen1  =0;

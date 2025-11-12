@@ -1,6 +1,6 @@
 module ysyx_24090015_RegisterFile #(
-  ADDR_WIDTH = 4, 
-  DATA_WIDTH = 32
+  parameter ADDR_WIDTH = 4, 
+  parameter DATA_WIDTH = 32
   ) (
   input clock,
   input [DATA_WIDTH-1:0] wdata,

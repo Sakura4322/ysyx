@@ -25,7 +25,7 @@ module ysyx_24090015_IFU#(
     localparam LS = 2;
 
 
-    always @(ifu_respValid) begin 
+    always @(posedge clock) begin 
         if(reset)begin
             pc <= BASEADDR;
         end
@@ -34,7 +34,6 @@ module ysyx_24090015_IFU#(
             pc <= dnpc;
         end
 	end
-
     // assign inst  = 0;
     // assign inst  = (ifu_reqValid && ifu_respValid) ? ifu_rdata : 0;
     assign inst  = ifu_rdata;
@@ -72,7 +71,6 @@ module ysyx_24090015_IFU#(
                     if(lsu_respValid)begin
                         ifu_reqValid <= 1;
                         ifu_raddr    <= pc;
-      
                         ifu_state    <= FETCH;
                     end
                 end

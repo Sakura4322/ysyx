@@ -1,8 +1,8 @@
 `timescale 1ns/1ns
 
 module ysyx_24090015#(
-  DATAWIDTH=32,
-  ADDRWIDTH=32
+  parameter DATAWIDTH=32,
+  parameter ADDRWIDTH=32
   ) (
     input clock,
     input reset,
