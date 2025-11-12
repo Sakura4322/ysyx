@@ -1,4 +1,6 @@
-module ysyx_24090015_IDU#(WIDTH=32) (
+module ysyx_24090015_IDU#(
+	parameter WIDTH=32
+	) (
     input clock,
     input [WIDTH-1:0] inst_in,
     output reg [WIDTH-1:0] imm,
@@ -74,6 +76,17 @@ localparam  J  = 9;
 		);
 
 		always @(*)begin
+							rs1=5;
+							rs2=0;
+							ren1=0;
+							ren2=0;
+							valid=0;
+							rd=0;
+							wen=0;
+							pwen=0;
+							imm=0;	
+							csr_wen = 0;
+
 				case(inst_type)
 					II : begin 
 							rs1=inst_in[19:15];

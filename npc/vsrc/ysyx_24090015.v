@@ -146,6 +146,7 @@ ysyx_24090015_LSU #(
     ) idu0(    
         .clock(clock),
         .inst_in(inst),
+
         .imm(imm),
         .ren1(ren1),
 				.rs1(rs1),

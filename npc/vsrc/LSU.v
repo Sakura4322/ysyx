@@ -21,7 +21,7 @@ module ysyx_24090015_LSU #(
     output [DATAWIDTH -1 :0] lsu_wdata,
     output [ 3:0] lsu_wmask,
     input         lsu_respValid,
-    input  [DATAWIDTH -1 :0] lsu_rdata,
+    input  [DATAWIDTH -1 :0] lsu_rdata
 );
 
 
@@ -81,6 +81,7 @@ assign ldata = lsu_rdata;
               //   lsu_reqValid = 0;
               // end
             end 
+            default : lsu_reqValid = 0;
           endcase
         end
   end
