@@ -12,7 +12,8 @@ NEMU_LIB=$(NEMU_HOME)/build/riscv32-nemu-interpreter-so
 SDC_FILES = $(shell find $(abspath ./vsrc) -name *.sdc)
 
 
-VSRC = $(shell find $(abspath ./vsrc) -name *.v)
+VSRC = ./vsrc/ysyx_24090015
+#VSRC = $(shell find $(abspath ./vsrc) -name *.v)
 VSRC += $(shell find $(abspath ../ysyxSoC/perip) -name *.v)
 VSRC += $(YSYXSOC)/ready-to-run/D-stage/ysyxSoCFull.v
 
